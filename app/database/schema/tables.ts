@@ -14,6 +14,8 @@ import {
 import * as enums from '@database/schema/enums';
 import * as generators from '@database/schema/generators';
 
+export * from '@database/schema/enums';
+
 const isoTimestamp = customType<IsoTimeStampConfig>({
 	dataType() {
 		return 'timestamp';
