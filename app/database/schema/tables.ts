@@ -9,6 +9,8 @@ import {
 	uniqueIndex,
 } from 'drizzle-orm/pg-core';
 
+import * as generators from '@database/schema/generators';
+
 const isoTimestamp = customType<IsoTimeStampConfig>({
 	dataType() {
 		return 'timestamp';
@@ -22,7 +24,7 @@ export const users = pgTable(
 	'users',
 	{
 		id: text('id')
-			.$defaultFn(() => '1' /**TODO: Generate UUID */)
+			.$defaultFn(() => generators.createUserId())
 			.notNull(),
 		username: text('username').notNull(),
 		name: text('name').notNull(),
