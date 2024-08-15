@@ -9,3 +9,8 @@ export const createUserId = init({
 	length: 8,
 	fingerprint: process.env.CUID_FINGERPRINT,
 });
+
+export const createLogId = init({
+	length: 8,
+	fingerprint: process.env.CUID_FINGERPRINT,
+});
