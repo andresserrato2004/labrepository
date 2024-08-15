@@ -2,10 +2,6 @@ import { pgEnum } from 'drizzle-orm/pg-core';
 
 export enum AppResource {
 	Users = 'users',
-	Clients = 'clients',
-	Products = 'products',
-	Resolutions = 'resolutions',
-	Invoices = 'invoices',
 }
 
 export enum AuditAction {
@@ -13,6 +9,11 @@ export enum AuditAction {
 	Read = 'read',
 	Update = 'update',
 	Delete = 'delete',
+}
+
+export enum UserRole {
+	Admin = 'admin',
+	User = 'user',
 }
 
 export const appResourceEnum = pgEnum(
@@ -23,4 +24,9 @@ export const appResourceEnum = pgEnum(
 export const auditActionEnum = pgEnum(
 	'audit_action',
 	Object.values(AuditAction) as [string, ...string[]],
+);
+
+export const userRoleEnum = pgEnum(
+	'user_role',
+	Object.values(UserRole) as [string, ...string[]],
 );
