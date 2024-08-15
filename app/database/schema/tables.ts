@@ -53,6 +53,18 @@ export const users = pgTable(
 	},
 );
 
+export const classrooms = pgTable('classrooms', {
+	id: text('id')
+		.$defaultFn(() => generators.createClassroomId())
+		.notNull(),
+	name: text('name').notNull(),
+	createdAt: isoTimestamp('created_at').default(sql`now()`).notNull(),
+	updatedAt: isoTimestamp('updated_at')
+		.default(sql`now()`)
+		.$onUpdate(() => sql`now()`)
+		.notNull(),
+});
+
 export const errorLogs = pgTable(
 	'error_logs',
 	{

@@ -14,3 +14,8 @@ export const createLogId = init({
 	length: 8,
 	fingerprint: process.env.CUID_FINGERPRINT,
 });
+
+export const createClassroomId = init({
+	length: 8,
+	fingerprint: process.env.CUID_FINGERPRINT,
+});
