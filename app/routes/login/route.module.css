@@ -1,0 +1,16 @@
+.mainContainer {
+    @apply w-dvw h-dvh grid place-items-center;
+}
+
+.formContainer {
+    @apply flex flex-col items-center gap-6 p-4 w-full h-full bg-content1;
+    @apply sm:max-w-md sm:h-min sm:shadow-medium sm:p-8 sm:rounded-medium sm:gap-8;
+}
+
+.title {
+    @apply text-primary text-4xl font-bold mt-10 mb-4;
+}
+
+.submitButton {
+    @apply w-full;
+}

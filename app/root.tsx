@@ -1,5 +1,6 @@
 import type React from 'react';
 
+import { NextUIProvider } from '@nextui-org/system';
 import {
 	Links,
 	Meta,
@@ -23,7 +24,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Links />
 			</head>
 			<body>
-				{children}
+				<NextUIProvider validationBehavior='native'>
+					{children}
+				</NextUIProvider>
 				<ScrollRestoration />
 				<Scripts />
 			</body>

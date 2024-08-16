@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body {
+    @apply overflow-x-hidden;
+}
+
+body {
+    min-width: 100vw;
+    min-height: 100vh;
+    min-width: 100svw;
+    min-height: 100svh;
+
+    @apply bg-content1;
+}
