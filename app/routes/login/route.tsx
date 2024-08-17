@@ -3,10 +3,13 @@ import { Input } from '@nextui-org/input';
 
 import styles from './route.module.css';
 
+export { action } from '@routes/login/action';
+export { meta } from '@routes/login/meta';
+
 export default function LoginPage() {
 	return (
 		<main className={styles.mainContainer}>
-			<form className={styles.formContainer}>
+			<form className={styles.formContainer} method='POST'>
 				<h1 className={styles.title}>Bienvenido</h1>
 				<Input label='Username' name='username' isRequired={true} />
 				<Input
@@ -18,7 +21,7 @@ export default function LoginPage() {
 				<Button
 					className={styles.submitButton}
 					color='primary'
-					type='button'
+					type='submit'
 				>
 					Iniciar sesión
 				</Button>

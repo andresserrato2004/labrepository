@@ -28,11 +28,17 @@
 			"@errors/*": ["./app/errors/*"],
 			"@errors": ["./app/errors/index"],
 
+			"@services/*": ["./app/services/*"],
+			"@services": ["./app/services/index"],
+
 			"@database/*": ["./app/database/*"],
 			"@database": ["./app/database/index"],
 
 			"@routes/index/*": ["./app/routes/_index/*"],
-			"@routes/index": ["./app/routes/_index"]
+			"@routes/index": ["./app/routes/_index"],
+
+			"@routes/login/*": ["./app/routes/login/*"],
+			"@routes/login": ["./app/routes/login"]
 		},
 
 		// Vite takes care of building everything, not tsc.
