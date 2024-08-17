@@ -1,79 +1,44 @@
+import type { HandleUnknownErrorArgs } from '@services/types';
+import type { ServerErrorResponse } from '@services/types';
+
+import { database, schema } from '@database';
+import { ResponseType, ServerErrorCode } from '@services/utility/enums';
+
 /**
- * Defines the possible response types.
+ * Handles unknown errors and returns a server error response.
+ * This functions should be used as a catch-all for errors that are not handled by other error handlers
+ * on the service layer.
  *
- * @enum {string}
- * @readonly
+ * @param error - The error object.
+ * @param stack - The error stack trace.
+ * @param additionalInfo - Additional information about the error.
+ * @returns A promise that resolves to a ServerErrorResponse object.
  */
-export enum ResponseType {
-	Success = 'success',
-	ClientError = 'clientError',
-	ServerError = 'serverError',
+export async function handleUnknownError({
+	error,
+	stack,
+	additionalInfo,
+}: HandleUnknownErrorArgs): Promise<ServerErrorResponse> {
+	const values = {
+		name: 'Unknown',
+		message: 'Unknown server error',
+		stack: stack,
+		additionalInfo: { error, ...additionalInfo },
+	};
+
+	if (error instanceof Error) {
+		values.message = error.message;
+		values.name = error.name;
+	}
+
+	const [errorLog] = await database
+		.insert(schema.errorLogs)
+		.values(values)
+		.returning({ id: schema.errorLogs.id });
+
+	return {
+		code: ServerErrorCode.InternalServerError,
+		type: ResponseType.ServerError,
+		logId: errorLog.id,
+	};
 }
-
-Object.freeze(ResponseType);
-
-/**
- * Defines the possible success response codes.
- *
- * @enum {number}
- * @readonly
- */
-export enum SuccessCode {
-	Ok = 200,
-	Created = 201,
-}
-
-Object.freeze(SuccessCode);
-
-/**
- * Defines the possible client error response codes.
- *
- * @enum {number}
- * @readonly
- */
-export enum ClientErrorCode {
-	BadRequest = 400,
-	Unauthorized = 401,
-	Forbidden = 403,
-	NotFound = 404,
-	MethodNotAllowed = 405,
-	Conflict = 409,
-}
-
-Object.freeze(ClientErrorCode);
-
-/**
- * Defines the possible server error response codes.
- *
- * @enum {number}
- * @readonly
- */
-export enum ServerErrorCode {
-	InternalServerError = 500,
-	NotImplemented = 501,
-	BadGateway = 502,
-	ServiceUnavailable = 503,
-	GatewayTimeout = 504,
-}
-
-Object.freeze(ServerErrorCode);
-
-/**
- * Defines the possible HTTP methods.
- *
- * @enum {string}
- * @readonly
- */
-export enum HttpMethod {
-	Get = 'GET',
-	Post = 'POST',
-	Patch = 'PATCH',
-	Delete = 'DELETE',
-}
-
-Object.freeze(HttpMethod);
-
-/**
- * All enums are frozen to prevent modification.
- * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze}
- */
