@@ -11,6 +11,14 @@ import type {
 export type NoContent = null;
 
 /**
+ * Represents a stack trace for an error.
+ * @example
+ * const stack: ErrorStack = 'auth/loginUser';
+ * const stack: ErrorStack = 'users/createUser';
+ */
+export type ErrorStack = `${string}/${string}`;
+
+/**
  * Represents the response code for an API request.
  * It can be one of the following types: SuccessCode, ClientErrorCode, or ServerErrorCode.
  */
@@ -82,7 +90,7 @@ export interface ClientErrorResponse<ErrorShape>
  * @see {@link ServerErrorCode}
  */
 export interface ServerErrorResponse
-	extends Omit<BaseServiceResponse<undefined, undefined>, 'data' | 'error'> {
+	extends Omit<BaseServiceResponse<undefined, undefined>, 'data' | 'errors'> {
 	type: ResponseType.ServerError;
 	code: ServerErrorCode;
 	logId: string;
@@ -135,3 +143,13 @@ export interface SuccessResponse<SuccessPayload>
 export type ServiceResponse<S = unknown, E = undefined> = E extends undefined
 	? SuccessResponse<S> | ServerErrorResponse
 	: SuccessResponse<S> | ClientErrorResponse<E> | ServerErrorResponse;
+
+/**
+ * Represents the arguments for the handleUnknownError function.
+ * @see {@link handleUnknownError}
+ */
+export interface HandleUnknownErrorArgs {
+	error: unknown;
+	stack: ErrorStack;
+	additionalInfo?: Record<string, unknown>;
+}
