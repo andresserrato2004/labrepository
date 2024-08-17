@@ -6,6 +6,10 @@ import { drizzle } from 'drizzle-orm/postgres-js';
 import * as schema from '@database/schema/tables';
 import * as postgres from 'postgres';
 
+/**
+ * Represents a singleton instance of a database connection.
+ * This class is used to create a single connection to the database.
+ */
 class DatabaseSingleton {
 	private static instance: DatabaseInstance<typeof schema>;
 

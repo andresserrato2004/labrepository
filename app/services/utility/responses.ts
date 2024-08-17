@@ -1,3 +1,9 @@
+/**
+ * Defines the possible response types.
+ *
+ * @enum {string}
+ * @readonly
+ */
 export enum ResponseType {
 	Success = 'success',
 	ClientError = 'clientError',
@@ -6,6 +12,12 @@ export enum ResponseType {
 
 Object.freeze(ResponseType);
 
+/**
+ * Defines the possible success response codes.
+ *
+ * @enum {number}
+ * @readonly
+ */
 export enum SuccessCode {
 	Ok = 200,
 	Created = 201,
@@ -13,6 +25,12 @@ export enum SuccessCode {
 
 Object.freeze(SuccessCode);
 
+/**
+ * Defines the possible client error response codes.
+ *
+ * @enum {number}
+ * @readonly
+ */
 export enum ClientErrorCode {
 	BadRequest = 400,
 	Unauthorized = 401,
@@ -24,6 +42,12 @@ export enum ClientErrorCode {
 
 Object.freeze(ClientErrorCode);
 
+/**
+ * Defines the possible server error response codes.
+ *
+ * @enum {number}
+ * @readonly
+ */
 export enum ServerErrorCode {
 	InternalServerError = 500,
 	NotImplemented = 501,
@@ -34,6 +58,12 @@ export enum ServerErrorCode {
 
 Object.freeze(ServerErrorCode);
 
+/**
+ * Defines the possible HTTP methods.
+ *
+ * @enum {string}
+ * @readonly
+ */
 export enum HttpMethod {
 	Get = 'GET',
 	Post = 'POST',
@@ -42,3 +72,8 @@ export enum HttpMethod {
 }
 
 Object.freeze(HttpMethod);
+
+/**
+ * All enums are frozen to prevent modification.
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze}
+ */
