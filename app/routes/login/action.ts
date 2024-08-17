@@ -1,9 +1,18 @@
 import type { ActionFunctionArgs } from '@remix-run/node';
 
+import { loginUser } from '@services/auth';
+
 export const action = async ({ request }: ActionFunctionArgs) => {
 	const formData = await request.formData();
 
-	console.log({ formData });
+	const { username, password } = Object.fromEntries(formData);
+
+	const response = await loginUser({
+		username: username.toString(),
+		password: password.toString(),
+	});
+
+	console.log({ response });
 
 	return null;
 };
