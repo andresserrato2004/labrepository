@@ -26,11 +26,14 @@
 		"@remix-run/react": "2.11.1",
 		"@remix-run/serve": "2.11.1",
 		"drizzle-orm": "0.33.0",
+		"drizzle-zod": "0.5.1",
 		"framer-motion": "11.3.28",
 		"isbot": "5.1.15",
 		"postgres": "3.4.4",
 		"react": "18.3.1",
-		"react-dom": "18.3.1"
+		"react-dom": "18.3.1",
+		"zod": "3.23.8",
+		"zod-form-data": "2.0.2"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.8.3",
