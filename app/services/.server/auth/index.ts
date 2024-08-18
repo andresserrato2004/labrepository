@@ -1,7 +1,6 @@
-import type { LoginUserArgs, ServiceResponse } from '@services/types';
+import type { LoginUserArgs, ServiceResponse } from '@services/server/types';
 
-import { ResponseType } from '@services/utility/enums';
-import { handleUnknownError } from '@services/utility/responses';
+import { ResponseType, handleUnknownError } from '@services/server/utility';
 
 export async function loginUser({
 	username,

@@ -3,7 +3,7 @@ import type {
 	ResponseType,
 	ServerErrorCode,
 	SuccessCode,
-} from '@services/utility/enums';
+} from '@services/server/utility/enums';
 
 /**
  * Represents a response with no content.

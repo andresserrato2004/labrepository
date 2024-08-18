@@ -28,8 +28,8 @@
 			"@errors/*": ["./app/errors/*"],
 			"@errors": ["./app/errors/index"],
 
-			"@services/*": ["./app/services/*"],
-			"@services": ["./app/services/index"],
+			"@services/server/*": ["./app/services/.server/*"],
+			"@services/client/*": ["./app/services/.client/*"],
 
 			"@database/*": ["./app/database/*"],
 			"@database": ["./app/database/index"],

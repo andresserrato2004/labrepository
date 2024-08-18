@@ -1,8 +1,8 @@
-import type { HandleUnknownErrorArgs } from '@services/types';
-import type { ServerErrorResponse } from '@services/types';
+import type { HandleUnknownErrorArgs } from '@services/server/types';
+import type { ServerErrorResponse } from '@services/server/types';
 
 import { database, schema } from '@database';
-import { ResponseType, ServerErrorCode } from '@services/utility/enums';
+import { ResponseType, ServerErrorCode } from '@services/server/utility/enums';
 
 /**
  * Handles unknown errors and returns a server error response.
