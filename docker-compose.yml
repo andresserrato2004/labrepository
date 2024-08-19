@@ -1,0 +1,10 @@
+services:
+  web:
+    image: lab-reservas:latest
+    container_name: lab-reservas
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - path: ./.env
+        required: true
