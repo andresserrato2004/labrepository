@@ -38,7 +38,7 @@ export type ResponseCode = SuccessCode | ClientErrorCode | ServerErrorCode;
  *   password: 'Password is required',
  * };
  */
-export type Errors<T> = Record<keyof T, string>;
+export type Errors<T> = Partial<Record<keyof T, string>>;
 
 /**
  * Represents the response structure for a base service.
