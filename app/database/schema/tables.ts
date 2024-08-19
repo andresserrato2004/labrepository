@@ -25,6 +25,8 @@ const isoTimestamp = customType<IsoTimeStampConfig>({
 	},
 });
 
+//TODO: Add docs for the tables.
+
 export const users = pgTable(
 	'users',
 	{
