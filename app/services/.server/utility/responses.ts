@@ -134,6 +134,23 @@ export function getErrorsFromZodError<T>(error: ZodError<T>): Errors<T> {
 }
 
 /**
+ * Creates a server error response.
+ * @param {ServerErrorResponse} options - The options for creating the server error response.
+ * @param {number} options.code - The status code of the response.
+ * @param {string} options.logId - The log ID of the response.
+ * @returns {Response} The server error response.
+ * @see {@link https://remix.run/docs/en/main/guides/errors | Remix Error Handling}
+ */
+export function createServerErrorResponse({
+	code,
+	logId,
+}: ServerErrorResponse): Response {
+	return new Response(logId, {
+		status: code,
+	});
+}
+
+/**
  * Handles unknown errors and returns a server error response.
  * This functions should be used as a catch-all for errors that are not handled by other error handlers
  * on the service layer.

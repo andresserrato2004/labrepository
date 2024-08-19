@@ -7,6 +7,7 @@ import {
 	ResponseType,
 	createBasicResponse,
 	createResponse,
+	createServerErrorResponse,
 	getErrorsFromZodError,
 	parseFormData,
 } from '@services/server/utility';
@@ -15,7 +16,10 @@ async function handlePostRequest(request: Request) {
 	const formData = await parseFormData(request, newLoginFormValidator);
 
 	if (!formData) {
-		throw createBasicResponse('Invalid form data.', 400);
+		throw createBasicResponse(
+			'Invalid form data.',
+			ClientErrorCode.BadRequest,
+		);
 	}
 
 	if (!formData.success) {
@@ -34,7 +38,7 @@ async function handlePostRequest(request: Request) {
 	}
 
 	if (loginResponse.type === ResponseType.ServerError) {
-		throw createBasicResponse('Internal server error.', 400);
+		throw createServerErrorResponse(loginResponse);
 	}
 
 	return null;
@@ -45,5 +49,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 		return await handlePostRequest(request);
 	}
 
-	return createBasicResponse('Method not allowed.', 405);
+	return createBasicResponse(
+		'Method not allowed.',
+		ClientErrorCode.MethodNotAllowed,
+	);
 };

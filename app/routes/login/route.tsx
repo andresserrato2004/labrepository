@@ -11,9 +11,9 @@ export default function LoginPage() {
 		<main className={styles.mainContainer}>
 			<form className={styles.formContainer} method='POST'>
 				<h1 className={styles.title}>Bienvenido</h1>
-				<Input label='Username' name='username' isRequired={true} />
+				<Input label='Usuario' name='username' isRequired={true} />
 				<Input
-					label='Password'
+					label='Contraseña'
 					name='password'
 					type='password'
 					isRequired={true}
