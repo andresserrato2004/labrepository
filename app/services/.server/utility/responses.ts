@@ -9,6 +9,7 @@ import type { ServerErrorResponse } from '@services/server/types';
 import type { ZodError } from 'zod';
 
 import { database, schema } from '@database';
+import { AppError } from '@errors/services';
 import { json } from '@remix-run/node';
 import {
 	ClientErrorCode,
@@ -187,4 +188,15 @@ export async function handleUnknownError({
 		type: ResponseType.ServerError,
 		logId: errorLog.id,
 	};
+}
+
+/**
+ * Checks if the given error is an instance of AppError.
+ *
+ * @param error - The error to check.
+ * @returns A boolean indicating whether the error is an instance of AppError.
+ * @template T - The type of the AppError.
+ */
+export function isAppError<T>(error: unknown): error is AppError<T> {
+	return error instanceof AppError;
 }

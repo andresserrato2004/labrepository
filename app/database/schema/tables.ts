@@ -36,7 +36,10 @@ export const users = pgTable(
 		username: text('username').notNull(),
 		name: text('name').notNull(),
 		password: text('password').notNull(),
-		role: enums.userRoleEnum('role').notNull(),
+		role: enums
+			.userRoleEnum('role')
+			.$type<enums.UserRole | `${enums.UserRole}`>()
+			.notNull(),
 		createdAt: isoTimestamp('created_at').default(sql`now()`).notNull(),
 		updatedAt: isoTimestamp('updated_at')
 			.default(sql`now()`)

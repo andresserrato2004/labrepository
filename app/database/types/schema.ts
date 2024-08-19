@@ -10,6 +10,11 @@ export type IsoTimeStampConfig = {
 	config: undefined;
 };
 
+export type NewLogin = {
+	username: string;
+	password: string;
+};
+
 export type User = typeof schema.users.$inferSelect;
 export type NewUser = typeof schema.users.$inferInsert;
 
@@ -24,6 +29,6 @@ export type NewErrorLog = typeof schema.errorLogs.$inferInsert;
 
 export type FormDataValidator = ReturnType<typeof zfd.formData>;
 
-export type AuditAction = schema.AuditAction;
-export type AppResource = schema.AppResource;
-export type UserRole = schema.UserRole;
+export type AuditAction = schema.AuditAction | `${schema.AuditAction}`;
+export type AppResource = schema.AppResource | `${schema.AppResource}`;
+export type UserRole = schema.UserRole | `${schema.UserRole}`;

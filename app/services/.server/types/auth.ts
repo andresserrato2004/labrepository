@@ -1,7 +1,13 @@
+import type { UserRole } from '@database/types';
+
 /**
- * Represents the arguments for logging in a user.
+ * Represents a session object.
  */
-export interface LoginUserArgs {
+export interface Session {
+	role: UserRole;
+	id: string;
 	username: string;
-	password: string;
+	name: string;
+	iat: number;
+	exp: number;
 }
