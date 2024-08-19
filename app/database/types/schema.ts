@@ -10,25 +10,73 @@ export type IsoTimeStampConfig = {
 	config: undefined;
 };
 
+/**
+ * Represents the structure of a new login.
+ */
 export type NewLogin = {
 	username: string;
 	password: string;
 };
 
+/**
+ * Represents the definition of a User object in the schema.
+ */
 export type User = typeof schema.users.$inferSelect;
+
+/**
+ * Represents the type definition for creating a new user.
+ */
 export type NewUser = typeof schema.users.$inferInsert;
 
+/**
+ * Represents the type definition for the Classroom object in the schema.
+ */
 export type Classroom = typeof schema.classrooms.$inferSelect;
+
+/**
+ * Represents the type definition for creating a new classroom.
+ */
 export type NewClassroom = typeof schema.classrooms.$inferInsert;
 
+/**
+ * Represents the type definition for the AuditLog entity in the schema.
+ */
 export type AuditLog = typeof schema.auditLogs.$inferSelect;
+
+/**
+ * Represents the type definition for a new audit log.
+ */
 export type NewAuditLog = typeof schema.auditLogs.$inferInsert;
 
+/**
+ * Represents the type definition for the ErrorLog entity in the schema.
+ */
 export type ErrorLog = typeof schema.errorLogs.$inferSelect;
+
+/**
+ * Represents the type definition for a new error log.
+ */
 export type NewErrorLog = typeof schema.errorLogs.$inferInsert;
 
+/**
+ * Represents the type of a form data validator.
+ */
 export type FormDataValidator = ReturnType<typeof zfd.formData>;
 
+/**
+ * Represents an audit action.
+ * It can be either an instance of `schema.AuditAction` or a string that matches the format `${schema.AuditAction}`.
+ */
 export type AuditAction = schema.AuditAction | `${schema.AuditAction}`;
+
+/**
+ * Represents an application resource.
+ * It can be either an instance of `schema.AppResource` or a string that matches the format `${schema.AppResource}`.
+ */
 export type AppResource = schema.AppResource | `${schema.AppResource}`;
+
+/**
+ * Represents a user role.
+ * It can be either an instance of `schema.UserRole` or a string that matches the format `${schema.UserRole}`.
+ */
 export type UserRole = schema.UserRole | `${schema.UserRole}`;
