@@ -9,6 +9,7 @@ import type {
 import { database, eq, schema } from '@database';
 import { newUserValidator } from '@database/validators';
 import { InvalidNewUserError, UserConflictError } from '@errors/services';
+import { hashPassword } from '@services/server/auth/security';
 import {
 	ResponseType,
 	SuccessCode,
@@ -56,6 +57,7 @@ export async function createUser({
 		}
 
 		const user = schemaValidation.data;
+		user.password = await hashPassword(user.password);
 
 		await database.transaction(async (trx) => {
 			await trx.insert(schema.users).values(user).returning();

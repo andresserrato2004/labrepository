@@ -63,7 +63,7 @@ export class InvalidPasswordError extends AppError<NewLogin> {
 			password: 'Password is incorrect',
 		};
 
-		super('Invalid password.', errors, ClientErrorCode.BadRequest);
+		super('Invalid password.', errors, ClientErrorCode.Unauthorized);
 	}
 }
 
