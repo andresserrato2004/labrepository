@@ -6,13 +6,12 @@ import type {
 	ServiceResponse,
 } from '@services/server/types';
 
-import { database, enums, eq, schema } from '@database';
+import { database, eq, schema } from '@database';
 import { newUserValidator } from '@database/validators';
 import { InvalidNewUserError, UserConflictError } from '@errors/services';
 import {
 	ResponseType,
 	SuccessCode,
-	buildCreationAuditLog,
 	getErrorsFromZodError,
 	handleUnknownError,
 	isAppError,
@@ -38,7 +37,6 @@ async function checkForExistingUser(
 
 export async function createUser({
 	request,
-	session,
 }: CreateUserArgs): Promise<ServiceResponse<NoContent, NewUser>> {
 	try {
 		//TODO: Check user permissions
@@ -60,18 +58,8 @@ export async function createUser({
 		const user = schemaValidation.data;
 
 		await database.transaction(async (trx) => {
-			const [insertedUser] = await trx
-				.insert(schema.users)
-				.values(user)
-				.returning();
-
-			await trx.insert(schema.auditLogs).values(
-				buildCreationAuditLog({
-					session: session,
-					newData: insertedUser,
-					resource: enums.AppResource.Users,
-				}),
-			);
+			await trx.insert(schema.users).values(user).returning();
+			//TODO: Implement auditory logs
 		});
 
 		return {

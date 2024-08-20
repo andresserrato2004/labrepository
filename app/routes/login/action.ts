@@ -5,6 +5,7 @@ import { redirect } from '@remix-run/node';
 import { loginUser } from '@services/server/auth';
 import {
 	ClientErrorCode,
+	HttpMethod,
 	ResponseType,
 	createBasicResponse,
 	createResponse,
@@ -51,7 +52,7 @@ async function handlePostRequest(request: Request) {
 }
 
 export const action = async ({ request }: ActionFunctionArgs) => {
-	if (request.method === 'POST') {
+	if (request.method === HttpMethod.Post) {
 		return await handlePostRequest(request);
 	}
 

@@ -59,7 +59,7 @@ export function createResponse<S, E>(
 ) {
 	return json(serviceResponse, {
 		status: serviceResponse.code,
-	});
+	}) as TypedResponse<SuccessResponse<S> | ClientErrorResponse<E>>;
 }
 
 export function createBasicResponse(
