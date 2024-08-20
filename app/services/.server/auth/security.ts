@@ -1,4 +1,4 @@
-import { MissingEnvironmentVariableError } from '@errors/services';
+import { MissingEnvironmentVariableError } from '@errors/shared';
 import { hash, verify } from 'argon2';
 
 const secret = process.env.ARGON2_SECRET;

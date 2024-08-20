@@ -1,7 +1,7 @@
 import type { ActionFunctionArgs } from '@remix-run/node';
 
 import { newUserFormValidator } from '@database/validators';
-import { MissingEnvironmentVariableError } from '@errors/services';
+import { MissingEnvironmentVariableError } from '@errors/shared';
 import {
 	ClientErrorCode,
 	HttpMethod,

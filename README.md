@@ -79,7 +79,7 @@ Follow these instructions to set up the project locally.
 4. Run database migrations:
    ```bash
    pnpm migration:generate
-   pnpm migration:run
+   pnpm migration:push
    ```
 
 5. Start the development server:

@@ -1,4 +1,4 @@
-import { MissingEnvironmentVariableError } from '@errors/services';
+import { MissingEnvironmentVariableError } from '@errors/shared';
 import { createCookie } from '@remix-run/node';
 
 const secret = process.env.COOKIE_SECRET;

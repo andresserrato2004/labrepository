@@ -1,4 +1,4 @@
-import { MissingEnvironmentVariableError } from '@errors/services';
+import { MissingEnvironmentVariableError } from '@errors/shared';
 import { init } from '@paralleldrive/cuid2';
 
 if (!process.env.CUID_FINGERPRINT) {

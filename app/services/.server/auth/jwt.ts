@@ -1,4 +1,4 @@
-import { MissingEnvironmentVariableError } from '@errors/services';
+import { MissingEnvironmentVariableError } from '@errors/shared';
 import { createSigner, createVerifier } from 'fast-jwt';
 
 const secret = process.env.JWT_SECRET;
