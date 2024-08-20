@@ -1,4 +1,4 @@
 export * from './enums';
 export * from './responses';
-export * from './request';
+export * from './requests';
 export * from './cookies';

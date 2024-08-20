@@ -1,4 +1,4 @@
-import { schema } from '@database';
+import { enums, schema } from '@database';
 import { capitalize, isoDate } from '@database/validators/shared';
 import { createInsertSchema } from 'drizzle-zod';
 import { z } from 'zod';
@@ -16,6 +16,7 @@ const newLoginTransformer = (data: z.infer<typeof newLoginSchema>) => {
 };
 
 const newUserSchema = createInsertSchema(schema.users, {
+	role: (_schema) => zfd.text(z.nativeEnum(enums.UserRole)),
 	name: (_schema) => zfd.text(z.string().min(1)),
 	username: (_schema) => zfd.text(z.string().min(1)),
 	password: (_schema) => zfd.text(z.string().min(1)),

@@ -5,7 +5,7 @@ import type { UserRole } from '@database/types';
  */
 export interface Session {
 	role: UserRole;
-	id: string;
+	userId: string;
 	username: string;
 	name: string;
 	iat: number;

@@ -38,7 +38,10 @@
 			"@routes/index": ["./app/routes/_index"],
 
 			"@routes/login/*": ["./app/routes/login/*"],
-			"@routes/login": ["./app/routes/login"]
+			"@routes/login": ["./app/routes/login"],
+
+			"@routes/users/*": ["./app/routes/users/*"],
+			"@routes/users": ["./app/routes/users"]
 		},
 
 		// Vite takes care of building everything, not tsc.

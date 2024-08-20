@@ -1,9 +1,7 @@
-import type { NewLogin } from '@database/types';
-import type { Errors } from '@services/server/types';
-import type { ClientErrorResponse } from '@services/server/types';
+import type { NewLogin, NewUser } from '@database/types';
+import type { ClientErrorResponse, Errors } from '@services/server/types';
 
-import { ResponseType } from '@services/server/utility';
-import { ClientErrorCode } from '@services/server/utility';
+import { ClientErrorCode, ResponseType } from '@services/server/utility';
 
 /**
  * Represents an application known error. This error can throw at runtime anywhere in the application
@@ -77,5 +75,25 @@ export class InvalidPasswordError extends AppError<NewLogin> {
 		};
 
 		super('Invalid password.', errors, ClientErrorCode.BadRequest);
+	}
+}
+
+/**
+ * Represents an error that occurs when attempting to create a new user with invalid data.
+ * @extends AppError<NewUser>
+ */
+export class InvalidNewUserError extends AppError<NewUser> {
+	constructor(errors: Errors<NewUser>) {
+		super('Invalid user data.', errors, ClientErrorCode.BadRequest);
+	}
+}
+
+/**
+ * Represents an error that occurs when a user conflict is detected.
+ * @extends AppError<NewUser>
+ */
+export class UserConflictError extends AppError<NewUser> {
+	constructor(errors: Errors<NewUser>) {
+		super('User already exists.', errors, ClientErrorCode.Conflict);
 	}
 }

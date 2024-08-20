@@ -46,7 +46,7 @@ async function getUserFromDatabase(username: string): Promise<User | null> {
 function buildSessionToken(user: User): string {
 	const payload: Partial<Session> = {
 		role: user.role,
-		id: user.id,
+		userId: user.id,
 		username: user.username,
 		name: user.name,
 	};
