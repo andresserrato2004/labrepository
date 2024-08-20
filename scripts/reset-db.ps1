@@ -19,6 +19,7 @@ Date: 16 August 2024
 
 docker stop db-reservas
 docker rm db-reservas
+docker run --name db-reservas -e POSTGRES_PASSWORD=root -p5432:5432 -d postgres
 
 Remove-Item -Recurse -Force .\.drizzle
 
