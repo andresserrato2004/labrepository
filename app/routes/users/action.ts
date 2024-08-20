@@ -2,12 +2,14 @@ import type { ActionFunctionArgs } from '@remix-run/node';
 
 import { newUserFormValidator } from '@database/validators';
 import { MissingEnvironmentVariableError } from '@errors/shared';
+import { createUser } from '@services/server/users';
 import {
 	ClientErrorCode,
 	HttpMethod,
 	ResponseType,
 	createBasicResponse,
 	createResponse,
+	createServerErrorResponse,
 	getErrorsFromZodError,
 	parseFormData,
 } from '@services/server/utility';
@@ -44,7 +46,13 @@ async function handlePostRequest(request: Request) {
 		});
 	}
 
-	return null;
+	const createUserResponse = await createUser({ request: formData.data });
+
+	if (createUserResponse.type === ResponseType.ServerError) {
+		throw createServerErrorResponse(createUserResponse);
+	}
+
+	return createResponse(createUserResponse);
 }
 
 export const action = async ({ request }: ActionFunctionArgs) => {
