@@ -1,0 +1,3 @@
+.headerContainer {
+    @apply lg:col-start-1 lg:lg:col-end-3 lg:grid lg:grid-cols-subgrid;
+}

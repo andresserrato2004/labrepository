@@ -1,0 +1,4 @@
+.layoutMainContainer {
+    @apply w-dvw h-dvh grid grid-rows-[4rem,1fr];
+    @apply lg:grid-cols-[18rem,1fr];
+}
