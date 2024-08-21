@@ -41,7 +41,10 @@
 			"@routes/login": ["./app/routes/login"],
 
 			"@routes/users/*": ["./app/routes/users/*"],
-			"@routes/users": ["./app/routes/users"]
+			"@routes/users": ["./app/routes/users"],
+
+			"@hooks/*": ["./app/hooks/*"],
+			"@hooks": ["./app/hooks/index"]
 		},
 
 		// Vite takes care of building everything, not tsc.

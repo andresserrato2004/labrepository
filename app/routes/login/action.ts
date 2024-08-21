@@ -56,7 +56,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 		return await handlePostRequest(request);
 	}
 
-	return createBasicResponse(
+	throw createBasicResponse(
 		'Method not allowed.',
 		ClientErrorCode.MethodNotAllowed,
 	);
