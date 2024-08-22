@@ -70,11 +70,12 @@ Follow these instructions to set up the project locally.
    pnpm install
    ```
 
-3. Set up environment variables:
+3. Set up environment variables for both development and production:
    ```bash
-   cp .env.example .env
+   cp .env.example .env.development
+   cp .env.example .env.production
    ```
-   Update the `.env` file with your database credentials and other environment variables.
+   Update the `.env.*` files with your database credentials and other environment variables depending on your setup.
 
 4. Run database migrations:
    ```bash

@@ -3,6 +3,8 @@ node_modules
 /.cache
 /build
 .env
+.env.development
+.env.production
 
 .vscode
 .drizzle

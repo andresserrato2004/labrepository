@@ -1,11 +1,12 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
+dotenv.config({ path: '.env.development' });
 
 import { DatabaseMissingConnectionArgumentError } from '@errors/database';
 import { defineConfig } from 'drizzle-kit';
 
-if (process.env.ENV !== 'development') {
+if (process.env.NODE_ENV !== 'development') {
 	console.error(
-		`Cannot run drizzle commands in non-development environments. Current environment: ${process.env.ENV}`,
+		`Cannot run drizzle commands in non-development environments. Current environment: ${process.env.NODE_ENV}`,
 	);
 	process.exit(1);
 }

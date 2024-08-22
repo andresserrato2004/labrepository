@@ -15,7 +15,7 @@
 		"test:verbose": "vitest --reporter=verbose",
 		"coverage": "vitest run --coverage",
 		"kit": "drizzle-kit studio",
-		"migration:generate": "drizzle-kit generate",
+		"migration:generate": "drizzle-kit --env-file=.env.development generate",
 		"migration:push": "drizzle-kit push"
 	},
 	"dependencies": {
@@ -29,6 +29,7 @@
 		"@remix-run/react": "2.11.1",
 		"@remix-run/serve": "2.11.1",
 		"argon2": "0.40.3",
+		"cssnano": "7.0.5",
 		"drizzle-orm": "0.33.0",
 		"drizzle-zod": "0.5.1",
 		"fast-jwt": "4.0.2",
@@ -49,6 +50,7 @@
 		"@typescript-eslint/eslint-plugin": "8.1.0",
 		"@typescript-eslint/parser": "8.1.0",
 		"autoprefixer": "10.4.20",
+		"dotenv": "16.4.5",
 		"drizzle-kit": "0.24.0",
 		"postcss": "8.4.41",
 		"tailwindcss": "3.4.10",
