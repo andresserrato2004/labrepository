@@ -1,5 +1,8 @@
 .sidebarContainer {
-    @apply fixed w-full h-[calc(100dvh-4rem)] mt-[4rem] -translate-x-full transition-transform;
-    @apply data-[active=true]:translate-x-0;
+    @apply fixed w-full max-w-72 h-[calc(100dvh-4rem)] mt-[4rem] -translate-x-full transition-transform bg-content1;
     @apply lg:static lg:translate-x-0 lg:w-full lg:m-0;
+
+    &[data-active=true] {
+        @apply translate-x-0;
+    }
 }
