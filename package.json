@@ -5,17 +5,17 @@
 	"type": "module",
 	"scripts": {
 		"build": "remix vite:build",
-		"build:docker": "docker build -t lab-reservas .",
+		"build:docker": "docker build -t lab-reservas . && docker network create lab-reservas-net || true",
 		"dev": "remix vite:dev --host",
 		"check": "biome check . && tsc",
 		"commit": "pnpm check && pnpm test run && git add . && git commit -am ",
 		"start": "remix-serve ./build/server/index.js",
-		"start:docker": "docker run --env-file .env -p 3000:3000 --name lab-reservas lab-reservas",
+		"start:docker": "docker run --env-file .env.production --network lab-reservas-net -p 3000:3000 --name lab-reservas lab-reservas",
 		"test": "vitest",
 		"test:verbose": "vitest --reporter=verbose",
 		"coverage": "vitest run --coverage",
 		"kit": "drizzle-kit studio",
-		"migration:generate": "drizzle-kit --env-file=.env.development generate",
+		"migration:generate": "drizzle-kit generate",
 		"migration:push": "drizzle-kit push"
 	},
 	"dependencies": {

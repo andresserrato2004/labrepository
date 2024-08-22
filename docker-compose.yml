@@ -8,3 +8,9 @@ services:
     env_file:
       - path: ./.env.production
         required: true
+    networks:
+      - lab-reservas-net
+networks:
+  lab-reservas-net:
+    driver: bridge
+    external: true

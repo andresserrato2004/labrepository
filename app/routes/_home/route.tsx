@@ -10,7 +10,9 @@ export default function HomeLayout() {
 		<main className={styles.layoutMainContainer}>
 			<Header />
 			<Sidebar />
-			<Outlet />
+			<div className={styles.outletContainer}>
+				<Outlet />
+			</div>
 		</main>
 	);
 }
