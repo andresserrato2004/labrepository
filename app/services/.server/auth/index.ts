@@ -1,17 +1,23 @@
 import type { NewLogin, User } from '@database/types';
-import type { ServiceResponse, Session } from '@services/server/types';
+import type {
+	BasicErrorPayload,
+	ServiceResponse,
+	Session,
+} from '@services/server/types';
 
 import { database, eq, schema } from '@database';
 import { newLoginValidator } from '@database/validators';
 import {
 	InvalidNewLoginError,
 	InvalidPasswordError,
+	InvalidTokenError,
 	UserNotFoundError,
 } from '@errors/services';
-import { sign } from '@services/server/auth/jwt';
+import { decode, sign } from '@services/server/auth/jwt';
 import { comparePassword } from '@services/server/auth/security';
 import {
 	ResponseType,
+	SuccessCode,
 	getErrorsFromZodError,
 	handleUnknownError,
 	isAppError,
@@ -106,6 +112,40 @@ export async function loginUser(
 			error: error,
 			stack: 'auth/loginUser',
 			additionalInfo: { request },
+		});
+	}
+}
+
+/**
+ * Retrieves a session from a token.
+ *
+ * @param token - The token to decode and retrieve the session from.
+ * @returns A promise that resolves to a ServiceResponse containing the session data.
+ */
+export async function getSessionFromToken(
+	token: string,
+): Promise<ServiceResponse<Session, BasicErrorPayload>> {
+	try {
+		const session = decode<Session>(token);
+
+		if (session === null) {
+			throw new InvalidTokenError();
+		}
+
+		return {
+			type: ResponseType.Success,
+			code: SuccessCode.Ok,
+			data: session,
+		};
+	} catch (error) {
+		if (isAppError<BasicErrorPayload>(error)) {
+			return error.toServiceResponse();
+		}
+
+		return await handleUnknownError({
+			error,
+			stack: 'auth/getSessionFromToken',
+			additionalInfo: { token },
 		});
 	}
 }

@@ -43,6 +43,9 @@
 			"@routes/users/*": ["./app/routes/users/*"],
 			"@routes/users": ["./app/routes/users"],
 
+			"@routes/home/*": ["./app/routes/_home/*"],
+			"@routes/home": ["./app/routes/_home"],
+
 			"@hooks/*": ["./app/hooks/*"],
 			"@hooks": ["./app/hooks/index"],
 

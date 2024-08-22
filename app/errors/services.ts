@@ -1,5 +1,9 @@
 import type { NewLogin, NewUser } from '@database/types';
-import type { ClientErrorResponse, Errors } from '@services/server/types';
+import type {
+	BasicErrorPayload,
+	ClientErrorResponse,
+	Errors,
+} from '@services/server/types';
 
 import { ClientErrorCode, ResponseType } from '@services/server/utility';
 
@@ -27,6 +31,18 @@ export class AppError<T> extends Error {
 			code: this.code,
 			errors: this.errors,
 		};
+	}
+}
+
+/**
+ * Represents an error that occurs when an invalid token is encountered.
+ */
+export class InvalidTokenError extends AppError<BasicErrorPayload> {
+	constructor() {
+		const errors = {
+			message: 'Invalid token',
+		};
+		super('Invalid token.', errors, ClientErrorCode.Unauthorized);
 	}
 }
 

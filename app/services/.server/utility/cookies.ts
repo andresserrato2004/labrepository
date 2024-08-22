@@ -1,5 +1,9 @@
+import type { Session } from '@services/server/types';
+
 import { MissingEnvironmentVariableError } from '@errors/shared';
-import { createCookie } from '@remix-run/node';
+import { createCookie, redirect } from '@remix-run/node';
+import { getSessionFromToken } from '@services/server/auth';
+import { ResponseType, buildRedirectTo } from '@services/server/utility';
 
 const secret = process.env.COOKIE_SECRET;
 
@@ -30,6 +34,27 @@ export async function getTokenFromRequest(
 	}
 
 	return token;
+}
+
+/**
+ * Retrieves the session from the request.
+ *
+ * @param request - The request object.
+ * @returns A promise that resolves to the session data.
+ * @throws If the token is missing or the session retrieval fails, it throws a redirect error to the login page.
+ */
+export async function getSessionFromRequest(
+	request: Request,
+): Promise<Session> {
+	const token = await getTokenFromRequest(request);
+	const sessionResponse = await getSessionFromToken(token ?? '');
+
+	if (!token || sessionResponse.type !== ResponseType.Success) {
+		const redirectTo = buildRedirectTo(request);
+		throw redirect(`/login?${redirectTo}`);
+	}
+
+	return sessionResponse.data;
 }
 
 /**

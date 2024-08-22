@@ -18,6 +18,13 @@ export type {
 export type NoContent = null;
 
 /**
+ * Represents the payload for a basic error response.
+ */
+export type BasicErrorPayload = {
+	message: string;
+};
+
+/**
  * Represents a stack trace for an error.
  * @example
  * const stack: ErrorStack = 'auth/loginUser';

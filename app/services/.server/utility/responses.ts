@@ -200,3 +200,23 @@ export async function handleUnknownError({
 export function isAppError<T>(error: unknown): error is AppError<T> {
 	return error instanceof AppError;
 }
+
+/**
+ * Builds the redirectTO search parameter given a request object.
+ * @example
+ * const request = new Request('https://example.com/users?query=Juan');
+ * const redirectTo = buildRedirectTo(request);
+ * console.log(redirectTo); // "redirectTo=%2Fusers%3Fquery%3DJuan"
+ *
+ * @param request - The request object.
+ * @returns The redirect URL.
+ */
+export function buildRedirectTo(request: Request): string {
+	const url = new URL(request.url);
+	const params = new URLSearchParams();
+
+	params.set('redirectTo', url.searchParams.toString());
+	const redirectTo = params.toString().replace('=', `=${url.pathname}?`);
+
+	return redirectTo;
+}
