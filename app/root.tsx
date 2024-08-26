@@ -8,12 +8,15 @@ import {
 	Scripts,
 	ScrollRestoration,
 	isRouteErrorResponse,
+	useNavigate,
 	useRouteError,
 } from '@remix-run/react';
 
 import './tailwind.css';
 
 export function Layout({ children }: { children: React.ReactNode }) {
+	const navigate = useNavigate();
+
 	return (
 		<html lang='en'>
 			<head>
@@ -26,7 +29,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Links />
 			</head>
 			<body>
-				<NextUIProvider validationBehavior='native'>
+				<NextUIProvider validationBehavior='native' navigate={navigate}>
 					{children}
 				</NextUIProvider>
 				<ScrollRestoration />

@@ -21,6 +21,7 @@
 	"dependencies": {
 		"@nextui-org/button": "2.0.37",
 		"@nextui-org/input": "2.2.4",
+		"@nextui-org/link": "2.0.34",
 		"@nextui-org/system": "2.2.5",
 		"@nextui-org/theme": "2.2.9",
 		"@paralleldrive/cuid2": "2.2.2",
@@ -29,6 +30,7 @@
 		"@remix-run/react": "2.11.1",
 		"@remix-run/serve": "2.11.1",
 		"argon2": "0.40.3",
+		"classnames": "2.5.1",
 		"cssnano": "7.0.5",
 		"drizzle-orm": "0.33.0",
 		"drizzle-zod": "0.5.1",
