@@ -42,6 +42,7 @@ export function Sidebar() {
 			className={styles.sidebarContainer}
 			data-active={dataAttr(sidebarActive)}
 		>
+			<div className={styles.brandContainer} />
 			<SidebarLink to='/' icon={<SquaresFour />}>
 				Dashboard
 			</SidebarLink>

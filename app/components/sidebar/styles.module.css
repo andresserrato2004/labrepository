@@ -1,5 +1,5 @@
 .sidebarContainer {
-    @apply fixed w-full max-w-72 h-[calc(100dvh-4rem)] mt-[4rem] px-5 py-10 -translate-x-full transition-transform bg-content1 flex flex-col gap-4;
+    @apply fixed w-full max-w-72 h-[calc(100dvh-4rem)] px-5 py-10 -translate-x-full transition-transform bg-content1 flex flex-col gap-4;
     @apply lg:static lg:translate-x-0 lg:w-full lg:m-0;
 
     &[data-active=true] {
@@ -24,7 +24,7 @@
 }
 
 .link {
-    @apply w-full h-full grid grid-cols-[auto,1fr] items-center gap-4 px-4 text-default-500;
+    @apply w-full h-full grid grid-cols-[auto,1fr] items-center gap-4 px-4 text-default-700 leading-none;
 }
 
 .linkIconContainer {
@@ -33,4 +33,9 @@
 
 .linkIcon {
     @apply size-7;
+}
+
+.brandContainer {
+    @apply w-full h-16 rounded-medium border-large border-secondary my-12;
+    @apply lg:mt-8;
 }
