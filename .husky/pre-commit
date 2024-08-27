@@ -1,0 +1,10 @@
+branch_name=$(git symbolic-ref --short HEAD)
+
+if [ "$branch_name" = "main" ]; then
+    echo "You cannot commit directly to the main branch."
+    exit 1
+fi
+
+pnpm biome format --write .
+pnpm check
+pnpm test run
