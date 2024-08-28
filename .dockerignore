@@ -6,3 +6,4 @@ dist
 out
 build
 .env.development
+.husky
