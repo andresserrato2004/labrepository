@@ -8,7 +8,6 @@
 		"build:docker": "docker build -t lab-reservas . && docker network create lab-reservas-net || true",
 		"dev": "remix vite:dev --host",
 		"check": "biome check . && tsc",
-		"commit": "pnpm check && pnpm test run && git add . && git commit -am ",
 		"start": "remix-serve ./build/server/index.js",
 		"start:docker": "docker run --env-file .env.production --network lab-reservas-net -p 3000:3000 --name lab-reservas lab-reservas",
 		"test": "vitest",
@@ -16,7 +15,8 @@
 		"coverage": "vitest run --coverage",
 		"kit": "drizzle-kit studio",
 		"migration:generate": "drizzle-kit generate",
-		"migration:push": "drizzle-kit push"
+		"migration:push": "drizzle-kit push",
+		"prepare": "husky"
 	},
 	"dependencies": {
 		"@nextui-org/button": "2.0.37",
@@ -46,6 +46,8 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.8.3",
+		"@commitlint/cli": "19.4.0",
+		"@commitlint/config-conventional": "19.2.2",
 		"@remix-run/dev": "2.11.1",
 		"@types/react": "18.3.3",
 		"@types/react-dom": "18.3.0",
@@ -54,6 +56,7 @@
 		"autoprefixer": "10.4.20",
 		"dotenv": "16.4.5",
 		"drizzle-kit": "0.24.0",
+		"husky": "9.1.5",
 		"postcss": "8.4.41",
 		"tailwindcss": "3.4.10",
 		"typescript": "5.5.4",
