@@ -1,5 +1,5 @@
 .sidebarContainer {
-    @apply fixed w-full max-w-72 h-[calc(100dvh-4rem)] px-5 py-10 -translate-x-full transition-transform bg-content1 flex flex-col gap-4;
+    @apply fixed w-full max-w-72 h-full px-5 py-10 -translate-x-full transition-transform bg-content1 flex flex-col gap-4 overflow-x-hidden overflow-y-auto;
     @apply lg:static lg:translate-x-0 lg:w-full lg:m-0;
 
     &[data-active=true] {
@@ -13,29 +13,75 @@
     &[data-active=true] {
         @apply bg-primary text-primary-foreground;
 
-        .linkIcon {
-            @apply text-primary-foreground;
-        }
 
         .link {
             @apply text-primary-foreground;
+        
+            .linkIcon {
+                @apply text-primary-foreground;
+            }
         }
     }
 }
 
 .link {
-    @apply w-full h-full grid grid-cols-[auto,1fr] items-center gap-4 px-4 text-default-700 leading-none;
-}
+    @apply w-full h-full grid grid-cols-[auto,1fr] items-center gap-4 px-4 text-default-700 leading-none text-small;
+    @apply md:text-medium;
 
-.linkIconContainer {
-    @apply grid place-items-center;
-}
+    .linkIconContainer {
+        @apply grid place-items-center;
 
-.linkIcon {
-    @apply size-7;
+        .linkIcon {
+            @apply size-5;
+            @apply md:size-6;
+        }
+    }
 }
 
 .brandContainer {
-    @apply w-full h-16 rounded-medium border-large border-secondary my-12;
+    @apply w-full h-16 shrink-0 rounded-medium border-large border-secondary mt-12 mb-2;
     @apply lg:mt-8;
+}
+
+.menusContainer {
+    @apply flex flex-col gap-6;
+}
+
+.menu {
+    @apply flex flex-col gap-3;
+
+    .menuTitle {
+        @apply text-default-400 text-small px-6;
+    }
+
+    .linksContainer {
+        @apply flex flex-col gap-2;
+    }
+
+    .divider {
+        @apply mt-2;
+    }
+}
+
+.profileWrapper {
+    @apply w-full h-full flex justify-center items-end;
+
+    .profileContainer {
+        @apply w-full bg-default-100 rounded-large flex flex-col items-center justify-center py-4;
+        @apply md:w-2/3 md:aspect-square;
+
+        .profileImageContainer {
+            @apply w-16 aspect-square rounded-full overflow-hidden bg-red-500;
+        }
+
+        .userName {
+            @apply text-content1-foreground text-small capitalize mt-2;
+            @apply md:text-medium;
+        }
+
+        .userRole {
+            @apply text-tiny text-default-600 capitalize mt-0.5;
+            @apply md:text-small; 
+        }
+    }
 }

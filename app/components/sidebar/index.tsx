@@ -1,12 +1,23 @@
-import type { SidebarLinkProps } from '@components/sidebar/types';
+import type {
+	SidebarLinkProps,
+	SidebarMenuProps,
+} from '@components/sidebar/types';
 
 import { dataAttr } from '@components/utility';
 import { useSidebar } from '@hooks/sidebar';
 import { Link } from '@nextui-org/link';
-import { Calendar, Clipboard, House, SquaresFour } from '@phosphor-icons/react';
+import {
+	Calendar,
+	Clipboard,
+	Gear,
+	House,
+	Info,
+	SquaresFour,
+} from '@phosphor-icons/react';
 import { useLocation } from '@remix-run/react';
 import { cloneElement } from 'react';
 
+import { Divider } from '@nextui-org/divider';
 import cn from 'classnames';
 import styles from './styles.module.css';
 
@@ -35,6 +46,20 @@ function SidebarLink(props: SidebarLinkProps) {
 	);
 }
 
+function SidebarMenu(props: SidebarMenuProps) {
+	const { title, hasDivider, children } = props;
+
+	return (
+		<>
+			<div className={styles.menu}>
+				<h3 className={styles.menuTitle}>{title}</h3>
+				<ul className={styles.linksContainer}>{children}</ul>
+				{hasDivider ? <Divider className={styles.divider} /> : null}
+			</div>
+		</>
+	);
+}
+
 export function Sidebar() {
 	const { sidebarActive } = useSidebar();
 	return (
@@ -43,18 +68,39 @@ export function Sidebar() {
 			data-active={dataAttr(sidebarActive)}
 		>
 			<div className={styles.brandContainer} />
-			<SidebarLink to='/' icon={<SquaresFour />}>
-				Dashboard
-			</SidebarLink>
-			<SidebarLink to='/' icon={<Clipboard />}>
-				Requests
-			</SidebarLink>
-			<SidebarLink to='/' icon={<House />}>
-				Classrooms
-			</SidebarLink>
-			<SidebarLink to='/' icon={<Calendar />}>
-				Schedules
-			</SidebarLink>
+
+			<div className={styles.menusContainer}>
+				<SidebarMenu hasDivider={true} title='Main menu'>
+					<SidebarLink to='/' icon={<SquaresFour />}>
+						Dashboard
+					</SidebarLink>
+					<SidebarLink to='/' icon={<Clipboard />}>
+						Requests
+					</SidebarLink>
+					<SidebarLink to='/' icon={<House />}>
+						Classrooms
+					</SidebarLink>
+					<SidebarLink to='/' icon={<Calendar />}>
+						Schedules
+					</SidebarLink>
+				</SidebarMenu>
+				<SidebarMenu hasDivider={false} title='Options'>
+					<SidebarLink to='/' icon={<Gear />}>
+						Settings
+					</SidebarLink>
+					<SidebarLink to='/' icon={<Info />}>
+						Help
+					</SidebarLink>
+				</SidebarMenu>
+			</div>
+
+			<div className={styles.profileWrapper}>
+				<div className={styles.profileContainer}>
+					<div className={styles.profileImageContainer} />
+					<p className={styles.userName}>Joe doe</p>
+					<p className={styles.userRole}>admin</p>
+				</div>
+			</div>
 		</aside>
 	);
 }

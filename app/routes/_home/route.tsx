@@ -12,6 +12,13 @@ export { loader } from '@routes/home/loader';
 
 export default function HomeLayout() {
 	const { sidebarActive, toggleSidebar } = useSidebar();
+
+	const handleOutletClick = () => {
+		if (sidebarActive) {
+			toggleSidebar();
+		}
+	};
+
 	return (
 		<main className={styles.layoutMainContainer}>
 			<Sidebar />
@@ -25,7 +32,11 @@ export default function HomeLayout() {
 			>
 				<List className={styles.sidebarTogglerIcon} />
 			</Button>
-			<div className={styles.outletContainer}>
+			<div
+				className={styles.outletContainer}
+				onClick={handleOutletClick}
+				onKeyUp={handleOutletClick}
+			>
 				<Outlet />
 			</div>
 		</main>
