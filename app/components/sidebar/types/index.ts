@@ -4,6 +4,7 @@ export interface SidebarLinkProps extends PropsWithChildren {
 	to: string;
 	icon: NonNullable<ReactElement>;
 	children: string;
+	className?: string;
 }
 
 export interface SidebarMenuProps extends PropsWithChildren {

@@ -1,46 +1,10 @@
 .sidebarContainer {
-    @apply fixed w-full max-w-72 h-full px-5 py-10 -translate-x-full transition-transform bg-content1 flex flex-col gap-4 overflow-x-hidden overflow-y-auto;
+    @apply fixed w-full max-w-72 h-full px-5 py-10 -translate-x-full transition-transform bg-content2 shadow-small flex flex-col gap-8 overflow-x-hidden overflow-y-auto z-20;
     @apply lg:static lg:translate-x-0 lg:w-full lg:m-0;
 
     &[data-active=true] {
         @apply translate-x-0;
     }
-}
-
-.linkContainer {
-    @apply h-14 w-full rounded-medium list-none;
-
-    &[data-active=true] {
-        @apply bg-primary text-primary-foreground;
-
-
-        .link {
-            @apply text-primary-foreground;
-        
-            .linkIcon {
-                @apply text-primary-foreground;
-            }
-        }
-    }
-}
-
-.link {
-    @apply w-full h-full grid grid-cols-[auto,1fr] items-center gap-4 px-4 text-default-700 leading-none text-small;
-    @apply md:text-medium;
-
-    .linkIconContainer {
-        @apply grid place-items-center;
-
-        .linkIcon {
-            @apply size-5;
-            @apply md:size-6;
-        }
-    }
-}
-
-.brandContainer {
-    @apply w-full h-16 shrink-0 rounded-medium border-large border-secondary mt-12 mb-2;
-    @apply lg:mt-8;
 }
 
 .menusContainer {
@@ -55,7 +19,8 @@
     }
 
     .linksContainer {
-        @apply flex flex-col gap-2;
+        @apply flex flex-col gap-1;
+        @apply md:gap-2
     }
 
     .divider {
@@ -63,25 +28,75 @@
     }
 }
 
-.profileWrapper {
-    @apply w-full h-full flex justify-center items-end;
+.linkContainer {
+    @apply h-min w-full rounded-medium list-none;
 
-    .profileContainer {
-        @apply w-full bg-default-100 rounded-large flex flex-col items-center justify-center py-4;
-        @apply md:w-2/3 md:aspect-square;
+    .link {
+        @apply w-full h-full grid grid-cols-[auto,1fr] items-center gap-4 p-4 text-default-600 leading-none text-small text-opacity-95;
+        @apply md:text-medium;
 
-        .profileImageContainer {
-            @apply w-16 aspect-square rounded-full overflow-hidden bg-red-500;
+        .linkIconContainer {
+            @apply grid place-items-center;
+
+            .linkIcon {
+                @apply size-5;
+                @apply md:size-6;
+            }
         }
+    }
+
+    &[data-active=true] {
+        @apply bg-content1 shadow-sm;
+
+        .link {
+            @apply text-content1-foreground;
+        
+            .linkIcon {
+                @apply text-content1-foreground;
+            }
+        }
+    }
+}
+
+.logoutLink {
+    
+    .link {
+        @apply text-danger;
+    }
+}
+
+.profileContainer {
+    @apply w-full h-min rounded-large grid grid-rows-2 grid-cols-[min-content,1fr] relative gap-x-4;
+
+    .profileImageContainer {
+        @apply w-14 aspect-square rounded-large overflow-hidden bg-secondary-200 row-start-1 row-end-3 self-center ml-4 shadow-small;
+    }
+
+    .nameWrapper {
+        @apply self-center row-start-1 row-end-3 flex flex-col gap-2;
 
         .userName {
-            @apply text-content1-foreground text-small capitalize mt-2;
-            @apply md:text-medium;
+            @apply text-content1-foreground text-medium capitalize leading-none;
         }
 
         .userRole {
-            @apply text-tiny text-default-600 capitalize mt-0.5;
-            @apply md:text-small; 
+            @apply text-small text-default-600 capitalize;
         }
+    }
+
+    .optionsButton {
+        @apply absolute top-0 right-0;
+
+        .optionsIcon {
+            @apply size-7 text-content2-foreground;
+        }
+    }
+}
+
+.sidebarToggler {
+    @apply ml-2 lg:hidden;
+
+    .sidebarTogglerIcon {
+        @apply size-7;
     }
 }

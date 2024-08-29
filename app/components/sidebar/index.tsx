@@ -11,7 +11,7 @@ import {
 	Clipboard,
 	Gear,
 	House,
-	Info,
+	SignOut,
 	SquaresFour,
 } from '@phosphor-icons/react';
 import { useLocation } from '@remix-run/react';
@@ -23,18 +23,18 @@ import styles from './styles.module.css';
 
 function SidebarLink(props: SidebarLinkProps) {
 	const { pathname } = useLocation();
-	const { to, icon, children, ...liProps } = props;
+	const { to, icon, children, className, ...liProps } = props;
 
 	const isActive = pathname.toLowerCase().includes(children.toLowerCase());
 
 	const computedIcon = cloneElement(icon, {
 		className: cn(icon.props.className, styles.linkIcon),
-		weight: isActive ? 'fill' : 'regular',
+		weight: isActive ? 'fill' : 'duotone',
 	});
 
 	return (
 		<li
-			className={cn('group', styles.linkContainer)}
+			className={cn('group', className, styles.linkContainer)}
 			data-active={dataAttr(isActive)}
 			{...liProps}
 		>
@@ -62,12 +62,21 @@ function SidebarMenu(props: SidebarMenuProps) {
 
 export function Sidebar() {
 	const { sidebarActive } = useSidebar();
+
 	return (
 		<aside
 			className={styles.sidebarContainer}
 			data-active={dataAttr(sidebarActive)}
 		>
-			<div className={styles.brandContainer} />
+			<div className={styles.profileContainer}>
+				<div className={styles.profileImageContainer} />
+				<div className={styles.nameWrapper}>
+					<p className={styles.userName}>Joe doe</p>
+					<p className={styles.userRole}>admin</p>
+				</div>
+			</div>
+
+			<Divider className={styles.divider} />
 
 			<div className={styles.menusContainer}>
 				<SidebarMenu hasDivider={true} title='Main menu'>
@@ -88,18 +97,14 @@ export function Sidebar() {
 					<SidebarLink to='/' icon={<Gear />}>
 						Settings
 					</SidebarLink>
-					<SidebarLink to='/' icon={<Info />}>
-						Help
+					<SidebarLink
+						to='/'
+						icon={<SignOut />}
+						className={styles.logoutLink}
+					>
+						Logout
 					</SidebarLink>
 				</SidebarMenu>
-			</div>
-
-			<div className={styles.profileWrapper}>
-				<div className={styles.profileContainer}>
-					<div className={styles.profileImageContainer} />
-					<p className={styles.userName}>Joe doe</p>
-					<p className={styles.userRole}>admin</p>
-				</div>
 			</div>
 		</aside>
 	);
