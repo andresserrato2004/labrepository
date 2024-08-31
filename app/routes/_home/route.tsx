@@ -4,6 +4,7 @@ import { Sidebar } from '@components';
 import { Outlet } from '@remix-run/react';
 
 import { dataAttr } from '@components/utility';
+import { UserSessionProvider } from '@hooks/session';
 import { useSidebar } from '@hooks/sidebar';
 import { useWindowSize } from '@hooks/window';
 import { Button } from '@nextui-org/button';
@@ -56,26 +57,28 @@ export default function HomeLayout() {
 
 	return (
 		<main className={styles.layoutMainContainer}>
-			<Sidebar />
-			<Button
-				className={styles.sidebarToggler}
-				isIconOnly={true}
-				disableRipple={true}
-				onPress={toggleSidebar}
-				data-active={dataAttr(sidebarActive)}
-				variant='light'
-				color='primary'
-			>
-				<List className={styles.sidebarTogglerIcon} />
-			</Button>
-			<motion.div
-				className={styles.outletContainer}
-				onKeyDown={handleOutletClick}
-				onClick={handleOutletClick}
-				{...dragAttrs}
-			>
-				<Outlet />
-			</motion.div>
+			<UserSessionProvider>
+				<Sidebar />
+				<Button
+					className={styles.sidebarToggler}
+					isIconOnly={true}
+					disableRipple={true}
+					onPress={toggleSidebar}
+					data-active={dataAttr(sidebarActive)}
+					variant='light'
+					color='primary'
+				>
+					<List className={styles.sidebarTogglerIcon} />
+				</Button>
+				<motion.div
+					className={styles.outletContainer}
+					onKeyDown={handleOutletClick}
+					onClick={handleOutletClick}
+					{...dragAttrs}
+				>
+					<Outlet />
+				</motion.div>
+			</UserSessionProvider>
 		</main>
 	);
 }
