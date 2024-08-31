@@ -36,6 +36,12 @@ async function checkForExistingUser(
 	return null;
 }
 
+/**
+ * Creates a new user.
+ *
+ * @param request - The request object containing user data.
+ * @returns A promise that resolves to a ServiceResponse object.
+ */
 export async function createUser({
 	request,
 }: CreateUserArgs): Promise<ServiceResponse<NoContent, NewUser>> {

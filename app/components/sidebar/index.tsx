@@ -3,6 +3,7 @@ import type {
 	SidebarMenuProps,
 } from '@components/sidebar/types';
 import type { PanInfo } from 'framer-motion';
+import type { ReactElement } from 'react';
 
 import { dataAttr } from '@components/utility';
 import { useSidebar } from '@hooks/sidebar';
@@ -24,6 +25,10 @@ import { cloneElement } from 'react';
 import cn from 'classnames';
 import styles from './styles.module.css';
 
+/**
+ * Builds and returns the variants for the sidebar animation.
+ * @returns The variants object with the 'hidden' and 'visible' variants.
+ */
 function buildVariants() {
 	const variants = {
 		hidden: { translateX: '-100%' },
@@ -33,6 +38,19 @@ function buildVariants() {
 	return variants;
 }
 
+/**
+ * Returns an object containing the attributes for dragging the sidebar.
+ *
+ * @returns An object with the following attributes:
+ * - animate: The animation type for the sidebar.
+ * - drag: The direction of dragging (x for mobile, undefined for desktop).
+ * - dragElastic: The elasticity of dragging.
+ * - dragConstraints: The constraints for dragging.
+ * - transition: The transition settings for the sidebar animation.
+ * - initial: The initial position of the sidebar.
+ * - onDrag: The event handler for dragging.
+ * @see {@link https://www.framer.com/api/motion/motionvalue/#dragging | Framer Motion - Dragging}
+ */
 function buildDragAttrs() {
 	const { sidebarActive, setSidebarActive } = useSidebar();
 	const { isMobile } = useWindowSize();
@@ -71,7 +89,13 @@ function buildDragAttrs() {
 	} as const;
 }
 
-function SidebarLink(props: SidebarLinkProps) {
+/**
+ * Represents a link in the sidebar.
+ *
+ * @param {SidebarLinkProps} props - The props for the SidebarLink component.
+ * @returns {ReactElement} The rendered SidebarLink component.
+ */
+function SidebarLink(props: SidebarLinkProps): ReactElement {
 	const { pathname } = useLocation();
 	const { to, icon, children, className, ...liProps } = props;
 
@@ -96,7 +120,13 @@ function SidebarLink(props: SidebarLinkProps) {
 	);
 }
 
-function SidebarMenu(props: SidebarMenuProps) {
+/**
+ * Represents a menu in the sidebar.
+ *
+ * @param {SidebarMenuProps} props - The props for the SidebarMenu component.
+ * @returns {ReactElement} The rendered SidebarMenu component.
+ */
+function SidebarMenu(props: SidebarMenuProps): ReactElement {
 	const { title, hasDivider, children } = props;
 
 	return (
@@ -110,6 +140,11 @@ function SidebarMenu(props: SidebarMenuProps) {
 	);
 }
 
+/**
+ * Renders the sidebar component.
+ *
+ * @returns The rendered sidebar component.
+ */
 export function Sidebar() {
 	const { sidebarActive } = useSidebar();
 

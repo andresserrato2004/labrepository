@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
 
+/**
+ * Custom hook that returns the current window size and a flag indicating if the window is considered mobile.
+ * @returns An object containing the width and height of the window, and a boolean indicating if the window is mobile.
+ */
 export function useWindowSize() {
 	const [windowSize, setWindowSize] = useState({
 		width: 0,
