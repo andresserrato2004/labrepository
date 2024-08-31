@@ -6,6 +6,7 @@ import type { PanInfo } from 'framer-motion';
 import type { ReactElement } from 'react';
 
 import { dataAttr } from '@components/utility';
+import { useUserSession } from '@hooks/session';
 import { useSidebar } from '@hooks/sidebar';
 import { useWindowSize } from '@hooks/window';
 import { Divider } from '@nextui-org/divider';
@@ -147,6 +148,7 @@ function SidebarMenu(props: SidebarMenuProps): ReactElement {
  */
 export function Sidebar() {
 	const { sidebarActive } = useSidebar();
+	const session = useUserSession();
 
 	const dragAttrs = buildDragAttrs();
 	const variants = buildVariants();
@@ -161,8 +163,8 @@ export function Sidebar() {
 			<div className={styles.profileContainer}>
 				<div className={styles.profileImageContainer} />
 				<div className={styles.nameWrapper}>
-					<p className={styles.userName}>Joe doe</p>
-					<p className={styles.userRole}>admin</p>
+					<p className={styles.userName}>{session.name}</p>
+					<p className={styles.userRole}>{session.role}</p>
 				</div>
 			</div>
 
