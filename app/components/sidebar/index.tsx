@@ -2,9 +2,12 @@ import type {
 	SidebarLinkProps,
 	SidebarMenuProps,
 } from '@components/sidebar/types';
+import type { PanInfo } from 'framer-motion';
 
 import { dataAttr } from '@components/utility';
 import { useSidebar } from '@hooks/sidebar';
+import { useWindowSize } from '@hooks/window';
+import { Divider } from '@nextui-org/divider';
 import { Link } from '@nextui-org/link';
 import {
 	Calendar,
@@ -15,11 +18,58 @@ import {
 	SquaresFour,
 } from '@phosphor-icons/react';
 import { useLocation } from '@remix-run/react';
+import { motion } from 'framer-motion';
 import { cloneElement } from 'react';
 
-import { Divider } from '@nextui-org/divider';
 import cn from 'classnames';
 import styles from './styles.module.css';
+
+function buildVariants() {
+	const variants = {
+		hidden: { translateX: '-100%' },
+		visible: { translateX: 0 },
+	};
+
+	return variants;
+}
+
+function buildDragAttrs() {
+	const { sidebarActive, setSidebarActive } = useSidebar();
+	const { isMobile } = useWindowSize();
+
+	const drag = isMobile ? 'x' : undefined;
+	const dragElastic = 0;
+	const dragConstraints = { left: 0, right: 0 };
+	const initialTranslateX = isMobile ? '-100%' : 0;
+	const transition = { bounce: 0.25, type: 'spring', duration: 0.4 };
+	const initial = { translateX: initialTranslateX };
+	const triggerThreshold = 20;
+	const animate = isMobile
+		? sidebarActive
+			? 'visible'
+			: 'hidden'
+		: undefined;
+
+	const onDrag = (event: PointerEvent, info: PanInfo) => {
+		if (event.pointerType === 'mouse') {
+			return;
+		}
+
+		if (info.offset.x < -triggerThreshold && sidebarActive) {
+			setSidebarActive(false);
+		}
+	};
+
+	return {
+		animate,
+		drag,
+		dragElastic,
+		dragConstraints,
+		transition,
+		initial,
+		onDrag,
+	} as const;
+}
 
 function SidebarLink(props: SidebarLinkProps) {
 	const { pathname } = useLocation();
@@ -63,10 +113,15 @@ function SidebarMenu(props: SidebarMenuProps) {
 export function Sidebar() {
 	const { sidebarActive } = useSidebar();
 
+	const dragAttrs = buildDragAttrs();
+	const variants = buildVariants();
+
 	return (
-		<aside
+		<motion.aside
 			className={styles.sidebarContainer}
 			data-active={dataAttr(sidebarActive)}
+			variants={variants}
+			{...dragAttrs}
 		>
 			<div className={styles.profileContainer}>
 				<div className={styles.profileImageContainer} />
@@ -106,6 +161,6 @@ export function Sidebar() {
 					</SidebarLink>
 				</SidebarMenu>
 			</div>
-		</aside>
+		</motion.aside>
 	);
 }

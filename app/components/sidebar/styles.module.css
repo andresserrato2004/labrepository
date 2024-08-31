@@ -1,10 +1,6 @@
 .sidebarContainer {
-    @apply fixed w-full max-w-72 h-full px-5 py-10 -translate-x-full transition-transform bg-content2 shadow-small flex flex-col gap-8 overflow-x-hidden overflow-y-auto z-20;
-    @apply lg:static lg:translate-x-0 lg:w-full lg:m-0;
-
-    &[data-active=true] {
-        @apply translate-x-0;
-    }
+    @apply fixed w-full max-w-72 h-full px-5 py-10 bg-content2 shadow-small flex flex-col gap-8 overflow-x-hidden overflow-y-auto z-20;
+    @apply lg:static lg:w-full lg:m-0;
 }
 
 .menusContainer {
@@ -32,8 +28,8 @@
     @apply h-min w-full rounded-medium list-none;
 
     .link {
-        @apply w-full h-full grid grid-cols-[auto,1fr] items-center gap-4 p-4 text-default-600 leading-none text-small text-opacity-95;
-        @apply md:text-medium;
+        @apply w-full h-full grid grid-cols-[auto,1fr] items-center gap-4 p-3 text-default-600 leading-none text-small text-opacity-95;
+        @apply md:text-medium md:p-4;
 
         .linkIconContainer {
             @apply grid place-items-center;
