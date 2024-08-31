@@ -46,6 +46,9 @@
 			"@routes/home/*": ["./app/routes/_home/*"],
 			"@routes/home": ["./app/routes/_home"],
 
+			"@routes/dashboard/*": ["./app/routes/_home.dashboard/*"],
+			"@routes/dashboard": ["./app/routes/_home.dashboard"],
+
 			"@hooks/*": ["./app/hooks/*"],
 			"@hooks": ["./app/hooks/index"],
 
