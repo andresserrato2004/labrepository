@@ -1,41 +1,98 @@
 .sidebarContainer {
-    @apply fixed w-full max-w-72 h-[calc(100dvh-4rem)] px-5 py-10 -translate-x-full transition-transform bg-content1 flex flex-col gap-4;
-    @apply lg:static lg:translate-x-0 lg:w-full lg:m-0;
+    @apply fixed w-full max-w-72 h-full px-5 py-10 bg-content2 shadow-small flex flex-col gap-8 overflow-x-hidden overflow-y-auto z-20;
+    @apply lg:static lg:w-full lg:m-0;
+}
 
-    &[data-active=true] {
-        @apply translate-x-0;
+.menusContainer {
+    @apply flex flex-col gap-6;
+}
+
+.menu {
+    @apply flex flex-col gap-3;
+
+    .menuTitle {
+        @apply text-default-400 text-small px-6;
+    }
+
+    .linksContainer {
+        @apply flex flex-col gap-1;
+        @apply md:gap-2
+    }
+
+    .divider {
+        @apply mt-2;
     }
 }
 
 .linkContainer {
-    @apply h-14 w-full rounded-medium list-none;
+    @apply h-min w-full rounded-medium list-none;
+
+    .link {
+        @apply w-full h-full grid grid-cols-[auto,1fr] items-center gap-4 p-3 text-default-600 leading-none text-small text-opacity-95;
+        @apply md:text-medium md:p-4;
+
+        .linkIconContainer {
+            @apply grid place-items-center;
+
+            .linkIcon {
+                @apply size-5;
+                @apply md:size-6;
+            }
+        }
+    }
 
     &[data-active=true] {
-        @apply bg-primary text-primary-foreground;
-
-        .linkIcon {
-            @apply text-primary-foreground;
-        }
+        @apply bg-content1 shadow-sm;
 
         .link {
-            @apply text-primary-foreground;
+            @apply text-content1-foreground;
+        
+            .linkIcon {
+                @apply text-content1-foreground;
+            }
         }
     }
 }
 
-.link {
-    @apply w-full h-full grid grid-cols-[auto,1fr] items-center gap-4 px-4 text-default-700 leading-none;
+.logoutLink {
+    
+    .link {
+        @apply text-danger;
+    }
 }
 
-.linkIconContainer {
-    @apply grid place-items-center;
+.profileContainer {
+    @apply w-full h-min rounded-large grid grid-rows-2 grid-cols-[min-content,1fr] relative gap-x-4;
+
+    .profileImageContainer {
+        @apply w-14 aspect-square rounded-large overflow-hidden bg-secondary-200 row-start-1 row-end-3 self-center ml-4 shadow-small;
+    }
+
+    .nameWrapper {
+        @apply self-center row-start-1 row-end-3 flex flex-col gap-2;
+
+        .userName {
+            @apply text-content1-foreground text-medium capitalize leading-none;
+        }
+
+        .userRole {
+            @apply text-small text-default-600 capitalize;
+        }
+    }
+
+    .optionsButton {
+        @apply absolute top-0 right-0;
+
+        .optionsIcon {
+            @apply size-7 text-content2-foreground;
+        }
+    }
 }
 
-.linkIcon {
-    @apply size-7;
-}
+.sidebarToggler {
+    @apply ml-2 lg:hidden;
 
-.brandContainer {
-    @apply w-full h-16 rounded-medium border-large border-secondary my-12;
-    @apply lg:mt-8;
+    .sidebarTogglerIcon {
+        @apply size-7;
+    }
 }

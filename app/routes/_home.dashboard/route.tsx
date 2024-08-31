@@ -1,3 +1,5 @@
+export { meta } from '@routes/dashboard/meta';
+
 export default function DashboardPage() {
 	return (
 		<main>
