@@ -49,6 +49,9 @@
 			"@routes/dashboard/*": ["./app/routes/_home.dashboard/*"],
 			"@routes/dashboard": ["./app/routes/_home.dashboard"],
 
+			"@routes/logout/*": ["./app/routes/logout/*"],
+			"@routes/logout": ["./app/routes/logout"],
+
 			"@hooks/*": ["./app/hooks/*"],
 			"@hooks": ["./app/hooks/index"],
 
