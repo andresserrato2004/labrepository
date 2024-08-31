@@ -188,7 +188,7 @@ export function Sidebar() {
 						Settings
 					</SidebarLink>
 					<SidebarLink
-						to='/'
+						to='/logout'
 						icon={<SignOut />}
 						className={styles.logoutLink}
 					>
