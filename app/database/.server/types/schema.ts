@@ -66,6 +66,11 @@ export type ErrorLog = typeof schema.errorLogs.$inferSelect;
 export type NewErrorLog = typeof schema.errorLogs.$inferInsert;
 
 /**
+ * Represents the type definition for the Reservation entity in the schema.
+ */
+export type Reservation = typeof schema.reservations.$inferSelect;
+
+/**
  * Represents the type of a form data validator.
  */
 export type FormDataValidator = ReturnType<typeof zfd.formData>;

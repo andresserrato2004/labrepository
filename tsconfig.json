@@ -30,9 +30,10 @@
 
 			"@services/server/*": ["./app/services/.server/*"],
 			"@services/client/*": ["./app/services/.client/*"],
+			"@services/shared/*": ["./app/services/.shared/*"],
 
-			"@database/*": ["./app/database/*"],
-			"@database": ["./app/database/index"],
+			"@database/*": ["./app/database/.server/*"],
+			"@database": ["./app/database/.server/index"],
 
 			"@routes/index/*": ["./app/routes/_index/*"],
 			"@routes/index": ["./app/routes/_index"],
@@ -48,6 +49,9 @@
 
 			"@routes/dashboard/*": ["./app/routes/_home.dashboard/*"],
 			"@routes/dashboard": ["./app/routes/_home.dashboard"],
+
+			"@routes/reservations/*": ["./app/routes/_home.reservations/*"],
+			"@routes/reservations": ["./app/routes/_home.reservations"],
 
 			"@routes/logout/*": ["./app/routes/logout/*"],
 			"@routes/logout": ["./app/routes/logout"],

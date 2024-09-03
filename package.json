@@ -27,6 +27,7 @@
 		"@nextui-org/theme": "2.2.9",
 		"@paralleldrive/cuid2": "2.2.2",
 		"@phosphor-icons/react": "2.1.7",
+		"@react-stately/data": "3.11.6",
 		"@remix-run/node": "2.11.1",
 		"@remix-run/react": "2.11.1",
 		"@remix-run/serve": "2.11.1",

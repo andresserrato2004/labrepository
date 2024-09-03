@@ -3,14 +3,14 @@ import type {
 	ResponseType,
 	ServerErrorCode,
 	SuccessCode,
-} from '@services/server/utility';
+} from '@services/shared/utility';
 
 export type {
 	ResponseType,
 	SuccessCode,
 	ClientErrorCode,
 	ServerErrorCode,
-} from '@services/server/utility';
+} from '@services/shared/utility';
 
 /**
  * Represents a response with no content.

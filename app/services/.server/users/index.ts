@@ -10,13 +10,13 @@ import { database, eq, schema } from '@database';
 import { newUserValidator } from '@database/validators';
 import { InvalidNewUserError, UserConflictError } from '@errors/services';
 import { hashPassword } from '@services/server/auth/security';
+import { handleUnknownError } from '@services/server/utility';
 import {
 	ResponseType,
 	SuccessCode,
 	getErrorsFromZodError,
-	handleUnknownError,
 	isAppError,
-} from '@services/server/utility';
+} from '@services/shared/utility';
 
 async function checkForExistingUser(
 	request: NewUser,
