@@ -43,3 +43,16 @@ export const createClassroomId = init({
 	length: 8,
 	fingerprint: process.env.CUID_FINGERPRINT,
 });
+
+/**
+ * Generates a reservation ID.
+ *
+ * @remarks This function only must be used in the database schema definition.
+ * @param {number} length - The length of the reservation ID.
+ * @param {string} fingerprint - The fingerprint used for generating the reservation ID.
+ * @returns {string} The generated reservation ID.
+ */
+export const createReservationId = init({
+	length: 8,
+	fingerprint: process.env.CUID_FINGERPRINT,
+});

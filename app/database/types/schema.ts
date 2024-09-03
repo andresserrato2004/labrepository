@@ -11,6 +11,13 @@ export type IsoTimeStampConfig = {
 };
 
 /**
+ * Represents a semester in the format of `${year}-${term}`.
+ * - `year` is a number representing the year of the semester.
+ * - `term` is either `'1'`, `'I'`, or `'2'`, representing the first semester, the interim semester, or the second semester respectively.
+ */
+export type Semester = `${number}-${'1' | 'I' | '2'}`;
+
+/**
  * Represents the structure of a new login.
  */
 export type NewLogin = {

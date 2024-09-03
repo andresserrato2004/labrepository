@@ -181,7 +181,7 @@ export function Sidebar() {
 					<SidebarLink to='/' icon={<House />}>
 						Classrooms
 					</SidebarLink>
-					<SidebarLink to='/' icon={<Calendar />}>
+					<SidebarLink to='/schedules' icon={<Calendar />}>
 						Schedules
 					</SidebarLink>
 				</SidebarMenu>

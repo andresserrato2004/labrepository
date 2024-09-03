@@ -1,4 +1,4 @@
-import type { IsoTimeStampConfig } from '@database/types';
+import type { IsoTimeStampConfig, Semester } from '@database/types';
 
 import { sql } from 'drizzle-orm';
 import {
@@ -58,17 +58,67 @@ export const users = pgTable(
 	},
 );
 
-export const classrooms = pgTable('classrooms', {
-	id: text('id')
-		.$defaultFn(() => generators.createClassroomId())
-		.notNull(),
-	name: text('name').notNull(),
-	createdAt: isoTimestamp('created_at').default(sql`now()`).notNull(),
-	updatedAt: isoTimestamp('updated_at')
-		.default(sql`now()`)
-		.$onUpdate(() => sql`now()`)
-		.notNull(),
-});
+export const classrooms = pgTable(
+	'classrooms',
+	{
+		id: text('id')
+			.$defaultFn(() => generators.createClassroomId())
+			.notNull(),
+		name: text('name').notNull(),
+		createdAt: isoTimestamp('created_at').default(sql`now()`).notNull(),
+		updatedAt: isoTimestamp('updated_at')
+			.default(sql`now()`)
+			.$onUpdate(() => sql`now()`)
+			.notNull(),
+	},
+	(table) => {
+		return {
+			primaryKey: primaryKey({
+				columns: [table.id],
+			}),
+		};
+	},
+);
+
+export const reservations = pgTable(
+	'reservations',
+	{
+		id: text('id')
+			.$defaultFn(() => generators.createReservationId())
+			.notNull(),
+		userId: text('user_id').notNull(),
+		classroomId: text('classroom_id').notNull(),
+		semester: text('semester').$type<Semester>().notNull(),
+		startTime: isoTimestamp('start_time').notNull(),
+		endTime: isoTimestamp('end_time').notNull(),
+		createdAt: isoTimestamp('created_at').default(sql`now()`).notNull(),
+		updatedAt: isoTimestamp('updated_at')
+			.default(sql`now()`)
+			.$onUpdate(() => sql`now()`)
+			.notNull(),
+	},
+	(table) => {
+		return {
+			primaryKey: primaryKey({
+				columns: [table.id],
+			}),
+			userReference: foreignKey({
+				columns: [table.userId],
+				foreignColumns: [users.id],
+				name: 'reservations_user_fk',
+			})
+				.onDelete('restrict')
+				.onUpdate('restrict'),
+			classroomReference: foreignKey({
+				columns: [table.classroomId],
+				foreignColumns: [classrooms.id],
+				name: 'reservations_classroom_fk',
+			})
+				.onDelete('restrict')
+				.onUpdate('restrict'),
+		};
+	},
+);
 
 export const errorLogs = pgTable(
 	'error_logs',
@@ -101,7 +151,7 @@ export const auditLogs = pgTable(
 		id: text('id')
 			.$defaultFn(() => generators.createLogId())
 			.notNull(),
-		userId: text('user').notNull(),
+		userId: text('user_id').notNull(),
 		action: enums
 			.auditActionEnum('action')
 			.$type<enums.AuditAction | `${enums.AuditAction}`>()

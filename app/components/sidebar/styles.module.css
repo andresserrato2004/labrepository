@@ -72,7 +72,7 @@
         @apply self-center row-start-1 row-end-3 flex flex-col gap-2;
 
         .userName {
-            @apply text-content1-foreground text-medium capitalize leading-none;
+            @apply w-4/5 text-content1-foreground text-medium capitalize leading-none truncate;
         }
 
         .userRole {
