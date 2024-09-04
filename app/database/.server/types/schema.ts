@@ -71,6 +71,14 @@ export type NewErrorLog = typeof schema.errorLogs.$inferInsert;
 export type Reservation = typeof schema.reservations.$inferSelect;
 
 /**
+ * Represents a reservation with a classroom.
+ */
+export interface ExtendedReservation extends Reservation {
+	classroom: Pick<Classroom, 'id' | 'name'>;
+	user: Pick<User, 'id' | 'name'>;
+}
+
+/**
  * Represents the type of a form data validator.
  */
 export type FormDataValidator = ReturnType<typeof zfd.formData>;

@@ -1,0 +1,7 @@
+.scheduleContainer {
+    @apply w-full max-w-xl h-min min-h-96 rounded-large shadow-small overflow-hidden;
+
+    .classroomTitle {
+        @apply text-2xl text-primary h-14 grid place-content-center;
+    }
+}
