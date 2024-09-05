@@ -4,7 +4,7 @@
 }
 
 .outletContainer {
-    @apply bg-content1 px-8 py-16;
+    @apply bg-content1 px-4 py-16;
     @apply lg:p-16
 }
 
