@@ -91,6 +91,7 @@ export const reservations = pgTable(
 		semester: text('semester').$type<Semester>().notNull(),
 		startTime: isoTimestamp('start_time').notNull(),
 		endTime: isoTimestamp('end_time').notNull(),
+		course: text('course').notNull(),
 		createdAt: isoTimestamp('created_at').default(sql`now()`).notNull(),
 		updatedAt: isoTimestamp('updated_at')
 			.default(sql`now()`)

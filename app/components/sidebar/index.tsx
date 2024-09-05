@@ -20,6 +20,7 @@ import {
 	SquaresFour,
 } from '@phosphor-icons/react';
 import { useLocation } from '@remix-run/react';
+import { getShortName } from '@services/shared/utility';
 import { motion } from 'framer-motion';
 import { cloneElement } from 'react';
 
@@ -163,7 +164,9 @@ export function Sidebar() {
 			<div className={styles.profileContainer}>
 				<div className={styles.profileImageContainer} />
 				<div className={styles.nameWrapper}>
-					<p className={styles.userName}>{session.name}</p>
+					<p className={styles.userName}>
+						{getShortName(session.name)}
+					</p>
 					<p className={styles.userRole}>{session.role}</p>
 				</div>
 			</div>

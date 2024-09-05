@@ -1,7 +1,81 @@
 .scheduleContainer {
-    @apply w-full max-w-xl h-min min-h-96 rounded-large shadow-small overflow-hidden;
+    @apply grid grid-rows-[4rem,1fr] w-full h-min min-h-96 rounded-large border-small border-default-200 overflow-hidden;
 
-    .classroomTitle {
-        @apply text-2xl text-primary h-14 grid place-content-center;
+    .scheduleHeader {
+        @apply bg-default-50;
+    }
+
+    .scheduleBody {
+        @apply grid grid-rows-[min-content_repeat(26,minmax(1.5rem,min-content))] grid-cols-[min-content_repeat(7,1fr)] p-4 pr-10 pb-10;
+
+        .scheduleHeaderCell {
+            @apply flex flex-col items-center justify-center gap-1 pb-2;
+            @apply first:col-start-2;
+
+            .headerDayName {
+                @apply text-default-700 text-tiny;
+            }
+
+            .headerDayNumber {
+                @apply text-default-500 text-tiny;
+            }
+        }
+
+        .scheduleContentWrapper {
+            @apply grid grid-cols-subgrid border-small border-default-300 rounded-medium overflow-hidden relative;
+            @apply col-start-2 row-start-2 -col-end-1 -row-end-1;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background:
+                    linear-gradient(270deg, theme(borderColor.default-100) 1px, transparent 1px) repeat-x;
+                background-size: calc(100% / 7) 100%;
+                pointer-events: none;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                z-index: 1;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background:
+                    linear-gradient(180deg, theme(borderColor.default-100) 1px, transparent 1px) repeat-y;
+                background-size: 100% calc(100% / 13);
+                background-position: 0 -1px;
+                pointer-events: none;
+            }
+        }
+
+        .sidebarCell {
+            @apply flex items-start justify-end mr-3 text-tiny h-full min-h-14 row-span-2 w-max pl-6 text-default-500;
+        }
+
+        .scheduleBodyCell {
+            @apply flex justify-center content-center flex-wrap text-small relative overflow-hidden px-4 gap-y-1.5 border-medium z-10;
+
+            &:after {
+                @apply absolute top-0 left-0 w-2 h-full z-10 content-[''];
+            }
+
+            .reservationCourse {
+                @apply font-semibold text-center w-full;
+            }
+
+            .reservationUser {
+                @apply text-tiny text-center w-full;
+            }
+
+            .reservationTime {
+                @apply text-tiny text-center w-full;
+            }
+        }
     }
 }
