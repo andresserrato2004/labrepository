@@ -43,7 +43,10 @@ async function handlePostRequest(request: Request) {
 		throw createServerErrorResponse(loginResponse);
 	}
 
-	return redirect('/dashboard', {
+	const url = new URL(request.url);
+	const redirectTo = url.searchParams.get('redirectTo') || '/';
+
+	return redirect(redirectTo, {
 		headers: {
 			'Set-Cookie': await createTokenCookie(loginResponse.data),
 		},
