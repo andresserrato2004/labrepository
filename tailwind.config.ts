@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss';
 
 import { nextui } from '@nextui-org/theme';
+import container from '@tailwindcss/container-queries';
 
 export default {
 	content: [
@@ -14,6 +15,7 @@ export default {
 		nextui({
 			defaultTheme: 'light',
 		}),
+		container,
 	],
 	darkMode: 'class',
 } satisfies Config;

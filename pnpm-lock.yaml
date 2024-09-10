@@ -102,6 +102,9 @@ importers:
       '@remix-run/dev':
         specifier: 2.11.2
         version: 2.11.2(@remix-run/react@2.11.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.5.4))(@remix-run/serve@2.11.2(typescript@5.5.4))(@types/node@22.5.4)(typescript@5.5.4)(vite@5.4.3(@types/node@22.5.4))
+      '@tailwindcss/container-queries':
+        specifier: 0.1.1
+        version: 0.1.1(tailwindcss@3.4.10)
       '@types/react':
         specifier: 18.3.5
         version: 18.3.5
@@ -1485,6 +1488,11 @@ packages:
 
   '@swc/helpers@0.5.13':
     resolution: {integrity: sha512-UoKGxQ3r5kYI9dALKJapMmuK+1zWM/H17Z1+iwnNmzcJRnfFuevZs375TA5rW31pu4BS4NoSy1fRsexDXfWn5w==}
+
+  '@tailwindcss/container-queries@0.1.1':
+    resolution: {integrity: sha512-p18dswChx6WnTSaJCSGx6lTmrGzNNvm2FtXmiO6AuA1V4U5REyoqwmT6kgAsIMdjo07QdAfYXHJ4hnMtfHzWgA==}
+    peerDependencies:
+      tailwindcss: '>=3.2.0'
 
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
@@ -5760,6 +5768,10 @@ snapshots:
     dependencies:
       tslib: 2.7.0
 
+  '@tailwindcss/container-queries@0.1.1(tailwindcss@3.4.10)':
+    dependencies:
+      tailwindcss: 3.4.10
+
   '@trysound/sax@0.2.0': {}
 
   '@types/acorn@4.0.6':
@@ -5840,7 +5852,7 @@ snapshots:
       '@babel/plugin-syntax-typescript': 7.25.4(@babel/core@7.25.2)
       '@vanilla-extract/babel-plugin-debug-ids': 1.0.6
       '@vanilla-extract/css': 1.15.5
-      esbuild: 0.17.6
+      esbuild: 0.19.12
       eval: 0.1.8
       find-up: 5.0.0
       javascript-stringify: 2.1.0
