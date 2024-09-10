@@ -1,0 +1,3 @@
+.title {
+    @apply text-3xl text-content3-foreground font-semibold pb-6;
+}
