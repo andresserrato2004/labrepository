@@ -4,7 +4,7 @@ import {
 	ResponseType,
 	ServerErrorCode,
 	SuccessCode,
-} from '@services/server/utility/enums';
+} from '@services/shared/utility/enums';
 
 import { describe, expect, it } from 'vitest';
 

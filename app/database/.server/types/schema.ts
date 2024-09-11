@@ -11,6 +11,13 @@ export type IsoTimeStampConfig = {
 };
 
 /**
+ * Represents a semester in the format of `${year}-${term}`.
+ * - `year` is a number representing the year of the semester.
+ * - `term` is either `'1'`, `'I'`, or `'2'`, representing the first semester, the interim semester, or the second semester respectively.
+ */
+export type Semester = `${number}-${'1' | 'I' | '2'}`;
+
+/**
  * Represents the structure of a new login.
  */
 export type NewLogin = {
@@ -57,6 +64,19 @@ export type ErrorLog = typeof schema.errorLogs.$inferSelect;
  * Represents the type definition for a new error log.
  */
 export type NewErrorLog = typeof schema.errorLogs.$inferInsert;
+
+/**
+ * Represents the type definition for the Reservation entity in the schema.
+ */
+export type Reservation = typeof schema.reservations.$inferSelect;
+
+/**
+ * Represents a reservation with a classroom.
+ */
+export interface ExtendedReservation extends Reservation {
+	classroom: Pick<Classroom, 'id' | 'name'>;
+	user: Pick<User, 'id' | 'name'>;
+}
 
 /**
  * Represents the type of a form data validator.

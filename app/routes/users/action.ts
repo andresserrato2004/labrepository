@@ -3,6 +3,7 @@ import type { ActionFunctionArgs } from '@remix-run/node';
 import { newUserFormValidator } from '@database/validators';
 import { MissingEnvironmentVariableError } from '@errors/shared';
 import { createUser } from '@services/server/users';
+import { parseFormData } from '@services/server/utility';
 import {
 	ClientErrorCode,
 	HttpMethod,
@@ -11,8 +12,7 @@ import {
 	createResponse,
 	createServerErrorResponse,
 	getErrorsFromZodError,
-	parseFormData,
-} from '@services/server/utility';
+} from '@services/shared/utility';
 
 if (!process.env.ADMIN_KEY) {
 	throw new MissingEnvironmentVariableError('ADMIN_KEY');

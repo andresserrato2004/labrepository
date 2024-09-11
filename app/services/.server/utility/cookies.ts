@@ -3,7 +3,7 @@ import type { Session } from '@services/server/types';
 import { MissingEnvironmentVariableError } from '@errors/shared';
 import { createCookie, redirect } from '@remix-run/node';
 import { getSessionFromToken } from '@services/server/auth';
-import { ResponseType, buildRedirectTo } from '@services/server/utility';
+import { ResponseType, buildRedirectTo } from '@services/shared/utility';
 
 const secret = process.env.COOKIE_SECRET;
 

@@ -15,13 +15,13 @@ import {
 } from '@errors/services';
 import { decode, sign } from '@services/server/auth/jwt';
 import { comparePassword } from '@services/server/auth/security';
+import { handleUnknownError } from '@services/server/utility';
 import {
 	ResponseType,
 	SuccessCode,
 	getErrorsFromZodError,
-	handleUnknownError,
 	isAppError,
-} from '@services/server/utility';
+} from '@services/shared/utility';
 
 /**
  * Retrieves a user from the database based on the provided username.

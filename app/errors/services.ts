@@ -5,7 +5,7 @@ import type {
 	Errors,
 } from '@services/server/types';
 
-import { ClientErrorCode, ResponseType } from '@services/server/utility';
+import { ClientErrorCode, ResponseType } from '@services/shared/utility';
 
 /**
  * Represents an application known error. This error can throw at runtime anywhere in the application

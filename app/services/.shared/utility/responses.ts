@@ -1,22 +1,20 @@
 import type { TypedResponse } from '@remix-run/node';
 import type {
 	ClientErrorResponse,
-	HandleUnknownErrorArgs,
 	SuccessResponse,
 } from '@services/server/types';
 import type { Errors } from '@services/server/types';
 import type { ServerErrorResponse } from '@services/server/types';
 import type { ZodError } from 'zod';
 
-import { database, schema } from '@database';
 import { AppError } from '@errors/services';
-import { json } from '@remix-run/node';
+import { json } from '@remix-run/react';
 import {
 	ClientErrorCode,
 	ResponseType,
 	ServerErrorCode,
 	SuccessCode,
-} from '@services/server/utility';
+} from '@services/shared/utility';
 
 /**
  * Checks if the given code is a success code.
@@ -149,45 +147,6 @@ export function createServerErrorResponse({
 	return new Response(logId, {
 		status: code,
 	});
-}
-
-/**
- * Handles unknown errors and returns a server error response.
- * This functions should be used as a catch-all for errors that are not handled by other error handlers
- * on the service layer.
- *
- * @param error - The error object.
- * @param stack - The error stack trace.
- * @param additionalInfo - Additional information about the error.
- * @returns A promise that resolves to a ServerErrorResponse object.
- */
-export async function handleUnknownError({
-	error,
-	stack,
-	additionalInfo,
-}: HandleUnknownErrorArgs): Promise<ServerErrorResponse> {
-	const values = {
-		name: 'Unknown',
-		message: 'Unknown server error',
-		stack: stack,
-		additionalInfo: { error, ...additionalInfo },
-	};
-
-	if (error instanceof Error) {
-		values.message = error.message;
-		values.name = error.name;
-	}
-
-	const [errorLog] = await database
-		.insert(schema.errorLogs)
-		.values(values)
-		.returning({ id: schema.errorLogs.id });
-
-	return {
-		code: ServerErrorCode.InternalServerError,
-		type: ResponseType.ServerError,
-		logId: errorLog.id,
-	};
 }
 
 /**

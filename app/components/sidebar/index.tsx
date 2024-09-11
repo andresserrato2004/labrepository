@@ -163,7 +163,9 @@ export function Sidebar() {
 			<div className={styles.profileContainer}>
 				<div className={styles.profileImageContainer} />
 				<div className={styles.nameWrapper}>
-					<p className={styles.userName}>{session.name}</p>
+					<p className={styles.userName}>
+						{session.name.split(' ').at(0)}
+					</p>
 					<p className={styles.userRole}>{session.role}</p>
 				</div>
 			</div>
@@ -181,8 +183,8 @@ export function Sidebar() {
 					<SidebarLink to='/' icon={<House />}>
 						Classrooms
 					</SidebarLink>
-					<SidebarLink to='/' icon={<Calendar />}>
-						Schedules
+					<SidebarLink to='/reservations' icon={<Calendar />}>
+						Reservations
 					</SidebarLink>
 				</SidebarMenu>
 				<SidebarMenu hasDivider={false} title='Options'>

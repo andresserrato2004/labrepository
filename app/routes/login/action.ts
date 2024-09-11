@@ -3,6 +3,7 @@ import type { ActionFunctionArgs } from '@remix-run/node';
 import { newLoginFormValidator } from '@database/validators';
 import { redirect } from '@remix-run/node';
 import { loginUser } from '@services/server/auth';
+import { createTokenCookie, parseFormData } from '@services/server/utility';
 import {
 	ClientErrorCode,
 	HttpMethod,
@@ -10,10 +11,8 @@ import {
 	createBasicResponse,
 	createResponse,
 	createServerErrorResponse,
-	createTokenCookie,
 	getErrorsFromZodError,
-	parseFormData,
-} from '@services/server/utility';
+} from '@services/shared/utility';
 
 async function handlePostRequest(request: Request) {
 	const formData = await parseFormData(request, newLoginFormValidator);
@@ -44,7 +43,10 @@ async function handlePostRequest(request: Request) {
 		throw createServerErrorResponse(loginResponse);
 	}
 
-	return redirect('/dashboard', {
+	const url = new URL(request.url);
+	const redirectTo = url.searchParams.get('redirectTo') || '/';
+
+	return redirect(redirectTo, {
 		headers: {
 			'Set-Cookie': await createTokenCookie(loginResponse.data),
 		},

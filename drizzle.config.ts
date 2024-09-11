@@ -28,7 +28,7 @@ if (!user || !password || !host || !port || !database) {
 }
 
 export default defineConfig({
-	schema: './app/database/schema/tables.ts',
+	schema: './app/database/.server/schema/tables.ts',
 	out: './.drizzle',
 	dialect: 'postgresql',
 	dbCredentials: {

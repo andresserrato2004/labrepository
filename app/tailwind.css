@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    font-family: 'Inter';
+}
+
 html,
 body {
     @apply overflow-x-hidden;
