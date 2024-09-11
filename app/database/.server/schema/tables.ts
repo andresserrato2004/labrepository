@@ -1,4 +1,4 @@
-import type { IsoTimeStampConfig, Semester } from '@database/types';
+import type { IsoTimeStampConfig, PeriodName } from '@database/types';
 
 import { sql } from 'drizzle-orm';
 import {
@@ -80,6 +80,30 @@ export const classrooms = pgTable(
 	},
 );
 
+export const academicPeriods = pgTable(
+	'academic_periods',
+	{
+		id: text('id')
+			.$defaultFn(() => generators.createAcademicPeriodId())
+			.notNull(),
+		name: text('name').$type<PeriodName>().notNull(),
+		startDate: isoTimestamp('start_date').notNull(),
+		endDate: isoTimestamp('end_date').notNull(),
+		createdAt: isoTimestamp('created_at').default(sql`now()`).notNull(),
+		updatedAt: isoTimestamp('updated_at')
+			.default(sql`now()`)
+			.$onUpdate(() => sql`now()`)
+			.notNull(),
+	},
+	(table) => {
+		return {
+			primaryKey: primaryKey({
+				columns: [table.id],
+			}),
+		};
+	},
+);
+
 export const reservations = pgTable(
 	'reservations',
 	{
@@ -88,7 +112,6 @@ export const reservations = pgTable(
 			.notNull(),
 		userId: text('user_id').notNull(),
 		classroomId: text('classroom_id').notNull(),
-		semester: text('semester').$type<Semester>().notNull(),
 		startTime: isoTimestamp('start_time').notNull(),
 		endTime: isoTimestamp('end_time').notNull(),
 		course: text('course').notNull(),

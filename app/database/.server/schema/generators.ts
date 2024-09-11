@@ -56,3 +56,16 @@ export const createReservationId = init({
 	length: 8,
 	fingerprint: process.env.CUID_FINGERPRINT,
 });
+
+/**
+ * Generates an academic period ID.
+ *
+ * @remarks This function only must be used in the database schema definition.
+ * @param {number} length - The length of the academic period ID.
+ * @param {string} fingerprint - The fingerprint used for generating the academic period ID.
+ * @returns {string} The generated academic period ID.
+ */
+export const createAcademicPeriodId = init({
+	length: 8,
+	fingerprint: process.env.CUID_FINGERPRINT,
+});
