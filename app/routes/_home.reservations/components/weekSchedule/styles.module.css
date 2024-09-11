@@ -14,11 +14,11 @@
             @apply first:col-start-2;
 
             .headerDayName {
-                @apply text-default-700 text-tiny;
+                @apply text-default-700 text-small;
             }
 
             .headerDayNumber {
-                @apply text-default-500 text-tiny;
+                @apply text-default-500 text-small;
             }
         }
 
