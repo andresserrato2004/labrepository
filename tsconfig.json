@@ -41,17 +41,26 @@
 			"@routes/login/*": ["./app/routes/login/*"],
 			"@routes/login": ["./app/routes/login"],
 
-			"@routes/users/*": ["./app/routes/users/*"],
-			"@routes/users": ["./app/routes/users"],
-
 			"@routes/home/*": ["./app/routes/_home/*"],
 			"@routes/home": ["./app/routes/_home"],
+
+			"@routes/classrooms/*": ["./app/routes/_home.classrooms/*"],
+			"@routes/classrooms": ["./app/routes/_home.classrooms"],
 
 			"@routes/dashboard/*": ["./app/routes/_home.dashboard/*"],
 			"@routes/dashboard": ["./app/routes/_home.dashboard"],
 
+			"@routes/periods/*": ["./app/routes/_home.periods/*"],
+			"@routes/periods": ["./app/routes/_home.periods"],
+
+			"@routes/requests/*": ["./app/routes/_home.requests/*"],
+			"@routes/requests": ["./app/routes/_home.requests"],
+
 			"@routes/reservations/*": ["./app/routes/_home.reservations/*"],
 			"@routes/reservations": ["./app/routes/_home.reservations"],
+
+			"@routes/users/*": ["./app/routes/_home.users/*"],
+			"@routes/users": ["./app/routes/_home.users"],
 
 			"@routes/logout/*": ["./app/routes/logout/*"],
 			"@routes/logout": ["./app/routes/logout"],
