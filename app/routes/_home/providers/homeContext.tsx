@@ -14,6 +14,13 @@ export const AcademicPeriodsContext = createContext<ReturnType<
 > | null>(null);
 
 /**
+ * The context for classrooms.
+ */
+export const ClassroomsContext = createContext<ReturnType<
+	typeof classrooms
+> | null>(null);
+
+/**
  * Retrieves academic periods data and current period information.
  *
  * @returns An object containing the academic periods data, loading status, and current period.
@@ -45,6 +52,18 @@ function academicPeriods() {
 }
 
 /**
+ * Retrieves the classrooms data.
+ *
+ * @returns An object containing the classrooms data and loading status.
+ */
+function classrooms() {
+	const { classroomsPromise } = useLoaderData<typeof loader>();
+	const { data, isLoading } = useDeferredServiceResponse(classroomsPromise);
+
+	return { data, isLoading };
+}
+
+/**
  * Custom hook that provides access to the academic periods context.
  * @returns The academic periods context.
  * @throws {Error} If used outside of an AcademicPeriodsProvider.
@@ -62,6 +81,23 @@ export function useAcademicPeriods() {
 }
 
 /**
+ * Custom hook that provides access to the classrooms context.
+ * @returns The classrooms context.
+ * @throws {Error} If used outside of a ClassroomsProvider.
+ */
+export function useClassrooms() {
+	const classrooms = useContext(ClassroomsContext);
+
+	if (!classrooms) {
+		throw new Error(
+			'useClassrooms must be used within a ClassroomsProvider',
+		);
+	}
+
+	return classrooms;
+}
+
+/**
  * Provides the academic periods to the children components.
  *
  * @param children - The child components to be wrapped by the provider.
@@ -73,5 +109,20 @@ export function AcademicPeriodsProvider({ children }: PropsWithChildren) {
 		<AcademicPeriodsContext.Provider value={periods}>
 			{children}
 		</AcademicPeriodsContext.Provider>
+	);
+}
+
+/**
+ * Provides the classrooms to the children components.
+ *
+ * @param children - The child components to be wrapped by the provider.
+ */
+export function ClassroomsProvider({ children }: PropsWithChildren) {
+	const classroomsData = classrooms();
+
+	return (
+		<ClassroomsContext.Provider value={classroomsData}>
+			{children}
+		</ClassroomsContext.Provider>
 	);
 }
