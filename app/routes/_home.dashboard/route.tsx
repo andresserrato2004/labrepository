@@ -1,9 +1,7 @@
+import { RouteTitle } from '@components';
+
 export { meta } from '@routes/dashboard/meta';
 
 export default function DashboardPage() {
-	return (
-		<main>
-			<h1>Dashboard</h1>
-		</main>
-	);
+	return <RouteTitle>Dashboard</RouteTitle>;
 }

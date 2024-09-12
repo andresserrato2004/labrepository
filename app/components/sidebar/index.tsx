@@ -12,12 +12,14 @@ import { useWindowSize } from '@hooks/window';
 import { Divider } from '@nextui-org/divider';
 import { Link } from '@nextui-org/link';
 import {
+	BookBookmark,
 	Calendar,
 	Clipboard,
 	Gear,
 	House,
 	SignOut,
 	SquaresFour,
+	Users,
 } from '@phosphor-icons/react';
 import { useLocation } from '@remix-run/react';
 import { motion } from 'framer-motion';
@@ -100,7 +102,7 @@ function SidebarLink(props: SidebarLinkProps): ReactElement {
 	const { pathname } = useLocation();
 	const { to, icon, children, className, ...liProps } = props;
 
-	const isActive = pathname.toLowerCase().includes(children.toLowerCase());
+	const isActive = pathname.toLowerCase().includes(to.toLowerCase());
 
 	const computedIcon = cloneElement(icon, {
 		className: cn(icon.props.className, styles.linkIcon),
@@ -174,21 +176,27 @@ export function Sidebar() {
 
 			<div className={styles.menusContainer}>
 				<SidebarMenu hasDivider={true} title='Main menu'>
-					<SidebarLink to='/' icon={<SquaresFour />}>
+					<SidebarLink to='/dashboard' icon={<SquaresFour />}>
 						Dashboard
 					</SidebarLink>
-					<SidebarLink to='/' icon={<Clipboard />}>
+					<SidebarLink to='/reservations' icon={<BookBookmark />}>
+						Reservations
+					</SidebarLink>
+					<SidebarLink to='/requests' icon={<Clipboard />}>
 						Requests
 					</SidebarLink>
-					<SidebarLink to='/' icon={<House />}>
+					<SidebarLink to='/users' icon={<Users />}>
+						Users
+					</SidebarLink>
+					<SidebarLink to='/classrooms' icon={<House />}>
 						Classrooms
 					</SidebarLink>
-					<SidebarLink to='/reservations' icon={<Calendar />}>
-						Reservations
+					<SidebarLink to='/periods' icon={<Calendar />}>
+						Academic periods
 					</SidebarLink>
 				</SidebarMenu>
 				<SidebarMenu hasDivider={false} title='Options'>
-					<SidebarLink to='/' icon={<Gear />}>
+					<SidebarLink to='/settings' icon={<Gear />}>
 						Settings
 					</SidebarLink>
 					<SidebarLink

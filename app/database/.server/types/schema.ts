@@ -15,7 +15,7 @@ export type IsoTimeStampConfig = {
  * - `year` is a number representing the year of the semester.
  * - `term` is either `'1'`, `'I'`, or `'2'`, representing the first semester, the interim semester, or the second semester respectively.
  */
-export type Semester = `${number}-${'1' | 'I' | '2'}`;
+export type PeriodName = `${number}-${'1' | 'I' | '2'}`;
 
 /**
  * Represents the structure of a new login.
@@ -44,6 +44,11 @@ export type Classroom = typeof schema.classrooms.$inferSelect;
  * Represents the type definition for creating a new classroom.
  */
 export type NewClassroom = typeof schema.classrooms.$inferInsert;
+
+/**
+ * Represents the type definition for the AcademicPeriod entity in the schema.
+ */
+export type AcademicPeriod = typeof schema.academicPeriods.$inferSelect;
 
 /**
  * Represents the type definition for the AuditLog entity in the schema.

@@ -1,14 +1,17 @@
 import type { PanInfo } from 'framer-motion';
 
 import { Sidebar } from '@components';
-import { Outlet } from '@remix-run/react';
-
 import { dataAttr } from '@components/utility';
 import { UserSessionProvider } from '@hooks/session';
 import { useSidebar } from '@hooks/sidebar';
 import { useWindowSize } from '@hooks/window';
 import { Button } from '@nextui-org/button';
 import { List } from '@phosphor-icons/react';
+import { Outlet } from '@remix-run/react';
+import {
+	AcademicPeriodsProvider,
+	ClassroomsProvider,
+} from '@routes/home/providers';
 import { motion } from 'framer-motion';
 
 import styles from './styles.module.css';
@@ -58,26 +61,30 @@ export default function HomeLayout() {
 	return (
 		<main className={styles.layoutMainContainer}>
 			<UserSessionProvider>
-				<Sidebar />
-				<Button
-					className={styles.sidebarToggler}
-					isIconOnly={true}
-					disableRipple={true}
-					onPress={toggleSidebar}
-					data-active={dataAttr(sidebarActive)}
-					variant='light'
-					color='primary'
-				>
-					<List className={styles.sidebarTogglerIcon} />
-				</Button>
-				<motion.div
-					className={styles.outletContainer}
-					onKeyDown={handleOutletClick}
-					onClick={handleOutletClick}
-					{...dragAttrs}
-				>
-					<Outlet />
-				</motion.div>
+				<AcademicPeriodsProvider>
+					<ClassroomsProvider>
+						<Sidebar />
+						<Button
+							className={styles.sidebarToggler}
+							isIconOnly={true}
+							disableRipple={true}
+							onPress={toggleSidebar}
+							data-active={dataAttr(sidebarActive)}
+							variant='light'
+							color='primary'
+						>
+							<List className={styles.sidebarTogglerIcon} />
+						</Button>
+						<motion.div
+							className={styles.outletContainer}
+							onKeyDown={handleOutletClick}
+							onClick={handleOutletClick}
+							{...dragAttrs}
+						>
+							<Outlet />
+						</motion.div>
+					</ClassroomsProvider>
+				</AcademicPeriodsProvider>
 			</UserSessionProvider>
 		</main>
 	);
