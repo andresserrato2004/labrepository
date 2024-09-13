@@ -67,7 +67,6 @@ export async function createUser({
 
 		await database.transaction(async (trx) => {
 			await trx.insert(schema.users).values(user).returning();
-			//TODO: Implement auditory logs
 		});
 
 		return {

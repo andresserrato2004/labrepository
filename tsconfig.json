@@ -38,6 +38,9 @@
 			"@routes/index/*": ["./app/routes/_index/*"],
 			"@routes/index": ["./app/routes/_index"],
 
+			"@routes/error/*": ["./app/routes/error/*"],
+			"@routes/error": ["./app/routes/error"],
+
 			"@routes/login/*": ["./app/routes/login/*"],
 			"@routes/login": ["./app/routes/login"],
 

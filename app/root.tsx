@@ -1,5 +1,6 @@
 import type React from 'react';
 
+import { Link } from '@nextui-org/link';
 import { NextUIProvider } from '@nextui-org/system';
 import {
 	Links,
@@ -50,6 +51,16 @@ export function ErrorBoundary() {
 	const error = useRouteError();
 	const logId = isRouteErrorResponse(error) ? error.data : 'unknown';
 
+	const handleGoBack = (event: React.MouseEvent) => {
+		event.preventDefault();
+		/**
+		 * Redirects to the home page when the user clicks the "Go back to home" link.
+		 * It uses the window object to navigate to the home page instead of using the `navigate` function
+		 * because we need a full page reload to reset the application state.
+		 */
+		window.location.href = '/';
+	};
+
 	return (
 		<main className='w-dvw h-dvh grid place-content-center bg-content1 gap-8 justify-items-center dark'>
 			<h1 className='text-3xl sm:text-5xl font-bold text-content1-foreground'>
@@ -58,7 +69,10 @@ export function ErrorBoundary() {
 			<p className='max-w-xs sm:max-w-sm text-center text-content1-foreground'>
 				Unknown server error ocurred with log ID:&nbsp;
 				<span className='text-danger font-bold'>{logId}</span>. Please
-				try again later or call support.
+				try again later or call support.&nbsp;
+				<Link className='underline' href='/' onClick={handleGoBack}>
+					Go back to home
+				</Link>
 			</p>
 		</main>
 	);
