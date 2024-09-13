@@ -6,7 +6,7 @@ import container from '@tailwindcss/container-queries';
 export default {
 	content: [
 		'./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}',
-		'./node_modules/@nextui-org/theme/dist/components/(button|divider|input|link|ripple|spinner).js',
+		'./node_modules/@nextui-org/theme/dist/components/(button|divider|input|link|table|ripple|spinner|checkbox|spacer).js',
 	],
 	theme: {
 		extend: {},

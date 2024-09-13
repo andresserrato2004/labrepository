@@ -1,4 +1,4 @@
-import type { NewUser } from '@database/types';
+import type { InfoUser, NewUser } from '@database/types';
 import type {
 	CreateUserArgs,
 	Errors,
@@ -18,6 +18,12 @@ import {
 	isAppError,
 } from '@services/shared/utility';
 
+/**
+ * Checks if a user with the given username already exists in the database.
+ *
+ * @param request - The new user object containing the username.
+ * @returns A promise that resolves to an Errors object if the username already exists, or null if it doesn't.
+ */
 async function checkForExistingUser(
 	request: NewUser,
 ): Promise<Errors<NewUser> | null> {
@@ -34,6 +40,27 @@ async function checkForExistingUser(
 	}
 
 	return null;
+}
+
+/**
+ * Retrieves all users from the database.
+ * @returns A promise that resolves to a ServiceResponse containing an array of User objects.
+ */
+export async function getAllUsers(): Promise<ServiceResponse<InfoUser[]>> {
+	try {
+		const users = await database.select().from(schema.users);
+
+		return {
+			type: ResponseType.Success,
+			code: SuccessCode.Ok,
+			data: users,
+		};
+	} catch (error) {
+		return handleUnknownError({
+			error: error,
+			stack: 'users/getAllUsers',
+		});
+	}
 }
 
 /**
