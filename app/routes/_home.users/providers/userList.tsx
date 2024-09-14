@@ -1,12 +1,8 @@
 import type { loader } from '@routes/users/loader';
 import type { PropsWithChildren } from 'react';
 
-import { useAsyncList } from '@react-stately/data';
+import { useServiceAsyncList } from '@/hooks/lists';
 import { useLoaderData } from '@remix-run/react';
-import {
-	ResponseType,
-	createServerErrorResponse,
-} from '@services/shared/utility';
 import { createContext, useContext } from 'react';
 
 /**
@@ -23,17 +19,10 @@ const UserListContext = createContext<ReturnType<typeof userList> | null>(null);
 function userList() {
 	const { usersPromise } = useLoaderData<typeof loader>();
 
-	const list = useAsyncList({
-		load: async () => {
-			const response = await usersPromise;
-
-			if (response.type === ResponseType.ServerError) {
-				throw createServerErrorResponse(response);
-			}
-
-			return {
-				items: response.data,
-			};
+	const list = useServiceAsyncList(usersPromise, {
+		initialSortDescriptor: {
+			column: 'role',
+			direction: 'ascending',
 		},
 	});
 

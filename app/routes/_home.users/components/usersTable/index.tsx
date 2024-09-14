@@ -46,7 +46,9 @@ export function UsersTable() {
 		{
 			key: 'email',
 			title: 'Email',
-			render: (record) => record.email,
+			render: (record) => (
+				<span className={styles.emailColumn}>{record.email}</span>
+			),
 		},
 		{
 			key: 'role',
@@ -58,8 +60,8 @@ export function UsersTable() {
 	return (
 		<AppTable
 			columns={columns}
+			list={userList}
 			itemKey={'id'}
-			items={userList}
 			aria-label='Users table'
 		/>
 	);

@@ -1,0 +1,3 @@
+.paginationContainer {
+    @apply flex w-full justify-center;
+}

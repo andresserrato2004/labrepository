@@ -1,6 +1,6 @@
 import type { KeysOfType } from '@components/types';
+import type { useServiceAsyncList } from '@hooks/lists';
 import type { TableProps } from '@nextui-org/table';
-import type { useAsyncList } from '@react-stately/data';
 import type { ReactNode } from 'react';
 
 /**
@@ -8,10 +8,10 @@ import type { ReactNode } from 'react';
  * @template T - The type of data in the table.
  */
 export interface AppTableColumn<T> {
-	key: keyof T;
+	key: Extract<keyof T, string | number>;
 	title: string;
-	render: (record: T) => ReactNode;
 	align?: 'start' | 'center' | 'end' | undefined;
+	render: (record: T) => ReactNode;
 }
 
 /**
@@ -24,6 +24,6 @@ export interface AppTableColumn<T> {
  */
 export interface AppTableProps<T> extends TableProps {
 	columns: AppTableColumn<T>[];
-	items: ReturnType<typeof useAsyncList<T>>;
+	list: ReturnType<typeof useServiceAsyncList<T>>;
 	itemKey: KeysOfType<T, string | number>;
 }

@@ -1,5 +1,7 @@
 import type { AppTableProps } from '@components/appTable/types';
 
+import { Pagination } from '@nextui-org/pagination';
+import { Spinner } from '@nextui-org/spinner';
 import {
 	Table,
 	TableBody,
@@ -9,24 +11,50 @@ import {
 	TableRow,
 } from '@nextui-org/table';
 
+import styles from './styles.module.css';
+
 export function AppTable<T>(props: AppTableProps<T>) {
-	const { columns, items, itemKey, ...tableProps } = props;
+	const { columns, list, itemKey, ...tableProps } = props;
 
 	return (
-		<Table {...tableProps}>
+		<Table
+			sortDescriptor={list.sortDescriptor}
+			onSortChange={list.sort}
+			bottomContent={
+				<div className={styles.paginationContainer}>
+					<Pagination
+						color='secondary'
+						isCompact={true}
+						showControls={true}
+						showShadow={true}
+						initialPage={1}
+						page={list.page}
+						total={list.totalPages}
+						onChange={list.setPage}
+					/>
+				</div>
+			}
+			{...tableProps}
+		>
 			<TableHeader>
 				{columns.map((column) => (
 					<TableColumn
 						width={140}
-						key={column.title}
+						key={column.key}
 						align={column.align}
+						allowsSorting={Boolean(column.key)}
 					>
 						{column.title}
 					</TableColumn>
 				))}
 			</TableHeader>
-			<TableBody>
-				{items.items.map((item) => (
+			<TableBody
+				items={list.paginatedItems}
+				isLoading={list.isLoading}
+				loadingContent={<Spinner />}
+				emptyContent={'No items found'}
+			>
+				{(item) => (
 					<TableRow key={item[itemKey] as string | number}>
 						{columns.map((column) => (
 							<TableCell key={column.title}>
@@ -34,7 +62,7 @@ export function AppTable<T>(props: AppTableProps<T>) {
 							</TableCell>
 						))}
 					</TableRow>
-				))}
+				)}
 			</TableBody>
 		</Table>
 	);
