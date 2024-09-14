@@ -16,7 +16,13 @@ export function AppTable<T>(props: AppTableProps<T>) {
 		<Table {...tableProps}>
 			<TableHeader>
 				{columns.map((column) => (
-					<TableColumn key={column.title}>{column.title}</TableColumn>
+					<TableColumn
+						width={140}
+						key={column.title}
+						align={column.align}
+					>
+						{column.title}
+					</TableColumn>
 				))}
 			</TableHeader>
 			<TableBody>

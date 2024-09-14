@@ -11,6 +11,7 @@ export interface AppTableColumn<T> {
 	key: keyof T;
 	title: string;
 	render: (record: T) => ReactNode;
+	align?: 'start' | 'center' | 'end' | undefined;
 }
 
 /**

@@ -20,6 +20,7 @@ const newUserSchema = createInsertSchema(schema.users, {
 	name: (_schema) => zfd.text(z.string().min(1)),
 	username: (_schema) => zfd.text(z.string().min(1)),
 	password: (_schema) => zfd.text(z.string().min(1)),
+	email: (_schema) => zfd.text(z.string().email()),
 	createdAt: (_schema) => zfd.text(isoDate.optional()),
 	updatedAt: (_schema) => zfd.text(isoDate.optional()),
 });
@@ -27,6 +28,7 @@ const newUserSchema = createInsertSchema(schema.users, {
 const newUserTransformer = (data: z.infer<typeof newUserSchema>) => {
 	data.name = capitalize(data.name.trim());
 	data.username = data.username.trim().toLowerCase();
+	data.email = data.email.trim().toLowerCase();
 
 	return data;
 };

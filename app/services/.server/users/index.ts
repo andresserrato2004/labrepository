@@ -17,6 +17,7 @@ import {
 	getErrorsFromZodError,
 	isAppError,
 } from '@services/shared/utility';
+import { getTableColumns } from 'drizzle-orm';
 
 /**
  * Checks if a user with the given username already exists in the database.
@@ -48,7 +49,13 @@ async function checkForExistingUser(
  */
 export async function getAllUsers(): Promise<ServiceResponse<InfoUser[]>> {
 	try {
-		const users = await database.select().from(schema.users);
+		const { password, ...columns } = getTableColumns(schema.users);
+
+		const users = await database
+			.select({
+				...columns,
+			})
+			.from(schema.users);
 
 		return {
 			type: ResponseType.Success,

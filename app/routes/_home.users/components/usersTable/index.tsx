@@ -11,10 +11,20 @@ export function UsersTable() {
 		{ key: 'id', title: 'User Id', render: (record) => record.id },
 		{ key: 'name', title: 'Name', render: (record) => record.name },
 		{
+			key: 'username',
+			title: 'Username',
+			render: (record) => record.username,
+		},
+		{
+			key: 'email',
+			title: 'Email',
+			render: (record) => record.email,
+		},
+		{
 			key: 'role',
 			title: 'Role',
 			render: (record) => (
-				<span className='capitalize'>{record.role}</span>
+				<span className='capitalize w-12'>{record.role}</span>
 			),
 		},
 	];
