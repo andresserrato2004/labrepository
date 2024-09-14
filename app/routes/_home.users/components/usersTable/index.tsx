@@ -1,9 +1,12 @@
-import type { AppTableColumn } from '@components/appTable/types';
+import type {
+	AppTableColumn,
+	SingleRowAction,
+} from '@components/appTable/types';
 import type { InfoUser } from '@database/types';
 
 import { AppTable } from '@components';
 import { Chip } from '@nextui-org/chip';
-import { Key, User } from '@phosphor-icons/react';
+import { Info, Key, User } from '@phosphor-icons/react';
 import { useUserList } from '@routes/users/providers';
 
 import styles from './styles.module.css';
@@ -57,11 +60,20 @@ export function UsersTable() {
 		},
 	];
 
+	const actions: SingleRowAction<InfoUser>[] = [
+		{
+			label: 'Details',
+			icon: <Info size={20} weight='fill' />,
+			action: (item) => console.log('Details', item),
+		},
+	];
+
 	return (
 		<AppTable
 			columns={columns}
 			list={userList}
 			itemKey={'id'}
+			singleRowActions={actions}
 			aria-label='Users table'
 		/>
 	);

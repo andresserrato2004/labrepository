@@ -1,3 +1,7 @@
 .paginationContainer {
     @apply flex w-full justify-center;
 }
+
+.actionsIcon {
+    @apply text-content4-foreground size-5;
+}

@@ -8,10 +8,16 @@ import type { ReactNode } from 'react';
  * @template T - The type of data in the table.
  */
 export interface AppTableColumn<T> {
-	key: Extract<keyof T, string | number>;
+	key?: Extract<keyof T, string | number>;
 	title: string;
 	align?: 'start' | 'center' | 'end' | undefined;
 	render: (record: T) => ReactNode;
+}
+
+export interface SingleRowAction<T> {
+	icon: ReactNode;
+	label: string;
+	action: (item: T) => void;
 }
 
 /**
@@ -26,4 +32,10 @@ export interface AppTableProps<T> extends TableProps {
 	columns: AppTableColumn<T>[];
 	list: ReturnType<typeof useServiceAsyncList<T>>;
 	itemKey: KeysOfType<T, string | number>;
+	singleRowActions?: SingleRowAction<T>[];
+}
+
+export interface AppTableActionsMenuProps<T> {
+	actions: SingleRowAction<T>[];
+	item: T;
 }

@@ -1,5 +1,5 @@
 .scheduleContainer {
-    @apply grid grid-rows-[4rem,1fr] w-full h-min min-h-96 rounded-large border-small border-default-200 overflow-hidden;
+    @apply grid grid-rows-[4rem,1fr] w-full h-min min-h-96 rounded-large shadow-small overflow-hidden;
 
     .scheduleHeader {
         @apply bg-default-50;
