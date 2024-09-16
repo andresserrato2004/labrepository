@@ -12,38 +12,38 @@ importers:
         specifier: 3.5.5
         version: 3.5.5
       '@nextui-org/button':
-        specifier: 2.0.37
-        version: 2.0.37(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 2.0.38
+        version: 2.0.38(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@nextui-org/chip':
         specifier: 2.0.33
-        version: 2.0.33(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 2.0.33(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@nextui-org/divider':
-        specifier: 2.0.31
-        version: 2.0.31(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 2.0.32
+        version: 2.0.32(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@nextui-org/dropdown':
-        specifier: 2.1.30
-        version: 2.1.30(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 2.1.31
+        version: 2.1.31(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(@types/react@18.3.6)(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@nextui-org/input':
-        specifier: 2.2.4
-        version: 2.2.4(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(@types/react@18.3.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 2.2.5
+        version: 2.2.5(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(@types/react@18.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@nextui-org/link':
-        specifier: 2.0.34
-        version: 2.0.34(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 2.0.35
+        version: 2.0.35(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@nextui-org/pagination':
         specifier: 2.0.36
-        version: 2.0.36(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 2.0.36(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@nextui-org/spinner':
         specifier: 2.0.34
-        version: 2.0.34(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 2.0.34(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@nextui-org/system':
-        specifier: 2.2.5
-        version: 2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 2.2.6
+        version: 2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@nextui-org/table':
-        specifier: 2.0.39
-        version: 2.0.39(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 2.0.40
+        version: 2.0.40(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@nextui-org/theme':
-        specifier: 2.2.9
-        version: 2.2.9(tailwindcss@3.4.10)
+        specifier: 2.2.11
+        version: 2.2.11(tailwindcss@3.4.11)
       '@paralleldrive/cuid2':
         specifier: 2.2.2
         version: 2.2.2
@@ -54,14 +54,14 @@ importers:
         specifier: 3.11.6
         version: 3.11.6(react@18.3.1)
       '@remix-run/node':
-        specifier: 2.11.2
-        version: 2.11.2(typescript@5.5.4)
+        specifier: 2.12.0
+        version: 2.12.0(typescript@5.6.2)
       '@remix-run/react':
-        specifier: 2.11.2
-        version: 2.11.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.5.4)
+        specifier: 2.12.0
+        version: 2.12.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.2)
       '@remix-run/serve':
-        specifier: 2.11.2
-        version: 2.11.2(typescript@5.5.4)
+        specifier: 2.12.0
+        version: 2.12.0(typescript@5.6.2)
       argon2:
         specifier: 0.41.1
         version: 0.41.1
@@ -69,29 +69,29 @@ importers:
         specifier: 2.5.1
         version: 2.5.1
       cssnano:
-        specifier: 7.0.5
-        version: 7.0.5(postcss@8.4.44)
+        specifier: 7.0.6
+        version: 7.0.6(postcss@8.4.47)
       dayjs:
         specifier: 1.11.13
         version: 1.11.13
       drizzle-orm:
         specifier: 0.33.0
-        version: 0.33.0(@types/react@18.3.5)(postgres@3.4.4)(react@18.3.1)
+        version: 0.33.0(@types/react@18.3.6)(postgres@3.4.4)(react@18.3.1)
       drizzle-zod:
         specifier: 0.5.1
-        version: 0.5.1(drizzle-orm@0.33.0(@types/react@18.3.5)(postgres@3.4.4)(react@18.3.1))(zod@3.23.8)
+        version: 0.5.1(drizzle-orm@0.33.0(@types/react@18.3.6)(postgres@3.4.4)(react@18.3.1))(zod@3.23.8)
       fast-jwt:
-        specifier: 4.0.3
-        version: 4.0.3
+        specifier: 4.0.5
+        version: 4.0.5
       framer-motion:
-        specifier: 11.4.0
-        version: 11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 11.5.4
+        version: 11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       isbot:
         specifier: 5.1.17
         version: 5.1.17
       jotai:
         specifier: 2.9.3
-        version: 2.9.3(@types/react@18.3.5)(react@18.3.1)
+        version: 2.9.3(@types/react@18.3.6)(react@18.3.1)
       postgres:
         specifier: 3.4.4
         version: 3.4.4
@@ -109,29 +109,29 @@ importers:
         version: 2.0.2(zod@3.23.8)
     devDependencies:
       '@biomejs/biome':
-        specifier: 1.8.3
-        version: 1.8.3
+        specifier: 1.9.1
+        version: 1.9.1
       '@commitlint/cli':
-        specifier: 19.4.1
-        version: 19.4.1(@types/node@22.5.5)(typescript@5.5.4)
+        specifier: 19.5.0
+        version: 19.5.0(@types/node@22.5.5)(typescript@5.6.2)
       '@commitlint/config-conventional':
-        specifier: 19.4.1
-        version: 19.4.1
+        specifier: 19.5.0
+        version: 19.5.0
       '@remix-run/dev':
-        specifier: 2.11.2
-        version: 2.11.2(@remix-run/react@2.11.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.5.4))(@remix-run/serve@2.11.2(typescript@5.5.4))(@types/node@22.5.5)(typescript@5.5.4)(vite@5.4.3(@types/node@22.5.5))
+        specifier: 2.12.0
+        version: 2.12.0(@remix-run/react@2.12.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.2))(@remix-run/serve@2.12.0(typescript@5.6.2))(@types/node@22.5.5)(typescript@5.6.2)(vite@5.4.5(@types/node@22.5.5))
       '@tailwindcss/container-queries':
         specifier: 0.1.1
-        version: 0.1.1(tailwindcss@3.4.10)
+        version: 0.1.1(tailwindcss@3.4.11)
       '@types/react':
-        specifier: 18.3.5
-        version: 18.3.5
+        specifier: 18.3.6
+        version: 18.3.6
       '@types/react-dom':
         specifier: 18.3.0
         version: 18.3.0
       autoprefixer:
         specifier: 10.4.20
-        version: 10.4.20(postcss@8.4.44)
+        version: 10.4.20(postcss@8.4.47)
       dotenv:
         specifier: 16.4.5
         version: 16.4.5
@@ -139,26 +139,26 @@ importers:
         specifier: 0.24.2
         version: 0.24.2
       husky:
-        specifier: 9.1.5
-        version: 9.1.5
+        specifier: 9.1.6
+        version: 9.1.6
       postcss:
-        specifier: 8.4.44
-        version: 8.4.44
+        specifier: 8.4.47
+        version: 8.4.47
       tailwindcss:
-        specifier: 3.4.10
-        version: 3.4.10
+        specifier: 3.4.11
+        version: 3.4.11
       typescript:
-        specifier: 5.5.4
-        version: 5.5.4
+        specifier: 5.6.2
+        version: 5.6.2
       vite:
-        specifier: 5.4.3
-        version: 5.4.3(@types/node@22.5.5)
+        specifier: 5.4.5
+        version: 5.4.5(@types/node@22.5.5)
       vite-tsconfig-paths:
         specifier: 5.0.1
-        version: 5.0.1(typescript@5.5.4)(vite@5.4.3(@types/node@22.5.5))
+        version: 5.0.1(typescript@5.6.2)(vite@5.4.5(@types/node@22.5.5))
       vitest:
-        specifier: 2.0.5
-        version: 2.0.5(@types/node@22.5.5)
+        specifier: 2.1.1
+        version: 2.1.1(@types/node@22.5.5)
 
 packages:
 
@@ -313,66 +313,66 @@ packages:
     resolution: {integrity: sha512-/l42B1qxpG6RdfYf343Uw1vmDjeNhneUXtzhojE7pDgfpEypmRhI6j1kr17XCVv4Cgl9HdAiQY2x0GwKm7rWCw==}
     engines: {node: '>=6.9.0'}
 
-  '@biomejs/biome@1.8.3':
-    resolution: {integrity: sha512-/uUV3MV+vyAczO+vKrPdOW0Iaet7UnJMU4bNMinggGJTAnBPjCoLEYcyYtYHNnUNYlv4xZMH6hVIQCAozq8d5w==}
+  '@biomejs/biome@1.9.1':
+    resolution: {integrity: sha512-Ps0Rg0zg3B1zpx+zQHMz5b0n0PBNCAaXttHEDTVrJD5YXR6Uj3T+abTDgeS3wsu4z5i2whqcE1lZxGyWH4bZYg==}
     engines: {node: '>=14.21.3'}
     hasBin: true
 
-  '@biomejs/cli-darwin-arm64@1.8.3':
-    resolution: {integrity: sha512-9DYOjclFpKrH/m1Oz75SSExR8VKvNSSsLnVIqdnKexj6NwmiMlKk94Wa1kZEdv6MCOHGHgyyoV57Cw8WzL5n3A==}
+  '@biomejs/cli-darwin-arm64@1.9.1':
+    resolution: {integrity: sha512-js0brHswq/BoeKgfSEUJYOjUOlML6p65Nantti+PsoQ61u9+YVGIZ7325LK7iUpDH8KVJT+Bx7K2b/6Q//W1Pw==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [darwin]
 
-  '@biomejs/cli-darwin-x64@1.8.3':
-    resolution: {integrity: sha512-UeW44L/AtbmOF7KXLCoM+9PSgPo0IDcyEUfIoOXYeANaNXXf9mLUwV1GeF2OWjyic5zj6CnAJ9uzk2LT3v/wAw==}
+  '@biomejs/cli-darwin-x64@1.9.1':
+    resolution: {integrity: sha512-2zVyjUg5rN0k8XrytkubQWLbp2r/AS5wPhXs4vgVjvqbLnzo32EGX8p61gzroF2dH9DCUCfskdrigCGqNdEbpg==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [darwin]
 
-  '@biomejs/cli-linux-arm64-musl@1.8.3':
-    resolution: {integrity: sha512-9yjUfOFN7wrYsXt/T/gEWfvVxKlnh3yBpnScw98IF+oOeCYb5/b/+K7YNqKROV2i1DlMjg9g/EcN9wvj+NkMuQ==}
+  '@biomejs/cli-linux-arm64-musl@1.9.1':
+    resolution: {integrity: sha512-L/JmXKvhsZ1lTgqOr3tWkzuY/NRppdIscHeC9aaiR72WjnBgJS94mawl9BWmGB3aWBc0q6oSDWnBS7617EMMmA==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
 
-  '@biomejs/cli-linux-arm64@1.8.3':
-    resolution: {integrity: sha512-fed2ji8s+I/m8upWpTJGanqiJ0rnlHOK3DdxsyVLZQ8ClY6qLuPc9uehCREBifRJLl/iJyQpHIRufLDeotsPtw==}
+  '@biomejs/cli-linux-arm64@1.9.1':
+    resolution: {integrity: sha512-QgxwfnG+r2aer5RNGR67Ey91Tv7xXW8E9YckHhwuyWjdLEvKWkrSJrhVG/6ub0kVvTSNkYOuT/7/jMOFBuUbRA==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
 
-  '@biomejs/cli-linux-x64-musl@1.8.3':
-    resolution: {integrity: sha512-UHrGJX7PrKMKzPGoEsooKC9jXJMa28TUSMjcIlbDnIO4EAavCoVmNQaIuUSH0Ls2mpGMwUIf+aZJv657zfWWjA==}
+  '@biomejs/cli-linux-x64-musl@1.9.1':
+    resolution: {integrity: sha512-gY+eFLIAW45v3WicQHicvjRfA0ntMZHx7h937bXwBMFNFoKmB6rMi6+fKQ6/hiS6juhsFxZdZIz20m15s49J6A==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
 
-  '@biomejs/cli-linux-x64@1.8.3':
-    resolution: {integrity: sha512-I8G2QmuE1teISyT8ie1HXsjFRz9L1m5n83U1O6m30Kw+kPMPSKjag6QGUn+sXT8V+XWIZxFFBoTDEDZW2KPDDw==}
+  '@biomejs/cli-linux-x64@1.9.1':
+    resolution: {integrity: sha512-F0INygtzI2L2n2R1KtYHGr3YWDt9Up1zrUluwembM+iJ1dXN3qzlSb7deFUsSJm4FaIPriqs6Xa56ukdQW6UeQ==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
 
-  '@biomejs/cli-win32-arm64@1.8.3':
-    resolution: {integrity: sha512-J+Hu9WvrBevfy06eU1Na0lpc7uR9tibm9maHynLIoAjLZpQU3IW+OKHUtyL8p6/3pT2Ju5t5emReeIS2SAxhkQ==}
+  '@biomejs/cli-win32-arm64@1.9.1':
+    resolution: {integrity: sha512-7Jahxar3OB+aTPOgXisMJmMKMsjcK+UmdlG3UIOQjzN/ZFEsPV+GT3bfrVjZDQaCw/zes0Cqd7VTWFjFTC/+MQ==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [win32]
 
-  '@biomejs/cli-win32-x64@1.8.3':
-    resolution: {integrity: sha512-/PJ59vA1pnQeKahemaQf4Nyj7IKUvGQSc3Ze1uIGi+Wvr1xF7rGobSrAAG01T/gUDG21vkDsZYM03NAmPiVkqg==}
+  '@biomejs/cli-win32-x64@1.9.1':
+    resolution: {integrity: sha512-liSRWjWzFhyG7s1jg/Bbv9FL+ha/CEd5tFO3+dFIJNplL4TnvAivtyfRVi/tu/pNjISbV1k9JwdBewtAKAgA0w==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [win32]
 
-  '@commitlint/cli@19.4.1':
-    resolution: {integrity: sha512-EerFVII3ZcnhXsDT9VePyIdCJoh3jEzygN1L37MjQXgPfGS6fJTWL/KHClVMod1d8w94lFC3l4Vh/y5ysVAz2A==}
+  '@commitlint/cli@19.5.0':
+    resolution: {integrity: sha512-gaGqSliGwB86MDmAAKAtV9SV1SHdmN8pnGq4EJU4+hLisQ7IFfx4jvU4s+pk6tl0+9bv6yT+CaZkufOinkSJIQ==}
     engines: {node: '>=v18'}
     hasBin: true
 
-  '@commitlint/config-conventional@19.4.1':
-    resolution: {integrity: sha512-D5S5T7ilI5roybWGc8X35OBlRXLAwuTseH1ro0XgqkOWrhZU8yOwBOslrNmSDlTXhXLq8cnfhQyC42qaUCzlXA==}
+  '@commitlint/config-conventional@19.5.0':
+    resolution: {integrity: sha512-OBhdtJyHNPryZKg0fFpZNOBM1ZDbntMvqMuSmpfyP86XSfwzGw4CaoYRG4RutUPg0BTK07VMRIkNJT6wi2zthg==}
     engines: {node: '>=v18'}
 
   '@commitlint/config-validator@19.5.0':
@@ -1046,18 +1046,9 @@ packages:
   '@mdx-js/mdx@2.3.0':
     resolution: {integrity: sha512-jLuwRlz8DQfQNiUCJR50Y09CGPq3fLtmtUQfVrj79E0JWu3dvsVcxVIcfhR5h0iXu+/z++zDrYeiJqifRynJkA==}
 
-  '@nextui-org/aria-utils@2.0.25':
-    resolution: {integrity: sha512-SydWcXNbmZjxYZU91hm7+dez4XeVexf2Lr50EUASAvDduP3OawcoJX13HmRJgwaM74wEvd3wg5y7WBMqQEZ6IQ==}
+  '@nextui-org/aria-utils@2.0.26':
+    resolution: {integrity: sha512-e81HxkNI3/HCPPJT9OVK0g0ivTkuqeeQ043WlAxvgf+upFTEvNN5vmsSKBfWGgfZpsVHgNyHIzwbHjy9zKePLQ==}
     peerDependencies:
-      react: '>=18'
-      react-dom: '>=18'
-
-  '@nextui-org/button@2.0.37':
-    resolution: {integrity: sha512-dBtdO30qfu+K4YYLNmmpUy16Q82H1ucY8A4NjP4iEAJ1sPunoAYvba7h9xabrpUKW9IOyItOThSesxsfpaXYug==}
-    peerDependencies:
-      '@nextui-org/system': '>=2.0.0'
-      '@nextui-org/theme': '>=2.1.0'
-      framer-motion: '>=10.17.0'
       react: '>=18'
       react-dom: '>=18'
 
@@ -1070,8 +1061,8 @@ packages:
       react: '>=18'
       react-dom: '>=18'
 
-  '@nextui-org/checkbox@2.1.4':
-    resolution: {integrity: sha512-74AD4imL064mvs4trQKQj/efwIZYaBt0TmXO6jV+6xGE6S9YjCAy+OBotrgRBG9fURQVQU1qJGnwwsOIdxCXkA==}
+  '@nextui-org/checkbox@2.1.5':
+    resolution: {integrity: sha512-PSCWmxEzFPfeIJfoGAtbQS5T7JvBRblUMz5NdCMArA8MLvWW8EKL41cMPsqWjaUanjD0fAI8Q9HuDfBZnkcPbw==}
     peerDependencies:
       '@nextui-org/system': '>=2.0.0'
       '@nextui-org/theme': '>=2.1.0'
@@ -1086,13 +1077,6 @@ packages:
       react: '>=18'
       react-dom: '>=18'
 
-  '@nextui-org/divider@2.0.31':
-    resolution: {integrity: sha512-z9GhrpmhXhJGuW0GSO1OP01mwDTSItuIRIz0VGpKOPVTqOzOMHkXN978wgNXqJ+knWZcaiF7WHvd83O05jmbkg==}
-    peerDependencies:
-      '@nextui-org/theme': '>=2.1.0'
-      react: '>=18'
-      react-dom: '>=18'
-
   '@nextui-org/divider@2.0.32':
     resolution: {integrity: sha512-2B2j3VmvVDFnMc9Uw7UWMkByA+osgnRmVwMZNZjl9g3oCycz3UDXotNJXjgsLocT8tGO8UwMcrdgo7QBZl52uw==}
     peerDependencies:
@@ -1100,8 +1084,8 @@ packages:
       react: '>=18'
       react-dom: '>=18'
 
-  '@nextui-org/dropdown@2.1.30':
-    resolution: {integrity: sha512-6dKJSxd0lSjbKaedDdKWvclwfLs/7T3lj3qM+dkcEst6wLyu9I2Vcrb5BtYjh5RbmRDhntPcdWOx34wpVSr0fw==}
+  '@nextui-org/dropdown@2.1.31':
+    resolution: {integrity: sha512-tP6c5MAhWK4hJ6U02oX6APUpjjrn97Zn7t+56Xx4YyQOSj0CJx18VF0JsU+MrjFZxPX3UBKU3B2zGBHOEGE4Kw==}
     peerDependencies:
       '@nextui-org/system': '>=2.0.0'
       '@nextui-org/theme': '>=2.1.0'
@@ -1116,24 +1100,24 @@ packages:
       react: '>=18'
       react-dom: '>=18'
 
-  '@nextui-org/input@2.2.4':
-    resolution: {integrity: sha512-CVeTwwUJn9pEJC+kq3Jg0nAFeYVGBbIU7U2YFSG8XJK2X75odj8RSQdVd3Dt2U/b5Mtwt5sBh9gMzCedtjffWg==}
+  '@nextui-org/input@2.2.5':
+    resolution: {integrity: sha512-xLgyKcnb+RatRZ62AbCFfTpS3exd2bPSSR75UFKylHHhgX+nvVOkX0dQgmr9e0V8IEECeRvbltw2s/laNFPTtg==}
     peerDependencies:
       '@nextui-org/system': '>=2.0.0'
       '@nextui-org/theme': '>=2.1.0'
       react: '>=18'
       react-dom: '>=18'
 
-  '@nextui-org/link@2.0.34':
-    resolution: {integrity: sha512-497AvjzckEB/TE1eJEziS2QkxwCY81RPsWoApNSeHGdYrMO1tfgUFKATgadfBQjoba6FdCcLc2QaUapOetqFaA==}
+  '@nextui-org/link@2.0.35':
+    resolution: {integrity: sha512-0XVUsSsysu+WMssokTlLHiMnjr1N6D2Uh3bIBcdFwSqmTLyq+Llgexlm6Fuv1wADRwsR8/DGFp3Pr826cv2Svg==}
     peerDependencies:
       '@nextui-org/system': '>=2.0.0'
       '@nextui-org/theme': '>=2.1.0'
       react: '>=18'
       react-dom: '>=18'
 
-  '@nextui-org/menu@2.0.29':
-    resolution: {integrity: sha512-iCRMgDJmqfjSdXg+FaWMPYgmd4kJZ3dhkSxc94g02oJK/B2GTTa+p3ku7KAeQo3HI0BbOLUKJoTor1rZRnPV1w==}
+  '@nextui-org/menu@2.0.30':
+    resolution: {integrity: sha512-hZRr/EQ5JxB6yQFmUhDSv9pyLTJmaB4SFC/t5A17UljRhMexlvTU6QpalYIkbY0R/bUXvOkTJNzsRgI5OOQ/aA==}
     peerDependencies:
       '@nextui-org/system': '>=2.0.0'
       '@nextui-org/theme': '>=2.1.0'
@@ -1148,8 +1132,8 @@ packages:
       react: '>=18'
       react-dom: '>=18'
 
-  '@nextui-org/popover@2.1.28':
-    resolution: {integrity: sha512-QrbTV3l/IBLW01bvQAQOHP2tYRYWAOMT/0IU5TjrRWCRQPlfGsSiI4MmNM6jZSuHuvmJyoxxKXjIi3sdK+Oijg==}
+  '@nextui-org/popover@2.1.29':
+    resolution: {integrity: sha512-qGjMnAQVHQNfG571h9Tah2MXPs5mhxcTIj4TuBgwPzQTWXjjeffaHV3FlHdg5PxjTpNZOdDfrg0eRhDqIjKocQ==}
     peerDependencies:
       '@nextui-org/system': '>=2.0.0'
       '@nextui-org/theme': '>=2.1.0'
@@ -1157,16 +1141,8 @@ packages:
       react: '>=18'
       react-dom: '>=18'
 
-  '@nextui-org/react-rsc-utils@2.0.13':
-    resolution: {integrity: sha512-QewsXtoQlMsR9stThdazKEImg9oyZkPLs7wsymhrzh6/HdQCl9bTdb6tJcROg4vg5LRYKGG11USSQO2nKlfCcQ==}
-
   '@nextui-org/react-rsc-utils@2.0.14':
     resolution: {integrity: sha512-s0GVgDhScyx+d9FtXd8BXf049REyaPvWsO4RRr7JDHrk91NlQ11Mqxka9o+8g5NX0rphI0rbe3/b1Dz+iQRx3w==}
-    peerDependencies:
-      react: '>=18'
-
-  '@nextui-org/react-utils@2.0.16':
-    resolution: {integrity: sha512-QdDoqzhx+4t9cDTVmtw5iOrfyLvpqyKsq8PARHUniCiQQDQd1ao7FCpzHgvU9poYcEdRk+Lsna66zbeMkFBB6w==}
     peerDependencies:
       react: '>=18'
 
@@ -1174,15 +1150,6 @@ packages:
     resolution: {integrity: sha512-U/b49hToVfhOM4dg4n57ZyUjLpts4JogQ139lfQBYPTb8z/ATNsJ3vLIqW5ZvDK6L0Er+JT11UVQ+03m7QMvaQ==}
     peerDependencies:
       react: '>=18'
-
-  '@nextui-org/ripple@2.0.32':
-    resolution: {integrity: sha512-xOqoHWzpvv5KRh7P8pXt3aZEmI1tyhiTNhrwjJaRME0d5xSA0gNzYhrjP5g0+Dxy4nKRDIZ1znJcd87KI07JFA==}
-    peerDependencies:
-      '@nextui-org/system': '>=2.0.0'
-      '@nextui-org/theme': '>=2.1.0'
-      framer-motion: '>=10.17.0'
-      react: '>=18'
-      react-dom: '>=18'
 
   '@nextui-org/ripple@2.0.33':
     resolution: {integrity: sha512-Zsa60CXtGCF7weTCFbSfT0OlxlGHdd5b/sSJTYrmMZRHOIUpHW8kT0bxVYF/6X8nCCJYxzBKXUqdE3Y31fhNeQ==}
@@ -1198,21 +1165,11 @@ packages:
     peerDependencies:
       react: '>=18'
 
-  '@nextui-org/shared-utils@2.0.7':
-    resolution: {integrity: sha512-FxY3N0i1Al7Oz3yOQN0dSpG8UUrLIP3iYh3ubD7BhdQoZLl5xbG6++q1gqOzZXV+ZWeUFMY/or0ofzWxGHiOow==}
-
   '@nextui-org/shared-utils@2.0.8':
     resolution: {integrity: sha512-ZEtoMPXS+IjT8GvpJTS9IWDnT1JNCKV+NDqqgysAf1niJmOFLyJgl6dh/9n4ufcGf1GbSEQN+VhJasEw7ajYGQ==}
 
-  '@nextui-org/spacer@2.0.32':
-    resolution: {integrity: sha512-NxqEYTig4OfkLDPlO2/jASB4gV8L9DLpsNZSqzaacIJZwk4BCTsNoBi3CuNt5ZsMoGYujtFP6QU0zH9fZbuzwA==}
-    peerDependencies:
-      '@nextui-org/theme': '>=2.1.0'
-      react: '>=18'
-      react-dom: '>=18'
-
-  '@nextui-org/spinner@2.0.33':
-    resolution: {integrity: sha512-c1wW4YEbzdn0t1MJAXhJ2W0PuNxrxtZg2DVqJeqh3180y4iQPYDzEy7oFoU0FpK53LcBPxjfsKHNL6v1pn+60A==}
+  '@nextui-org/spacer@2.0.33':
+    resolution: {integrity: sha512-0YDtovMWuAVgBvVXUmplzohObGxMPFhisHXn6v+0nflAE9LiVeiXf121WVOEMrd08S7xvmrAANcMwo4TsYi49g==}
     peerDependencies:
       '@nextui-org/theme': '>=2.1.0'
       react: '>=18'
@@ -1225,24 +1182,11 @@ packages:
       react: '>=18'
       react-dom: '>=18'
 
-  '@nextui-org/system-rsc@2.1.5':
-    resolution: {integrity: sha512-tkJLAyJu34Rr5KUMMqoB7cZjOVXB+7a/7N4ushZfuiLdoYijgmcXFMzLxjm+tbt9zA5AV+ivsfbHvscg77dJ6w==}
-    peerDependencies:
-      '@nextui-org/theme': '>=2.1.0'
-      react: '>=18'
-
   '@nextui-org/system-rsc@2.1.6':
     resolution: {integrity: sha512-Wl2QwEFjYwuvw26R1RH3ZY81PD8YmfgtIjFvJZRP2VEIT6rPvlQ4ojgqdrkVkQZQ0L/K+5ZLbTKgLEFkj5ysdQ==}
     peerDependencies:
       '@nextui-org/theme': '>=2.1.0'
       react: '>=18'
-
-  '@nextui-org/system@2.2.5':
-    resolution: {integrity: sha512-nrX6768aiyWtpxX3OTFBIVWR+v9nlMsC3KaBinNfek97sNm7gAfTHi7q5kylE3L5yIMpNG+DclAKpuxgDQEmvw==}
-    peerDependencies:
-      framer-motion: '>=10.17.0'
-      react: '>=18'
-      react-dom: '>=18'
 
   '@nextui-org/system@2.2.6':
     resolution: {integrity: sha512-tjIkOI0w32g68CGWleuSyIbEz8XBbeoNogR2lu7MWk3QovHCqgr4VVrP1cwMRYnwDPFQP3OpmH+NR9yzt+pIfg==}
@@ -1251,16 +1195,16 @@ packages:
       react: '>=18'
       react-dom: '>=18'
 
-  '@nextui-org/table@2.0.39':
-    resolution: {integrity: sha512-VYvmrQ6GliwmzukKLZ7Nxp3sFXdskWZp8/BjwROLFE9Zco22CC0++7VPG3ebOYAIhi4e1Je+QUTx4/eh2wZZgg==}
+  '@nextui-org/table@2.0.40':
+    resolution: {integrity: sha512-qDbSsu6mpWnr1Mt3DYTBzTFtN8Z5Gv7GDqECGcDVradkDVuJFZvkB9Ke392LcVZoXSk99Rpamq4WSWkEewBhWg==}
     peerDependencies:
       '@nextui-org/system': '>=2.0.0'
       '@nextui-org/theme': '>=2.1.0'
       react: '>=18'
       react-dom: '>=18'
 
-  '@nextui-org/theme@2.2.9':
-    resolution: {integrity: sha512-TN2I9sMriLaj00pXsIMlg19+UHeOdjzS2JV0u4gjL14mSbQl5BYNxgbvU3gbMqkZZQ6OpwT4RnT8RS+ks6TXCw==}
+  '@nextui-org/theme@2.2.11':
+    resolution: {integrity: sha512-bg9+KNnFxcP3w/ugivEJtvQibODbTxfl6UdVvx7TCY8Rd269U7F2+nhnw1Qd1xJT5yZQnX6m//9wOoGtJV+6Kg==}
     peerDependencies:
       tailwindcss: '>=3.4.0'
 
@@ -1274,14 +1218,8 @@ packages:
     peerDependencies:
       react: '>=18'
 
-  '@nextui-org/use-aria-menu@2.0.6':
-    resolution: {integrity: sha512-fGDF25E99THbgeDV2r2w4BHw5ZbGW3Lu6Y+vbLUcLBBh6x8/W8cqrpYFrzSUzn1RCun1t17yOAHZEV2rbvtMzA==}
-    peerDependencies:
-      react: '>=18'
-      react-dom: '>=18'
-
-  '@nextui-org/use-aria-overlay@2.0.1':
-    resolution: {integrity: sha512-kYiVKwmmKmbmAlQpRhnRNJDF2ecIEUj3jvveL1U9oor/c0EX88GLaRjGgYV43cE0wDsdMpC2+srCuqpZ7fYU9Q==}
+  '@nextui-org/use-aria-menu@2.0.7':
+    resolution: {integrity: sha512-5U91zFiWTLXsOhE0W3CThsD5TmL3ANeTEtoimtPgSLWV9keZBD9Ja62WsnPZPPAWhmv7jtL0/qk4d/YOra7PVA==}
     peerDependencies:
       react: '>=18'
       react-dom: '>=18'
@@ -1677,13 +1615,13 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
 
-  '@remix-run/dev@2.11.2':
-    resolution: {integrity: sha512-9DGb2UOIO4jOdws04Z+KmCeEBqbP36XvJZdcd4w16wDGI0I1ZY1c5ro58tB/7zPwN40s9MD9UzCYm6P+EkdeAg==}
+  '@remix-run/dev@2.12.0':
+    resolution: {integrity: sha512-/87YQORdlJg5YChd7nVBM/hRXHZA4GfUjhKbZyNrh03bazCQBF+6EsXbzpJ6cCFOpZgecsN0Xv648Qw0VuJjwg==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     peerDependencies:
-      '@remix-run/react': ^2.11.2
-      '@remix-run/serve': ^2.11.2
+      '@remix-run/react': ^2.12.0
+      '@remix-run/serve': ^2.12.0
       typescript: ^5.1.0
       vite: ^5.1.0
       wrangler: ^3.28.2
@@ -1697,8 +1635,8 @@ packages:
       wrangler:
         optional: true
 
-  '@remix-run/express@2.11.2':
-    resolution: {integrity: sha512-ebyvHJKRBDgQGNBMxsILt21IwMTjGxQxlr0VNxRJo5rNd5CcuULpx/PPmsBc1gsc/Jx9aUXpT7a9l0UEOc6+jw==}
+  '@remix-run/express@2.12.0':
+    resolution: {integrity: sha512-8RmF0TITWxEW20HU5YPreuN0H8rPeShPCQUoMKN1b5zfcQ3E/tD5VWwwXicguQS8ffloc+ejhtQjnWA3drlsgw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       express: ^4.19.2
@@ -1707,8 +1645,8 @@ packages:
       typescript:
         optional: true
 
-  '@remix-run/node@2.11.2':
-    resolution: {integrity: sha512-gRNFM61EOYWNmYgf+pvBt6MrirWlkDz1G6RQsJNowtRqbYoy05AdDe5HiHGF5w8ZMAZVeXnZiwbL0Nt7ykYBCA==}
+  '@remix-run/node@2.12.0':
+    resolution: {integrity: sha512-83Jaoc6gpSuD4e6rCk7N5ZHAXNmDw4fJC+kPeDCsd6+wLtTLSi7u9Zo9/Q7moLZ3oyH+aR+LGdkxLULYv+Q6Og==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       typescript: ^5.1.0
@@ -1716,8 +1654,8 @@ packages:
       typescript:
         optional: true
 
-  '@remix-run/react@2.11.2':
-    resolution: {integrity: sha512-SjjuK3aD/9wnIC5r0ZBNCpVSwEwt67YOQM7DCXhHiS8BtCvAxWEC4k4t8CvO9IwBG0gczqxzSqASH7U1RVtWqw==}
+  '@remix-run/react@2.12.0':
+    resolution: {integrity: sha512-Y109tI37Icr0BSU8sWSo8jDPkXaErJ/e1h0fkPvq6LZ0DrlcmHWBxzWJKID431I/KJvhVvBgVCuDamZTRVOZ5Q==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^18.0.0
@@ -1727,17 +1665,17 @@ packages:
       typescript:
         optional: true
 
-  '@remix-run/router@1.19.1':
-    resolution: {integrity: sha512-S45oynt/WH19bHbIXjtli6QmwNYvaz+vtnubvNpNDvUOoA/OWh6j1OikIP3G+v5GHdxyC6EXoChG3HgYGEUfcg==}
+  '@remix-run/router@1.19.2':
+    resolution: {integrity: sha512-baiMx18+IMuD1yyvOGaHM9QrVUPGGG0jC+z+IPHnRJWUAUvaKuWKyE8gjDj2rzv3sz9zOGoRSPgeBVHRhZnBlA==}
     engines: {node: '>=14.0.0'}
 
-  '@remix-run/serve@2.11.2':
-    resolution: {integrity: sha512-f1ETbCAlkSO3kg1zcQyLVHxI2r1TXqV2nfPgX/5+7QmA1dEHJD3OhvSmbvopwSMSfi1jzuyRbJo04yK4aJ8ztg==}
+  '@remix-run/serve@2.12.0':
+    resolution: {integrity: sha512-QRWn2prUQXrygiXPl93QCk/xxmnSPMJ/vRZtI6FDYjznyWnroNmyF9MBbg7q/6NbgPfuKBc5QoQzvm1IP1W2pw==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
-  '@remix-run/server-runtime@2.11.2':
-    resolution: {integrity: sha512-abG6ENj0X3eHqDxqO2thWM2NSEiPnqyt58z1BbiQCv+t8g0Zuqd5QHbB4wzdNvfS0vKhg+jJiigcJneAc4sZzw==}
+  '@remix-run/server-runtime@2.12.0':
+    resolution: {integrity: sha512-o9ukOr3XKmyY8UufTrDdkgD3fiy+z+f4qEzvCQnvC0+EasCyN9hb1Vbui6Koo/5HKvahC4Ga8RcWyvhykKrG3g==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       typescript: ^5.1.0
@@ -1892,8 +1830,8 @@ packages:
   '@types/react-dom@18.3.0':
     resolution: {integrity: sha512-EhwApuTmMBmXuFOikhQLIBUn6uFg81SwLMOAUgodJF14SOBOCMdU04gDoYi0WOJJHD144TL32z4yDqCW3dnkQg==}
 
-  '@types/react@18.3.5':
-    resolution: {integrity: sha512-WeqMfGJLGuLCqHGYRGHxnKrXcTitc6L/nBUWfWPcTarG3t9PsquqUMuVeXZeca+mglY4Vo5GZjCi0A3Or2lnxA==}
+  '@types/react@18.3.6':
+    resolution: {integrity: sha512-CnGaRYNu2iZlkGXGrOYtdg5mLK8neySj0woZ4e2wF/eli2E6Sazmq5X+Nrj6OBrrFVQfJWTUFeqAzoRhWQXYvg==}
 
   '@types/unist@2.0.11':
     resolution: {integrity: sha512-CmBKiL6NNo/OqgmMn95Fk9Whlp2mtvIv+KNpQKN2F4SjvrEesubTRWGYSg+BnWZOnlCaSTU1sMpsBOzgbYhnsA==}
@@ -1910,26 +1848,35 @@ packages:
   '@vanilla-extract/private@1.0.6':
     resolution: {integrity: sha512-ytsG/JLweEjw7DBuZ/0JCN4WAQgM9erfSTdS1NQY778hFQSZ6cfCDEZZ0sgVm4k54uNz6ImKB33AYvSR//fjxw==}
 
-  '@vitest/expect@2.0.5':
-    resolution: {integrity: sha512-yHZtwuP7JZivj65Gxoi8upUN2OzHTi3zVfjwdpu2WrvCZPLwsJ2Ey5ILIPccoW23dd/zQBlJ4/dhi7DWNyXCpA==}
+  '@vitest/expect@2.1.1':
+    resolution: {integrity: sha512-YeueunS0HiHiQxk+KEOnq/QMzlUuOzbU1Go+PgAsHvvv3tUkJPm9xWt+6ITNTlzsMXUjmgm5T+U7KBPK2qQV6w==}
 
-  '@vitest/pretty-format@2.0.5':
-    resolution: {integrity: sha512-h8k+1oWHfwTkyTkb9egzwNMfJAEx4veaPSnMeKbVSjp4euqGSbQlm5+6VHwTr7u4FJslVVsUG5nopCaAYdOmSQ==}
+  '@vitest/mocker@2.1.1':
+    resolution: {integrity: sha512-LNN5VwOEdJqCmJ/2XJBywB11DLlkbY0ooDJW3uRX5cZyYCrc4PI/ePX0iQhE3BiEGiQmK4GE7Q/PqCkkaiPnrA==}
+    peerDependencies:
+      '@vitest/spy': 2.1.1
+      msw: ^2.3.5
+      vite: ^5.0.0
+    peerDependenciesMeta:
+      msw:
+        optional: true
+      vite:
+        optional: true
 
   '@vitest/pretty-format@2.1.1':
     resolution: {integrity: sha512-SjxPFOtuINDUW8/UkElJYQSFtnWX7tMksSGW0vfjxMneFqxVr8YJ979QpMbDW7g+BIiq88RAGDjf7en6rvLPPQ==}
 
-  '@vitest/runner@2.0.5':
-    resolution: {integrity: sha512-TfRfZa6Bkk9ky4tW0z20WKXFEwwvWhRY+84CnSEtq4+3ZvDlJyY32oNTJtM7AW9ihW90tX/1Q78cb6FjoAs+ig==}
+  '@vitest/runner@2.1.1':
+    resolution: {integrity: sha512-uTPuY6PWOYitIkLPidaY5L3t0JJITdGTSwBtwMjKzo5O6RCOEncz9PUN+0pDidX8kTHYjO0EwUIvhlGpnGpxmA==}
 
-  '@vitest/snapshot@2.0.5':
-    resolution: {integrity: sha512-SgCPUeDFLaM0mIUHfaArq8fD2WbaXG/zVXjRupthYfYGzc8ztbFbu6dUNOblBG7XLMR1kEhS/DNnfCZ2IhdDew==}
+  '@vitest/snapshot@2.1.1':
+    resolution: {integrity: sha512-BnSku1WFy7r4mm96ha2FzN99AZJgpZOWrAhtQfoxjUU5YMRpq1zmHRq7a5K9/NjqonebO7iVDla+VvZS8BOWMw==}
 
-  '@vitest/spy@2.0.5':
-    resolution: {integrity: sha512-c/jdthAhvJdpfVuaexSrnawxZz6pywlTPe84LUB2m/4t3rl2fTo9NFGBG4oWgaD+FTgDDV8hJ/nibT7IfH3JfA==}
+  '@vitest/spy@2.1.1':
+    resolution: {integrity: sha512-ZM39BnZ9t/xZ/nF4UwRH5il0Sw93QnZXd9NAZGRpIgj0yvVwPpLd702s/Cx955rGaMlyBQkZJ2Ir7qyY48VZ+g==}
 
-  '@vitest/utils@2.0.5':
-    resolution: {integrity: sha512-d8HKbqIcya+GR67mkZbrzhS5kKhtp8dQLcmRZLGTscGVg7yImT82cIrhtn2L8+VujWcy6KZweApgNmPsTAO/UQ==}
+  '@vitest/utils@2.1.1':
+    resolution: {integrity: sha512-Y6Q9TsI+qJ2CC0ZKj6VBb+T8UPz593N113nnUykqwANqhgf3QkZeHFlusgKLTqrnVHbj/XDKZcDHol+dxVT+rQ==}
 
   '@web3-storage/multipart-parser@1.0.0':
     resolution: {integrity: sha512-BEO6al7BYqcnfX15W2cnGR+Q566ACXAT9UQykORCWW80lmkpWsnEob6zJS1ZVBKsSJC8+7vJkHwlp+lXG1UCdw==}
@@ -2344,8 +2291,8 @@ packages:
     peerDependencies:
       postcss: ^8.4.31
 
-  cssnano@7.0.5:
-    resolution: {integrity: sha512-Aq0vqBLtpTT5Yxj+hLlLfNPFuRQCDIjx5JQAhhaedQKLNDvDGeVziF24PS+S1f0Z5KCxWvw0QVI3VNHNBITxVQ==}
+  cssnano@7.0.6:
+    resolution: {integrity: sha512-54woqx8SCbp8HwvNZYn68ZFAepuouZW4lTwiMVnBErM3VkO7/Sd4oTOt3Zz3bPx3kxQ36aISppyXj2Md4lg8bw==}
     engines: {node: ^18.12.0 || ^20.9.0 || >=22.0}
     peerDependencies:
       postcss: ^8.4.31
@@ -2425,6 +2372,9 @@ packages:
   destroy@1.2.0:
     resolution: {integrity: sha512-2sJGJTaXIIaR1w4iJSNoN0hnMY7Gpc/n8D4qSCJw8QqFWXf7cuAgnEHxBpweaVcPevC2l3KpjYCx3NypQQgaJg==}
     engines: {node: '>= 0.8', npm: 1.2.8000 || >= 1.4.16}
+
+  detect-node-es@1.1.0:
+    resolution: {integrity: sha512-ypdmJU/TbBby2Dxibuv7ZLW3Bs1QEmM7nHjEANfohJLvE0XVujisn1qPJcZxg+qDucsr+bP6fLD1rPS3AhJ7EQ==}
 
   didyoumean@1.2.2:
     resolution: {integrity: sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==}
@@ -2696,10 +2646,6 @@ packages:
     resolution: {integrity: sha512-8uSpZZocAZRBAPIEINJj3Lo9HyGitllczc27Eh5YYojjMFMn8yHMDMaUHE2Jqfq05D/wucwI4JGURyXt1vchyg==}
     engines: {node: '>=10'}
 
-  execa@8.0.1:
-    resolution: {integrity: sha512-VyhnebXciFV2DESc+p6B+y0LjSm0krU4OgJN44qFAhBY0TJ+1V61tYD2+wHusZ6F9n5K+vl8k0sTy7PEfV4qpg==}
-    engines: {node: '>=16.17'}
-
   exit-hook@2.2.1:
     resolution: {integrity: sha512-eNTPlAD67BmP31LDINZ3U7HSF8l57TxOY2PmBJ1shpCvpnxBF93mWCE8YHBnXs8qiUZJc9WDcWIeC3a2HIAMfw==}
     engines: {node: '>=6'}
@@ -2718,8 +2664,8 @@ packages:
     resolution: {integrity: sha512-oX2ruAFQwf/Orj8m737Y5adxDQO0LAB7/S5MnxCdTNDd4p6BsyIVsv9JQsATbTSq8KHRpLwIHbVlUNatxd+1Ow==}
     engines: {node: '>=8.6.0'}
 
-  fast-jwt@4.0.3:
-    resolution: {integrity: sha512-t6mpAYoVV58zAs/0/zgQ0hv4sis9/ea/JchsnrnTtX2MH55B0GMI60x0ESZFP9/fl7xW7cgk+zdpP4C4xTllPQ==}
+  fast-jwt@4.0.5:
+    resolution: {integrity: sha512-QnpNdn0955GT7SlT8iMgYfhTsityUWysrQjM+Q7bGFijLp6+TNWzlbSMPvgalbrQGRg4ZaHZgMcns5fYOm5avg==}
     engines: {node: '>=16'}
 
   fast-uri@3.0.1:
@@ -2769,8 +2715,8 @@ packages:
   fraction.js@4.3.7:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
 
-  framer-motion@11.4.0:
-    resolution: {integrity: sha512-gHKUZr88OTMFubkIPkaIZxxX18PhQ6IbYxBoXUVdBLQQKZ3teH2BtxMVVRUsuzIfKs259MlL0elgAiZf82fiHg==}
+  framer-motion@11.5.4:
+    resolution: {integrity: sha512-E+tb3/G6SO69POkdJT+3EpdMuhmtCh9EWuK4I1DnIC23L7tFPrl8vxP+LSovwaw6uUr73rUbpb4FgK011wbRJQ==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
       react: ^18.0.0
@@ -2828,6 +2774,10 @@ packages:
     resolution: {integrity: sha512-5uYhsJH8VJBTv7oslg4BznJYhDoRI6waYCxMmCdnTrcCrHA/fCFKoTFz2JKKE0HdDFUF7/oQuhzumXJK7paBRQ==}
     engines: {node: '>= 0.4'}
 
+  get-nonce@1.0.1:
+    resolution: {integrity: sha512-FJhYRoDaiatfEkUK8HKlicmu/3SGFD51q3itKDGoSTysQJBnfOcxU5GxnhE1E6soB76MbT0MBtnKJuXyAx+96Q==}
+    engines: {node: '>=6'}
+
   get-port@5.1.1:
     resolution: {integrity: sha512-g/Q1aTSDOxFpchXC4i8ZWvxA1lnPqx/JHqcpIw0/LX9T8x/GBbi6YnlN5nhaKIFkT8oFsscUKgDJYxfwfS6QsQ==}
     engines: {node: '>=8'}
@@ -2835,10 +2785,6 @@ packages:
   get-stream@6.0.1:
     resolution: {integrity: sha512-ts6Wi+2j3jQjqi70w5AlN8DFnkSwC+MqmxEzdEALB2qXZYV3X/b1CTfgPLGJNMeAWxdPfU8FO1ms3NUfaHCPYg==}
     engines: {node: '>=10'}
-
-  get-stream@8.0.1:
-    resolution: {integrity: sha512-VaUJspBffn/LMCJVoMvSAdmscJyS1auj5Zulnn5UoYcY531UWmdwhRWkcGKnGU93m5HSXP9LP2usOryrBtQowA==}
-    engines: {node: '>=16'}
 
   get-tsconfig@4.8.1:
     resolution: {integrity: sha512-k9PN+cFBmaLWtVz29SkUoqU5O0slLuHJXt/2P+tMVFT+phsSGXGkp9t3rQIqdz0e+06EHNGs3oM6ZX1s2zHxRg==}
@@ -2926,12 +2872,8 @@ packages:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
 
-  human-signals@5.0.0:
-    resolution: {integrity: sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ==}
-    engines: {node: '>=16.17.0'}
-
-  husky@9.1.5:
-    resolution: {integrity: sha512-rowAVRUBfI0b4+niA4SJMhfQwc107VLkBUgEYYAOQAbqDCnra1nYh83hF/MDmhYs9t9n1E3DuKOrs2LYNC+0Ag==}
+  husky@9.1.6:
+    resolution: {integrity: sha512-sqbjZKK7kf44hfdE94EoX8MZNk0n7HeW37O4YrVGCF4wzgQjp+akPAkfUK5LZ6KuR/6sqeAVuXHji+RzQgOn5A==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -2975,6 +2917,9 @@ packages:
 
   intl-messageformat@10.5.14:
     resolution: {integrity: sha512-IjC6sI0X7YRjjyVH9aUgdftcmZK7WXdHeil4KwbjDnRWjnVitKpAx3rr6t6di1joFp5188VqKcobOPA6mCLG/w==}
+
+  invariant@2.2.4:
+    resolution: {integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==}
 
   ipaddr.js@1.9.1:
     resolution: {integrity: sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==}
@@ -3067,10 +3012,6 @@ packages:
   is-stream@2.0.1:
     resolution: {integrity: sha512-hFoiJiTl63nn+kstHGBtewWSKnQLpyb155KHheA1l39uvtO9nWIop1p3udqPcUd/xbF1VLMO4n7OI6p7RbngDg==}
     engines: {node: '>=8'}
-
-  is-stream@3.0.0:
-    resolution: {integrity: sha512-LnQR4bZ9IADDRSkvpqMGvt/tEJWclzklNgSw48V5EAaAeDd6qGvN8ei6k5p0tvxSR171VmGyHuTiAOfxAbr8kA==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   is-text-path@2.0.0:
     resolution: {integrity: sha512-+oDTluR6WEjdXEJMnC2z6A4FRwFoYuvShVVEGsS7ewc0UTi2QtAKMDJuL4BDEVt+5T7MjFo12RP8ghOM75oKJw==}
@@ -3441,10 +3382,6 @@ packages:
     resolution: {integrity: sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==}
     engines: {node: '>=6'}
 
-  mimic-fn@4.0.0:
-    resolution: {integrity: sha512-vqiC06CuhBTUdZH+RYl8sFrL096vA45Ok5ISO6sE/Mr1jRbGH4Csnhi8f3wKVl7x8mO4Au7Ir9D3Oyv1VYMFJw==}
-    engines: {node: '>=12'}
-
   minimalistic-assert@1.0.1:
     resolution: {integrity: sha512-UtJcAD4yEaGtjPezWuO9wC4nwUnVH/8/Im3yEHQP4b67cXlD/Qr9hdITCU1xDbSEXg2XKNaP8jsReV7vQd00/A==}
 
@@ -3573,10 +3510,6 @@ packages:
     resolution: {integrity: sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==}
     engines: {node: '>=8'}
 
-  npm-run-path@5.3.0:
-    resolution: {integrity: sha512-ppwTtiJZq0O/ai0z7yfudtBpWIoxM8yE6nHi1X47eFR2EWORqfbu6CnPlNsjeN683eT0qG6H/Pyf9fCcvjnnnQ==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
 
@@ -3613,10 +3546,6 @@ packages:
   onetime@5.1.2:
     resolution: {integrity: sha512-kbpaSSGJTWdAY5KPVeMOKXSrPtr8C8C7wodJbcsd51jRnmD+GZu8Y0VoU6Dm5Z4vWr0Ig/1NKuWRKf7j5aaYSg==}
     engines: {node: '>=6'}
-
-  onetime@6.0.0:
-    resolution: {integrity: sha512-1FlR+gjXK7X+AsAHso35MnyN5KqGwJRi/31ft6x0M194ht7S+rWAvd7PHss9xSKMzE0asv1pyIHaJYq+BbacAQ==}
-    engines: {node: '>=12'}
 
   ora@5.4.1:
     resolution: {integrity: sha512-5b6Y85tPxZZ7QytO+BQzysW31HJku27cRIlkbAXaNx+BdcVi+LlRFmVXzeF6a7JCwJpyw5c4b+YSVImQIrBpuQ==}
@@ -3681,10 +3610,6 @@ packages:
   path-key@3.1.1:
     resolution: {integrity: sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==}
     engines: {node: '>=8'}
-
-  path-key@4.0.0:
-    resolution: {integrity: sha512-haREypq7xkM7ErfgIyA0z+Bj4AGKlMSdlQE2jvJo6huWD1EdkKYV+G/T4nq0YEF2vgTT8kqMFKo1uHn950r4SQ==}
-    engines: {node: '>=12'}
 
   path-parse@1.0.7:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
@@ -3970,8 +3895,8 @@ packages:
   postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
 
-  postcss@8.4.44:
-    resolution: {integrity: sha512-Aweb9unOEpQ3ezu4Q00DPvvM2ZTUitJdNKeP/+uQgr1IBIqu574IaZoURId7BKtWMREwzKa9OgzPzezWGPWFQw==}
+  postcss@8.4.47:
+    resolution: {integrity: sha512-56rxCq7G/XfB4EkXq9Egn5GCqugWvDFjafDOThIdMBsI15iqPqR5r15TfSr1YPYeEI19YeaXMCbY6u88Y76GLQ==}
     engines: {node: ^10 || ^12 || >=14}
 
   postgres@3.4.4:
@@ -4046,18 +3971,48 @@ packages:
     resolution: {integrity: sha512-jCvmsr+1IUSMUyzOkRcvnVbX3ZYC6g9TDrDbFuFmRDq7PD4yaGbLKNQL6k2jnArV8hjYxh7hVhAZB6s9HDGpZA==}
     engines: {node: '>=0.10.0'}
 
-  react-router-dom@6.26.1:
-    resolution: {integrity: sha512-veut7m41S1fLql4pLhxeSW3jlqs+4MtjRLj0xvuCEXsxusJCbs6I8yn9BxzzDX2XDgafrccY6hwjmd/bL54tFw==}
+  react-remove-scroll-bar@2.3.6:
+    resolution: {integrity: sha512-DtSYaao4mBmX+HDo5YWYdBWQwYIQQshUV/dVxFxK+KM26Wjwp1gZ6rv6OC3oujI6Bfu6Xyg3TwK533AQutsn/g==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  react-remove-scroll@2.6.0:
+    resolution: {integrity: sha512-I2U4JVEsQenxDAKaVa3VZ/JeJZe0/2DxPWL8Tj8yLKctQJQiZM52pn/GWFpSp8dftjM3pSAHVJZscAnC/y+ySQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  react-router-dom@6.26.2:
+    resolution: {integrity: sha512-z7YkaEW0Dy35T3/QKPYB1LjMK2R1fxnHO8kWpUMTBdfVzZrWOiY9a7CtN8HqdWtDUWd5FY6Dl8HFsqVwH4uOtQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: '>=16.8'
       react-dom: '>=16.8'
 
-  react-router@6.26.1:
-    resolution: {integrity: sha512-kIwJveZNwp7teQRI5QmwWo39A5bXRyqpH0COKKmPnyD2vBvDwgFXSqDUYtt1h+FEyfnE8eXr7oe0MxRzVwCcvQ==}
+  react-router@6.26.2:
+    resolution: {integrity: sha512-tvN1iuT03kHgOFnLPfLJ8V95eijteveqdOSk+srqfePtQvqCExB8eHOYnlilbOcyJyKnYkr1vJvf7YqotAJu1A==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: '>=16.8'
+
+  react-style-singleton@2.2.1:
+    resolution: {integrity: sha512-ZWj0fHEMyWkHzKYUr2Bs/4zU6XLmq9HsgBURm7g5pAVfyn49DgUiNgY2d4lXRlYSiCif9YBGpQleewkcqddc7g==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   react-textarea-autosize@8.5.3:
     resolution: {integrity: sha512-XT1024o2pqCuZSuBt9FwHlaDeNtVrtCXu0Rnz88t1jUGheCLa3PhjE1GH8Ctm2axEtvdCl5SUHYschyQ0L5QHQ==}
@@ -4313,10 +4268,6 @@ packages:
     resolution: {integrity: sha512-BrpvfNAE3dcvq7ll3xVumzjKjZQ5tI1sEUIKr3Uoks0XUl45St3FlatVqef9prk4jRDzhW6WZg+3bk93y6pLjA==}
     engines: {node: '>=6'}
 
-  strip-final-newline@3.0.0:
-    resolution: {integrity: sha512-dOESqjYr96iWYylGObzd39EuNTa5VJxyvVAEm5Jnh7KGo75V43Hk1odPQkNDyXNmUR6k+gEiDVXnjB8HJ3crXw==}
-    engines: {node: '>=12'}
-
   style-to-object@0.4.4:
     resolution: {integrity: sha512-HYNoHZa2GorYNyqiCaBgsxvcJIn7OHq6inEga+E6Ke3m5JkoqpQbnFssk4jwe+K7AhGa2fcha4wSOf1Kn01dMg==}
 
@@ -4357,8 +4308,8 @@ packages:
     peerDependencies:
       tailwindcss: '*'
 
-  tailwindcss@3.4.10:
-    resolution: {integrity: sha512-KWZkVPm7yJRhdu4SRSl9d4AK2wM3a50UsvgHZO7xY77NQr2V+fIrEuoDGQcbvswWvFGbS2f6e+jC/6WJm1Dl0w==}
+  tailwindcss@3.4.11:
+    resolution: {integrity: sha512-qhEuBcLemjSJk5ajccN9xJFtM/h0AVCPaA6C92jNP+M2J8kX+eMJHI7R2HFKUvvAsMpcfLILMCFYSeDwpMmlUg==}
     engines: {node: '>=14.0.0'}
     hasBin: true
 
@@ -4449,15 +4400,15 @@ packages:
   tslib@2.7.0:
     resolution: {integrity: sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==}
 
-  turbo-stream@2.3.0:
-    resolution: {integrity: sha512-PhEr9mdexoVv+rJkQ3c8TjrN3DUghX37GNJkSMksoPR4KrXIPnM2MnqRt07sViIqX9IdlhrgtTSyjoVOASq6cg==}
+  turbo-stream@2.4.0:
+    resolution: {integrity: sha512-FHncC10WpBd2eOmGwpmQsWLDoK4cqsA/UT/GqNoaKOQnT8uzhtCbg3EoUDMvqpOSAI0S26mr0rkjzbOO6S3v1g==}
 
   type-is@1.6.18:
     resolution: {integrity: sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==}
     engines: {node: '>= 0.6'}
 
-  typescript@5.5.4:
-    resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
+  typescript@5.6.2:
+    resolution: {integrity: sha512-NW8ByodCSNCwZeghjN3o+JX5OFH0Ojg6sadjEKY4huZ52TqbJTJnDo5+Tw98lSy63NZvi4n+ez5m2u5d4PkZyw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -4524,6 +4475,16 @@ packages:
     peerDependencies:
       browserslist: '>= 4.21.0'
 
+  use-callback-ref@1.3.2:
+    resolution: {integrity: sha512-elOQwe6Q8gqZgDA8mrh44qRTQqpIHDcZ3hXTLjBe1i4ph8XpNJnO+aQf3NaG+lriLopI4HMx9VjQLfPQ6vhnoA==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
   use-composed-ref@1.3.0:
     resolution: {integrity: sha512-GLMG0Jc/jiKov/3Ulid1wbv3r54K9HlMW29IWcDFPEqFkSO2nS0MuefWgMJpeHQ9YJeXDL3ZUF+P3jdXlZX/cQ==}
     peerDependencies:
@@ -4542,6 +4503,16 @@ packages:
     resolution: {integrity: sha512-xA+AVm/Wlg3e2P/JiItTziwS7FK92LWrDB0p+hgXloIMuVCeJJ8v6f0eeHyPZaJrM+usM1FkFfbNCrJGs8A/zw==}
     peerDependencies:
       '@types/react': '*'
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  use-sidecar@1.1.2:
+    resolution: {integrity: sha512-epTbsLuzZ7lPClpz2TyryBfztm7m+28DlEv2ZCQ3MDr5ssiwyOwGH/e5F9CkfWjJ1t4clvI58yF822/GUkjjhw==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@types/react': ^16.9.0 || ^17.0.0 || ^18.0.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     peerDependenciesMeta:
       '@types/react':
@@ -4584,8 +4555,8 @@ packages:
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
 
-  vite-node@2.0.5:
-    resolution: {integrity: sha512-LdsW4pxj0Ot69FAoXZ1yTnA9bjGohr2yNBU7QKRxpz8ITSkhuDl6h3zS/tvgz4qrNjeRnvrWeXQ8ZF7Um4W00Q==}
+  vite-node@2.1.1:
+    resolution: {integrity: sha512-N/mGckI1suG/5wQI35XeR9rsMsPqKXzq1CdUndzVstBj/HvyxxGctwnK6WX43NGt5L3Z5tcRf83g4TITKJhPrA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
 
@@ -4597,8 +4568,8 @@ packages:
       vite:
         optional: true
 
-  vite@5.4.3:
-    resolution: {integrity: sha512-IH+nl64eq9lJjFqU+/yrRnrHPVTlgy42/+IzbOdaFDVlyLgI/wDlf+FCobXLX1cT0X5+7LMyH1mIy2xJdLfo8Q==}
+  vite@5.4.5:
+    resolution: {integrity: sha512-pXqR0qtb2bTwLkev4SE3r4abCNioP3GkjvIDLlzziPpXtHgiJIjuKl+1GN6ESOT3wMjG3JTeARopj2SwYaHTOA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -4628,15 +4599,15 @@ packages:
       terser:
         optional: true
 
-  vitest@2.0.5:
-    resolution: {integrity: sha512-8GUxONfauuIdeSl5f9GTgVEpg5BTOlplET4WEDaeY2QBiN8wSm68vxN/tb5z405OwppfoCavnwXafiaYBC/xOA==}
+  vitest@2.1.1:
+    resolution: {integrity: sha512-97We7/VC0e9X5zBVkvt7SGQMGrRtn3KtySFQG5fpaMlS+l62eeXRQO633AYhSTC3z7IMebnPPNjGXVGNRFlxBA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
       '@edge-runtime/vm': '*'
       '@types/node': ^18.0.0 || >=20.0.0
-      '@vitest/browser': 2.0.5
-      '@vitest/ui': 2.0.5
+      '@vitest/browser': 2.1.1
+      '@vitest/ui': 2.1.1
       happy-dom: '*'
       jsdom: '*'
     peerDependenciesMeta:
@@ -4968,55 +4939,55 @@ snapshots:
       '@babel/helper-validator-identifier': 7.24.7
       to-fast-properties: 2.0.0
 
-  '@biomejs/biome@1.8.3':
+  '@biomejs/biome@1.9.1':
     optionalDependencies:
-      '@biomejs/cli-darwin-arm64': 1.8.3
-      '@biomejs/cli-darwin-x64': 1.8.3
-      '@biomejs/cli-linux-arm64': 1.8.3
-      '@biomejs/cli-linux-arm64-musl': 1.8.3
-      '@biomejs/cli-linux-x64': 1.8.3
-      '@biomejs/cli-linux-x64-musl': 1.8.3
-      '@biomejs/cli-win32-arm64': 1.8.3
-      '@biomejs/cli-win32-x64': 1.8.3
+      '@biomejs/cli-darwin-arm64': 1.9.1
+      '@biomejs/cli-darwin-x64': 1.9.1
+      '@biomejs/cli-linux-arm64': 1.9.1
+      '@biomejs/cli-linux-arm64-musl': 1.9.1
+      '@biomejs/cli-linux-x64': 1.9.1
+      '@biomejs/cli-linux-x64-musl': 1.9.1
+      '@biomejs/cli-win32-arm64': 1.9.1
+      '@biomejs/cli-win32-x64': 1.9.1
 
-  '@biomejs/cli-darwin-arm64@1.8.3':
+  '@biomejs/cli-darwin-arm64@1.9.1':
     optional: true
 
-  '@biomejs/cli-darwin-x64@1.8.3':
+  '@biomejs/cli-darwin-x64@1.9.1':
     optional: true
 
-  '@biomejs/cli-linux-arm64-musl@1.8.3':
+  '@biomejs/cli-linux-arm64-musl@1.9.1':
     optional: true
 
-  '@biomejs/cli-linux-arm64@1.8.3':
+  '@biomejs/cli-linux-arm64@1.9.1':
     optional: true
 
-  '@biomejs/cli-linux-x64-musl@1.8.3':
+  '@biomejs/cli-linux-x64-musl@1.9.1':
     optional: true
 
-  '@biomejs/cli-linux-x64@1.8.3':
+  '@biomejs/cli-linux-x64@1.9.1':
     optional: true
 
-  '@biomejs/cli-win32-arm64@1.8.3':
+  '@biomejs/cli-win32-arm64@1.9.1':
     optional: true
 
-  '@biomejs/cli-win32-x64@1.8.3':
+  '@biomejs/cli-win32-x64@1.9.1':
     optional: true
 
-  '@commitlint/cli@19.4.1(@types/node@22.5.5)(typescript@5.5.4)':
+  '@commitlint/cli@19.5.0(@types/node@22.5.5)(typescript@5.6.2)':
     dependencies:
       '@commitlint/format': 19.5.0
       '@commitlint/lint': 19.5.0
-      '@commitlint/load': 19.5.0(@types/node@22.5.5)(typescript@5.5.4)
+      '@commitlint/load': 19.5.0(@types/node@22.5.5)(typescript@5.6.2)
       '@commitlint/read': 19.5.0
       '@commitlint/types': 19.5.0
-      execa: 8.0.1
+      tinyexec: 0.3.0
       yargs: 17.7.2
     transitivePeerDependencies:
       - '@types/node'
       - typescript
 
-  '@commitlint/config-conventional@19.4.1':
+  '@commitlint/config-conventional@19.5.0':
     dependencies:
       '@commitlint/types': 19.5.0
       conventional-changelog-conventionalcommits: 7.0.2
@@ -5054,15 +5025,15 @@ snapshots:
       '@commitlint/rules': 19.5.0
       '@commitlint/types': 19.5.0
 
-  '@commitlint/load@19.5.0(@types/node@22.5.5)(typescript@5.5.4)':
+  '@commitlint/load@19.5.0(@types/node@22.5.5)(typescript@5.6.2)':
     dependencies:
       '@commitlint/config-validator': 19.5.0
       '@commitlint/execute-rule': 19.5.0
       '@commitlint/resolve-extends': 19.5.0
       '@commitlint/types': 19.5.0
       chalk: 5.3.0
-      cosmiconfig: 9.0.0(typescript@5.5.4)
-      cosmiconfig-typescript-loader: 5.0.0(@types/node@22.5.5)(cosmiconfig@9.0.0(typescript@5.5.4))(typescript@5.5.4)
+      cosmiconfig: 9.0.0(typescript@5.6.2)
+      cosmiconfig-typescript-loader: 5.0.0(@types/node@22.5.5)(cosmiconfig@9.0.0(typescript@5.6.2))(typescript@5.6.2)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -5490,11 +5461,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@nextui-org/aria-utils@2.0.25(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@nextui-org/aria-utils@2.0.26(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@nextui-org/react-rsc-utils': 2.0.14(react@18.3.1)
       '@nextui-org/shared-utils': 2.0.8
-      '@nextui-org/system': 2.2.6(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/system': 2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/utils': 3.24.1(react@18.3.1)
       '@react-stately/collections': 3.10.7(react@18.3.1)
       '@react-stately/overlays': 3.6.7(react@18.3.1)
@@ -5506,33 +5477,14 @@ snapshots:
       - '@nextui-org/theme'
       - framer-motion
 
-  '@nextui-org/button@2.0.37(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@nextui-org/react-utils': 2.0.16(react@18.3.1)
-      '@nextui-org/ripple': 2.0.32(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/shared-utils': 2.0.7
-      '@nextui-org/spinner': 2.0.33(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/system': 2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/theme': 2.2.9(tailwindcss@3.4.10)
-      '@nextui-org/use-aria-button': 2.0.10(react@18.3.1)
-      '@react-aria/button': 3.9.5(react@18.3.1)
-      '@react-aria/focus': 3.17.1(react@18.3.1)
-      '@react-aria/interactions': 3.21.3(react@18.3.1)
-      '@react-aria/utils': 3.24.1(react@18.3.1)
-      '@react-types/button': 3.9.4(react@18.3.1)
-      '@react-types/shared': 3.23.1(react@18.3.1)
-      framer-motion: 11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@nextui-org/button@2.0.38(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@nextui-org/button@2.0.38(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@nextui-org/react-utils': 2.0.17(react@18.3.1)
-      '@nextui-org/ripple': 2.0.33(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/ripple': 2.0.33(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@nextui-org/shared-utils': 2.0.8
-      '@nextui-org/spinner': 2.0.34(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/system': 2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/theme': 2.2.9(tailwindcss@3.4.10)
+      '@nextui-org/spinner': 2.0.34(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/system': 2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/theme': 2.2.11(tailwindcss@3.4.11)
       '@nextui-org/use-aria-button': 2.0.10(react@18.3.1)
       '@react-aria/button': 3.9.5(react@18.3.1)
       '@react-aria/focus': 3.17.1(react@18.3.1)
@@ -5540,16 +5492,16 @@ snapshots:
       '@react-aria/utils': 3.24.1(react@18.3.1)
       '@react-types/button': 3.9.4(react@18.3.1)
       '@react-types/shared': 3.23.1(react@18.3.1)
-      framer-motion: 11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@nextui-org/checkbox@2.1.4(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@nextui-org/checkbox@2.1.5(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@nextui-org/react-utils': 2.0.16(react@18.3.1)
-      '@nextui-org/shared-utils': 2.0.7
-      '@nextui-org/system': 2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/theme': 2.2.9(tailwindcss@3.4.10)
+      '@nextui-org/react-utils': 2.0.17(react@18.3.1)
+      '@nextui-org/shared-utils': 2.0.8
+      '@nextui-org/system': 2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/theme': 2.2.11(tailwindcss@3.4.11)
       '@nextui-org/use-callback-ref': 2.0.6(react@18.3.1)
       '@nextui-org/use-safe-layout-effect': 2.0.6(react@18.3.1)
       '@react-aria/checkbox': 3.14.3(react@18.3.1)
@@ -5564,13 +5516,13 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@nextui-org/chip@2.0.33(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@nextui-org/chip@2.0.33(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@nextui-org/react-utils': 2.0.17(react@18.3.1)
       '@nextui-org/shared-icons': 2.0.9(react@18.3.1)
       '@nextui-org/shared-utils': 2.0.8
-      '@nextui-org/system': 2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/theme': 2.2.9(tailwindcss@3.4.10)
+      '@nextui-org/system': 2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/theme': 2.2.11(tailwindcss@3.4.11)
       '@react-aria/focus': 3.17.1(react@18.3.1)
       '@react-aria/interactions': 3.21.3(react@18.3.1)
       '@react-aria/utils': 3.24.1(react@18.3.1)
@@ -5578,61 +5530,54 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@nextui-org/divider@2.0.31(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@nextui-org/react-rsc-utils': 2.0.13
-      '@nextui-org/shared-utils': 2.0.7
-      '@nextui-org/system-rsc': 2.1.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react@18.3.1)
-      '@nextui-org/theme': 2.2.9(tailwindcss@3.4.10)
-      '@react-types/shared': 3.23.1(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@nextui-org/divider@2.0.32(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@nextui-org/divider@2.0.32(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@nextui-org/react-rsc-utils': 2.0.14(react@18.3.1)
       '@nextui-org/shared-utils': 2.0.8
-      '@nextui-org/system-rsc': 2.1.6(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react@18.3.1)
-      '@nextui-org/theme': 2.2.9(tailwindcss@3.4.10)
+      '@nextui-org/system-rsc': 2.1.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(react@18.3.1)
+      '@nextui-org/theme': 2.2.11(tailwindcss@3.4.11)
       '@react-types/shared': 3.23.1(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@nextui-org/dropdown@2.1.30(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@nextui-org/dropdown@2.1.31(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(@types/react@18.3.6)(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@nextui-org/menu': 2.0.29(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/popover': 2.1.28(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/aria-utils': 2.0.26(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/menu': 2.0.30(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/popover': 2.1.29(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(@types/react@18.3.6)(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@nextui-org/react-utils': 2.0.17(react@18.3.1)
       '@nextui-org/shared-utils': 2.0.8
-      '@nextui-org/system': 2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/theme': 2.2.9(tailwindcss@3.4.10)
+      '@nextui-org/system': 2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/theme': 2.2.11(tailwindcss@3.4.11)
       '@react-aria/focus': 3.17.1(react@18.3.1)
       '@react-aria/menu': 3.14.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/utils': 3.24.1(react@18.3.1)
       '@react-stately/menu': 3.7.1(react@18.3.1)
       '@react-types/menu': 3.9.9(react@18.3.1)
-      framer-motion: 11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    transitivePeerDependencies:
+      - '@types/react'
 
-  '@nextui-org/framer-utils@2.0.25(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@nextui-org/framer-utils@2.0.25(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@nextui-org/shared-utils': 2.0.8
-      '@nextui-org/system': 2.2.6(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/system': 2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@nextui-org/use-measure': 2.0.2(react@18.3.1)
-      framer-motion: 11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
     transitivePeerDependencies:
       - '@nextui-org/theme'
 
-  '@nextui-org/input@2.2.4(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(@types/react@18.3.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@nextui-org/input@2.2.5(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(@types/react@18.3.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@nextui-org/react-utils': 2.0.16(react@18.3.1)
+      '@nextui-org/react-utils': 2.0.17(react@18.3.1)
       '@nextui-org/shared-icons': 2.0.9(react@18.3.1)
-      '@nextui-org/shared-utils': 2.0.7
-      '@nextui-org/system': 2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/theme': 2.2.9(tailwindcss@3.4.10)
+      '@nextui-org/shared-utils': 2.0.8
+      '@nextui-org/system': 2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/theme': 2.2.11(tailwindcss@3.4.11)
       '@nextui-org/use-safe-layout-effect': 2.0.6(react@18.3.1)
       '@react-aria/focus': 3.17.1(react@18.3.1)
       '@react-aria/interactions': 3.21.3(react@18.3.1)
@@ -5643,17 +5588,17 @@ snapshots:
       '@react-types/textfield': 3.9.3(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      react-textarea-autosize: 8.5.3(@types/react@18.3.5)(react@18.3.1)
+      react-textarea-autosize: 8.5.3(@types/react@18.3.6)(react@18.3.1)
     transitivePeerDependencies:
       - '@types/react'
 
-  '@nextui-org/link@2.0.34(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@nextui-org/link@2.0.35(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@nextui-org/react-utils': 2.0.16(react@18.3.1)
+      '@nextui-org/react-utils': 2.0.17(react@18.3.1)
       '@nextui-org/shared-icons': 2.0.9(react@18.3.1)
-      '@nextui-org/shared-utils': 2.0.7
-      '@nextui-org/system': 2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/theme': 2.2.9(tailwindcss@3.4.10)
+      '@nextui-org/shared-utils': 2.0.8
+      '@nextui-org/system': 2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/theme': 2.2.11(tailwindcss@3.4.11)
       '@nextui-org/use-aria-link': 2.0.19(react@18.3.1)
       '@react-aria/focus': 3.17.1(react@18.3.1)
       '@react-aria/link': 3.7.1(react@18.3.1)
@@ -5662,15 +5607,15 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@nextui-org/menu@2.0.29(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@nextui-org/menu@2.0.30(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@nextui-org/aria-utils': 2.0.25(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/divider': 2.0.32(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/aria-utils': 2.0.26(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/divider': 2.0.32(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@nextui-org/react-utils': 2.0.17(react@18.3.1)
       '@nextui-org/shared-utils': 2.0.8
-      '@nextui-org/system': 2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/theme': 2.2.9(tailwindcss@3.4.10)
-      '@nextui-org/use-aria-menu': 2.0.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/system': 2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/theme': 2.2.11(tailwindcss@3.4.11)
+      '@nextui-org/use-aria-menu': 2.0.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@nextui-org/use-is-mobile': 2.0.9(react@18.3.1)
       '@react-aria/focus': 3.17.1(react@18.3.1)
       '@react-aria/interactions': 3.21.3(react@18.3.1)
@@ -5685,13 +5630,13 @@ snapshots:
     transitivePeerDependencies:
       - framer-motion
 
-  '@nextui-org/pagination@2.0.36(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@nextui-org/pagination@2.0.36(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@nextui-org/react-utils': 2.0.17(react@18.3.1)
       '@nextui-org/shared-icons': 2.0.9(react@18.3.1)
       '@nextui-org/shared-utils': 2.0.8
-      '@nextui-org/system': 2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/theme': 2.2.9(tailwindcss@3.4.10)
+      '@nextui-org/system': 2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/theme': 2.2.11(tailwindcss@3.4.11)
       '@nextui-org/use-pagination': 2.0.10(react@18.3.1)
       '@react-aria/focus': 3.17.1(react@18.3.1)
       '@react-aria/i18n': 3.11.1(react@18.3.1)
@@ -5701,17 +5646,16 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       scroll-into-view-if-needed: 3.0.10
 
-  '@nextui-org/popover@2.1.28(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@nextui-org/popover@2.1.29(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(@types/react@18.3.6)(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@nextui-org/aria-utils': 2.0.25(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/button': 2.0.38(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/framer-utils': 2.0.25(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/aria-utils': 2.0.26(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/button': 2.0.38(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/framer-utils': 2.0.25(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@nextui-org/react-utils': 2.0.17(react@18.3.1)
       '@nextui-org/shared-utils': 2.0.8
-      '@nextui-org/system': 2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/theme': 2.2.9(tailwindcss@3.4.10)
+      '@nextui-org/system': 2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/theme': 2.2.11(tailwindcss@3.4.11)
       '@nextui-org/use-aria-button': 2.0.10(react@18.3.1)
-      '@nextui-org/use-aria-overlay': 2.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@nextui-org/use-safe-layout-effect': 2.0.6(react@18.3.1)
       '@react-aria/dialog': 3.5.14(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/focus': 3.17.1(react@18.3.1)
@@ -5721,20 +5665,15 @@ snapshots:
       '@react-stately/overlays': 3.6.7(react@18.3.1)
       '@react-types/button': 3.9.4(react@18.3.1)
       '@react-types/overlays': 3.8.7(react@18.3.1)
-      framer-motion: 11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-
-  '@nextui-org/react-rsc-utils@2.0.13': {}
+      react-remove-scroll: 2.6.0(@types/react@18.3.6)(react@18.3.1)
+    transitivePeerDependencies:
+      - '@types/react'
 
   '@nextui-org/react-rsc-utils@2.0.14(react@18.3.1)':
     dependencies:
-      react: 18.3.1
-
-  '@nextui-org/react-utils@2.0.16(react@18.3.1)':
-    dependencies:
-      '@nextui-org/react-rsc-utils': 2.0.13
-      '@nextui-org/shared-utils': 2.0.7
       react: 18.3.1
 
   '@nextui-org/react-utils@2.0.17(react@18.3.1)':
@@ -5743,23 +5682,13 @@ snapshots:
       '@nextui-org/shared-utils': 2.0.8
       react: 18.3.1
 
-  '@nextui-org/ripple@2.0.32(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@nextui-org/react-utils': 2.0.16(react@18.3.1)
-      '@nextui-org/shared-utils': 2.0.7
-      '@nextui-org/system': 2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/theme': 2.2.9(tailwindcss@3.4.10)
-      framer-motion: 11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@nextui-org/ripple@2.0.33(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@nextui-org/ripple@2.0.33(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@nextui-org/react-utils': 2.0.17(react@18.3.1)
       '@nextui-org/shared-utils': 2.0.8
-      '@nextui-org/system': 2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/theme': 2.2.9(tailwindcss@3.4.10)
-      framer-motion: 11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/system': 2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/theme': 2.2.11(tailwindcss@3.4.11)
+      framer-motion: 11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
@@ -5767,90 +5696,57 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  '@nextui-org/shared-utils@2.0.7': {}
-
   '@nextui-org/shared-utils@2.0.8': {}
 
-  '@nextui-org/spacer@2.0.32(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@nextui-org/react-utils': 2.0.16(react@18.3.1)
-      '@nextui-org/shared-utils': 2.0.7
-      '@nextui-org/system-rsc': 2.1.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react@18.3.1)
-      '@nextui-org/theme': 2.2.9(tailwindcss@3.4.10)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@nextui-org/spinner@2.0.33(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@nextui-org/react-utils': 2.0.16(react@18.3.1)
-      '@nextui-org/shared-utils': 2.0.7
-      '@nextui-org/system-rsc': 2.1.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react@18.3.1)
-      '@nextui-org/theme': 2.2.9(tailwindcss@3.4.10)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@nextui-org/spinner@2.0.34(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@nextui-org/spacer@2.0.33(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@nextui-org/react-utils': 2.0.17(react@18.3.1)
       '@nextui-org/shared-utils': 2.0.8
-      '@nextui-org/system-rsc': 2.1.6(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react@18.3.1)
-      '@nextui-org/theme': 2.2.9(tailwindcss@3.4.10)
+      '@nextui-org/system-rsc': 2.1.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(react@18.3.1)
+      '@nextui-org/theme': 2.2.11(tailwindcss@3.4.11)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@nextui-org/system-rsc@2.1.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react@18.3.1)':
+  '@nextui-org/spinner@2.0.34(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@nextui-org/theme': 2.2.9(tailwindcss@3.4.10)
+      '@nextui-org/react-utils': 2.0.17(react@18.3.1)
+      '@nextui-org/shared-utils': 2.0.8
+      '@nextui-org/system-rsc': 2.1.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(react@18.3.1)
+      '@nextui-org/theme': 2.2.11(tailwindcss@3.4.11)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
+  '@nextui-org/system-rsc@2.1.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(react@18.3.1)':
+    dependencies:
+      '@nextui-org/theme': 2.2.11(tailwindcss@3.4.11)
       '@react-types/shared': 3.23.1(react@18.3.1)
       clsx: 1.2.1
       react: 18.3.1
 
-  '@nextui-org/system-rsc@2.1.6(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react@18.3.1)':
-    dependencies:
-      '@nextui-org/theme': 2.2.9(tailwindcss@3.4.10)
-      '@react-types/shared': 3.23.1(react@18.3.1)
-      clsx: 1.2.1
-      react: 18.3.1
-
-  '@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@internationalized/date': 3.5.5
-      '@nextui-org/react-utils': 2.0.16(react@18.3.1)
-      '@nextui-org/system-rsc': 2.1.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react@18.3.1)
-      '@react-aria/i18n': 3.11.1(react@18.3.1)
-      '@react-aria/overlays': 3.22.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@react-aria/utils': 3.24.1(react@18.3.1)
-      '@react-stately/utils': 3.10.1(react@18.3.1)
-      framer-motion: 11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-    transitivePeerDependencies:
-      - '@nextui-org/theme'
-
-  '@nextui-org/system@2.2.6(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@internationalized/date': 3.5.5
       '@nextui-org/react-utils': 2.0.17(react@18.3.1)
-      '@nextui-org/system-rsc': 2.1.6(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react@18.3.1)
+      '@nextui-org/system-rsc': 2.1.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(react@18.3.1)
       '@react-aria/i18n': 3.11.1(react@18.3.1)
       '@react-aria/overlays': 3.22.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/utils': 3.24.1(react@18.3.1)
       '@react-stately/utils': 3.10.1(react@18.3.1)
-      framer-motion: 11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
     transitivePeerDependencies:
       - '@nextui-org/theme'
 
-  '@nextui-org/table@2.0.39(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@nextui-org/table@2.0.40(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@nextui-org/checkbox': 2.1.4(@nextui-org/system@2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/react-utils': 2.0.16(react@18.3.1)
+      '@nextui-org/checkbox': 2.1.5(@nextui-org/system@2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/react-utils': 2.0.17(react@18.3.1)
       '@nextui-org/shared-icons': 2.0.9(react@18.3.1)
-      '@nextui-org/shared-utils': 2.0.7
-      '@nextui-org/spacer': 2.0.32(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/system': 2.2.5(@nextui-org/theme@2.2.9(tailwindcss@3.4.10))(framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/theme': 2.2.9(tailwindcss@3.4.10)
+      '@nextui-org/shared-utils': 2.0.8
+      '@nextui-org/spacer': 2.0.33(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/system': 2.2.6(@nextui-org/theme@2.2.11(tailwindcss@3.4.11))(framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@nextui-org/theme': 2.2.11(tailwindcss@3.4.11)
       '@react-aria/focus': 3.17.1(react@18.3.1)
       '@react-aria/interactions': 3.21.3(react@18.3.1)
       '@react-aria/table': 3.14.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -5863,7 +5759,7 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@nextui-org/theme@2.2.9(tailwindcss@3.4.10)':
+  '@nextui-org/theme@2.2.11(tailwindcss@3.4.11)':
     dependencies:
       clsx: 1.2.1
       color: 4.2.3
@@ -5876,8 +5772,8 @@ snapshots:
       lodash.mapkeys: 4.6.0
       lodash.omit: 4.5.0
       tailwind-merge: 1.14.0
-      tailwind-variants: 0.1.20(tailwindcss@3.4.10)
-      tailwindcss: 3.4.10
+      tailwind-variants: 0.1.20(tailwindcss@3.4.11)
+      tailwindcss: 3.4.11
 
   '@nextui-org/use-aria-button@2.0.10(react@18.3.1)':
     dependencies:
@@ -5897,7 +5793,7 @@ snapshots:
       '@react-types/shared': 3.23.1(react@18.3.1)
       react: 18.3.1
 
-  '@nextui-org/use-aria-menu@2.0.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@nextui-org/use-aria-menu@2.0.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@react-aria/i18n': 3.11.1(react@18.3.1)
       '@react-aria/interactions': 3.21.3(react@18.3.1)
@@ -5907,15 +5803,6 @@ snapshots:
       '@react-stately/collections': 3.10.7(react@18.3.1)
       '@react-stately/tree': 3.8.1(react@18.3.1)
       '@react-types/menu': 3.9.9(react@18.3.1)
-      '@react-types/shared': 3.23.1(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@nextui-org/use-aria-overlay@2.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@react-aria/focus': 3.17.1(react@18.3.1)
-      '@react-aria/interactions': 3.21.3(react@18.3.1)
-      '@react-aria/overlays': 3.22.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-types/shared': 3.23.1(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -6498,7 +6385,7 @@ snapshots:
 
   '@react-types/overlays@3.8.7(react@18.3.1)':
     dependencies:
-      '@react-types/shared': 3.24.1(react@18.3.1)
+      '@react-types/shared': 3.23.1(react@18.3.1)
       react: 18.3.1
 
   '@react-types/overlays@3.8.9(react@18.3.1)':
@@ -6525,7 +6412,7 @@ snapshots:
       '@react-types/shared': 3.23.1(react@18.3.1)
       react: 18.3.1
 
-  '@remix-run/dev@2.11.2(@remix-run/react@2.11.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.5.4))(@remix-run/serve@2.11.2(typescript@5.5.4))(@types/node@22.5.5)(typescript@5.5.4)(vite@5.4.3(@types/node@22.5.5))':
+  '@remix-run/dev@2.12.0(@remix-run/react@2.12.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.2))(@remix-run/serve@2.12.0(typescript@5.6.2))(@types/node@22.5.5)(typescript@5.6.2)(vite@5.4.5(@types/node@22.5.5))':
     dependencies:
       '@babel/core': 7.25.2
       '@babel/generator': 7.25.6
@@ -6537,10 +6424,10 @@ snapshots:
       '@babel/types': 7.25.6
       '@mdx-js/mdx': 2.3.0
       '@npmcli/package-json': 4.0.1
-      '@remix-run/node': 2.11.2(typescript@5.5.4)
-      '@remix-run/react': 2.11.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.5.4)
-      '@remix-run/router': 1.19.1
-      '@remix-run/server-runtime': 2.11.2(typescript@5.5.4)
+      '@remix-run/node': 2.12.0(typescript@5.6.2)
+      '@remix-run/react': 2.12.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.2)
+      '@remix-run/router': 1.19.2
+      '@remix-run/server-runtime': 2.12.0(typescript@5.6.2)
       '@types/mdx': 2.0.13
       '@vanilla-extract/integration': 6.5.0(@types/node@22.5.5)
       arg: 5.0.2
@@ -6567,10 +6454,10 @@ snapshots:
       picocolors: 1.1.0
       picomatch: 2.3.1
       pidtree: 0.6.0
-      postcss: 8.4.44
-      postcss-discard-duplicates: 5.1.0(postcss@8.4.44)
-      postcss-load-config: 4.0.2(postcss@8.4.44)
-      postcss-modules: 6.0.0(postcss@8.4.44)
+      postcss: 8.4.47
+      postcss-discard-duplicates: 5.1.0(postcss@8.4.47)
+      postcss-load-config: 4.0.2(postcss@8.4.47)
+      postcss-modules: 6.0.0(postcss@8.4.47)
       prettier: 2.8.8
       pretty-ms: 7.0.1
       react-refresh: 0.14.2
@@ -6582,9 +6469,9 @@ snapshots:
       tsconfig-paths: 4.2.0
       ws: 7.5.10
     optionalDependencies:
-      '@remix-run/serve': 2.11.2(typescript@5.5.4)
-      typescript: 5.5.4
-      vite: 5.4.3(@types/node@22.5.5)
+      '@remix-run/serve': 2.12.0(typescript@5.6.2)
+      typescript: 5.6.2
+      vite: 5.4.5(@types/node@22.5.5)
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -6601,16 +6488,16 @@ snapshots:
       - ts-node
       - utf-8-validate
 
-  '@remix-run/express@2.11.2(express@4.21.0)(typescript@5.5.4)':
+  '@remix-run/express@2.12.0(express@4.21.0)(typescript@5.6.2)':
     dependencies:
-      '@remix-run/node': 2.11.2(typescript@5.5.4)
+      '@remix-run/node': 2.12.0(typescript@5.6.2)
       express: 4.21.0
     optionalDependencies:
-      typescript: 5.5.4
+      typescript: 5.6.2
 
-  '@remix-run/node@2.11.2(typescript@5.5.4)':
+  '@remix-run/node@2.12.0(typescript@5.6.2)':
     dependencies:
-      '@remix-run/server-runtime': 2.11.2(typescript@5.5.4)
+      '@remix-run/server-runtime': 2.12.0(typescript@5.6.2)
       '@remix-run/web-fetch': 4.4.2
       '@web3-storage/multipart-parser': 1.0.0
       cookie-signature: 1.2.1
@@ -6618,26 +6505,26 @@ snapshots:
       stream-slice: 0.1.2
       undici: 6.19.8
     optionalDependencies:
-      typescript: 5.5.4
+      typescript: 5.6.2
 
-  '@remix-run/react@2.11.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.5.4)':
+  '@remix-run/react@2.12.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.2)':
     dependencies:
-      '@remix-run/router': 1.19.1
-      '@remix-run/server-runtime': 2.11.2(typescript@5.5.4)
+      '@remix-run/router': 1.19.2
+      '@remix-run/server-runtime': 2.12.0(typescript@5.6.2)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      react-router: 6.26.1(react@18.3.1)
-      react-router-dom: 6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      turbo-stream: 2.3.0
+      react-router: 6.26.2(react@18.3.1)
+      react-router-dom: 6.26.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      turbo-stream: 2.4.0
     optionalDependencies:
-      typescript: 5.5.4
+      typescript: 5.6.2
 
-  '@remix-run/router@1.19.1': {}
+  '@remix-run/router@1.19.2': {}
 
-  '@remix-run/serve@2.11.2(typescript@5.5.4)':
+  '@remix-run/serve@2.12.0(typescript@5.6.2)':
     dependencies:
-      '@remix-run/express': 2.11.2(express@4.21.0)(typescript@5.5.4)
-      '@remix-run/node': 2.11.2(typescript@5.5.4)
+      '@remix-run/express': 2.12.0(express@4.21.0)(typescript@5.6.2)
+      '@remix-run/node': 2.12.0(typescript@5.6.2)
       chokidar: 3.6.0
       compression: 1.7.4
       express: 4.21.0
@@ -6648,17 +6535,17 @@ snapshots:
       - supports-color
       - typescript
 
-  '@remix-run/server-runtime@2.11.2(typescript@5.5.4)':
+  '@remix-run/server-runtime@2.12.0(typescript@5.6.2)':
     dependencies:
-      '@remix-run/router': 1.19.1
+      '@remix-run/router': 1.19.2
       '@types/cookie': 0.6.0
       '@web3-storage/multipart-parser': 1.0.0
       cookie: 0.6.0
       set-cookie-parser: 2.7.0
       source-map: 0.7.4
-      turbo-stream: 2.3.0
+      turbo-stream: 2.4.0
     optionalDependencies:
-      typescript: 5.5.4
+      typescript: 5.6.2
 
   '@remix-run/web-blob@3.1.0':
     dependencies:
@@ -6740,9 +6627,9 @@ snapshots:
     dependencies:
       tslib: 2.7.0
 
-  '@tailwindcss/container-queries@0.1.1(tailwindcss@3.4.10)':
+  '@tailwindcss/container-queries@0.1.1(tailwindcss@3.4.11)':
     dependencies:
-      tailwindcss: 3.4.10
+      tailwindcss: 3.4.11
 
   '@trysound/sax@0.2.0': {}
 
@@ -6786,9 +6673,9 @@ snapshots:
 
   '@types/react-dom@18.3.0':
     dependencies:
-      '@types/react': 18.3.5
+      '@types/react': 18.3.6
 
-  '@types/react@18.3.5':
+  '@types/react@18.3.6':
     dependencies:
       '@types/prop-types': 15.7.12
       csstype: 3.1.3
@@ -6831,7 +6718,7 @@ snapshots:
       lodash: 4.17.21
       mlly: 1.7.1
       outdent: 0.8.0
-      vite: 5.4.3(@types/node@22.5.5)
+      vite: 5.4.5(@types/node@22.5.5)
       vite-node: 1.6.0(@types/node@22.5.5)
     transitivePeerDependencies:
       - '@types/node'
@@ -6847,40 +6734,43 @@ snapshots:
 
   '@vanilla-extract/private@1.0.6': {}
 
-  '@vitest/expect@2.0.5':
+  '@vitest/expect@2.1.1':
     dependencies:
-      '@vitest/spy': 2.0.5
-      '@vitest/utils': 2.0.5
+      '@vitest/spy': 2.1.1
+      '@vitest/utils': 2.1.1
       chai: 5.1.1
       tinyrainbow: 1.2.0
 
-  '@vitest/pretty-format@2.0.5':
+  '@vitest/mocker@2.1.1(@vitest/spy@2.1.1)(vite@5.4.5(@types/node@22.5.5))':
     dependencies:
-      tinyrainbow: 1.2.0
+      '@vitest/spy': 2.1.1
+      estree-walker: 3.0.3
+      magic-string: 0.30.11
+    optionalDependencies:
+      vite: 5.4.5(@types/node@22.5.5)
 
   '@vitest/pretty-format@2.1.1':
     dependencies:
       tinyrainbow: 1.2.0
 
-  '@vitest/runner@2.0.5':
+  '@vitest/runner@2.1.1':
     dependencies:
-      '@vitest/utils': 2.0.5
+      '@vitest/utils': 2.1.1
       pathe: 1.1.2
 
-  '@vitest/snapshot@2.0.5':
+  '@vitest/snapshot@2.1.1':
     dependencies:
-      '@vitest/pretty-format': 2.0.5
+      '@vitest/pretty-format': 2.1.1
       magic-string: 0.30.11
       pathe: 1.1.2
 
-  '@vitest/spy@2.0.5':
+  '@vitest/spy@2.1.1':
     dependencies:
       tinyspy: 3.0.2
 
-  '@vitest/utils@2.0.5':
+  '@vitest/utils@2.1.1':
     dependencies:
-      '@vitest/pretty-format': 2.0.5
-      estree-walker: 3.0.3
+      '@vitest/pretty-format': 2.1.1
       loupe: 3.1.1
       tinyrainbow: 1.2.0
 
@@ -6967,14 +6857,14 @@ snapshots:
 
   astring@1.9.0: {}
 
-  autoprefixer@10.4.20(postcss@8.4.44):
+  autoprefixer@10.4.20(postcss@8.4.47):
     dependencies:
       browserslist: 4.23.3
       caniuse-lite: 1.0.30001660
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.1.0
-      postcss: 8.4.44
+      postcss: 8.4.47
       postcss-value-parser: 4.2.0
 
   available-typed-arrays@1.0.7:
@@ -7247,21 +7137,21 @@ snapshots:
 
   core-util-is@1.0.3: {}
 
-  cosmiconfig-typescript-loader@5.0.0(@types/node@22.5.5)(cosmiconfig@9.0.0(typescript@5.5.4))(typescript@5.5.4):
+  cosmiconfig-typescript-loader@5.0.0(@types/node@22.5.5)(cosmiconfig@9.0.0(typescript@5.6.2))(typescript@5.6.2):
     dependencies:
       '@types/node': 22.5.5
-      cosmiconfig: 9.0.0(typescript@5.5.4)
+      cosmiconfig: 9.0.0(typescript@5.6.2)
       jiti: 1.21.6
-      typescript: 5.5.4
+      typescript: 5.6.2
 
-  cosmiconfig@9.0.0(typescript@5.5.4):
+  cosmiconfig@9.0.0(typescript@5.6.2):
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.0
       js-yaml: 4.1.0
       parse-json: 5.2.0
     optionalDependencies:
-      typescript: 5.5.4
+      typescript: 5.6.2
 
   cross-spawn@7.0.3:
     dependencies:
@@ -7269,9 +7159,9 @@ snapshots:
       shebang-command: 2.0.0
       which: 2.0.2
 
-  css-declaration-sorter@7.2.0(postcss@8.4.44):
+  css-declaration-sorter@7.2.0(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
 
   css-select@5.1.0:
     dependencies:
@@ -7295,49 +7185,49 @@ snapshots:
 
   cssesc@3.0.0: {}
 
-  cssnano-preset-default@7.0.6(postcss@8.4.44):
+  cssnano-preset-default@7.0.6(postcss@8.4.47):
     dependencies:
       browserslist: 4.23.3
-      css-declaration-sorter: 7.2.0(postcss@8.4.44)
-      cssnano-utils: 5.0.0(postcss@8.4.44)
-      postcss: 8.4.44
-      postcss-calc: 10.0.2(postcss@8.4.44)
-      postcss-colormin: 7.0.2(postcss@8.4.44)
-      postcss-convert-values: 7.0.4(postcss@8.4.44)
-      postcss-discard-comments: 7.0.3(postcss@8.4.44)
-      postcss-discard-duplicates: 7.0.1(postcss@8.4.44)
-      postcss-discard-empty: 7.0.0(postcss@8.4.44)
-      postcss-discard-overridden: 7.0.0(postcss@8.4.44)
-      postcss-merge-longhand: 7.0.4(postcss@8.4.44)
-      postcss-merge-rules: 7.0.4(postcss@8.4.44)
-      postcss-minify-font-values: 7.0.0(postcss@8.4.44)
-      postcss-minify-gradients: 7.0.0(postcss@8.4.44)
-      postcss-minify-params: 7.0.2(postcss@8.4.44)
-      postcss-minify-selectors: 7.0.4(postcss@8.4.44)
-      postcss-normalize-charset: 7.0.0(postcss@8.4.44)
-      postcss-normalize-display-values: 7.0.0(postcss@8.4.44)
-      postcss-normalize-positions: 7.0.0(postcss@8.4.44)
-      postcss-normalize-repeat-style: 7.0.0(postcss@8.4.44)
-      postcss-normalize-string: 7.0.0(postcss@8.4.44)
-      postcss-normalize-timing-functions: 7.0.0(postcss@8.4.44)
-      postcss-normalize-unicode: 7.0.2(postcss@8.4.44)
-      postcss-normalize-url: 7.0.0(postcss@8.4.44)
-      postcss-normalize-whitespace: 7.0.0(postcss@8.4.44)
-      postcss-ordered-values: 7.0.1(postcss@8.4.44)
-      postcss-reduce-initial: 7.0.2(postcss@8.4.44)
-      postcss-reduce-transforms: 7.0.0(postcss@8.4.44)
-      postcss-svgo: 7.0.1(postcss@8.4.44)
-      postcss-unique-selectors: 7.0.3(postcss@8.4.44)
+      css-declaration-sorter: 7.2.0(postcss@8.4.47)
+      cssnano-utils: 5.0.0(postcss@8.4.47)
+      postcss: 8.4.47
+      postcss-calc: 10.0.2(postcss@8.4.47)
+      postcss-colormin: 7.0.2(postcss@8.4.47)
+      postcss-convert-values: 7.0.4(postcss@8.4.47)
+      postcss-discard-comments: 7.0.3(postcss@8.4.47)
+      postcss-discard-duplicates: 7.0.1(postcss@8.4.47)
+      postcss-discard-empty: 7.0.0(postcss@8.4.47)
+      postcss-discard-overridden: 7.0.0(postcss@8.4.47)
+      postcss-merge-longhand: 7.0.4(postcss@8.4.47)
+      postcss-merge-rules: 7.0.4(postcss@8.4.47)
+      postcss-minify-font-values: 7.0.0(postcss@8.4.47)
+      postcss-minify-gradients: 7.0.0(postcss@8.4.47)
+      postcss-minify-params: 7.0.2(postcss@8.4.47)
+      postcss-minify-selectors: 7.0.4(postcss@8.4.47)
+      postcss-normalize-charset: 7.0.0(postcss@8.4.47)
+      postcss-normalize-display-values: 7.0.0(postcss@8.4.47)
+      postcss-normalize-positions: 7.0.0(postcss@8.4.47)
+      postcss-normalize-repeat-style: 7.0.0(postcss@8.4.47)
+      postcss-normalize-string: 7.0.0(postcss@8.4.47)
+      postcss-normalize-timing-functions: 7.0.0(postcss@8.4.47)
+      postcss-normalize-unicode: 7.0.2(postcss@8.4.47)
+      postcss-normalize-url: 7.0.0(postcss@8.4.47)
+      postcss-normalize-whitespace: 7.0.0(postcss@8.4.47)
+      postcss-ordered-values: 7.0.1(postcss@8.4.47)
+      postcss-reduce-initial: 7.0.2(postcss@8.4.47)
+      postcss-reduce-transforms: 7.0.0(postcss@8.4.47)
+      postcss-svgo: 7.0.1(postcss@8.4.47)
+      postcss-unique-selectors: 7.0.3(postcss@8.4.47)
 
-  cssnano-utils@5.0.0(postcss@8.4.44):
+  cssnano-utils@5.0.0(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
 
-  cssnano@7.0.5(postcss@8.4.44):
+  cssnano@7.0.6(postcss@8.4.47):
     dependencies:
-      cssnano-preset-default: 7.0.6(postcss@8.4.44)
+      cssnano-preset-default: 7.0.6(postcss@8.4.47)
       lilconfig: 3.1.2
-      postcss: 8.4.44
+      postcss: 8.4.47
 
   csso@5.0.5:
     dependencies:
@@ -7387,6 +7277,8 @@ snapshots:
 
   destroy@1.2.0: {}
 
+  detect-node-es@1.1.0: {}
+
   didyoumean@1.2.2: {}
 
   diff@5.2.0: {}
@@ -7426,15 +7318,15 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.33.0(@types/react@18.3.5)(postgres@3.4.4)(react@18.3.1):
+  drizzle-orm@0.33.0(@types/react@18.3.6)(postgres@3.4.4)(react@18.3.1):
     optionalDependencies:
-      '@types/react': 18.3.5
+      '@types/react': 18.3.6
       postgres: 3.4.4
       react: 18.3.1
 
-  drizzle-zod@0.5.1(drizzle-orm@0.33.0(@types/react@18.3.5)(postgres@3.4.4)(react@18.3.1))(zod@3.23.8):
+  drizzle-zod@0.5.1(drizzle-orm@0.33.0(@types/react@18.3.6)(postgres@3.4.4)(react@18.3.1))(zod@3.23.8):
     dependencies:
-      drizzle-orm: 0.33.0(@types/react@18.3.5)(postgres@3.4.4)(react@18.3.1)
+      drizzle-orm: 0.33.0(@types/react@18.3.6)(postgres@3.4.4)(react@18.3.1)
       zod: 3.23.8
 
   duplexify@3.7.1:
@@ -7660,18 +7552,6 @@ snapshots:
       signal-exit: 3.0.7
       strip-final-newline: 2.0.0
 
-  execa@8.0.1:
-    dependencies:
-      cross-spawn: 7.0.3
-      get-stream: 8.0.1
-      human-signals: 5.0.0
-      is-stream: 3.0.0
-      merge-stream: 2.0.0
-      npm-run-path: 5.3.0
-      onetime: 6.0.0
-      signal-exit: 4.1.0
-      strip-final-newline: 3.0.0
-
   exit-hook@2.2.1: {}
 
   express@4.21.0:
@@ -7722,7 +7602,7 @@ snapshots:
       merge2: 1.4.1
       micromatch: 4.0.8
 
-  fast-jwt@4.0.3:
+  fast-jwt@4.0.5:
     dependencies:
       '@lukeed/ms': 2.0.2
       asn1.js: 5.4.1
@@ -7783,7 +7663,7 @@ snapshots:
 
   fraction.js@4.3.7: {}
 
-  framer-motion@11.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  framer-motion@11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       tslib: 2.7.0
     optionalDependencies:
@@ -7831,11 +7711,11 @@ snapshots:
       has-symbols: 1.0.3
       hasown: 2.0.2
 
+  get-nonce@1.0.1: {}
+
   get-port@5.1.1: {}
 
   get-stream@6.0.1: {}
-
-  get-stream@8.0.1: {}
 
   get-tsconfig@4.8.1:
     dependencies:
@@ -7943,17 +7823,15 @@ snapshots:
 
   human-signals@2.1.0: {}
 
-  human-signals@5.0.0: {}
-
-  husky@9.1.5: {}
+  husky@9.1.6: {}
 
   iconv-lite@0.4.24:
     dependencies:
       safer-buffer: 2.1.2
 
-  icss-utils@5.1.0(postcss@8.4.44):
+  icss-utils@5.1.0(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
 
   ieee754@1.2.1: {}
 
@@ -7980,6 +7858,10 @@ snapshots:
       '@formatjs/fast-memoize': 2.2.0
       '@formatjs/icu-messageformat-parser': 2.7.8
       tslib: 2.7.0
+
+  invariant@2.2.4:
+    dependencies:
+      loose-envify: 1.4.0
 
   ipaddr.js@1.9.1: {}
 
@@ -8047,8 +7929,6 @@ snapshots:
 
   is-stream@2.0.1: {}
 
-  is-stream@3.0.0: {}
-
   is-text-path@2.0.0:
     dependencies:
       text-extensions: 2.4.0
@@ -8075,9 +7955,9 @@ snapshots:
 
   jiti@1.21.6: {}
 
-  jotai@2.9.3(@types/react@18.3.5)(react@18.3.1):
+  jotai@2.9.3(@types/react@18.3.6)(react@18.3.1):
     optionalDependencies:
-      '@types/react': 18.3.5
+      '@types/react': 18.3.6
       react: 18.3.1
 
   js-tokens@4.0.0: {}
@@ -8547,8 +8427,6 @@ snapshots:
 
   mimic-fn@2.1.0: {}
 
-  mimic-fn@4.0.0: {}
-
   minimalistic-assert@1.0.1: {}
 
   minimatch@9.0.5:
@@ -8668,10 +8546,6 @@ snapshots:
     dependencies:
       path-key: 3.1.1
 
-  npm-run-path@5.3.0:
-    dependencies:
-      path-key: 4.0.0
-
   nth-check@2.1.1:
     dependencies:
       boolbase: 1.0.0
@@ -8701,10 +8575,6 @@ snapshots:
   onetime@5.1.2:
     dependencies:
       mimic-fn: 2.1.0
-
-  onetime@6.0.0:
-    dependencies:
-      mimic-fn: 4.0.0
 
   ora@5.4.1:
     dependencies:
@@ -8776,8 +8646,6 @@ snapshots:
 
   path-key@3.1.1: {}
 
-  path-key@4.0.0: {}
-
   path-parse@1.0.7: {}
 
   path-scurry@1.11.1:
@@ -8821,203 +8689,203 @@ snapshots:
 
   possible-typed-array-names@1.0.0: {}
 
-  postcss-calc@10.0.2(postcss@8.4.44):
+  postcss-calc@10.0.2(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
       postcss-selector-parser: 6.1.2
       postcss-value-parser: 4.2.0
 
-  postcss-colormin@7.0.2(postcss@8.4.44):
+  postcss-colormin@7.0.2(postcss@8.4.47):
     dependencies:
       browserslist: 4.23.3
       caniuse-api: 3.0.0
       colord: 2.9.3
-      postcss: 8.4.44
+      postcss: 8.4.47
       postcss-value-parser: 4.2.0
 
-  postcss-convert-values@7.0.4(postcss@8.4.44):
+  postcss-convert-values@7.0.4(postcss@8.4.47):
     dependencies:
       browserslist: 4.23.3
-      postcss: 8.4.44
+      postcss: 8.4.47
       postcss-value-parser: 4.2.0
 
-  postcss-discard-comments@7.0.3(postcss@8.4.44):
+  postcss-discard-comments@7.0.3(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
       postcss-selector-parser: 6.1.2
 
-  postcss-discard-duplicates@5.1.0(postcss@8.4.44):
+  postcss-discard-duplicates@5.1.0(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
 
-  postcss-discard-duplicates@7.0.1(postcss@8.4.44):
+  postcss-discard-duplicates@7.0.1(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
 
-  postcss-discard-empty@7.0.0(postcss@8.4.44):
+  postcss-discard-empty@7.0.0(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
 
-  postcss-discard-overridden@7.0.0(postcss@8.4.44):
+  postcss-discard-overridden@7.0.0(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
 
-  postcss-import@15.1.0(postcss@8.4.44):
+  postcss-import@15.1.0(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.8
 
-  postcss-js@4.0.1(postcss@8.4.44):
+  postcss-js@4.0.1(postcss@8.4.47):
     dependencies:
       camelcase-css: 2.0.1
-      postcss: 8.4.44
+      postcss: 8.4.47
 
-  postcss-load-config@4.0.2(postcss@8.4.44):
+  postcss-load-config@4.0.2(postcss@8.4.47):
     dependencies:
       lilconfig: 3.1.2
       yaml: 2.5.1
     optionalDependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
 
-  postcss-merge-longhand@7.0.4(postcss@8.4.44):
+  postcss-merge-longhand@7.0.4(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
       postcss-value-parser: 4.2.0
-      stylehacks: 7.0.4(postcss@8.4.44)
+      stylehacks: 7.0.4(postcss@8.4.47)
 
-  postcss-merge-rules@7.0.4(postcss@8.4.44):
+  postcss-merge-rules@7.0.4(postcss@8.4.47):
     dependencies:
       browserslist: 4.23.3
       caniuse-api: 3.0.0
-      cssnano-utils: 5.0.0(postcss@8.4.44)
-      postcss: 8.4.44
+      cssnano-utils: 5.0.0(postcss@8.4.47)
+      postcss: 8.4.47
       postcss-selector-parser: 6.1.2
 
-  postcss-minify-font-values@7.0.0(postcss@8.4.44):
+  postcss-minify-font-values@7.0.0(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
       postcss-value-parser: 4.2.0
 
-  postcss-minify-gradients@7.0.0(postcss@8.4.44):
+  postcss-minify-gradients@7.0.0(postcss@8.4.47):
     dependencies:
       colord: 2.9.3
-      cssnano-utils: 5.0.0(postcss@8.4.44)
-      postcss: 8.4.44
+      cssnano-utils: 5.0.0(postcss@8.4.47)
+      postcss: 8.4.47
       postcss-value-parser: 4.2.0
 
-  postcss-minify-params@7.0.2(postcss@8.4.44):
+  postcss-minify-params@7.0.2(postcss@8.4.47):
     dependencies:
       browserslist: 4.23.3
-      cssnano-utils: 5.0.0(postcss@8.4.44)
-      postcss: 8.4.44
+      cssnano-utils: 5.0.0(postcss@8.4.47)
+      postcss: 8.4.47
       postcss-value-parser: 4.2.0
 
-  postcss-minify-selectors@7.0.4(postcss@8.4.44):
+  postcss-minify-selectors@7.0.4(postcss@8.4.47):
     dependencies:
       cssesc: 3.0.0
-      postcss: 8.4.44
+      postcss: 8.4.47
       postcss-selector-parser: 6.1.2
 
-  postcss-modules-extract-imports@3.1.0(postcss@8.4.44):
+  postcss-modules-extract-imports@3.1.0(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
 
-  postcss-modules-local-by-default@4.0.5(postcss@8.4.44):
+  postcss-modules-local-by-default@4.0.5(postcss@8.4.47):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.4.44)
-      postcss: 8.4.44
+      icss-utils: 5.1.0(postcss@8.4.47)
+      postcss: 8.4.47
       postcss-selector-parser: 6.1.2
       postcss-value-parser: 4.2.0
 
-  postcss-modules-scope@3.2.0(postcss@8.4.44):
+  postcss-modules-scope@3.2.0(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
       postcss-selector-parser: 6.1.2
 
-  postcss-modules-values@4.0.0(postcss@8.4.44):
+  postcss-modules-values@4.0.0(postcss@8.4.47):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.4.44)
-      postcss: 8.4.44
+      icss-utils: 5.1.0(postcss@8.4.47)
+      postcss: 8.4.47
 
-  postcss-modules@6.0.0(postcss@8.4.44):
+  postcss-modules@6.0.0(postcss@8.4.47):
     dependencies:
       generic-names: 4.0.0
-      icss-utils: 5.1.0(postcss@8.4.44)
+      icss-utils: 5.1.0(postcss@8.4.47)
       lodash.camelcase: 4.3.0
-      postcss: 8.4.44
-      postcss-modules-extract-imports: 3.1.0(postcss@8.4.44)
-      postcss-modules-local-by-default: 4.0.5(postcss@8.4.44)
-      postcss-modules-scope: 3.2.0(postcss@8.4.44)
-      postcss-modules-values: 4.0.0(postcss@8.4.44)
+      postcss: 8.4.47
+      postcss-modules-extract-imports: 3.1.0(postcss@8.4.47)
+      postcss-modules-local-by-default: 4.0.5(postcss@8.4.47)
+      postcss-modules-scope: 3.2.0(postcss@8.4.47)
+      postcss-modules-values: 4.0.0(postcss@8.4.47)
       string-hash: 1.1.3
 
-  postcss-nested@6.2.0(postcss@8.4.44):
+  postcss-nested@6.2.0(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
       postcss-selector-parser: 6.1.2
 
-  postcss-normalize-charset@7.0.0(postcss@8.4.44):
+  postcss-normalize-charset@7.0.0(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
 
-  postcss-normalize-display-values@7.0.0(postcss@8.4.44):
+  postcss-normalize-display-values@7.0.0(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
       postcss-value-parser: 4.2.0
 
-  postcss-normalize-positions@7.0.0(postcss@8.4.44):
+  postcss-normalize-positions@7.0.0(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
       postcss-value-parser: 4.2.0
 
-  postcss-normalize-repeat-style@7.0.0(postcss@8.4.44):
+  postcss-normalize-repeat-style@7.0.0(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
       postcss-value-parser: 4.2.0
 
-  postcss-normalize-string@7.0.0(postcss@8.4.44):
+  postcss-normalize-string@7.0.0(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
       postcss-value-parser: 4.2.0
 
-  postcss-normalize-timing-functions@7.0.0(postcss@8.4.44):
+  postcss-normalize-timing-functions@7.0.0(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
       postcss-value-parser: 4.2.0
 
-  postcss-normalize-unicode@7.0.2(postcss@8.4.44):
+  postcss-normalize-unicode@7.0.2(postcss@8.4.47):
     dependencies:
       browserslist: 4.23.3
-      postcss: 8.4.44
+      postcss: 8.4.47
       postcss-value-parser: 4.2.0
 
-  postcss-normalize-url@7.0.0(postcss@8.4.44):
+  postcss-normalize-url@7.0.0(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
       postcss-value-parser: 4.2.0
 
-  postcss-normalize-whitespace@7.0.0(postcss@8.4.44):
+  postcss-normalize-whitespace@7.0.0(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
       postcss-value-parser: 4.2.0
 
-  postcss-ordered-values@7.0.1(postcss@8.4.44):
+  postcss-ordered-values@7.0.1(postcss@8.4.47):
     dependencies:
-      cssnano-utils: 5.0.0(postcss@8.4.44)
-      postcss: 8.4.44
+      cssnano-utils: 5.0.0(postcss@8.4.47)
+      postcss: 8.4.47
       postcss-value-parser: 4.2.0
 
-  postcss-reduce-initial@7.0.2(postcss@8.4.44):
+  postcss-reduce-initial@7.0.2(postcss@8.4.47):
     dependencies:
       browserslist: 4.23.3
       caniuse-api: 3.0.0
-      postcss: 8.4.44
+      postcss: 8.4.47
 
-  postcss-reduce-transforms@7.0.0(postcss@8.4.44):
+  postcss-reduce-transforms@7.0.0(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
       postcss-value-parser: 4.2.0
 
   postcss-selector-parser@6.1.2:
@@ -9025,20 +8893,20 @@ snapshots:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
 
-  postcss-svgo@7.0.1(postcss@8.4.44):
+  postcss-svgo@7.0.1(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
       postcss-value-parser: 4.2.0
       svgo: 3.3.2
 
-  postcss-unique-selectors@7.0.3(postcss@8.4.44):
+  postcss-unique-selectors@7.0.3(postcss@8.4.47):
     dependencies:
-      postcss: 8.4.44
+      postcss: 8.4.47
       postcss-selector-parser: 6.1.2
 
   postcss-value-parser@4.2.0: {}
 
-  postcss@8.4.44:
+  postcss@8.4.47:
     dependencies:
       nanoid: 3.3.7
       picocolors: 1.1.0
@@ -9109,24 +8977,52 @@ snapshots:
 
   react-refresh@0.14.2: {}
 
-  react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-remove-scroll-bar@2.3.6(@types/react@18.3.6)(react@18.3.1):
     dependencies:
-      '@remix-run/router': 1.19.1
+      react: 18.3.1
+      react-style-singleton: 2.2.1(@types/react@18.3.6)(react@18.3.1)
+      tslib: 2.7.0
+    optionalDependencies:
+      '@types/react': 18.3.6
+
+  react-remove-scroll@2.6.0(@types/react@18.3.6)(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+      react-remove-scroll-bar: 2.3.6(@types/react@18.3.6)(react@18.3.1)
+      react-style-singleton: 2.2.1(@types/react@18.3.6)(react@18.3.1)
+      tslib: 2.7.0
+      use-callback-ref: 1.3.2(@types/react@18.3.6)(react@18.3.1)
+      use-sidecar: 1.1.2(@types/react@18.3.6)(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.6
+
+  react-router-dom@6.26.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      '@remix-run/router': 1.19.2
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      react-router: 6.26.1(react@18.3.1)
+      react-router: 6.26.2(react@18.3.1)
 
-  react-router@6.26.1(react@18.3.1):
+  react-router@6.26.2(react@18.3.1):
     dependencies:
-      '@remix-run/router': 1.19.1
+      '@remix-run/router': 1.19.2
       react: 18.3.1
 
-  react-textarea-autosize@8.5.3(@types/react@18.3.5)(react@18.3.1):
+  react-style-singleton@2.2.1(@types/react@18.3.6)(react@18.3.1):
+    dependencies:
+      get-nonce: 1.0.1
+      invariant: 2.2.4
+      react: 18.3.1
+      tslib: 2.7.0
+    optionalDependencies:
+      '@types/react': 18.3.6
+
+  react-textarea-autosize@8.5.3(@types/react@18.3.6)(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.25.6
       react: 18.3.1
       use-composed-ref: 1.3.0(react@18.3.1)
-      use-latest: 1.2.1(@types/react@18.3.5)(react@18.3.1)
+      use-latest: 1.2.1(@types/react@18.3.6)(react@18.3.1)
     transitivePeerDependencies:
       - '@types/react'
 
@@ -9418,16 +9314,14 @@ snapshots:
 
   strip-final-newline@2.0.0: {}
 
-  strip-final-newline@3.0.0: {}
-
   style-to-object@0.4.4:
     dependencies:
       inline-style-parser: 0.1.1
 
-  stylehacks@7.0.4(postcss@8.4.44):
+  stylehacks@7.0.4(postcss@8.4.47):
     dependencies:
       browserslist: 4.23.3
-      postcss: 8.4.44
+      postcss: 8.4.47
       postcss-selector-parser: 6.1.2
 
   sucrase@3.35.0:
@@ -9462,12 +9356,12 @@ snapshots:
 
   tailwind-merge@1.14.0: {}
 
-  tailwind-variants@0.1.20(tailwindcss@3.4.10):
+  tailwind-variants@0.1.20(tailwindcss@3.4.11):
     dependencies:
       tailwind-merge: 1.14.0
-      tailwindcss: 3.4.10
+      tailwindcss: 3.4.11
 
-  tailwindcss@3.4.10:
+  tailwindcss@3.4.11:
     dependencies:
       '@alloc/quick-lru': 5.2.0
       arg: 5.0.2
@@ -9483,11 +9377,11 @@ snapshots:
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.1.0
-      postcss: 8.4.44
-      postcss-import: 15.1.0(postcss@8.4.44)
-      postcss-js: 4.0.1(postcss@8.4.44)
-      postcss-load-config: 4.0.2(postcss@8.4.44)
-      postcss-nested: 6.2.0(postcss@8.4.44)
+      postcss: 8.4.47
+      postcss-import: 15.1.0(postcss@8.4.47)
+      postcss-js: 4.0.1(postcss@8.4.47)
+      postcss-load-config: 4.0.2(postcss@8.4.47)
+      postcss-nested: 6.2.0(postcss@8.4.47)
       postcss-selector-parser: 6.1.2
       resolve: 1.22.8
       sucrase: 3.35.0
@@ -9561,9 +9455,9 @@ snapshots:
 
   ts-interface-checker@0.1.13: {}
 
-  tsconfck@3.1.3(typescript@5.5.4):
+  tsconfck@3.1.3(typescript@5.6.2):
     optionalDependencies:
-      typescript: 5.5.4
+      typescript: 5.6.2
 
   tsconfig-paths@4.2.0:
     dependencies:
@@ -9573,14 +9467,14 @@ snapshots:
 
   tslib@2.7.0: {}
 
-  turbo-stream@2.3.0: {}
+  turbo-stream@2.4.0: {}
 
   type-is@1.6.18:
     dependencies:
       media-typer: 0.3.0
       mime-types: 2.1.35
 
-  typescript@5.5.4: {}
+  typescript@5.6.2: {}
 
   ufo@1.5.4: {}
 
@@ -9652,22 +9546,37 @@ snapshots:
       escalade: 3.2.0
       picocolors: 1.1.0
 
+  use-callback-ref@1.3.2(@types/react@18.3.6)(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+      tslib: 2.7.0
+    optionalDependencies:
+      '@types/react': 18.3.6
+
   use-composed-ref@1.3.0(react@18.3.1):
     dependencies:
       react: 18.3.1
 
-  use-isomorphic-layout-effect@1.1.2(@types/react@18.3.5)(react@18.3.1):
+  use-isomorphic-layout-effect@1.1.2(@types/react@18.3.6)(react@18.3.1):
     dependencies:
       react: 18.3.1
     optionalDependencies:
-      '@types/react': 18.3.5
+      '@types/react': 18.3.6
 
-  use-latest@1.2.1(@types/react@18.3.5)(react@18.3.1):
+  use-latest@1.2.1(@types/react@18.3.6)(react@18.3.1):
     dependencies:
       react: 18.3.1
-      use-isomorphic-layout-effect: 1.1.2(@types/react@18.3.5)(react@18.3.1)
+      use-isomorphic-layout-effect: 1.1.2(@types/react@18.3.6)(react@18.3.1)
     optionalDependencies:
-      '@types/react': 18.3.5
+      '@types/react': 18.3.6
+
+  use-sidecar@1.1.2(@types/react@18.3.6)(react@18.3.1):
+    dependencies:
+      detect-node-es: 1.1.0
+      react: 18.3.1
+      tslib: 2.7.0
+    optionalDependencies:
+      '@types/react': 18.3.6
 
   util-deprecate@1.0.2: {}
 
@@ -9715,7 +9624,7 @@ snapshots:
       debug: 4.3.7
       pathe: 1.1.2
       picocolors: 1.1.0
-      vite: 5.4.3(@types/node@22.5.5)
+      vite: 5.4.5(@types/node@22.5.5)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -9727,13 +9636,12 @@ snapshots:
       - supports-color
       - terser
 
-  vite-node@2.0.5(@types/node@22.5.5):
+  vite-node@2.1.1(@types/node@22.5.5):
     dependencies:
       cac: 6.7.14
       debug: 4.3.7
       pathe: 1.1.2
-      tinyrainbow: 1.2.0
-      vite: 5.4.3(@types/node@22.5.5)
+      vite: 5.4.5(@types/node@22.5.5)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -9745,52 +9653,53 @@ snapshots:
       - supports-color
       - terser
 
-  vite-tsconfig-paths@5.0.1(typescript@5.5.4)(vite@5.4.3(@types/node@22.5.5)):
+  vite-tsconfig-paths@5.0.1(typescript@5.6.2)(vite@5.4.5(@types/node@22.5.5)):
     dependencies:
       debug: 4.3.7
       globrex: 0.1.2
-      tsconfck: 3.1.3(typescript@5.5.4)
+      tsconfck: 3.1.3(typescript@5.6.2)
     optionalDependencies:
-      vite: 5.4.3(@types/node@22.5.5)
+      vite: 5.4.5(@types/node@22.5.5)
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  vite@5.4.3(@types/node@22.5.5):
+  vite@5.4.5(@types/node@22.5.5):
     dependencies:
       esbuild: 0.21.5
-      postcss: 8.4.44
+      postcss: 8.4.47
       rollup: 4.21.3
     optionalDependencies:
       '@types/node': 22.5.5
       fsevents: 2.3.3
 
-  vitest@2.0.5(@types/node@22.5.5):
+  vitest@2.1.1(@types/node@22.5.5):
     dependencies:
-      '@ampproject/remapping': 2.3.0
-      '@vitest/expect': 2.0.5
+      '@vitest/expect': 2.1.1
+      '@vitest/mocker': 2.1.1(@vitest/spy@2.1.1)(vite@5.4.5(@types/node@22.5.5))
       '@vitest/pretty-format': 2.1.1
-      '@vitest/runner': 2.0.5
-      '@vitest/snapshot': 2.0.5
-      '@vitest/spy': 2.0.5
-      '@vitest/utils': 2.0.5
+      '@vitest/runner': 2.1.1
+      '@vitest/snapshot': 2.1.1
+      '@vitest/spy': 2.1.1
+      '@vitest/utils': 2.1.1
       chai: 5.1.1
       debug: 4.3.7
-      execa: 8.0.1
       magic-string: 0.30.11
       pathe: 1.1.2
       std-env: 3.7.0
       tinybench: 2.9.0
+      tinyexec: 0.3.0
       tinypool: 1.0.1
       tinyrainbow: 1.2.0
-      vite: 5.4.3(@types/node@22.5.5)
-      vite-node: 2.0.5(@types/node@22.5.5)
+      vite: 5.4.5(@types/node@22.5.5)
+      vite-node: 2.1.1(@types/node@22.5.5)
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 22.5.5
     transitivePeerDependencies:
       - less
       - lightningcss
+      - msw
       - sass
       - sass-embedded
       - stylus

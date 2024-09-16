@@ -1,7 +1,7 @@
 .roleChip {
-    @apply flex items-center gap-0.5 px-1.5;
+	@apply flex items-center gap-0.5 px-1.5;
 }
 
 .emailColumn {
-    @apply truncate text-ellipsis overflow-hidden;
+	@apply truncate text-ellipsis overflow-hidden;
 }

@@ -1,18 +1,18 @@
 .layoutMainContainer {
-    @apply w-dvw h-dvh grid;
-    @apply lg:grid-cols-[18rem,1fr];
+	@apply w-dvw h-dvh grid;
+	@apply lg:grid-cols-[18rem,1fr];
 }
 
 .outletContainer {
-    @apply bg-content1 px-4 py-16;
-    @apply lg:p-10;
+	@apply bg-content1 px-4 py-16;
+	@apply lg:p-10;
 }
 
 .sidebarToggler {
-    @apply fixed top-4 left-4 z-10;
-    @apply lg:hidden;
+	@apply fixed top-4 left-4 z-10;
+	@apply lg:hidden;
 
-    .sidebarTogglerIcon {
-        @apply size-8 text-default-500;
-    }
+	.sidebarTogglerIcon {
+		@apply size-8 text-default-500;
+	}
 }

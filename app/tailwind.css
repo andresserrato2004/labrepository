@@ -3,19 +3,19 @@
 @tailwind utilities;
 
 * {
-    font-family: 'Inter';
+	font-family: "Inter", sans-serif;
 }
 
 html,
 body {
-    @apply overflow-x-hidden;
+	@apply overflow-x-hidden;
 }
 
 body {
-    min-width: 100vw;
-    min-height: 100vh;
-    min-width: 100svw;
-    min-height: 100svh;
+	min-width: 100vw;
+	min-height: 100vh;
+	min-width: 100svw;
+	min-height: 100svh;
 
-    @apply bg-content1;
+	@apply bg-content1;
 }

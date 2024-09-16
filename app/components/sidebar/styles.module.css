@@ -1,10 +1,10 @@
 .sidebarContainer {
-    @apply fixed w-full max-w-72 h-full px-5 py-10 bg-content2 shadow-small flex flex-col gap-8 overflow-x-hidden overflow-y-auto z-20;
-    @apply lg:static lg:w-full lg:m-0;
+	@apply fixed w-full max-w-72 h-full px-5 py-10 bg-content2 shadow-small flex flex-col gap-8 overflow-x-hidden overflow-y-auto z-20;
+	@apply lg:static lg:w-full lg:m-0;
 }
 
 .menusContainer {
-    @apply flex flex-col gap-6;
+	@apply flex flex-col gap-6;
 }
 
 .menu {
