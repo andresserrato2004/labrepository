@@ -1,7 +1,7 @@
-import type { KeysOfType } from '@components/types';
+import type { AppColor, KeysOfType } from '@components/types';
 import type { useServiceAsyncList } from '@hooks/lists';
 import type { TableProps } from '@nextui-org/table';
-import type { ReactNode } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 
 /**
  * Represents a column in the AppTable component.
@@ -14,10 +14,30 @@ export interface AppTableColumn<T> {
 	render: (record: T) => ReactNode;
 }
 
+/**
+ * Represents an action that can be performed on a single row in a table.
+ *
+ * @template T - The type of the item on which the action will be performed.
+ */
 export interface SingleRowAction<T> {
-	icon: ReactNode;
+	icon: ReactElement;
 	label: string;
+	key?: string;
+	description?: string;
+	className?: string;
+	color?: AppColor;
 	action: (item: T) => void;
+}
+
+/**
+ * Represents a section of actions that can be performed on a single row in a table.
+ *
+ * @template T - The type of the data associated with each action.
+ */
+export interface SingleRowActionSection<T> {
+	title: string;
+	showDivider?: boolean;
+	actions: SingleRowAction<T>[];
 }
 
 /**
@@ -32,10 +52,13 @@ export interface AppTableProps<T> extends TableProps {
 	columns: AppTableColumn<T>[];
 	list: ReturnType<typeof useServiceAsyncList<T>>;
 	itemKey: KeysOfType<T, string | number>;
-	singleRowActions?: SingleRowAction<T>[];
+	singleRowSections?: SingleRowActionSection<T>[];
 }
 
+/**
+ * Interface representing the properties for the AppTableActionsMenu component.
+ */
 export interface AppTableActionsMenuProps<T> {
-	actions: SingleRowAction<T>[];
+	sections: SingleRowActionSection<T>[];
 	item: T;
 }

@@ -8,3 +8,14 @@
 export type KeysOfType<T, U> = {
 	[K in keyof T]: T[K] extends U ? K : never;
 }[keyof T];
+
+/**
+ * Represents the color options available in the application.
+ */
+export type AppColor =
+	| 'default'
+	| 'primary'
+	| 'secondary'
+	| 'success'
+	| 'warning'
+	| 'danger';

@@ -9,6 +9,7 @@ import {
 	Dropdown,
 	DropdownItem,
 	DropdownMenu,
+	DropdownSection,
 	DropdownTrigger,
 } from '@nextui-org/dropdown';
 import { Pagination } from '@nextui-org/pagination';
@@ -22,11 +23,12 @@ import {
 	TableRow,
 } from '@nextui-org/table';
 import { DotsThreeOutlineVertical } from '@phosphor-icons/react';
+import { cloneElement } from 'react';
 
 import styles from './styles.module.css';
 
 function ActionsMenu<T>(props: AppTableActionsMenuProps<T>) {
-	const { item, actions, ...dropdownProps } = props;
+	const { item, sections, ...dropdownProps } = props;
 
 	return (
 		<Dropdown {...dropdownProps}>
@@ -39,14 +41,28 @@ function ActionsMenu<T>(props: AppTableActionsMenuProps<T>) {
 				</Button>
 			</DropdownTrigger>
 			<DropdownMenu variant='faded'>
-				{actions.map((item) => (
-					<DropdownItem
-						key={item.label}
-						startContent={item.icon}
-						onPress={() => item.action(props.item)}
+				{sections.map((section) => (
+					<DropdownSection
+						key={section.title}
+						title={section.title}
+						showDivider={section.showDivider}
 					>
-						{item.label}
-					</DropdownItem>
+						{section.actions.map((action) => (
+							<DropdownItem
+								className={action.className}
+								key={action.key || action.label}
+								color={action.color}
+								description={action.description}
+								startContent={cloneElement(action.icon, {
+									size: action.description ? 24 : 20,
+									weight: 'duotone',
+								})}
+								onPress={() => action.action(props.item)}
+							>
+								{action.label}
+							</DropdownItem>
+						))}
+					</DropdownSection>
 				))}
 			</DropdownMenu>
 		</Dropdown>
@@ -54,7 +70,7 @@ function ActionsMenu<T>(props: AppTableActionsMenuProps<T>) {
 }
 
 export function AppTable<T>(props: AppTableProps<T>) {
-	const { columns, list, itemKey, singleRowActions, ...tableProps } = props;
+	const { columns, list, itemKey, singleRowSections, ...tableProps } = props;
 
 	const finalColumns = [...columns];
 
@@ -62,11 +78,13 @@ export function AppTable<T>(props: AppTableProps<T>) {
 		title: 'Options',
 		align: 'center',
 		render: (item) => {
-			return <ActionsMenu actions={singleRowActions ?? []} item={item} />;
+			return (
+				<ActionsMenu sections={singleRowSections ?? []} item={item} />
+			);
 		},
 	};
 
-	if (singleRowActions) {
+	if (singleRowSections) {
 		finalColumns.push(optionsColumn);
 	}
 
