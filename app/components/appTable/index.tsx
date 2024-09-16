@@ -23,12 +23,26 @@ import {
 	TableRow,
 } from '@nextui-org/table';
 import { DotsThreeOutlineVertical } from '@phosphor-icons/react';
-import { cloneElement } from 'react';
+import { cloneElement, useMemo } from 'react';
 
 import styles from './styles.module.css';
 
 function ActionsMenu<T>(props: AppTableActionsMenuProps<T>) {
 	const { item, sections, ...dropdownProps } = props;
+
+	const disabledKeys = useMemo(() => {
+		const keys: string[] = [];
+
+		for (const section of sections) {
+			for (const action of section.actions) {
+				if (action.isDisabled?.(item)) {
+					keys.push(action.key || action.label);
+				}
+			}
+		}
+
+		return keys;
+	}, [sections, item]);
 
 	return (
 		<Dropdown {...dropdownProps}>
@@ -40,7 +54,7 @@ function ActionsMenu<T>(props: AppTableActionsMenuProps<T>) {
 					/>
 				</Button>
 			</DropdownTrigger>
-			<DropdownMenu variant='faded'>
+			<DropdownMenu variant='faded' disabledKeys={disabledKeys}>
 				{sections.map((section) => (
 					<DropdownSection
 						key={section.title}

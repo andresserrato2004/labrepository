@@ -106,11 +106,13 @@ export function UsersTable() {
 			title: 'Danger zone',
 			actions: [
 				{
+					key: 'delete',
 					className: 'text-danger',
 					color: 'danger',
 					description: 'This action cannot be undone',
 					label: 'Delete user',
 					icon: <Trash />,
+					isDisabled: (item) => item.role === 'admin',
 					action: (item) => console.log('Deleting user', item),
 				},
 			],

@@ -26,6 +26,7 @@ export interface SingleRowAction<T> {
 	description?: string;
 	className?: string;
 	color?: AppColor;
+	isDisabled?: (item: T) => boolean;
 	action: (item: T) => void;
 }
 
