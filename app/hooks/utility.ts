@@ -27,7 +27,6 @@ export function useDeferredServiceResponse<S>(
 		promise.then((result) => {
 			if (isMounted) {
 				if (result.type === ResponseType.ServerError) {
-					//TODO: Redirect to error page
 					throw createServerErrorResponse(result);
 				}
 

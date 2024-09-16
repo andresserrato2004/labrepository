@@ -34,3 +34,16 @@ export function getSeededRandom(str: string, limit: number) {
 	}
 	return Math.abs(hash) % (limit + 1);
 }
+
+/**
+ * Capitalizes the first letter of each word in a string.
+ *
+ * @param str - The string to capitalize.
+ * @returns The capitalized string.
+ */
+export function capitalize(str: string) {
+	return str
+		.split(' ')
+		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+		.join(' ');
+}

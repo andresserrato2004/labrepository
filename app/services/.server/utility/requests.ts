@@ -125,3 +125,19 @@ export function buildUpdateAuditLog({
 		oldData: oldData,
 	};
 }
+
+/**
+ * Validates the admin key in the request headers.
+ *
+ * @param request - The request object.
+ * @returns Returns `true` if the admin key is valid, otherwise `false`.
+ */
+export function validateAdminKey(request: Request) {
+	const adminKey = request.headers.get('x-admin-key');
+
+	if (!adminKey || adminKey !== process.env.ADMIN_KEY) {
+		return false;
+	}
+
+	return true;
+}

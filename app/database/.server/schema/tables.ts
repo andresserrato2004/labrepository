@@ -36,6 +36,7 @@ export const users = pgTable(
 		username: text('username').notNull(),
 		name: text('name').notNull(),
 		password: text('password').notNull(),
+		email: text('email').notNull(),
 		role: enums
 			.userRoleEnum('role')
 			.$type<enums.UserRole | `${enums.UserRole}`>()

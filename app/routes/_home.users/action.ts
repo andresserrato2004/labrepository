@@ -3,7 +3,7 @@ import type { ActionFunctionArgs } from '@remix-run/node';
 import { newUserFormValidator } from '@database/validators';
 import { MissingEnvironmentVariableError } from '@errors/shared';
 import { createUser } from '@services/server/users';
-import { parseFormData } from '@services/server/utility';
+import { parseFormData, validateAdminKey } from '@services/server/utility';
 import {
 	ClientErrorCode,
 	HttpMethod,
@@ -16,16 +16,6 @@ import {
 
 if (!process.env.ADMIN_KEY) {
 	throw new MissingEnvironmentVariableError('ADMIN_KEY');
-}
-
-function validateAdminKey(request: Request) {
-	const adminKey = request.headers.get('x-admin-key');
-
-	if (!adminKey || adminKey !== process.env.ADMIN_KEY) {
-		return false;
-	}
-
-	return true;
 }
 
 async function handlePostRequest(request: Request) {
@@ -56,6 +46,7 @@ async function handlePostRequest(request: Request) {
 }
 
 export const action = async ({ request }: ActionFunctionArgs) => {
+	//TODO: Investigate how bypass the session checker on the _home loader
 	const isValidAdminKey = validateAdminKey(request);
 
 	if (!isValidAdminKey) {

@@ -144,6 +144,21 @@ export function createServerErrorResponse({
 	code,
 	logId,
 }: ServerErrorResponse): Response {
+	try {
+		if (window !== undefined) {
+			/**
+			 * If the window object is defined, navigate to the error page with the log ID.
+			 * If not, the error page will be displayed using the nearest ErrorBoundary.
+			 */
+			window.location.href = `/error?logId=${logId}`;
+		}
+	} catch (_error) {
+		/**
+		 * If the code reaches this point, it means that the window object is not defined.
+		 * This is expected when running server-side code.
+		 */
+	}
+
 	return new Response(logId, {
 		status: code,
 	});

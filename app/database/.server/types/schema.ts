@@ -31,6 +31,11 @@ export type NewLogin = {
 export type User = typeof schema.users.$inferSelect;
 
 /**
+ * Represents the definition of a User object in the schema excluding the password.
+ */
+export type InfoUser = Omit<User, 'password'>;
+
+/**
  * Represents the type definition for creating a new user.
  */
 export type NewUser = typeof schema.users.$inferInsert;

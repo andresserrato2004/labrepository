@@ -1,4 +1,4 @@
-import type { NewUser } from '@database/types';
+import type { InfoUser, NewUser } from '@database/types';
 import type {
 	CreateUserArgs,
 	Errors,
@@ -17,7 +17,14 @@ import {
 	getErrorsFromZodError,
 	isAppError,
 } from '@services/shared/utility';
+import { getTableColumns } from 'drizzle-orm';
 
+/**
+ * Checks if a user with the given username already exists in the database.
+ *
+ * @param request - The new user object containing the username.
+ * @returns A promise that resolves to an Errors object if the username already exists, or null if it doesn't.
+ */
 async function checkForExistingUser(
 	request: NewUser,
 ): Promise<Errors<NewUser> | null> {
@@ -34,6 +41,33 @@ async function checkForExistingUser(
 	}
 
 	return null;
+}
+
+/**
+ * Retrieves all users from the database.
+ * @returns A promise that resolves to a ServiceResponse containing an array of User objects.
+ */
+export async function getAllUsers(): Promise<ServiceResponse<InfoUser[]>> {
+	try {
+		const { password, ...columns } = getTableColumns(schema.users);
+
+		const users = await database
+			.select({
+				...columns,
+			})
+			.from(schema.users);
+
+		return {
+			type: ResponseType.Success,
+			code: SuccessCode.Ok,
+			data: users,
+		};
+	} catch (error) {
+		return handleUnknownError({
+			error: error,
+			stack: 'users/getAllUsers',
+		});
+	}
 }
 
 /**
@@ -67,7 +101,6 @@ export async function createUser({
 
 		await database.transaction(async (trx) => {
 			await trx.insert(schema.users).values(user).returning();
-			//TODO: Implement auditory logs
 		});
 
 		return {

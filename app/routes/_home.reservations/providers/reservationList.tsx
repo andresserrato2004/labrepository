@@ -21,7 +21,6 @@ function reservationList() {
 			const response = await reservationsPromise;
 
 			if (response.type === ResponseType.ServerError) {
-				//TODO: Redirect to error page
 				throw createServerErrorResponse(response);
 			}
 
