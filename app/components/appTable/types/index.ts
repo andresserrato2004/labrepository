@@ -31,35 +31,41 @@ export interface SingleRowAction<T> {
 }
 
 /**
- * Represents a section of actions that can be performed on a single row in a table.
+ * Represents a section of actions for a single row in a table.
  *
- * @template T - The type of the data associated with each action.
+ * @template T - The type of the item that the actions will operate on.
  */
 export interface SingleRowActionSection<T> {
 	title: string;
 	showDivider?: boolean;
-	actions: SingleRowAction<T>[];
+	actions: (SingleRowAction<T> | ((item: T) => SingleRowAction<T>))[];
 }
 
 /**
- * Represents the props for the AppTable component.
+ * Interface representing the properties for the AppTable component.
  *
- * @template T - The type of data in the table.
- * @property {AppTableColumn<T>[]} columns - The columns to be displayed in the table.
- * @property {ReturnType<typeof useAsyncList<T>>} items - The list of items to be displayed in the table.
- * @property {KeysOfType<T, string | number>} itemKey - The key used to uniquely identify each item in the table.
+ * @template T - The type of the items in the table.
+ * @extends TableProps
  */
 export interface AppTableProps<T> extends TableProps {
 	columns: AppTableColumn<T>[];
 	list: ReturnType<typeof useServiceAsyncList<T>>;
 	itemKey: KeysOfType<T, string | number>;
-	singleRowSections?: SingleRowActionSection<T>[];
+	singleRowSections?: (
+		| SingleRowActionSection<T>
+		| ((item: T) => SingleRowActionSection<T>)
+	)[];
 }
 
 /**
- * Interface representing the properties for the AppTableActionsMenu component.
+ * Props for the AppTableActionsMenu component.
+ *
+ * @template T - The type of the item.
  */
 export interface AppTableActionsMenuProps<T> {
-	sections: SingleRowActionSection<T>[];
+	sections: (
+		| SingleRowActionSection<T>
+		| ((item: T) => SingleRowActionSection<T>)
+	)[];
 	item: T;
 }

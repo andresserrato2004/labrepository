@@ -2,6 +2,8 @@ import type {
 	AppTableActionsMenuProps,
 	AppTableColumn,
 	AppTableProps,
+	SingleRowAction,
+	SingleRowActionSection,
 } from '@components/appTable/types';
 
 import { Button } from '@nextui-org/button';
@@ -27,14 +29,42 @@ import { cloneElement, useMemo } from 'react';
 
 import styles from './styles.module.css';
 
+function getMappedSections<T>(
+	sections: (
+		| SingleRowActionSection<T>
+		| ((item: T) => SingleRowActionSection<T>)
+	)[],
+	item: T,
+) {
+	return sections.map((section) =>
+		typeof section === 'function' ? section(item) : section,
+	);
+}
+
+function getMappedActions<T>(
+	actions: (SingleRowAction<T> | ((item: T) => SingleRowAction<T>))[],
+	item: T,
+) {
+	return actions.map((action) =>
+		typeof action === 'function' ? action(item) : action,
+	);
+}
+
 function ActionsMenu<T>(props: AppTableActionsMenuProps<T>) {
 	const { item, sections, ...dropdownProps } = props;
+
+	const mappedSections = useMemo(
+		() => getMappedSections(sections, item),
+		[sections, item],
+	);
 
 	const disabledKeys = useMemo(() => {
 		const keys: string[] = [];
 
-		for (const section of sections) {
-			for (const action of section.actions) {
+		for (const section of mappedSections) {
+			const actions = getMappedActions(section.actions, item);
+
+			for (const action of actions) {
 				if (action.isDisabled?.(item)) {
 					keys.push(action.key || action.label);
 				}
@@ -42,7 +72,7 @@ function ActionsMenu<T>(props: AppTableActionsMenuProps<T>) {
 		}
 
 		return keys;
-	}, [sections, item]);
+	}, [item, mappedSections]);
 
 	return (
 		<Dropdown {...dropdownProps}>
@@ -55,27 +85,29 @@ function ActionsMenu<T>(props: AppTableActionsMenuProps<T>) {
 				</Button>
 			</DropdownTrigger>
 			<DropdownMenu variant='faded' disabledKeys={disabledKeys}>
-				{sections.map((section) => (
+				{mappedSections.map((section) => (
 					<DropdownSection
 						key={section.title}
 						title={section.title}
 						showDivider={section.showDivider}
 					>
-						{section.actions.map((action) => (
-							<DropdownItem
-								className={action.className}
-								key={action.key || action.label}
-								color={action.color}
-								description={action.description}
-								startContent={cloneElement(action.icon, {
-									size: action.description ? 24 : 20,
-									weight: 'duotone',
-								})}
-								onPress={() => action.action(props.item)}
-							>
-								{action.label}
-							</DropdownItem>
-						))}
+						{getMappedActions(section.actions, item).map(
+							(action) => (
+								<DropdownItem
+									className={action.className}
+									key={action.key || action.label}
+									color={action.color}
+									description={action.description}
+									startContent={cloneElement(action.icon, {
+										size: action.description ? 24 : 20,
+										weight: 'duotone',
+									})}
+									onPress={() => action.action(props.item)}
+								>
+									{action.label}
+								</DropdownItem>
+							),
+						)}
 					</DropdownSection>
 				))}
 			</DropdownMenu>
