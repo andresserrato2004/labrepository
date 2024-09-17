@@ -47,7 +47,8 @@ export interface SingleRowActionSection<T> {
  * @template T - The type of the items in the table.
  * @extends TableProps
  */
-export interface AppTableProps<T> extends TableProps {
+export interface AppTableProps<T extends Record<string, unknown>>
+	extends TableProps {
 	columns: AppTableColumn<T>[];
 	list: ReturnType<typeof useServiceAsyncList<T>>;
 	itemKey: KeysOfType<T, string | number>;
