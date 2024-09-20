@@ -1,5 +1,6 @@
 import type { AppColor, KeysOfType } from '@components/types';
 import type { useServiceAsyncList } from '@hooks/lists';
+import type { DropdownProps } from '@nextui-org/dropdown';
 import type { TableProps } from '@nextui-org/table';
 import type { ReactElement, ReactNode } from 'react';
 
@@ -12,6 +13,21 @@ export interface AppTableColumn<T> {
 	title: string;
 	align?: 'start' | 'center' | 'end' | undefined;
 	render: (record: T) => ReactNode;
+}
+
+/**
+ * Represents an action that can be performed on multiple rows in a table.
+ * @template T - The type of the items in the table.
+ */
+export interface AppTableAction<T> {
+	icon: ReactElement;
+	label: string;
+	key?: string;
+	description?: string;
+	className?: string;
+	color?: AppColor;
+	isDisabled?: (items: T[]) => boolean;
+	action: (items: T[]) => void;
 }
 
 /**
@@ -56,6 +72,15 @@ export interface AppTableProps<T extends Record<string, unknown>>
 		| SingleRowActionSection<T>
 		| ((item: T) => SingleRowActionSection<T>)
 	)[];
+	tableActions?: (AppTableAction<T> | ((items: T[]) => AppTableAction<T>))[];
+}
+
+/**
+ * Interface representing the properties for the ActionsButton component.
+ */
+export interface ActionsButtonProps<T> extends Omit<DropdownProps, 'children'> {
+	tableActions?: (AppTableAction<T> | ((items: T[]) => AppTableAction<T>))[];
+	items: T[];
 }
 
 /**

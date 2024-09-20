@@ -1,4 +1,6 @@
 import type {
+	ActionsButtonProps,
+	AppTableAction,
 	AppTableActionsMenuProps,
 	AppTableColumn,
 	AppTableProps,
@@ -32,11 +34,10 @@ import {
 import {
 	CaretDown,
 	DotsThreeOutlineVertical,
-	DownloadSimple,
+	FloppyDisk,
 	MagnifyingGlass,
+	MicrosoftExcelLogo,
 	Plus,
-	PlusSquare,
-	UploadSimple,
 } from '@phosphor-icons/react';
 import { cloneElement, useEffect, useMemo } from 'react';
 
@@ -79,16 +80,51 @@ function getMappedActions<T>(
 	);
 }
 
+function getMappedTableActions<T>(
+	actions:
+		| (AppTableAction<T> | ((items: T[]) => AppTableAction<T>))[]
+		| undefined,
+	items: T[],
+) {
+	if (!actions) {
+		return [];
+	}
+
+	return actions.map((action) =>
+		typeof action === 'function' ? action(items) : action,
+	);
+}
+
+/**
+ * Returns a default set of table actions.
+ *
+ * @template T - The type of the items in the table.
+ * @returns The default table actions.
+ */
+function getDefaultTableActions<T>(): AppTableAction<T>[] {
+	return [
+		{
+			icon: <MicrosoftExcelLogo />,
+			label: 'Export as Excel',
+			description: 'Download items as an Excel file',
+			action: (items) => {
+				console.log('Downloaded items:', items);
+			},
+		},
+		{
+			icon: <FloppyDisk />,
+			label: 'Export as CSV',
+			description: 'Download items as a CSV file',
+			action: (items) => {
+				console.log('Downloaded items:', items);
+			},
+		},
+	];
+}
+
 /**
  * SearchBar component renders an input field for searching within the app table.
  * It utilizes the context from `useAppTableContext` to manage the search filter state.
- *
- * @component
- * @example
- * return (
- *   <SearchBar />
- * )
- *
  */
 function SearchBar() {
 	const { searchFilter, setSearchFilter } = useAppTableContext();
@@ -161,7 +197,7 @@ function ActionsMenu<T>(props: AppTableActionsMenuProps<T>) {
 										size: action.description ? 24 : 20,
 										weight: 'duotone',
 									})}
-									onPress={() => action.action(props.item)}
+									onPress={() => action.action(item)}
 								>
 									{action.label}
 								</DropdownItem>
@@ -177,14 +213,23 @@ function ActionsMenu<T>(props: AppTableActionsMenuProps<T>) {
 /**
  * ActionsButton component renders a button that triggers a dropdown menu with actions.
  */
-function ActionsButton() {
-	const { searchFilter } = useAppTableContext();
+function ActionsButton<T>(props: ActionsButtonProps<T>) {
+	const { tableActions, items, ...dropdownProps } = props;
+
+	const finalActions = useMemo(
+		() => [
+			...getMappedTableActions(tableActions, items),
+			...getDefaultTableActions(),
+		],
+		[tableActions, items],
+	);
 
 	return (
 		<Dropdown
 			backdrop='opaque'
 			showArrow={true}
 			classNames={{ backdrop: styles.actionsBackdrop }}
+			{...dropdownProps}
 		>
 			<DropdownTrigger>
 				<Button
@@ -195,31 +240,22 @@ function ActionsButton() {
 					Actions
 				</Button>
 			</DropdownTrigger>
-			<DropdownMenu variant='faded'>
-				<DropdownSection title='Actions'>
+			<DropdownMenu variant='faded' items={finalActions}>
+				{(action) => (
 					<DropdownItem
-						startContent={<PlusSquare size={26} weight='duotone' />}
-						description='Create a new user'
+						className={action.className}
+						key={action.key || action.label}
+						color={action.color}
+						description={action.description}
+						startContent={cloneElement(action.icon, {
+							size: action.description ? 26 : 22,
+							weight: 'duotone',
+						})}
+						onPress={() => action.action(items)}
 					>
-						Create new user
+						{action.label}
 					</DropdownItem>
-					<DropdownItem
-						startContent={
-							<UploadSimple size={26} weight='duotone' />
-						}
-						description='Upload users from excel'
-					>
-						Upload from excel
-					</DropdownItem>
-					<DropdownItem
-						startContent={
-							<DownloadSimple size={26} weight='duotone' />
-						}
-						description='Download all users as excel'
-					>
-						Download as excel {searchFilter}
-					</DropdownItem>
-				</DropdownSection>
+				)}
 			</DropdownMenu>
 		</Dropdown>
 	);
@@ -260,7 +296,14 @@ function ColumnsSelector<T>(props: { columns: AppTableColumn<T>[] }) {
 function ContentWrapper<T extends Record<string, unknown>>(
 	props: AppTableProps<T>,
 ) {
-	const { columns, list, itemKey, singleRowSections, ...tableProps } = props;
+	const {
+		columns,
+		list,
+		itemKey,
+		singleRowSections,
+		tableActions,
+		...tableProps
+	} = props;
 	const { searchFilter, visibleColumns } = useAppTableContext();
 
 	const finalColumns = useMemo(() => {
@@ -300,7 +343,7 @@ function ContentWrapper<T extends Record<string, unknown>>(
 			<div className={styles.tableOptionsContainer}>
 				<SearchBar />
 				<ColumnsSelector columns={columns} />
-				<ActionsButton />
+				<ActionsButton tableActions={tableActions} items={list.items} />
 			</div>
 			<Table
 				sortDescriptor={list.sortDescriptor}
