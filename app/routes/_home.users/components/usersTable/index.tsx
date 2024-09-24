@@ -1,4 +1,5 @@
 import type {
+	AppTableAction,
 	AppTableColumn,
 	SingleRowActionSection,
 } from '@components/appTable/types';
@@ -12,7 +13,9 @@ import {
 	Key,
 	MicrosoftExcelLogo,
 	PencilLine,
+	PlusSquare,
 	Trash,
+	UploadSimple,
 	User,
 } from '@phosphor-icons/react';
 import { useUserList } from '@routes/users/providers';
@@ -56,6 +59,7 @@ export function UsersTable() {
 		},
 		{
 			key: 'email',
+			width: 400,
 			title: 'Email',
 			render: (record) => (
 				<span className={styles.emailColumn}>{record.email}</span>
@@ -106,14 +110,31 @@ export function UsersTable() {
 			title: 'Danger zone',
 			actions: [
 				{
+					key: 'delete',
 					className: 'text-danger',
 					color: 'danger',
 					description: 'This action cannot be undone',
 					label: 'Delete user',
 					icon: <Trash />,
+					isDisabled: (item) => item.role === 'admin',
 					action: (item) => console.log('Deleting user', item),
 				},
 			],
+		},
+	];
+
+	const tableActions: AppTableAction<InfoUser>[] = [
+		{
+			label: 'Add user',
+			description: 'Add a new user',
+			icon: <PlusSquare />,
+			action: () => console.log('Add user'),
+		},
+		{
+			label: 'Import from excel',
+			description: 'Import users from an Excel file',
+			icon: <UploadSimple />,
+			action: () => console.log('Import from excel'),
 		},
 	];
 
@@ -121,8 +142,9 @@ export function UsersTable() {
 		<AppTable
 			columns={columns}
 			list={userList}
-			itemKey={'id'}
 			singleRowSections={actionSections}
+			tableActions={tableActions}
+			itemKey='id'
 			aria-label='Users table'
 		/>
 	);

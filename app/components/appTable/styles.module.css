@@ -5,3 +5,15 @@
 .actionsIcon {
 	@apply text-content4-foreground size-5;
 }
+
+.tableOptionsContainer {
+	@apply grid grid-cols-[24rem,8rem,1fr] mb-4 gap-4;
+}
+
+.actionsButton {
+	@apply w-32 justify-self-end;
+}
+
+.actionsBackdrop {
+    @apply bg-content4-foreground bg-opacity-20 backdrop-blur-sm;
+}

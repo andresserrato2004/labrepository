@@ -82,11 +82,12 @@ function sortItems<T>(items: T[], sortDescriptor: SortDescriptor) {
  * @param {UseServiceAsyncListOptions<S>} options - Configuration options for the list.
  * @returns The result object containing the list data and pagination state.
  */
-export function useServiceAsyncList<S>(
+export function useServiceAsyncList<S extends Record<string, unknown>>(
 	promise: UseServiceAsyncListPromise<S>,
 	options: UseServiceAsyncListOptions<S>,
 ) {
 	const [page, setPage] = useState(1);
+	const [filter, setFilter] = useState('');
 
 	const list = useAsyncList<S>({
 		initialSortDescriptor: options.initialSortDescriptor ?? {
@@ -125,8 +126,24 @@ export function useServiceAsyncList<S>(
 		const start = (page - 1) * pageSize;
 		const end = start + pageSize;
 
-		return list.items.slice(start, end);
-	}, [list.items, page]);
+		const filteredItems = list.items.filter((item) => {
+			const search = filter.toLowerCase().trim();
+
+			if (!search) {
+				return true;
+			}
+
+			return Object.values(item).some((value) => {
+				if (typeof value === 'string') {
+					return value.toLowerCase().includes(search);
+				}
+
+				return false;
+			});
+		});
+
+		return filteredItems.slice(start, end);
+	}, [list.items, page, filter]);
 
 	return {
 		...list,
@@ -135,5 +152,7 @@ export function useServiceAsyncList<S>(
 		totalPages,
 		page,
 		setPage,
+		filter,
+		setFilter,
 	};
 }
