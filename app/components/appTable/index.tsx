@@ -367,7 +367,7 @@ function ContentWrapper<T extends Record<string, unknown>>(
 				<TableHeader>
 					{finalColumns.map((column) => (
 						<TableColumn
-							width={140}
+							width={column.width}
 							key={column.key || column.title}
 							align={column.align}
 							allowsSorting={Boolean(column.key)}

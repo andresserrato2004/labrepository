@@ -1,18 +1,18 @@
 import type { AppColor, KeysOfType } from '@components/types';
 import type { useServiceAsyncList } from '@hooks/lists';
 import type { DropdownProps } from '@nextui-org/dropdown';
-import type { TableProps } from '@nextui-org/table';
+import type { TableColumnProps, TableProps } from '@nextui-org/table';
 import type { ReactElement, ReactNode } from 'react';
 
 /**
  * Represents a column in the AppTable component.
  * @template T - The type of data in the table.
  */
-export interface AppTableColumn<T> {
+export interface AppTableColumn<T>
+	extends Omit<TableColumnProps<T>, 'children'> {
+	render: (record: T) => ReactNode;
 	key?: Extract<keyof T, string | number>;
 	title: string;
-	align?: 'start' | 'center' | 'end' | undefined;
-	render: (record: T) => ReactNode;
 }
 
 /**

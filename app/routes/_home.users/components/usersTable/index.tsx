@@ -59,6 +59,7 @@ export function UsersTable() {
 		},
 		{
 			key: 'email',
+			width: 400,
 			title: 'Email',
 			render: (record) => (
 				<span className={styles.emailColumn}>{record.email}</span>
