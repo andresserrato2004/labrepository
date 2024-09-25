@@ -1,0 +1,3 @@
+.modalBackdrop {
+    @apply bg-content4-foreground bg-opacity-20 backdrop-blur-md;
+}

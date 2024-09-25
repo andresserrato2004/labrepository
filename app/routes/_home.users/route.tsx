@@ -1,7 +1,8 @@
 import { RouteTitle } from '@components';
-import { UserListProvider } from '@routes/users/providers';
-
+import { ModalFormProvider } from '@components/modalForm/providers';
+import { UserModal } from '@routes/users/components';
 import { UsersTable } from '@routes/users/components';
+import { UserListProvider } from '@routes/users/providers';
 
 export { meta } from '@routes/users/meta';
 export { loader } from '@routes/users/loader';
@@ -12,7 +13,10 @@ export default function UsersRoute() {
 		<>
 			<RouteTitle>Users</RouteTitle>
 			<UserListProvider>
-				<UsersTable />
+				<ModalFormProvider>
+					<UserModal />
+					<UsersTable />
+				</ModalFormProvider>
 			</UserListProvider>
 		</>
 	);

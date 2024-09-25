@@ -6,6 +6,7 @@ import type {
 import type { InfoUser } from '@database/types';
 
 import { AppTable } from '@components';
+import { useModalForm } from '@components/modalForm/providers';
 import { Chip } from '@nextui-org/chip';
 import {
 	Clipboard,
@@ -48,6 +49,7 @@ function getRoleChip(role: string) {
 
 export function UsersTable() {
 	const userList = useUserList();
+	const { openModal } = useModalForm();
 
 	const columns: AppTableColumn<InfoUser>[] = [
 		{ key: 'id', title: 'User Id', render: (record) => record.id },
@@ -80,7 +82,7 @@ export function UsersTable() {
 				{
 					label: 'Edit user',
 					icon: <PencilLine />,
-					action: (item) => console.log('Edit', item),
+					action: (item) => openModal(item, 'update'),
 				},
 			],
 		},
@@ -128,7 +130,7 @@ export function UsersTable() {
 			label: 'Add user',
 			description: 'Add a new user',
 			icon: <PlusSquare />,
-			action: () => console.log('Add user'),
+			action: () => openModal(null, 'create'),
 		},
 		{
 			label: 'Import from excel',
