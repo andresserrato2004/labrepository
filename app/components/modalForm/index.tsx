@@ -5,6 +5,17 @@ import { Modal, ModalContent } from '@nextui-org/modal';
 
 import styles from './styles.module.css';
 
+function getFormMethod(modalType: string) {
+	switch (modalType) {
+		case 'edit':
+			return 'PUT';
+		case 'delete':
+			return 'DELETE';
+		default:
+			return 'POST';
+	}
+}
+
 export function ModalForm({
 	children,
 }: {
@@ -14,9 +25,10 @@ export function ModalForm({
 		ReturnType<typeof ModalFooter>,
 	];
 }) {
-	const { isOpen, onOpenChange } = useModalForm();
-
+	const { isOpen, onOpenChange, fetcher, modalType } = useModalForm();
 	const [ModalHeader, ModalBody, ModalFooter] = children;
+
+	const method = getFormMethod(modalType);
 
 	return (
 		<>
@@ -29,11 +41,11 @@ export function ModalForm({
 				}}
 			>
 				<ModalContent>
-					<form>
+					<fetcher.Form method={method}>
 						{ModalHeader}
 						{ModalBody}
 						{ModalFooter}
-					</form>
+					</fetcher.Form>
 				</ModalContent>
 			</Modal>
 		</>

@@ -11,6 +11,8 @@ import { Input } from '@nextui-org/input';
 import { ModalBody, ModalFooter, ModalHeader } from '@nextui-org/modal';
 import { useState } from 'react';
 
+import styles from './styles.module.css';
+
 export function UserModal() {
 	const [userRole, setUserRole] = useState<Key>('user');
 	const { fetcher, closeModal } = useModalForm<User, typeof action>();
@@ -29,6 +31,7 @@ export function UserModal() {
 				<ModalBody className='grid grid-cols-12 p-6 gap-6'>
 					<Input
 						label='Name'
+						name='name'
 						variant='faded'
 						className='col-span-12'
 						isRequired={true}
@@ -37,6 +40,7 @@ export function UserModal() {
 					/>
 					<Input
 						label='Username'
+						name='username'
 						variant='faded'
 						className='col-span-8'
 						isRequired={true}
@@ -45,6 +49,7 @@ export function UserModal() {
 					/>
 					<Autocomplete
 						label='Role'
+						name='role'
 						variant='faded'
 						className='col-span-4'
 						isClearable={false}
@@ -54,15 +59,24 @@ export function UserModal() {
 						onValueChange={clearErrors('role')}
 						{...createErrorProps('role')}
 					>
-						<AutocompleteItem key='admin' value='admin'>
-							Admin
+						<AutocompleteItem
+							key='admin'
+							value='admin'
+							className={styles.autocompleteItem}
+						>
+							admin
 						</AutocompleteItem>
-						<AutocompleteItem key='user' value='user'>
-							User
+						<AutocompleteItem
+							key='user'
+							value='user'
+							className={styles.autocompleteItem}
+						>
+							user
 						</AutocompleteItem>
 					</Autocomplete>
 					<Input
 						label='Email'
+						name='email'
 						variant='faded'
 						className='col-span-12'
 						isRequired={true}
@@ -72,6 +86,7 @@ export function UserModal() {
 					/>
 					<Input
 						label='Password'
+						name='password'
 						variant='faded'
 						className='col-span-12'
 						isRequired={true}

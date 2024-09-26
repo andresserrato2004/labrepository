@@ -6,7 +6,7 @@ import type {
 	ServiceResponse,
 } from '@services/server/types';
 
-import { database, eq, schema } from '@database';
+import { database, eq, or, schema } from '@database';
 import { newUserValidator } from '@database/validators';
 import { InvalidNewUserError, UserConflictError } from '@errors/services';
 import { hashPassword } from '@services/server/auth/security';
@@ -28,16 +28,32 @@ import { getTableColumns } from 'drizzle-orm';
 async function checkForExistingUser(
 	request: NewUser,
 ): Promise<Errors<NewUser> | null> {
-	const [user] = await database
+	const users = await database
 		.select()
 		.from(schema.users)
-		.where(eq(schema.users.username, request.username))
-		.limit(1);
+		.where(
+			or(
+				eq(schema.users.username, request.username),
+				eq(schema.users.email, request.email),
+			),
+		);
 
-	if (user) {
-		return {
-			username: 'Username already exists.',
-		};
+	const conflictError: Errors<NewUser> = {};
+
+	if (users.length > 0) {
+		for (const user of users) {
+			if (user.username === request.username) {
+				conflictError.username = 'Username already exists';
+			}
+
+			if (user.email === request.email) {
+				conflictError.email = 'Email already exists';
+			}
+		}
+	}
+
+	if (users.length > 0) {
+		return conflictError;
 	}
 
 	return null;
@@ -89,14 +105,13 @@ export async function createUser({
 				getErrorsFromZodError(schemaValidation.error),
 			);
 		}
-
-		const conflictError = await checkForExistingUser(request);
+		const user = schemaValidation.data;
+		const conflictError = await checkForExistingUser(user);
 
 		if (conflictError) {
 			throw new UserConflictError(conflictError);
 		}
 
-		const user = schemaValidation.data;
 		user.password = await hashPassword(user.password);
 
 		await database.transaction(async (trx) => {

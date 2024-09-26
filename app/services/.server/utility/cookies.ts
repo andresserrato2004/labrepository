@@ -45,11 +45,16 @@ export async function getTokenFromRequest(
  */
 export async function getSessionFromRequest(
 	request: Request,
-): Promise<Session> {
+	redirectOnError = true,
+): Promise<Session | null> {
 	const token = await getTokenFromRequest(request);
 	const sessionResponse = await getSessionFromToken(token ?? '');
 
 	if (!token || sessionResponse.type !== ResponseType.Success) {
+		if (!redirectOnError) {
+			return null;
+		}
+
 		const redirectTo = buildRedirectTo(request);
 		throw redirect(`/login?${redirectTo}`);
 	}

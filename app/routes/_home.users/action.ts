@@ -3,7 +3,11 @@ import type { ActionFunctionArgs } from '@remix-run/node';
 import { newUserFormValidator } from '@database/validators';
 import { MissingEnvironmentVariableError } from '@errors/shared';
 import { createUser } from '@services/server/users';
-import { parseFormData, validateAdminKey } from '@services/server/utility';
+import {
+	getSessionFromRequest,
+	parseFormData,
+	validateAdminKey,
+} from '@services/server/utility';
 import {
 	ClientErrorCode,
 	HttpMethod,
@@ -48,8 +52,9 @@ async function handlePostRequest(request: Request) {
 export const action = async ({ request }: ActionFunctionArgs) => {
 	//TODO: Investigate how bypass the session checker on the _home loader
 	const isValidAdminKey = validateAdminKey(request);
+	const session = await getSessionFromRequest(request, false);
 
-	if (!isValidAdminKey) {
+	if (!isValidAdminKey && !session) {
 		throw createBasicResponse(
 			'Method not allowed',
 			ClientErrorCode.MethodNotAllowed,
