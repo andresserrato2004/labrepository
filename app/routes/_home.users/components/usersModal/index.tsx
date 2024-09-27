@@ -2,31 +2,46 @@ import type { User } from '@database/types';
 import type { Key } from '@react-types/shared';
 import type { action } from '@routes/users/action';
 
-import { ModalForm } from '@components';
+import { HiddenInput, ModalForm } from '@components';
 import { useModalForm } from '@components/modalForm/providers';
 import { useFetcherErrors } from '@hooks/fetcher';
 import { Autocomplete, AutocompleteItem } from '@nextui-org/autocomplete';
 import { Button } from '@nextui-org/button';
 import { Input } from '@nextui-org/input';
 import { ModalBody, ModalFooter, ModalHeader } from '@nextui-org/modal';
-import { useState } from 'react';
-
-import styles from './styles.module.css';
+import { ResponseType } from '@services/shared/utility';
+import { useEffect, useState } from 'react';
 
 export function UserModal() {
 	const [userRole, setUserRole] = useState<Key>('user');
 	const { fetcher, closeModal } = useModalForm<User, typeof action>();
 	const { clearErrors, createErrorProps } = useFetcherErrors(fetcher);
 
+	const isLoading = fetcher.state !== 'idle';
+
 	const handleRoleChange = (value: Key | null) => {
 		setUserRole(value ?? 'user');
 	};
+
+	useEffect(() => {
+		if (!fetcher.data) {
+			return;
+		}
+
+		if (fetcher.state === 'idle') {
+			if (fetcher.data.type === ResponseType.Success) {
+				//TODO: Add success toast
+				closeModal();
+				return;
+			}
+		}
+	});
 
 	return (
 		<>
 			<ModalForm>
 				<ModalHeader>
-					<h2 className='text-2xl mt-4'>Creating new user</h2>
+					<h2 className='text-2xl mt-4'>Creating a new {userRole}</h2>
 				</ModalHeader>
 				<ModalBody className='grid grid-cols-12 p-6 gap-6'>
 					<Input
@@ -49,7 +64,6 @@ export function UserModal() {
 					/>
 					<Autocomplete
 						label='Role'
-						name='role'
 						variant='faded'
 						className='col-span-4'
 						isClearable={false}
@@ -59,21 +73,14 @@ export function UserModal() {
 						onValueChange={clearErrors('role')}
 						{...createErrorProps('role')}
 					>
-						<AutocompleteItem
-							key='admin'
-							value='admin'
-							className={styles.autocompleteItem}
-						>
-							admin
+						<AutocompleteItem key='admin' value='admin'>
+							Admin
 						</AutocompleteItem>
-						<AutocompleteItem
-							key='user'
-							value='user'
-							className={styles.autocompleteItem}
-						>
-							user
+						<AutocompleteItem key='user' value='user'>
+							User
 						</AutocompleteItem>
 					</Autocomplete>
+					<HiddenInput name='role' value={userRole} />
 					<Input
 						label='Email'
 						name='email'
@@ -95,10 +102,15 @@ export function UserModal() {
 					/>
 				</ModalBody>
 				<ModalFooter>
-					<Button color='danger' variant='light' onPress={closeModal}>
+					<Button
+						color='danger'
+						variant='light'
+						onPress={closeModal}
+						isDisabled={isLoading}
+					>
 						Cancel
 					</Button>
-					<Button color='primary' type='submit'>
+					<Button color='primary' type='submit' isLoading={isLoading}>
 						Create User
 					</Button>
 				</ModalFooter>

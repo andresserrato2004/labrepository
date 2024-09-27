@@ -26,7 +26,7 @@ import styles from './styles.module.css';
 function getRoleChip(role: string) {
 	const isAdmin = role === 'admin';
 	const variant = 'flat';
-	const text = isAdmin ? 'Admin' : 'Guest';
+	const text = isAdmin ? 'Admin' : 'User';
 
 	const color = isAdmin ? 'secondary' : 'success';
 	const icon = isAdmin ? (
