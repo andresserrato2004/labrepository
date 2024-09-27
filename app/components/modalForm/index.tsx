@@ -34,6 +34,7 @@ export function ModalForm({
 		<>
 			<Modal
 				isOpen={isOpen}
+				isDismissable={true}
 				onOpenChange={onOpenChange}
 				size='lg'
 				classNames={{
