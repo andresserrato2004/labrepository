@@ -5,7 +5,7 @@ import type {
 } from '@components/appTable/types';
 import type { InfoUser } from '@database/types';
 
-import { AppTable } from '@components';
+import { AppTable, toast } from '@components';
 import { useModalForm } from '@components/modalForm/providers';
 import { Chip } from '@nextui-org/chip';
 import {
@@ -22,6 +22,34 @@ import {
 import { useUserList } from '@routes/users/providers';
 
 import styles from './styles.module.css';
+
+function copyToClipboard(text: string) {
+	try {
+		if (!navigator.clipboard) {
+			return;
+		}
+
+		navigator.clipboard.writeText(text);
+
+		toast.success('Copied to clipboard');
+	} catch (error) {
+		toast.error(`Error copying to clipboard: ${error}`);
+	}
+}
+
+function copyUserAsJson(user: InfoUser) {
+	copyToClipboard(JSON.stringify(user, null, 4));
+}
+
+function copyUserAsExcel(user: InfoUser) {
+	let string = '';
+
+	for (const key of Object.keys(user) as (keyof InfoUser)[]) {
+		string += `${user[key]}\t`;
+	}
+
+	copyToClipboard(string.slice(0, -1));
+}
 
 function getRoleChip(role: string) {
 	const isAdmin = role === 'admin';
@@ -98,12 +126,12 @@ export function UsersTable() {
 				{
 					label: 'Copy as JSON',
 					icon: <Clipboard />,
-					action: (item) => console.log('Copy as JSON', item),
+					action: (item) => copyUserAsJson(item),
 				},
 				{
-					label: 'Copy as CSV',
+					label: 'Copy as Excel',
 					icon: <MicrosoftExcelLogo />,
-					action: (item) => console.log('Copy as CSV', item),
+					action: (item) => copyUserAsExcel(item),
 				},
 			],
 		},
@@ -140,10 +168,10 @@ export function UsersTable() {
 			action: () => openModal(null, 'create'),
 		},
 		{
-			label: 'Import from excel',
+			label: 'Import from Excel',
 			description: 'Import users from an Excel file',
 			icon: <UploadSimple />,
-			action: () => console.log('Import from excel'),
+			action: () => console.log('Import from Excel'),
 		},
 	];
 

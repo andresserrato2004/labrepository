@@ -3,7 +3,7 @@ import type { User } from '@database/types';
 import type { Key } from '@react-types/shared';
 import type { action } from '@routes/users/action';
 
-import { HiddenInput, ModalForm } from '@components';
+import { HiddenInput, ModalForm, toast } from '@components';
 import { useModalForm } from '@components/modalForm/providers';
 import { useFetcherErrors } from '@hooks/fetcher';
 import { Autocomplete, AutocompleteItem } from '@nextui-org/autocomplete';
@@ -23,6 +23,17 @@ const getModalTitle = (modalType: ModalType) => {
 			return 'User details';
 		default:
 			return 'Modal form';
+	}
+};
+
+const getSuccessMessage = (modalType: ModalType) => {
+	switch (modalType) {
+		case 'create':
+			return 'User created successfully';
+		case 'update':
+			return 'User updated successfully';
+		default:
+			return 'Success';
 	}
 };
 
@@ -49,7 +60,7 @@ export function UserModal() {
 
 		if (fetcher.state === 'idle') {
 			if (fetcher.data.type === ResponseType.Success) {
-				//TODO: Add success toast
+				toast.success(getSuccessMessage(modalType));
 				closeModal();
 				return;
 			}
