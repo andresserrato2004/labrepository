@@ -9,7 +9,7 @@ import {
 	ResponseType,
 	createServerErrorResponse,
 } from '@services/shared/utility';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import dayjs from 'dayjs';
 
@@ -138,12 +138,22 @@ export function useServiceAsyncList<S extends Record<string, unknown>>(
 		});
 	}, [list.items, filter]);
 
+	const reloadList = () => {
+		list.reload();
+	};
+
 	const paginatedItems = useMemo(() => {
 		const start = (page - 1) * pageSize;
 		const end = start + pageSize;
 
 		return filteredItems.slice(start, end);
 	}, [page, filteredItems]);
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+	useEffect(() => {
+		reloadList();
+		void promise;
+	}, [promise]);
 
 	const totalPages = Math.ceil(Math.max(filteredItems.length, 1) / pageSize);
 
