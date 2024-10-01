@@ -40,7 +40,7 @@ import {
 	MicrosoftExcelLogo,
 	Plus,
 } from '@phosphor-icons/react';
-import { saveTableAsExcel } from '@services/client/exports';
+import { saveTableAsCsv, saveTableAsExcel } from '@services/client/exports';
 import { cloneElement, useEffect, useMemo } from 'react';
 
 import styles from './styles.module.css';
@@ -103,7 +103,7 @@ function getMappedTableActions<T>(
  * @template T - The type of the items in the table.
  * @returns The default table actions.
  */
-function getDefaultTableActions<T>(
+function getDefaultTableActions<T extends object>(
 	columns: AppTableColumn<T>[],
 ): AppTableAction<T>[] {
 	const tableSchema: Schema<T> = columns.map((column) => ({
@@ -126,7 +126,7 @@ function getDefaultTableActions<T>(
 			label: 'Export as CSV',
 			description: 'Download items as a CSV file',
 			action: (items) => {
-				console.log('Downloaded items:', items);
+				saveTableAsCsv(items);
 			},
 		},
 	];
@@ -223,7 +223,7 @@ function ActionsMenu<T>(props: AppTableActionsMenuProps<T>) {
 /**
  * ActionsButton component renders a button that triggers a dropdown menu with actions.
  */
-function ActionsButton<T>(props: ActionsButtonProps<T>) {
+function ActionsButton<T extends object>(props: ActionsButtonProps<T>) {
 	const { tableActions, columns, items, ...dropdownProps } = props;
 
 	const finalActions = useMemo(

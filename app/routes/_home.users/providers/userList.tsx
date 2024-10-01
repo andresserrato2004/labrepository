@@ -1,7 +1,7 @@
 import type { loader } from '@routes/users/loader';
 import type { PropsWithChildren } from 'react';
 
-import { useServiceAsyncList } from '@/hooks/lists';
+import { useServiceAsyncList } from '@hooks/lists';
 import { useLoaderData } from '@remix-run/react';
 import { createContext, useContext } from 'react';
 
