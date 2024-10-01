@@ -7,6 +7,7 @@ import type {
 	SingleRowAction,
 	SingleRowActionSection,
 } from '@components/appTable/types';
+import type { Schema } from 'write-excel-file';
 
 import {
 	AppTableContextProvider,
@@ -39,6 +40,7 @@ import {
 	MicrosoftExcelLogo,
 	Plus,
 } from '@phosphor-icons/react';
+import { saveTableAsExcel } from '@services/client/exports';
 import { cloneElement, useEffect, useMemo } from 'react';
 
 import styles from './styles.module.css';
@@ -101,14 +103,22 @@ function getMappedTableActions<T>(
  * @template T - The type of the items in the table.
  * @returns The default table actions.
  */
-function getDefaultTableActions<T>(): AppTableAction<T>[] {
+function getDefaultTableActions<T>(
+	columns: AppTableColumn<T>[],
+): AppTableAction<T>[] {
+	const tableSchema: Schema<T> = columns.map((column) => ({
+		column: column.title,
+		type: String,
+		value: (item) => item[column.key as keyof T] as string,
+	}));
+
 	return [
 		{
 			icon: <MicrosoftExcelLogo />,
 			label: 'Export as Excel',
 			description: 'Download items as an Excel file',
 			action: (items) => {
-				console.log('Downloaded items:', items);
+				saveTableAsExcel(items, tableSchema);
 			},
 		},
 		{
@@ -214,14 +224,14 @@ function ActionsMenu<T>(props: AppTableActionsMenuProps<T>) {
  * ActionsButton component renders a button that triggers a dropdown menu with actions.
  */
 function ActionsButton<T>(props: ActionsButtonProps<T>) {
-	const { tableActions, items, ...dropdownProps } = props;
+	const { tableActions, columns, items, ...dropdownProps } = props;
 
 	const finalActions = useMemo(
 		() => [
 			...getMappedTableActions(tableActions, items),
-			...getDefaultTableActions(),
+			...getDefaultTableActions(columns),
 		],
-		[tableActions, items],
+		[tableActions, items, columns],
 	);
 
 	return (
@@ -343,7 +353,11 @@ function ContentWrapper<T extends Record<string, unknown>>(
 			<div className={styles.tableOptionsContainer}>
 				<SearchBar />
 				<ColumnsSelector columns={columns} />
-				<ActionsButton tableActions={tableActions} items={list.items} />
+				<ActionsButton
+					tableActions={tableActions}
+					items={list.items}
+					columns={columns}
+				/>
 			</div>
 			<Table
 				sortDescriptor={list.sortDescriptor}

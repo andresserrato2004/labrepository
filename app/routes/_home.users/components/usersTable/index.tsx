@@ -21,6 +21,8 @@ import {
 } from '@phosphor-icons/react';
 import { useUserList } from '@routes/users/providers';
 
+import dayjs from 'dayjs';
+
 import styles from './styles.module.css';
 
 function copyToClipboard(text: string) {
@@ -99,6 +101,16 @@ export function UsersTable() {
 			key: 'role',
 			title: 'Role',
 			render: (record) => getRoleChip(record.role),
+		},
+		{
+			key: 'createdAt',
+			title: 'Created at',
+			render: (record) => dayjs(record.createdAt).format('YYYY-MM-DD'),
+		},
+		{
+			key: 'updatedAt',
+			title: 'Updated at',
+			render: (record) => dayjs(record.updatedAt).format('YYYY-MM-DD'),
 		},
 	];
 

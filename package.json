@@ -53,6 +53,7 @@
 		"react": "18.3.1",
 		"react-dom": "18.3.1",
 		"sonner": "1.5.0",
+		"write-excel-file": "2.0.10",
 		"zod": "3.23.8",
 		"zod-form-data": "2.0.2"
 	},
