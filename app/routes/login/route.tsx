@@ -13,6 +13,8 @@ export default function LoginPage() {
 	const fetcher = useFetcherWithReset<typeof action>();
 	const { createErrorProps, clearErrors } = useFetcherErrors(fetcher);
 
+	const isLoading = fetcher.state !== 'idle';
+
 	return (
 		<main className={styles.mainContainer}>
 			<fetcher.Form className={styles.formContainer} method='POST'>
@@ -22,6 +24,7 @@ export default function LoginPage() {
 					name='username'
 					isRequired={true}
 					autoFocus={true}
+					isDisabled={isLoading}
 					onValueChange={clearErrors('username')}
 					{...createErrorProps('username')}
 				/>
@@ -30,6 +33,7 @@ export default function LoginPage() {
 					name='password'
 					type='password'
 					isRequired={true}
+					isDisabled={isLoading}
 					onValueChange={clearErrors('password')}
 					{...createErrorProps('password')}
 				/>
@@ -37,6 +41,7 @@ export default function LoginPage() {
 					className={styles.submitButton}
 					color='primary'
 					type='submit'
+					isLoading={isLoading}
 				>
 					Iniciar sesión
 				</Button>

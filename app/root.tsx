@@ -12,6 +12,7 @@ import {
 	useNavigate,
 	useRouteError,
 } from '@remix-run/react';
+import { Toaster } from 'sonner';
 
 import './tailwind.css';
 
@@ -37,6 +38,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Links />
 			</head>
 			<body>
+				<Toaster position='top-center' />
 				<NextUIProvider validationBehavior='native' navigate={navigate}>
 					{children}
 				</NextUIProvider>

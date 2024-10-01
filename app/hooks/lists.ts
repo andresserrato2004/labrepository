@@ -9,7 +9,7 @@ import {
 	ResponseType,
 	createServerErrorResponse,
 } from '@services/shared/utility';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import dayjs from 'dayjs';
 
@@ -118,21 +118,16 @@ export function useServiceAsyncList<S extends Record<string, unknown>>(
 		},
 	});
 
-	const pageSize = 9;
+	const pageSize = 12;
 
-	const totalPages = Math.ceil(Math.max(list.items.length, 1) / pageSize);
+	const filteredItems = useMemo(() => {
+		const search = filter.toLowerCase().trim();
 
-	const paginatedItems = useMemo(() => {
-		const start = (page - 1) * pageSize;
-		const end = start + pageSize;
+		if (!search) {
+			return list.items;
+		}
 
-		const filteredItems = list.items.filter((item) => {
-			const search = filter.toLowerCase().trim();
-
-			if (!search) {
-				return true;
-			}
-
+		return list.items.filter((item) => {
 			return Object.values(item).some((value) => {
 				if (typeof value === 'string') {
 					return value.toLowerCase().includes(search);
@@ -141,9 +136,26 @@ export function useServiceAsyncList<S extends Record<string, unknown>>(
 				return false;
 			});
 		});
+	}, [list.items, filter]);
+
+	const reloadList = () => {
+		list.reload();
+	};
+
+	const paginatedItems = useMemo(() => {
+		const start = (page - 1) * pageSize;
+		const end = start + pageSize;
 
 		return filteredItems.slice(start, end);
-	}, [list.items, page, filter]);
+	}, [page, filteredItems]);
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+	useEffect(() => {
+		reloadList();
+		void promise;
+	}, [promise]);
+
+	const totalPages = Math.ceil(Math.max(filteredItems.length, 1) / pageSize);
 
 	return {
 		...list,

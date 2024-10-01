@@ -1,0 +1,39 @@
+.toast {
+    @apply text-content1-foreground border-none grid grid-cols-[min-content,1fr] gap-4 text-sm;
+}
+
+.icon {
+    @apply size-7 place-self-center;
+}
+
+.success {
+    @apply bg-success-50 text-success-900;
+}
+
+.success .icon {
+    @apply text-success-700;
+}
+
+.error {
+    @apply bg-danger-50 text-danger-900;
+}
+
+.error .icon {
+    @apply text-danger-700;
+}
+
+.info {
+    @apply bg-primary-50 text-primary-900;
+}
+
+.info .icon {
+    @apply text-primary-700;
+}
+
+.warning {
+    @apply bg-warning-50 text-warning-900;
+}
+
+.warning .icon {
+    @apply text-warning-700;
+}

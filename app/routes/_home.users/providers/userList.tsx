@@ -31,17 +31,17 @@ function userList() {
 
 /**
  * Custom hook for accessing the user list context.
- * @returns The user list session from the UserListContext.
+ * @returns The user list from the UserListContext.
  * @throws {Error} If used outside of a UserListProvider.
  */
 export function useUserList() {
-	const session = useContext(UserListContext);
+	const context = useContext(UserListContext);
 
-	if (!session) {
+	if (!context) {
 		throw new Error('useUserList must be used within a UserListProvider');
 	}
 
-	return session;
+	return context;
 }
 
 /**
@@ -49,10 +49,10 @@ export function useUserList() {
  * @param children - The child components to be wrapped by the UserList context provider.
  */
 export function UserListProvider({ children }: PropsWithChildren) {
-	const session = userList();
+	const list = userList();
 
 	return (
-		<UserListContext.Provider value={session}>
+		<UserListContext.Provider value={list}>
 			{children}
 		</UserListContext.Provider>
 	);
