@@ -20,6 +20,7 @@ import {
 	User,
 } from '@phosphor-icons/react';
 import { useUserList } from '@routes/users/providers';
+import { importExcelFile } from '@services/client/imports';
 
 import dayjs from 'dayjs';
 
@@ -183,7 +184,21 @@ export function UsersTable() {
 			label: 'Import from Excel',
 			description: 'Import users from an Excel file',
 			icon: <UploadSimple />,
-			action: () => console.log('Import from Excel'),
+			action: async () => {
+				const rows = await importExcelFile<InfoUser>();
+				if (!rows) {
+					return;
+				}
+
+				toast.error('Importing users is not implemented yet');
+
+				// fetcher.submit(JSON.stringify(rows), {
+				// 	method: 'POST',
+				// 	encType: 'application/json',
+				// 	preventScrollReset: true,
+				// 	relative: 'path',
+				// });
+			},
 		},
 	];
 

@@ -23,30 +23,37 @@ if (!process.env.ADMIN_KEY) {
 }
 
 async function handlePostRequest(request: Request) {
-	const formData = await parseFormData(request, newUserFormValidator);
+	if (request.headers.get('Content-Type')?.includes('multipart/form-data')) {
+		const formData = await parseFormData(request, newUserFormValidator);
 
-	if (!formData) {
-		throw createBasicResponse(
-			'Invalid form data.',
-			ClientErrorCode.BadRequest,
-		);
+		if (!formData) {
+			throw createBasicResponse(
+				'Invalid form data.',
+				ClientErrorCode.BadRequest,
+			);
+		}
+
+		if (!formData.success) {
+			return createResponse({
+				code: ClientErrorCode.BadRequest,
+				type: ResponseType.ClientError,
+				errors: getErrorsFromZodError(formData.error),
+			});
+		}
+
+		const createUserResponse = await createUser({ request: formData.data });
+
+		if (createUserResponse.type === ResponseType.ServerError) {
+			throw createServerErrorResponse(createUserResponse);
+		}
+
+		return createResponse(createUserResponse);
 	}
 
-	if (!formData.success) {
-		return createResponse({
-			code: ClientErrorCode.BadRequest,
-			type: ResponseType.ClientError,
-			errors: getErrorsFromZodError(formData.error),
-		});
-	}
-
-	const createUserResponse = await createUser({ request: formData.data });
-
-	if (createUserResponse.type === ResponseType.ServerError) {
-		throw createServerErrorResponse(createUserResponse);
-	}
-
-	return createResponse(createUserResponse);
+	throw createBasicResponse(
+		'Invalid content type.',
+		ClientErrorCode.BadRequest,
+	);
 }
 
 export const action = async ({ request }: ActionFunctionArgs) => {
