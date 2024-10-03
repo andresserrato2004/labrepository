@@ -7,6 +7,8 @@ import { zfd } from 'zod-form-data';
 const newClassroomSchema = createInsertSchema(schema.classrooms, {
 	name: (_schema) => zfd.text(z.string().min(1)),
 
+	capacity: (_schema) => zfd.numeric(z.number().int().positive()),
+
 	createdAt: (_schema) => zfd.text(isoDate.optional()),
 
 	updatedAt: (_schema) => zfd.text(isoDate.optional()),

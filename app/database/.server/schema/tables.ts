@@ -4,6 +4,7 @@ import { sql } from 'drizzle-orm';
 import {
 	customType,
 	foreignKey,
+	integer,
 	jsonb,
 	pgTable,
 	primaryKey,
@@ -66,6 +67,7 @@ export const classrooms = pgTable(
 			.$defaultFn(() => generators.createClassroomId())
 			.notNull(),
 		name: text('name').notNull(),
+		capacity: integer('capacity').notNull(),
 		createdAt: isoTimestamp('created_at').default(sql`now()`).notNull(),
 		updatedAt: isoTimestamp('updated_at')
 			.default(sql`now()`)

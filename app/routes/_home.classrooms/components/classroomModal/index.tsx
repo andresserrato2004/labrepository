@@ -2,12 +2,14 @@ import type { ModalType } from '@components/modalForm/types';
 import type { Classroom } from '@database/types';
 import type { action } from '@routes/classrooms/action';
 
-import { ModalForm } from '@components';
+import { ModalForm, toast } from '@components';
 import { useModalForm } from '@components/modalForm/providers';
 import { useFetcherErrors } from '@hooks/fetcher';
 import { Button } from '@nextui-org/button';
 import { Input } from '@nextui-org/input';
 import { ModalBody, ModalFooter, ModalHeader } from '@nextui-org/modal';
+import { ResponseType } from '@services/shared/utility';
+import { useEffect } from 'react';
 
 const getModalTitle = (modalType: ModalType) => {
 	switch (modalType) {
@@ -22,6 +24,17 @@ const getModalTitle = (modalType: ModalType) => {
 	}
 };
 
+const getSuccessMessage = (modalType: ModalType) => {
+	switch (modalType) {
+		case 'create':
+			return 'Classroom created successfully';
+		case 'update':
+			return 'Classroom updated successfully';
+		default:
+			return 'Success';
+	}
+};
+
 export function ClassroomModal() {
 	const { modalType, modalData, fetcher, closeModal } = useModalForm<
 		Classroom,
@@ -32,6 +45,20 @@ export function ClassroomModal() {
 	const isLoading = fetcher.state !== 'idle';
 
 	const isDetails = modalType === 'details';
+
+	useEffect(() => {
+		if (!fetcher.data) {
+			return;
+		}
+
+		if (fetcher.state === 'idle') {
+			if (fetcher.data.type === ResponseType.Success) {
+				toast.success(getSuccessMessage(modalType));
+				closeModal();
+				return;
+			}
+		}
+	});
 
 	return (
 		<ModalForm>
@@ -56,11 +83,12 @@ export function ClassroomModal() {
 					variant='faded'
 					className='col-span-3'
 					type='number'
+					min={1}
 					isRequired={true}
-					onValueChange={clearErrors('name')}
-					defaultValue={modalData?.name}
+					onValueChange={clearErrors('capacity')}
+					defaultValue={String(modalData?.capacity)}
 					isReadOnly={isDetails}
-					{...createErrorProps('name')}
+					{...createErrorProps('capacity')}
 				/>
 			</ModalBody>
 			<ModalFooter>

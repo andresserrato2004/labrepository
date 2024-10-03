@@ -28,6 +28,11 @@ export function ClassroomTable() {
 			render: (classroom) => classroom.name,
 		},
 		{
+			key: 'capacity',
+			title: 'Capacity',
+			render: (classroom) => classroom.capacity,
+		},
+		{
 			key: 'createdAt',
 			title: 'Created at',
 			render: (classroom) =>
