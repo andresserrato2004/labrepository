@@ -7,7 +7,7 @@ import type { Classroom } from '@database/types';
 
 import { AppTable } from '@components';
 import { useModalForm } from '@components/modalForm/providers';
-import { PencilLine, PlusSquare, Trash } from '@phosphor-icons/react';
+import { Info, PencilLine, PlusSquare, Trash } from '@phosphor-icons/react';
 import { useClassrooms } from '@routes/home/providers';
 
 import dayjs from 'dayjs';
@@ -54,8 +54,18 @@ export function ClassroomTable() {
 				{
 					label: 'Edit classroom',
 					icon: <PencilLine />,
-					action: (classroom) =>
-						console.log('Edit classroom', classroom),
+					action: (classroom) => openModal(classroom, 'update'),
+				},
+			],
+		},
+		{
+			showDivider: true,
+			title: 'Information',
+			actions: [
+				{
+					label: 'Show details',
+					icon: <Info />,
+					action: (classroom) => openModal(classroom, 'details'),
 				},
 			],
 		},
