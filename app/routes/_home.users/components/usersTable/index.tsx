@@ -209,7 +209,7 @@ export function UsersTable() {
 			singleRowSections={actionSections}
 			tableActions={tableActions}
 			itemKey='id'
-			aria-label='Users table'
+			aria-label='users table'
 		/>
 	);
 }

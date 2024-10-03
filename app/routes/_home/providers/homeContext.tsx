@@ -2,6 +2,7 @@ import type { AcademicPeriod } from '@database/types';
 import type { loader } from '@routes/home/loader';
 import type { PropsWithChildren } from 'react';
 
+import { useServiceAsyncList } from '@hooks/lists';
 import { useDeferredServiceResponse } from '@hooks/utility';
 import { useLoaderData } from '@remix-run/react';
 import { createContext, useContext, useEffect, useState } from 'react';
@@ -17,7 +18,7 @@ export const AcademicPeriodsContext = createContext<ReturnType<
  * The context for classrooms.
  */
 export const ClassroomsContext = createContext<ReturnType<
-	typeof classrooms
+	typeof classroomList
 > | null>(null);
 
 /**
@@ -56,11 +57,17 @@ function academicPeriods() {
  *
  * @returns An object containing the classrooms data and loading status.
  */
-function classrooms() {
+function classroomList() {
 	const { classroomsPromise } = useLoaderData<typeof loader>();
-	const { data, isLoading } = useDeferredServiceResponse(classroomsPromise);
 
-	return { data, isLoading };
+	const list = useServiceAsyncList(classroomsPromise, {
+		initialSortDescriptor: {
+			column: 'name',
+			direction: 'ascending',
+		},
+	});
+
+	return list;
 }
 
 /**
@@ -118,7 +125,7 @@ export function AcademicPeriodsProvider({ children }: PropsWithChildren) {
  * @param children - The child components to be wrapped by the provider.
  */
 export function ClassroomsProvider({ children }: PropsWithChildren) {
-	const classroomsData = classrooms();
+	const classroomsData = classroomList();
 
 	return (
 		<ClassroomsContext.Provider value={classroomsData}>
