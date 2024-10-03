@@ -74,6 +74,21 @@ export enum HttpMethod {
 Object.freeze(HttpMethod);
 
 /**
+ * Enum representing HTTP content types.
+ *
+ * @enum {string}
+ * @property {string} FormData - Represents 'multipart/form-data' content type.
+ * @property {string} Json - Represents 'application/json' content type.
+ */
+export enum HttpContentType {
+	Unknown = '',
+	FormData = 'multipart/form-data',
+	Json = 'application/json',
+}
+
+Object.freeze(HttpContentType);
+
+/**
  * All enums are frozen to prevent modification.
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze}
  */

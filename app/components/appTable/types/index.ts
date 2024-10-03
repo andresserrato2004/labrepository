@@ -9,7 +9,7 @@ import type { ReactElement, ReactNode } from 'react';
  * @template T - The type of data in the table.
  */
 export interface AppTableColumn<T>
-	extends Omit<TableColumnProps<T>, 'children'> {
+	extends Omit<TableColumnProps<T>, 'children' | 'key'> {
 	render: (record: T) => ReactNode;
 	key?: Extract<keyof T, string | number>;
 	title: string;
@@ -80,6 +80,7 @@ export interface AppTableProps<T extends Record<string, unknown>>
  */
 export interface ActionsButtonProps<T> extends Omit<DropdownProps, 'children'> {
 	tableActions?: (AppTableAction<T> | ((items: T[]) => AppTableAction<T>))[];
+	columns: AppTableColumn<T>[];
 	items: T[];
 }
 

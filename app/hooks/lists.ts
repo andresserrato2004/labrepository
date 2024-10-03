@@ -118,7 +118,7 @@ export function useServiceAsyncList<S extends Record<string, unknown>>(
 		},
 	});
 
-	const pageSize = 12;
+	const pageSize = 11;
 
 	const filteredItems = useMemo(() => {
 		const search = filter.toLowerCase().trim();
