@@ -1,17 +1,20 @@
 import type {
+	AppTableAction,
 	AppTableColumn,
 	SingleRowActionSection,
 } from '@components/appTable/types';
 import type { Classroom } from '@database/types';
 
 import { AppTable } from '@components';
-import { PencilLine, Trash } from '@phosphor-icons/react';
+import { useModalForm } from '@components/modalForm/providers';
+import { PencilLine, PlusSquare, Trash } from '@phosphor-icons/react';
 import { useClassrooms } from '@routes/home/providers';
 
 import dayjs from 'dayjs';
 
 export function ClassroomTable() {
 	const classrooms = useClassrooms();
+	const { openModal } = useModalForm();
 
 	const columns: AppTableColumn<Classroom>[] = [
 		{
@@ -68,8 +71,18 @@ export function ClassroomTable() {
 		},
 	];
 
+	const tableActions: AppTableAction<Classroom>[] = [
+		{
+			label: 'Add classroom',
+			description: 'Add a new classroom',
+			icon: <PlusSquare />,
+			action: () => openModal(null, 'create'),
+		},
+	];
+
 	return (
 		<AppTable
+			tableActions={tableActions}
 			columns={columns}
 			list={classrooms}
 			singleRowSections={singleRowSections}
