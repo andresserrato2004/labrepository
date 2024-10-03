@@ -1,6 +1,7 @@
 import type { TypedResponse } from '@remix-run/node';
 import type {
 	ClientErrorResponse,
+	NoContent,
 	SuccessResponse,
 } from '@services/server/types';
 import type { Errors } from '@services/server/types';
@@ -11,6 +12,7 @@ import { AppError } from '@errors/services';
 import { json } from '@remix-run/react';
 import {
 	ClientErrorCode,
+	HttpContentType,
 	ResponseType,
 	ServerErrorCode,
 	SuccessCode,
@@ -193,4 +195,101 @@ export function buildRedirectTo(request: Request): string {
 	const redirectTo = params.toString().replace('=', `=${url.pathname}?`);
 
 	return redirectTo;
+}
+
+/**
+ * Determines the content type of an HTTP request.
+ *
+ * @param request - The HTTP request object.
+ * @returns The content type of the request as an `HttpContentType` enum.
+ *
+ * @remarks
+ * This function checks the 'Content-Type' header of the request and returns
+ * the corresponding `HttpContentType` enum value. If the content type is not
+ * recognized, it returns `HttpContentType.Unknown`.
+ *
+ * @example
+ * ```typescript
+ * const contentType = getContentType(request);
+ * if (contentType === HttpContentType.Json) {
+ *   // Handle JSON content
+ * }
+ * ```
+ */
+export function getContentType(request: Request): HttpContentType {
+	const contentType = request.headers.get('Content-Type');
+
+	if (!contentType) {
+		return HttpContentType.Unknown;
+	}
+
+	if (contentType.includes('application/json')) {
+		return HttpContentType.Json;
+	}
+
+	if (contentType.includes('multipart/form-data')) {
+		return HttpContentType.FormData;
+	}
+
+	if (contentType.includes('application/x-www-form-urlencoded')) {
+		return HttpContentType.FormData;
+	}
+
+	return HttpContentType.Unknown;
+}
+
+/**
+ * Abstract class representing a handler for HTTP route actions.
+ *
+ * This class provides a method to handle HTTP requests by delegating
+ * to specific methods based on the HTTP method (POST, PATCH, DELETE).
+ * Subclasses must implement the abstract methods to handle each type
+ * of request.
+ *
+ * @abstract
+ */
+export abstract class RouteActionHandler<T> {
+	/**
+	 * Handles an HTTP request.
+	 *
+	 * @param request - The HTTP request object.
+	 * @returns The HTTP response object.
+	 */
+	handleRequest(
+		request: Request,
+	): Promise<
+		TypedResponse<SuccessResponse<NoContent> | ClientErrorResponse<T>>
+	> {
+		const { method } = request;
+
+		switch (method) {
+			case 'POST':
+				return this.handlePostRequest(request);
+			case 'PATCH':
+				return this.handlePatchRequest(request);
+			case 'DELETE':
+				return this.handleDeleteRequest(request);
+			default:
+				throw createBasicResponse(
+					'Method not allowed',
+					ClientErrorCode.MethodNotAllowed,
+				);
+		}
+	}
+
+	abstract handlePostRequest(
+		request: Request,
+	): Promise<
+		TypedResponse<SuccessResponse<NoContent> | ClientErrorResponse<T>>
+	>;
+	abstract handlePatchRequest(
+		request: Request,
+	): Promise<
+		TypedResponse<SuccessResponse<NoContent> | ClientErrorResponse<T>>
+	>;
+	abstract handleDeleteRequest(
+		request: Request,
+	): Promise<
+		TypedResponse<SuccessResponse<NoContent> | ClientErrorResponse<T>>
+	>;
 }

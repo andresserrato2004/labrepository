@@ -81,6 +81,50 @@ export async function parseFormData<T extends FormDataValidator>(
 }
 
 /**
+ * Parses the JSON data from a request using a validator.
+ *
+ * If the JSON data cannot be parsed, the function returns null.
+ * Otherwise, it returns the parsed JSON data as a zod safe parse result.
+ *
+ * @param request - The request object.
+ * @param validator - The validator object.
+ * @returns A promise that resolves to the parsed JSON data or null if parsing fails.
+ */
+export async function parseJson<T extends FormDataValidator>(
+	request: Request,
+	validator: T,
+) {
+	let data: unknown;
+
+	try {
+		data = await request.json();
+		console.log({ data });
+	} catch {
+		return null;
+	}
+
+	if (Array.isArray(data)) {
+		for (const item of data) {
+			const result = validator.safeParse(item);
+
+			if (!result.success) {
+				return result as SafeParseError<T['_output']>;
+			}
+		}
+
+		return data as unknown as SafeParseSuccess<T['_output']>;
+	}
+
+	const result = validator.safeParse(data);
+
+	if (!result.success) {
+		return result as SafeParseError<T['_output']>;
+	}
+
+	return result as SafeParseSuccess<T['_output']>;
+}
+
+/**
  * Builds a creation audit log object.
  *
  * @param session - The session object.

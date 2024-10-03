@@ -1,60 +1,22 @@
 import type { ActionFunctionArgs } from '@remix-run/node';
 
-import { newUserFormValidator } from '@database/validators';
 import { MissingEnvironmentVariableError } from '@errors/shared';
-import { createUser } from '@services/server/users';
+import { FormDataHandler, JsonHandler } from '@routes/users/handlers';
 import {
 	getSessionFromRequest,
-	parseFormData,
 	validateAdminKey,
 } from '@services/server/utility';
-import {
-	ClientErrorCode,
-	HttpMethod,
-	ResponseType,
-	createBasicResponse,
-	createResponse,
-	createServerErrorResponse,
-	getErrorsFromZodError,
-} from '@services/shared/utility';
+import { HttpContentType, getContentType } from '@services/shared/utility';
+import { ClientErrorCode, createBasicResponse } from '@services/shared/utility';
 
 if (!process.env.ADMIN_KEY) {
 	throw new MissingEnvironmentVariableError('ADMIN_KEY');
 }
 
-async function handlePostRequest(request: Request) {
-	if (request.headers.get('Content-Type')?.includes('multipart/form-data')) {
-		const formData = await parseFormData(request, newUserFormValidator);
-
-		if (!formData) {
-			throw createBasicResponse(
-				'Invalid form data.',
-				ClientErrorCode.BadRequest,
-			);
-		}
-
-		if (!formData.success) {
-			return createResponse({
-				code: ClientErrorCode.BadRequest,
-				type: ResponseType.ClientError,
-				errors: getErrorsFromZodError(formData.error),
-			});
-		}
-
-		const createUserResponse = await createUser({ request: formData.data });
-
-		if (createUserResponse.type === ResponseType.ServerError) {
-			throw createServerErrorResponse(createUserResponse);
-		}
-
-		return createResponse(createUserResponse);
-	}
-
-	throw createBasicResponse(
-		'Invalid content type.',
-		ClientErrorCode.BadRequest,
-	);
-}
+const handlers = {
+	[HttpContentType.Json]: new JsonHandler(),
+	[HttpContentType.FormData]: new FormDataHandler(),
+} as const;
 
 export const action = async ({ request }: ActionFunctionArgs) => {
 	//TODO: Investigate how bypass the session checker on the _home loader
@@ -68,12 +30,15 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 		);
 	}
 
-	if (request.method === HttpMethod.Post) {
-		return await handlePostRequest(request);
-	}
+	const contentType = getContentType(request);
 
-	throw createBasicResponse(
-		'Method not allowed',
-		ClientErrorCode.MethodNotAllowed,
-	);
+	if (!(contentType in handlers)) {
+		throw createBasicResponse(
+			'Invalid content type.',
+			ClientErrorCode.BadRequest,
+		);
+	}
+	const handler = handlers[contentType as keyof typeof handlers];
+
+	return handler.handleRequest(request);
 };
