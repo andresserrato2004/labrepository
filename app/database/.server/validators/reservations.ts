@@ -3,6 +3,7 @@ import type { z } from 'zod';
 import { schema } from '@database';
 import { isoDate } from '@database/validators/shared';
 import { createInsertSchema } from 'drizzle-zod';
+import { zfd } from 'zod-form-data';
 
 const newReservationSchema = createInsertSchema(schema.reservations, {
 	endTime: (_schema) => isoDate,
@@ -19,6 +20,10 @@ const newReservationTransformer = (
 	return data;
 };
 
-export const newErrorLogValidator = newReservationSchema.transform(
+export const newReservationValidator = newReservationSchema.transform(
 	newReservationTransformer,
+);
+
+export const newReservationFormValidator = zfd.formData(
+	newReservationValidator,
 );

@@ -9,7 +9,10 @@ import type { CreateClassroomArgs } from '@services/server/types';
 import { database, eq, schema } from '@database';
 import { AppResource } from '@database/schema/enums';
 import { newClassroomValidator } from '@database/validators';
-import { InvalidNewClassroomError } from '@errors/services';
+import {
+	ClassroomConflictError,
+	InvalidNewClassroomError,
+} from '@errors/services';
 import {
 	buildCreationAuditLog,
 	handleUnknownError,
@@ -100,10 +103,8 @@ export async function createClassroom({
 		const conflictError = await checkForExistingClassroom(classroom);
 
 		if (conflictError) {
-			throw new InvalidNewClassroomError(conflictError);
+			throw new ClassroomConflictError(conflictError);
 		}
-
-		console.log(session);
 
 		await database.transaction(async (trx) => {
 			await trx.insert(schema.auditLogs).values(

@@ -39,3 +39,7 @@ const newAcademicPeriodTransformer = (
 export const newAcademicPeriodValidator = newAcademicPeriodSchema.transform(
 	newAcademicPeriodTransformer,
 );
+
+export const newAcademicPeriodFormValidator = zfd.formData(
+	newAcademicPeriodValidator,
+);
