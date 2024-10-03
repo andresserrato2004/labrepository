@@ -5,6 +5,7 @@ import { pgEnum } from 'drizzle-orm/pg-core';
  */
 export enum AppResource {
 	Users = 'users',
+	Classrooms = 'classrooms',
 }
 
 /**

@@ -133,6 +133,10 @@ export function useServiceAsyncList<S extends Record<string, unknown>>(
 					return value.toLowerCase().includes(search);
 				}
 
+				if (typeof value === 'number') {
+					return value.toString().includes(search);
+				}
+
 				return false;
 			});
 		});

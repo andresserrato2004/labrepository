@@ -1,5 +1,6 @@
 import { schema } from '@database';
-import { capitalize, isoDate } from '@database/validators/shared';
+import { isoDate } from '@database/validators/shared';
+import { capitalizeFirstLetter } from '@services/shared/utility';
 import { createInsertSchema } from 'drizzle-zod';
 import { z } from 'zod';
 import { zfd } from 'zod-form-data';
@@ -7,13 +8,15 @@ import { zfd } from 'zod-form-data';
 const newClassroomSchema = createInsertSchema(schema.classrooms, {
 	name: (_schema) => zfd.text(z.string().min(1)),
 
+	capacity: (_schema) => zfd.numeric(z.number().int().positive()),
+
 	createdAt: (_schema) => zfd.text(isoDate.optional()),
 
 	updatedAt: (_schema) => zfd.text(isoDate.optional()),
 });
 
 const newClassroomTransformer = (data: z.infer<typeof newClassroomSchema>) => {
-	data.name = capitalize(data.name.trim());
+	data.name = capitalizeFirstLetter(data.name.trim());
 
 	return data;
 };

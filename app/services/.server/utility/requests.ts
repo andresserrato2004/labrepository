@@ -140,7 +140,7 @@ export function buildCreationAuditLog({
 	return {
 		action: 'create',
 		table: resource,
-		userId: session.username,
+		userId: session.userId,
 		newData: newData,
 		oldData: {},
 	};

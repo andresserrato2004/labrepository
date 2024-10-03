@@ -50,9 +50,7 @@ async function checkForExistingUser(
 				conflictError.email = 'Email already exists';
 			}
 		}
-	}
 
-	if (users.length > 0) {
 		return conflictError;
 	}
 

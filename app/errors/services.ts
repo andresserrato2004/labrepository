@@ -102,3 +102,17 @@ export class UserConflictError extends AppError<NewUser> {
 		super('User already exists.', errors, ClientErrorCode.Conflict);
 	}
 }
+
+/**
+ * Represents an error that occurs when attempting to create a new classroom with invalid data.
+ * Extends the `AppError` class with a specific type of `NewUser`.
+ *
+ * @class InvalidNewClassroomError
+ * @extends {AppError<NewUser>}
+ * @param {Errors<NewUser>} errors - The validation errors associated with the new classroom data.
+ */
+export class InvalidNewClassroomError extends AppError<NewUser> {
+	constructor(errors: Errors<NewUser>) {
+		super('Invalid classroom data.', errors, ClientErrorCode.BadRequest);
+	}
+}

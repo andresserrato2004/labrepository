@@ -1,5 +1,6 @@
 import { enums, schema } from '@database';
-import { capitalize, isoDate } from '@database/validators/shared';
+import { isoDate } from '@database/validators/shared';
+import { capitalize } from '@services/shared/utility';
 import { createInsertSchema } from 'drizzle-zod';
 import { z } from 'zod';
 import { zfd } from 'zod-form-data';

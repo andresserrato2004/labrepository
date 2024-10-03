@@ -1,9 +1,9 @@
 import type { AppResource } from '@database/schema/enums';
-import type { NewUser } from '@database/types';
+import type { NewClassroom, NewUser } from '@database/types';
 import type { Session } from '@services/server/types';
 
 //TODO: Update when more resources are added
-type Data = NewUser /* | NewClassroom | NewRequest */;
+type Data = NewUser | NewClassroom /*| NewRequest */;
 
 /**
  * Represents the arguments for building a creation audit log.
