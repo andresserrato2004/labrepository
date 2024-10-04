@@ -103,6 +103,9 @@ export const academicPeriods = pgTable(
 			primaryKey: primaryKey({
 				columns: [table.id],
 			}),
+			uniqueName: uniqueIndex('academic_periods_name_unique').on(
+				table.name,
+			),
 		};
 	},
 );

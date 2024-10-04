@@ -2,6 +2,7 @@ import type { PeriodName } from '@database/types';
 
 import { schema } from '@database';
 import { isoDate } from '@database/validators/shared';
+import { parseZonedDateTime } from '@internationalized/date';
 import { createInsertSchema } from 'drizzle-zod';
 import { z } from 'zod';
 import { zfd } from 'zod-form-data';
@@ -31,7 +32,8 @@ const newAcademicPeriodSchema = createInsertSchema(schema.academicPeriods, {
 const newAcademicPeriodTransformer = (
 	data: z.infer<typeof newAcademicPeriodSchema>,
 ) => {
-	//TODO: Implement data transformation logic here
+	data.startDate = parseZonedDateTime(data.startDate).toAbsoluteString();
+	data.endDate = parseZonedDateTime(data.endDate).toAbsoluteString();
 
 	return data;
 };
@@ -41,5 +43,5 @@ export const newAcademicPeriodValidator = newAcademicPeriodSchema.transform(
 );
 
 export const newAcademicPeriodFormValidator = zfd.formData(
-	newAcademicPeriodValidator,
+	newAcademicPeriodSchema,
 );

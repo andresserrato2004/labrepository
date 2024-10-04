@@ -24,6 +24,4 @@ export const newReservationValidator = newReservationSchema.transform(
 	newReservationTransformer,
 );
 
-export const newReservationFormValidator = zfd.formData(
-	newReservationValidator,
-);
+export const newReservationFormValidator = zfd.formData(newReservationSchema);

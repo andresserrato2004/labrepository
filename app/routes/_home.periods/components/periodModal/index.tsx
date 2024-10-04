@@ -1,15 +1,22 @@
 import type { ModalType } from '@components/modalForm/types';
 import type { AcademicPeriod } from '@database/types';
+import type { DateValue } from '@internationalized/date';
 import type { action } from '@routes/periods/action';
 
 import { ModalForm, toast } from '@components';
 import { useModalForm } from '@components/modalForm/providers';
 import { useFetcherErrors } from '@hooks/fetcher';
+import {
+	getLocalTimeZone,
+	parseAbsoluteToLocal,
+	toZoned,
+} from '@internationalized/date';
 import { Button } from '@nextui-org/button';
+import { DatePicker } from '@nextui-org/date-picker';
 import { Input } from '@nextui-org/input';
 import { ModalBody, ModalFooter, ModalHeader } from '@nextui-org/modal';
 import { ResponseType } from '@services/shared/utility';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const getModalTitle = (modalType: ModalType) => {
 	switch (modalType) {
@@ -42,8 +49,21 @@ export function AcademicPeriodsModal() {
 	>();
 	const { clearErrors, createErrorProps } = useFetcherErrors(fetcher);
 
-	const isLoading = fetcher.state !== 'idle';
+	const defaultStart =
+		modalType === 'create'
+			? null
+			: parseAbsoluteToLocal(modalData?.startDate || '');
 
+	const defaultEnd =
+		modalType === 'create'
+			? null
+			: parseAbsoluteToLocal(modalData?.endDate || '');
+
+	const [startDate, setStartDate] = useState<DateValue | null>(defaultStart);
+	const [endDate, setEndDate] = useState<DateValue | null>(defaultEnd);
+	const minEndDate = startDate ? startDate.add({ days: 1 }) : undefined;
+
+	const isLoading = fetcher.state !== 'idle';
 	const isDetails = modalType === 'details';
 
 	useEffect(() => {
@@ -59,6 +79,17 @@ export function AcademicPeriodsModal() {
 			}
 		}
 	});
+
+	const handleStartDateChange = (date: DateValue) => {
+		setStartDate(toZoned(date, getLocalTimeZone()));
+		setEndDate(null);
+		clearErrors('startDate', 'endDate')();
+	};
+
+	const handleEndDateChange = (date: DateValue) => {
+		setEndDate(toZoned(date, getLocalTimeZone()));
+		clearErrors('endDate')();
+	};
 
 	return (
 		<ModalForm>
@@ -76,6 +107,33 @@ export function AcademicPeriodsModal() {
 					defaultValue={modalData?.name}
 					isReadOnly={isDetails}
 					{...createErrorProps('name')}
+				/>
+				<DatePicker
+					label='Start date'
+					name='startDate'
+					variant='faded'
+					className='col-span-6'
+					granularity='day'
+					onChange={handleStartDateChange}
+					value={startDate}
+					isRequired={true}
+					showMonthAndYearPickers={true}
+					isReadOnly={isDetails}
+					{...createErrorProps('startDate')}
+				/>
+				<DatePicker
+					label='End date'
+					name='endDate'
+					variant='faded'
+					className='col-span-6'
+					granularity='day'
+					onChange={handleEndDateChange}
+					minValue={minEndDate}
+					value={endDate}
+					isRequired={true}
+					showMonthAndYearPickers={true}
+					isReadOnly={isDetails}
+					{...createErrorProps('endDate')}
 				/>
 				{/*TODO: Implement the rest of this form*/}
 			</ModalBody>

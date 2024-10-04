@@ -6,9 +6,9 @@ import type {
 	ServiceResponse,
 } from '@services/server/types';
 
-import { newAcademicPeriodValidator } from '@/database/.server/validators';
 import { database, schema } from '@database';
 import { AppResource } from '@database/schema/enums';
+import { newAcademicPeriodValidator } from '@database/validators';
 import {
 	AcademicPeriodConflictError,
 	InvalidNewAcademicPeriodError,
@@ -40,32 +40,41 @@ async function checkForExistingAcademicPeriod(
 
 	const conflictError: Errors<NewAcademicPeriod> = {};
 
-	if (academicPeriods.length > 0) {
-		for (const period of academicPeriods) {
-			const intersectLeft =
-				dayjs(period.endDate).isAfter(academicPeriod.startDate) &&
-				dayjs(period.endDate).isBefore(academicPeriod.endDate);
-
-			const intersectRight =
-				dayjs(period.startDate).isAfter(academicPeriod.startDate) &&
-				dayjs(period.startDate).isBefore(academicPeriod.endDate);
-
-			if (
-				period.startDate === academicPeriod.startDate ||
-				intersectLeft
-			) {
-				conflictError.startDate = 'Academic period interval conflict';
-			}
-
-			if (period.endDate === academicPeriod.endDate || intersectRight) {
-				conflictError.endDate = 'Academic period interval conflict';
-			}
-		}
-
-		return conflictError;
+	if (academicPeriods.length === 0) {
+		return null;
 	}
 
-	return null;
+	for (const period of academicPeriods) {
+		const parsedStartDate = dayjs(academicPeriod.startDate);
+		const parsedEndDate = dayjs(academicPeriod.endDate);
+
+		const intersectLeft =
+			parsedStartDate.isAfter(period.startDate) &&
+			parsedStartDate.isBefore(period.endDate);
+
+		const intersectRight =
+			parsedEndDate.isAfter(period.startDate) &&
+			parsedEndDate.isBefore(period.endDate);
+
+		if (parsedStartDate.isSame(period.startDate, 'day') || intersectLeft) {
+			conflictError.startDate = `Conflicts with period ${period.name}`;
+		}
+
+		if (parsedEndDate.isSame(period.endDate, 'day') || intersectRight) {
+			conflictError.endDate = `Conflicts with period ${period.name}`;
+		}
+
+		if (academicPeriod.name === period.name) {
+			conflictError.name =
+				'Academic period with this name already exists';
+		}
+	}
+
+	if (Object.keys(conflictError).length === 0) {
+		return null;
+	}
+
+	return conflictError;
 }
 /**
  * Retrieves all academic periods from the database.
