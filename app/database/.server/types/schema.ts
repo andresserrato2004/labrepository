@@ -56,6 +56,11 @@ export type NewClassroom = typeof schema.classrooms.$inferInsert;
 export type AcademicPeriod = typeof schema.academicPeriods.$inferSelect;
 
 /**
+ * Represents the type definition for creating a new academic period.
+ */
+export type NewAcademicPeriod = typeof schema.academicPeriods.$inferInsert;
+
+/**
  * Represents the type definition for the AuditLog entity in the schema.
  */
 export type AuditLog = typeof schema.auditLogs.$inferSelect;

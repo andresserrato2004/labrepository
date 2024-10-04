@@ -3,7 +3,6 @@ import type { loader } from '@routes/home/loader';
 import type { PropsWithChildren } from 'react';
 
 import { useServiceAsyncList } from '@hooks/lists';
-import { useDeferredServiceResponse } from '@hooks/utility';
 import { useLoaderData } from '@remix-run/react';
 import { createContext, useContext, useEffect, useState } from 'react';
 
@@ -32,14 +31,17 @@ function academicPeriods() {
 	>(undefined);
 	const { academicPeriodsPromise } = useLoaderData<typeof loader>();
 
-	const { data, isLoading } = useDeferredServiceResponse(
-		academicPeriodsPromise,
-	);
+	const list = useServiceAsyncList(academicPeriodsPromise, {
+		initialSortDescriptor: {
+			column: 'name',
+			direction: 'descending',
+		},
+	});
 
 	useEffect(() => {
-		if (data) {
+		if (list.items) {
 			const now = new Date();
-			const currentPeriod = data.find(
+			const currentPeriod = list.items.find(
 				(period) =>
 					new Date(period.startDate) <= now &&
 					new Date(period.endDate) >= now,
@@ -47,9 +49,9 @@ function academicPeriods() {
 
 			setCurrentPeriod(currentPeriod);
 		}
-	}, [data]);
+	}, [list.items]);
 
-	return { data, isLoading, currentPeriod };
+	return { ...list, currentPeriod };
 }
 
 /**

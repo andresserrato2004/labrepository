@@ -116,3 +116,45 @@ export class InvalidNewClassroomError extends AppError<NewUser> {
 		super('Invalid classroom data.', errors, ClientErrorCode.BadRequest);
 	}
 }
+
+/**
+ * Represents an error that occurs when a classroom conflict is detected.
+ * Extends the `AppError` class with a specific type of `NewUser`.
+ *
+ * @class ClassroomConflictError
+ * @extends {AppError<NewUser>}
+ * @param {Errors<NewUser>} errors - The validation errors associated with the new classroom data.
+ */
+export class ClassroomConflictError extends AppError<NewUser> {
+	constructor(errors: Errors<NewUser>) {
+		super('Classroom already exists.', errors, ClientErrorCode.Conflict);
+	}
+}
+
+/**
+ * Represents an error that occurs when attempting to create a new academic period with invalid data.
+ * Extends the `AppError` class with a specific type of `NewUser`.
+ *
+ * @class InvalidNewAcademicPeriodError
+ * @extends {AppError<NewUser>}
+ * @param {Errors<NewUser>} errors - The validation errors associated with the new academic period data.
+ */
+export class InvalidNewAcademicPeriodError extends AppError<NewUser> {
+	constructor(errors: Errors<NewUser>) {
+		super(
+			'Invalid academic period data.',
+			errors,
+			ClientErrorCode.BadRequest,
+		);
+	}
+}
+
+export class AcademicPeriodConflictError extends AppError<NewUser> {
+	constructor(errors: Errors<NewUser>) {
+		super(
+			'Academic period already exists.',
+			errors,
+			ClientErrorCode.Conflict,
+		);
+	}
+}
