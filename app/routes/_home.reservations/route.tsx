@@ -1,5 +1,9 @@
 import { RouteTitle } from '@components';
-import { WeekSchedule } from '@routes/reservations/components';
+import { ModalFormProvider } from '@components/modalForm/providers';
+import {
+	ReservationsModal,
+	WeekSchedule,
+} from '@routes/reservations/components';
 import { ReservationListProvider } from '@routes/reservations/providers';
 
 export { loader } from '@routes/reservations/loader';
@@ -10,7 +14,10 @@ export default function Schedules() {
 		<div>
 			<RouteTitle>Reservations</RouteTitle>
 			<ReservationListProvider>
-				<WeekSchedule />
+				<ModalFormProvider>
+					<WeekSchedule />
+					<ReservationsModal />
+				</ModalFormProvider>
 			</ReservationListProvider>
 		</div>
 	);

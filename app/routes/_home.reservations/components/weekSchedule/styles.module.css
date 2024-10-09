@@ -1,7 +1,7 @@
 .scheduleContainer {
 	@apply grid grid-rows-[4rem,1fr] w-full h-min min-h-96 rounded-large shadow-small overflow-hidden;
 
-	.scheduleHeader {
+	.scheduleTopContent {
 		@apply bg-default-50;
 	}
 
@@ -9,16 +9,32 @@
 		@apply grid grid-rows-[min-content_repeat(26,minmax(1.5rem,min-content))] grid-cols-[min-content_repeat(7,1fr)] p-4 pr-10 pb-10;
 		@apply overflow-x-auto overflow-y-hidden;
 
-		.scheduleHeaderCell {
-			@apply flex flex-col items-center justify-center gap-1 pb-2;
-			@apply first:col-start-2;
+		.missingPeriod {
+			@apply grid place-items-center col-span-full row-span-full;
+		}
 
-			.headerDayName {
-				@apply text-default-700 text-small;
+		.scheduleHeader {
+			@apply grid grid-cols-subgrid col-span-full;
+
+			.scheduleHeaderCell {
+				@apply flex flex-col items-center justify-center gap-1 pb-2;
+				@apply first:col-start-2;
+
+				.headerDayName {
+					@apply text-default-700 text-small;
+				}
+
+				.headerDayNumber {
+					@apply text-default-500 text-small;
+				}
 			}
+		}
 
-			.headerDayNumber {
-				@apply text-default-500 text-small;
+		.scheduleSidebar {
+			@apply grid grid-rows-subgrid row-start-2 -row-end-1;
+
+			.sidebarCell {
+				@apply flex items-start justify-end mr-3 text-tiny h-full min-h-12 row-span-2 w-max pl-6 text-default-500;
 			}
 		}
 
@@ -55,12 +71,8 @@
 			}
 		}
 
-		.sidebarCell {
-			@apply flex items-start justify-end mr-3 text-tiny h-full min-h-12 row-span-2 w-max pl-6 text-default-500;
-		}
-
 		.scheduleContentRow {
-			@apply relative min-w-24;
+			@apply relative min-w-24 cursor-pointer;
 
 			.scheduleBodyCellWrapper {
 				@apply @container flex z-10 p-0.5 absolute w-full;

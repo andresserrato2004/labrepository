@@ -1,10 +1,19 @@
 import type { ExtendedReservation } from '@database/types';
 import type { ReservationCellProps } from '@routes/reservations/components/types';
+import type { MouseEvent } from 'react';
 
-import { DateFormatter, parseAbsoluteToLocal } from '@internationalized/date';
+import { useModalForm } from '@components/modalForm/providers';
+import {
+	DateFormatter,
+	getLocalTimeZone,
+	parseAbsoluteToLocal,
+} from '@internationalized/date';
+import { useAcademicPeriods } from '@routes/home/providers';
 import { useReservationList } from '@routes/reservations/providers';
 import { getSeededRandom, getShortName } from '@services/shared/utility';
 import { useRef } from 'react';
+
+import dayjs from 'dayjs';
 
 import cn from 'classnames';
 import styles from './styles.module.css';
@@ -38,35 +47,40 @@ const getTimeFromDayStart = (date: Date) => {
 };
 
 function ScheduleHeaders() {
+	const { currentPeriod } = useAcademicPeriods();
+
+	if (!currentPeriod.period) {
+		return null;
+	}
+
+	const selectedWeek = currentPeriod.selectedWeek;
+
+	const periodStart = currentPeriod.startDate.add({
+		weeks: selectedWeek > 8 ? selectedWeek : selectedWeek - 1,
+	});
+
 	return (
 		<>
-			<div className={styles.scheduleHeaderCell}>
-				<p className={styles.headerDayName}>Monday</p>
-				<span className={styles.headerDayNumber}>6</span>
-			</div>
-			<div className={styles.scheduleHeaderCell}>
-				<p className={styles.headerDayName}>Tuesday</p>
-				<span className={styles.headerDayNumber}>6</span>
-			</div>
-			<div className={styles.scheduleHeaderCell}>
-				<p className={styles.headerDayName}>Wednesday</p>
-				<span className={styles.headerDayNumber}>6</span>
-			</div>
-			<div className={styles.scheduleHeaderCell}>
-				<p className={styles.headerDayName}>Thursday</p>
-				<span className={styles.headerDayNumber}>6</span>
-			</div>
-			<div className={styles.scheduleHeaderCell}>
-				<p className={styles.headerDayName}>Friday</p>
-				<span className={styles.headerDayNumber}>6</span>
-			</div>
-			<div className={styles.scheduleHeaderCell}>
-				<p className={styles.headerDayName}>Saturday</p>
-				<span className={styles.headerDayNumber}>6</span>
-			</div>
-			<div className={styles.scheduleHeaderCell}>
-				<p className={styles.headerDayName}>Saturday</p>
-				<span className={styles.headerDayNumber}>6</span>
+			<div className={styles.scheduleHeader}>
+				{Array.from({ length: 7 }).map((_, index) => {
+					const day = periodStart.add({ days: index });
+					const dayNumber = day.day;
+					const dayOfWeek = dayjs(
+						day.toDate(getLocalTimeZone()),
+					).format('dddd');
+
+					return (
+						<div
+							className={styles.scheduleHeaderCell}
+							key={dayNumber}
+						>
+							<p className={styles.headerDayName}>{dayOfWeek}</p>
+							<span className={styles.headerDayNumber}>
+								{dayNumber}
+							</span>
+						</div>
+					);
+				})}
 			</div>
 		</>
 	);
@@ -75,19 +89,21 @@ function ScheduleHeaders() {
 function ScheduleSidebar() {
 	return (
 		<>
-			<div className={styles.sidebarCell}>7:00 am</div>
-			<div className={styles.sidebarCell}>8:00 am</div>
-			<div className={styles.sidebarCell}>9:00 am</div>
-			<div className={styles.sidebarCell}>10:00 am</div>
-			<div className={styles.sidebarCell}>11:00 am</div>
-			<div className={styles.sidebarCell}>12:00 am</div>
-			<div className={styles.sidebarCell}>1:00 pm</div>
-			<div className={styles.sidebarCell}>2:00 pm</div>
-			<div className={styles.sidebarCell}>3:00 pm</div>
-			<div className={styles.sidebarCell}>4:00 pm</div>
-			<div className={styles.sidebarCell}>5:00 pm</div>
-			<div className={styles.sidebarCell}>6:00 pm</div>
-			<div className={styles.sidebarCell}>7:00 pm</div>
+			<div className={styles.scheduleSidebar}>
+				<div className={styles.sidebarCell}>7:00 am</div>
+				<div className={styles.sidebarCell}>8:00 am</div>
+				<div className={styles.sidebarCell}>9:00 am</div>
+				<div className={styles.sidebarCell}>10:00 am</div>
+				<div className={styles.sidebarCell}>11:00 am</div>
+				<div className={styles.sidebarCell}>12:00 am</div>
+				<div className={styles.sidebarCell}>1:00 pm</div>
+				<div className={styles.sidebarCell}>2:00 pm</div>
+				<div className={styles.sidebarCell}>3:00 pm</div>
+				<div className={styles.sidebarCell}>4:00 pm</div>
+				<div className={styles.sidebarCell}>5:00 pm</div>
+				<div className={styles.sidebarCell}>6:00 pm</div>
+				<div className={styles.sidebarCell}>7:00 pm</div>
+			</div>
 		</>
 	);
 }
@@ -136,7 +152,8 @@ function ReservationCell(props: ReservationCellProps) {
 	);
 }
 
-export function WeekSchedule() {
+function ScheduleContent() {
+	const { openModal } = useModalForm();
 	const reservationList = useReservationList();
 	const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -149,32 +166,69 @@ export function WeekSchedule() {
 				return acc;
 			}, new Array(7).fill([]));
 
+	const handleClick = (event: MouseEvent) => {
+		if (!wrapperRef.current) {
+			return;
+		}
+
+		const relativeY =
+			event.clientY - wrapperRef.current.getBoundingClientRect().top;
+		const hourHeight = wrapperRef.current.clientHeight / 13;
+		const hour = Math.floor(relativeY / hourHeight) + 7;
+
+		console.log(hour);
+
+		openModal(null, 'create');
+	};
+	return (
+		<>
+			<ScheduleHeaders />
+			<ScheduleSidebar />
+			<div className={styles.scheduleContentWrapper} ref={wrapperRef}>
+				{reservationList.isLoading
+					? 'Loading...' //TODO: Add loading state
+					: days.map((reservationList, index) => (
+							<div
+								//TODO: Add key to the parent element
+								// biome-ignore lint/suspicious/noArrayIndexKey: because the index is the day of the week
+								key={index}
+								className={styles.scheduleContentRow}
+								onClick={handleClick}
+								onKeyDown={undefined}
+							>
+								{reservationList.map((reservation) => (
+									<ReservationCell
+										key={reservation.id}
+										reservation={reservation}
+										wrapperRef={wrapperRef}
+									/>
+								))}
+							</div>
+						))}
+			</div>
+		</>
+	);
+}
+
+function MissingCurrentPeriod() {
+	return (
+		<div className={styles.missingPeriod}>
+			<p>
+				There is no current academic period. Please contact your
+				administrator to set one up.
+			</p>
+		</div>
+	);
+}
+
+export function WeekSchedule() {
+	const { currentPeriod } = useAcademicPeriods();
+
 	return (
 		<div className={styles.scheduleContainer}>
-			<div className={styles.scheduleHeader} />
+			<div className={styles.scheduleTopContent} />
 			<div className={styles.scheduleBody}>
-				<ScheduleHeaders />
-				<ScheduleSidebar />
-				<div className={styles.scheduleContentWrapper} ref={wrapperRef}>
-					{reservationList.isLoading
-						? 'Loading...' //TODO: Add loading state
-						: days.map((reservationList, index) => (
-								<div
-									//TODO: Add key to the parent element
-									// biome-ignore lint/suspicious/noArrayIndexKey: because the index is the day of the week
-									key={index}
-									className={styles.scheduleContentRow}
-								>
-									{reservationList.map((reservation) => (
-										<ReservationCell
-											key={reservation.id}
-											reservation={reservation}
-											wrapperRef={wrapperRef}
-										/>
-									))}
-								</div>
-							))}
-				</div>
+				{currentPeriod ? <ScheduleContent /> : <MissingCurrentPeriod />}
 			</div>
 		</div>
 	);
