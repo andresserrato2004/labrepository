@@ -121,6 +121,7 @@ export const reservations = pgTable(
 		startTime: isoTimestamp('start_time').notNull(),
 		endTime: isoTimestamp('end_time').notNull(),
 		course: text('course').notNull(),
+		description: text('description'),
 		createdAt: isoTimestamp('created_at').default(sql`now()`).notNull(),
 		updatedAt: isoTimestamp('updated_at')
 			.default(sql`now()`)

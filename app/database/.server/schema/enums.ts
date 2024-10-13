@@ -7,6 +7,7 @@ export enum AppResource {
 	Users = 'users',
 	Classrooms = 'classrooms',
 	AcademicPeriods = 'academicPeriods',
+	Reservations = 'reservations',
 }
 
 /**

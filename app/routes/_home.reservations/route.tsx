@@ -7,6 +7,7 @@ import {
 import { ReservationListProvider } from '@routes/reservations/providers';
 
 export { loader } from '@routes/reservations/loader';
+export { action } from '@routes/reservations/action';
 export { meta } from '@routes/reservations/meta';
 
 export default function Schedules() {

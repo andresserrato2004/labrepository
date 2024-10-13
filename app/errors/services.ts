@@ -149,6 +149,13 @@ export class InvalidNewAcademicPeriodError extends AppError<NewUser> {
 	}
 }
 
+/**
+ * Error class representing a conflict when an academic period already exists.
+ * Extends the `AppError` class with a specific error message and client error code.
+ *
+ * @template NewUser - The type of the user associated with the error.
+ * @extends {AppError<NewUser>}
+ */
 export class AcademicPeriodConflictError extends AppError<NewUser> {
 	constructor(errors: Errors<NewUser>) {
 		super(
@@ -156,5 +163,31 @@ export class AcademicPeriodConflictError extends AppError<NewUser> {
 			errors,
 			ClientErrorCode.Conflict,
 		);
+	}
+}
+
+/**
+ * Represents an error that occurs when attempting to create a new reservation with invalid data.
+ * Extends the `AppError` class with a specific type of `NewUser`.
+ *
+ * @class InvalidNewReservationError
+ * @extends {AppError<NewUser>}
+ * @param {Errors<NewUser>} errors - The validation errors associated with the new reservation data.
+ */
+export class InvalidNewReservationError extends AppError<NewUser> {
+	constructor(errors: Errors<NewUser>) {
+		super('Invalid reservation data.', errors, ClientErrorCode.BadRequest);
+	}
+}
+
+/**
+ * Represents an error that occurs when a reservation conflict is detected.
+ * This error is thrown when an attempt is made to create a reservation that already exists.
+ *
+ * @extends {AppError<NewUser>}
+ */
+export class ReservationConflictError extends AppError<NewUser> {
+	constructor(errors: Errors<NewUser>) {
+		super('Reservation already exists.', errors, ClientErrorCode.Conflict);
 	}
 }

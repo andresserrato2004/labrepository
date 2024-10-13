@@ -86,6 +86,11 @@ export type NewErrorLog = typeof schema.errorLogs.$inferInsert;
 export type Reservation = typeof schema.reservations.$inferSelect;
 
 /**
+ * Represents the type definition for creating a new reservation.
+ */
+export type NewReservation = typeof schema.reservations.$inferInsert;
+
+/**
  * Represents a reservation with a classroom.
  */
 export interface ExtendedReservation extends Reservation {

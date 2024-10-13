@@ -10,7 +10,7 @@ import { Autocomplete, AutocompleteItem } from '@nextui-org/autocomplete';
 import { Button } from '@nextui-org/button';
 import { TimeInput } from '@nextui-org/date-input';
 import { DatePicker } from '@nextui-org/date-picker';
-import { Textarea } from '@nextui-org/input';
+import { Input, Textarea } from '@nextui-org/input';
 import { ModalBody, ModalFooter, ModalHeader } from '@nextui-org/modal';
 import { ResponseType } from '@services/shared/utility';
 import { useEffect, useState } from 'react';
@@ -96,10 +96,11 @@ export function ReservationsModal() {
 						Test user 2
 					</AutocompleteItem>
 				</Autocomplete>
+				<HiddenInput name='userId' value={userId} />
 				<Autocomplete
 					label='Classroom'
 					variant='faded'
-					className='col-span-12'
+					className='col-span-6'
 					isClearable={false}
 					selectedKey={classroomId}
 					onSelectionChange={handleClassroomIdChange}
@@ -112,28 +113,39 @@ export function ReservationsModal() {
 						Test Classroom 2
 					</AutocompleteItem>
 				</Autocomplete>
-				<HiddenInput name='role' value={userId} />
-				<DatePicker
-					label='End date'
+				<HiddenInput name='classroomId' value={classroomId} />
+				<Input
+					label='Course'
+					name='course'
 					variant='faded'
 					className='col-span-6'
 					isRequired={true}
+				/>
+				<DatePicker
+					label='Date'
+					name='date'
+					variant='faded'
+					className='col-span-6'
 					granularity='day'
+					isRequired={true}
 				/>
 				<TimeInput
 					label='Start hour'
+					name='startHour'
 					variant='faded'
 					className='col-span-3'
 					isRequired={true}
 				/>
 				<TimeInput
 					label='End hour'
+					name='endHour'
 					variant='faded'
 					className='col-span-3'
 					isRequired={true}
 				/>
 				<Textarea
 					label='Description'
+					name='description'
 					variant='faded'
 					className='col-span-12'
 				/>
