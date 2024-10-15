@@ -1,4 +1,5 @@
-import type { ExtendedReservation } from '@database/types';
+import type { ExtendedReservation, FormNewReservation } from '@database/types';
+import type { CalendarDateTime } from '@internationalized/date';
 import type { Key } from '@react-types/shared';
 import type { ReservationCellProps } from '@routes/reservations/components/types';
 import type { MouseEvent } from 'react';
@@ -9,6 +10,7 @@ import {
 	DateFormatter,
 	getLocalTimeZone,
 	parseAbsoluteToLocal,
+	toTime,
 } from '@internationalized/date';
 import { Autocomplete, AutocompleteItem } from '@nextui-org/autocomplete';
 import { Button } from '@nextui-org/button';
@@ -18,6 +20,8 @@ import {
 	DropdownMenu,
 	DropdownTrigger,
 } from '@nextui-org/dropdown';
+import { Input, Textarea } from '@nextui-org/input';
+import { Tooltip } from '@nextui-org/tooltip';
 import { CalendarDots, CaretLeft, CaretRight } from '@phosphor-icons/react';
 import { useAcademicPeriods, useClassrooms } from '@routes/home/providers';
 import { useReservationList } from '@routes/reservations/providers';
@@ -57,6 +61,68 @@ const getTimeFromDayStart = (date: Date) => {
 	const minutes = date.getMinutes();
 	return hours - 7 + minutes / 60;
 };
+
+function ReservationDetails({
+	reservation,
+}: { reservation: ExtendedReservation }) {
+	const startTime = dayjs(reservation.startTime).format('HH:mm A');
+	const endTime = dayjs(reservation.endTime).format('HH:mm A');
+	const date = dayjs(reservation.startTime).format('MMM DD, YYYY');
+
+	return (
+		<div className={styles.reservationDetails}>
+			<Input
+				className='col-span-12'
+				label='User'
+				variant='faded'
+				isReadOnly={true}
+				defaultValue={reservation.user.name}
+			/>
+			<Input
+				className='col-span-6'
+				label='Classroom'
+				variant='faded'
+				isReadOnly={true}
+				defaultValue={reservation.classroom.name}
+			/>
+			<Input
+				className='col-span-6'
+				variant='faded'
+				label='Course'
+				isReadOnly={true}
+				defaultValue={reservation.course}
+			/>
+			<Input
+				className='col-span-4'
+				label='Date'
+				variant='faded'
+				isReadOnly={true}
+				defaultValue={date}
+			/>
+			<Input
+				className='col-span-4'
+				label='Start Time'
+				variant='faded'
+				isReadOnly={true}
+				defaultValue={startTime}
+			/>
+			<Input
+				className='col-span-4'
+				label='End Time'
+				variant='faded'
+				isReadOnly={true}
+				defaultValue={endTime}
+			/>
+			<Textarea
+				className='col-span-12'
+				label='Description'
+				variant='faded'
+				isReadOnly={true}
+				defaultValue={reservation.description ?? undefined}
+			/>
+		</div>
+	);
+}
 
 function WeekSelector() {
 	const { currentPeriod, setSelectedWeek } = useAcademicPeriods();
@@ -237,6 +303,7 @@ function ScheduleSidebar() {
 }
 
 function ReservationCell(props: ReservationCellProps) {
+	const { openModal } = useModalForm();
 	const { reservation, wrapperRef, ...divProps } = props;
 
 	const startTime = parseAbsoluteToLocal(reservation.startTime);
@@ -248,39 +315,70 @@ function ReservationCell(props: ReservationCellProps) {
 	const height = `calc(${(100 * duration) / 12}% - 1px)`;
 	const top = `${(100 * startOffset) / 12}%`;
 
-	const handleClick = (event: MouseEvent) => {
+	const handleTooltipClick = (event: MouseEvent) => {
 		event.stopPropagation();
 	};
 
+	const handleReservationClick = (event: MouseEvent) => {
+		event.stopPropagation();
+
+		const startTime = parseAbsoluteToLocal(reservation.startTime);
+		const endTime = parseAbsoluteToLocal(reservation.endTime);
+
+		const date = startTime.toString();
+		const startHour = dayjs(startTime.toDate()).format('HH:mm');
+		const endHour = dayjs(endTime.toDate()).format('HH:mm');
+
+		openModal<FormNewReservation>(
+			{
+				...reservation,
+				date,
+				startHour,
+				endHour,
+			},
+			'update',
+		);
+	};
+
 	return (
-		<div
-			className={styles.scheduleBodyCellWrapper}
-			style={{
-				height,
-				top,
-			}}
-			onClick={handleClick}
-			{...divProps}
+		<Tooltip
+			content={<ReservationDetails reservation={reservation} />}
+			placement='right'
+			showArrow={true}
+			onClick={handleTooltipClick}
+			closeDelay={0}
 		>
 			<div
-				className={cn(
-					styles.scheduleBodyCell,
-					getCourseClass(reservation.course),
-				)}
+				className={styles.scheduleBodyCellWrapper}
+				style={{
+					height,
+					top,
+				}}
+				onClick={handleReservationClick}
+				{...divProps}
 			>
-				<p className={styles.reservationCourse}>{reservation.course}</p>
-				<p className={styles.reservationUser}>
-					{getShortName(reservation.user.name)}
-				</p>
-				<p className={styles.reservationTime}>
-					{reservationTimeFormatter.format(
-						new Date(reservation.startTime),
+				<div
+					className={cn(
+						styles.scheduleBodyCell,
+						getCourseClass(reservation.course),
 					)}
-					&nbsp;-&nbsp;
-					{reservationTimeFormatter.format(endTime.toDate())}
-				</p>
+				>
+					<p className={styles.reservationCourse}>
+						{reservation.course}
+					</p>
+					<p className={styles.reservationUser}>
+						{getShortName(reservation.user.name)}
+					</p>
+					<p className={styles.reservationTime}>
+						{reservationTimeFormatter.format(
+							new Date(reservation.startTime),
+						)}
+						&nbsp;-&nbsp;
+						{reservationTimeFormatter.format(endTime.toDate())}
+					</p>
+				</div>
 			</div>
-		</div>
+		</Tooltip>
 	);
 }
 
@@ -352,14 +450,18 @@ function ScheduleContent() {
 						: currentPeriod.selectedWeek - 1,
 				days: day,
 			})
-			.set({ hour, minute: 0 });
+			.set({ hour, minute: 0 }) as CalendarDateTime;
 
-		openModal(
-			{
-				date: date.toString(),
-			},
-			'create',
-		);
+		const reservation: FormNewReservation = {
+			course: '',
+			classroomId: selectedClassroom?.id ?? '',
+			date: date.toString(),
+			startHour: toTime(date).toString(),
+			endHour: toTime(date).toString(),
+			userId: '',
+		};
+
+		openModal<FormNewReservation>(reservation, 'create');
 	};
 
 	return (

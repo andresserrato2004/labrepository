@@ -10,6 +10,7 @@ import { useFetcherErrors } from '@hooks/fetcher';
 import {
 	fromDate,
 	getLocalTimeZone,
+	parseTime,
 	parseZonedDateTime,
 } from '@internationalized/date';
 import { Autocomplete, AutocompleteItem } from '@nextui-org/autocomplete';
@@ -55,11 +56,9 @@ export function ReservationsModal() {
 	>();
 	const { clearErrors, createErrorProps } = useFetcherErrors(fetcher);
 
-	const [userId, setUserId] = useState<Key>(modalData?.userId ?? '');
+	const [userId, setUserId] = useState<Key | null>(null);
 	const [date, setDate] = useState<DateValue | null>(null);
-	const [classroomId, setClassroomId] = useState<Key>(
-		modalData?.classroomId ?? '',
-	);
+	const [classroomId, setClassroomId] = useState<Key | null>(null);
 
 	const [selectedWeeks, setSelectedWeeks] = useState(new Set<Key>([]));
 
@@ -71,6 +70,7 @@ export function ReservationsModal() {
 
 	const isLoading = fetcher.state !== 'idle';
 	const isDetails = modalType === 'details';
+	const isCreate = modalType === 'create';
 
 	useEffect(() => {
 		if (!fetcher.data) {
@@ -89,6 +89,8 @@ export function ReservationsModal() {
 	useEffect(() => {
 		if (modalData) {
 			setDate(parseZonedDateTime(modalData.date));
+			setUserId(modalData.userId);
+			setClassroomId(modalData.classroomId);
 		}
 	}, [modalData]);
 
@@ -244,9 +246,7 @@ export function ReservationsModal() {
 					variant='faded'
 					className='col-span-3'
 					defaultValue={
-						modalData
-							? parseZonedDateTime(modalData.date)
-							: undefined
+						modalData ? parseTime(modalData.startHour) : undefined
 					}
 					hideTimeZone={true}
 					isRequired={true}
@@ -258,48 +258,59 @@ export function ReservationsModal() {
 					name='endHour'
 					variant='faded'
 					className='col-span-3'
+					defaultValue={
+						modalData ? parseTime(modalData.endHour) : undefined
+					}
 					isRequired={true}
 					hideTimeZone={true}
 					onChange={clearConflictErrors}
 					{...createErrorProps('startTime')}
 				/>
-				<Select
-					items={weeks}
-					className='col-span-12'
-					selectionMode='multiple'
-					variant='faded'
-					label='Repeat on weeks'
-					selectedKeys={selectedWeeks}
-					onSelectionChange={handleKeysChange}
-				>
-					{(item) => (
-						<SelectItem key={item.key} value={item.key}>
-							{item.label}
-						</SelectItem>
-					)}
-				</Select>
-				<HiddenInput
-					name='repeatOnWeeks'
-					value={Array.from(selectedWeeks).join(',')}
-				/>
-				<Button className='col-span-3' onClick={selectAllWeeks}>
-					All weeks
-				</Button>
-				<Button className='col-span-3' onClick={selectEvenWeeks}>
-					Even weeks
-				</Button>
-				<Button className='col-span-3' onClick={selectOddWeeks}>
-					Odd weeks
-				</Button>
-				<Button className='col-span-3' onClick={clearWeeks}>
-					Clear
-				</Button>
+				{isCreate ? (
+					<>
+						<Select
+							items={weeks}
+							className='col-span-12'
+							selectionMode='multiple'
+							variant='faded'
+							label='Repeat on weeks'
+							selectedKeys={selectedWeeks}
+							onSelectionChange={handleKeysChange}
+						>
+							{(item) => (
+								<SelectItem key={item.key} value={item.key}>
+									{item.label}
+								</SelectItem>
+							)}
+						</Select>
+						<HiddenInput
+							name='repeatOnWeeks'
+							value={Array.from(selectedWeeks).join(',')}
+						/>
+						<Button className='col-span-3' onClick={selectAllWeeks}>
+							All weeks
+						</Button>
+						<Button
+							className='col-span-3'
+							onClick={selectEvenWeeks}
+						>
+							Even weeks
+						</Button>
+						<Button className='col-span-3' onClick={selectOddWeeks}>
+							Odd weeks
+						</Button>
+						<Button className='col-span-3' onClick={clearWeeks}>
+							Clear
+						</Button>
+					</>
+				) : null}
 				<Textarea
 					label='Description'
 					name='description'
 					variant='faded'
 					className='col-span-12'
 					onChange={clearErrors('description')}
+					defaultValue={modalData?.description ?? ''}
 					{...createErrorProps('description')}
 				/>
 			</ModalBody>

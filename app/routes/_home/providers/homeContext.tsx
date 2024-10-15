@@ -105,6 +105,12 @@ function classroomList() {
 	const [selectedClassroom, setSelectedClassroom] =
 		useState<Classroom | null>(null);
 
+	useEffect(() => {
+		if (list.items && list.items.length > 0 && !selectedClassroom) {
+			setSelectedClassroom(list.items[0]);
+		}
+	}, [list.items, selectedClassroom]);
+
 	return { ...list, selectedClassroom, setSelectedClassroom };
 }
 
