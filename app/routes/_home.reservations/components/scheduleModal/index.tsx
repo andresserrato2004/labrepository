@@ -60,6 +60,7 @@ export function ReservationsModal() {
 	const [classroomId, setClassroomId] = useState<Key>(
 		modalData?.classroomId ?? '',
 	);
+
 	const [selectedWeeks, setSelectedWeeks] = useState(new Set<Key>([]));
 
 	const weeks = Array.from({ length: 17 }).map((_, index) => ({
@@ -186,7 +187,7 @@ export function ReservationsModal() {
 					isRequired={true}
 					selectedKey={userId}
 					onSelectionChange={handleUserIdChange}
-					items={userList.items}
+					defaultItems={userList.items}
 					isLoading={userList.isLoading}
 					{...createErrorProps('userId')}
 				>
@@ -205,7 +206,7 @@ export function ReservationsModal() {
 					isRequired={true}
 					selectedKey={classroomId}
 					onSelectionChange={handleClassroomIdChange}
-					items={classroomList.items}
+					defaultItems={classroomList.items}
 					isLoading={classroomList.isLoading}
 					{...createErrorProps('classroomId')}
 				>

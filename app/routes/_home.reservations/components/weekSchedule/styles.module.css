@@ -2,10 +2,10 @@
 	@apply grid grid-rows-[4rem,1fr] w-full h-min min-h-96 rounded-large shadow-small overflow-hidden;
 
 	.scheduleTopContent {
-		@apply grid grid-cols-3 bg-default-50 items-center px-16;
+		@apply grid grid-cols-3 bg-default-50 items-center px-16 gap-x-4;
 
 		.weekSelector {
-			@apply flex items-center border-small border-default-300 w-max rounded-small;
+			@apply flex items-center border-small border-default-300 w-max rounded-medium;
 
 			.weekSelectorButton {
 				
@@ -14,12 +14,28 @@
 				}
 
 				&:nth-child(3) {
-					@apply rounded-l-none;
+					@apply rounded-none;
 				}
 			}
 
+			.weekCalendarButton {
+				@apply rounded-l-none;
+			}
+
+			.weekCalendarButton,
+			.weekSelectorButton {
+				@apply h-9;
+			}
+
 			.weekSelectorText {
-				@apply text-default-600 text-small px-4;
+				@apply text-default-600 text-small px-4 select-none;
+			}
+		}
+
+		.classroomSelector {
+
+			input {
+				@apply text-center w-full;
 			}
 		}
 	}

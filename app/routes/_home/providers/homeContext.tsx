@@ -1,3 +1,4 @@
+import type { Classroom } from '@database/types';
 import type { loader } from '@routes/home/loader';
 import type {
 	ExistingCurrentPeriod,
@@ -101,7 +102,10 @@ function classroomList() {
 		},
 	});
 
-	return list;
+	const [selectedClassroom, setSelectedClassroom] =
+		useState<Classroom | null>(null);
+
+	return { ...list, selectedClassroom, setSelectedClassroom };
 }
 
 /**

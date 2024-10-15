@@ -1,4 +1,5 @@
 import type { ExtendedReservation } from '@database/types';
+import type { Key } from '@react-types/shared';
 import type { ReservationCellProps } from '@routes/reservations/components/types';
 import type { MouseEvent } from 'react';
 
@@ -9,6 +10,7 @@ import {
 	getLocalTimeZone,
 	parseAbsoluteToLocal,
 } from '@internationalized/date';
+import { Autocomplete, AutocompleteItem } from '@nextui-org/autocomplete';
 import { Button } from '@nextui-org/button';
 import {
 	Dropdown,
@@ -17,7 +19,7 @@ import {
 	DropdownTrigger,
 } from '@nextui-org/dropdown';
 import { CalendarDots, CaretLeft, CaretRight } from '@phosphor-icons/react';
-import { useAcademicPeriods } from '@routes/home/providers';
+import { useAcademicPeriods, useClassrooms } from '@routes/home/providers';
 import { useReservationList } from '@routes/reservations/providers';
 import { getMonday, getSunday } from '@services/shared/dates';
 import { getSeededRandom, getShortName } from '@services/shared/utility';
@@ -87,7 +89,6 @@ function WeekSelector() {
 				className={styles.weekSelectorButton}
 				isIconOnly={true}
 				variant='light'
-				size='sm'
 				onPress={() => setSelectedWeek(currentPeriod.selectedWeek - 1)}
 				isDisabled={currentPeriod.selectedWeek === 1}
 			>
@@ -101,7 +102,6 @@ function WeekSelector() {
 				className={styles.weekSelectorButton}
 				isIconOnly={true}
 				variant='light'
-				size='sm'
 				onPress={() => setSelectedWeek(currentPeriod.selectedWeek + 1)}
 				isDisabled={currentPeriod.selectedWeek === 17}
 			>
@@ -114,7 +114,6 @@ function WeekSelector() {
 						className={styles.weekCalendarButton}
 						isIconOnly={true}
 						variant='light'
-						size='sm'
 					>
 						<CalendarDots size={19} weight='duotone' />
 					</Button>
@@ -136,6 +135,42 @@ function WeekSelector() {
 					)}
 				</DropdownMenu>
 			</Dropdown>
+		</div>
+	);
+}
+
+function ClassroomSelector() {
+	const { items, isLoading, selectedClassroom, setSelectedClassroom } =
+		useClassrooms();
+
+	const handleChange = (classroomId: Key | null) => {
+		if (classroomId !== null) {
+			const classroom = items.find((item) => item.id === classroomId);
+			if (classroom) {
+				return setSelectedClassroom(classroom);
+			}
+
+			setSelectedClassroom(null);
+		}
+	};
+
+	return (
+		<div className={styles.classroomSelector}>
+			<Autocomplete
+				defaultItems={items}
+				isLoading={isLoading}
+				isClearable={false}
+				selectedKey={selectedClassroom?.id}
+				onSelectionChange={handleChange}
+				variant='faded'
+				aria-label='Select classroom'
+			>
+				{(classroom) => (
+					<AutocompleteItem key={classroom.id} value={classroom.name}>
+						{classroom.name}
+					</AutocompleteItem>
+				)}
+			</Autocomplete>
 		</div>
 	);
 }
@@ -253,6 +288,7 @@ function ScheduleContent() {
 	const { openModal } = useModalForm();
 	const { currentPeriod } = useAcademicPeriods();
 	const { reservationList } = useReservationList();
+	const { selectedClassroom } = useClassrooms();
 	const wrapperRef = useRef<HTMLDivElement>(null);
 
 	const weekReservations = useMemo(() => {
@@ -273,9 +309,15 @@ function ScheduleContent() {
 		return reservationList.items.filter(
 			(reservation) =>
 				dayjs(reservation.startTime).toDate() >= startDate &&
-				dayjs(reservation.endTime).toDate() <= endDate,
+				dayjs(reservation.endTime).toDate() <= endDate &&
+				reservation.classroomId === selectedClassroom?.id,
 		);
-	}, [reservationList.items, reservationList.isLoading, currentPeriod]);
+	}, [
+		reservationList.items,
+		reservationList.isLoading,
+		currentPeriod,
+		selectedClassroom,
+	]);
 
 	const days: ExtendedReservation[][] = useMemo(() => {
 		return weekReservations.reduce((acc, reservation) => {
@@ -370,6 +412,7 @@ export function WeekSchedule() {
 		<div className={styles.scheduleContainer}>
 			<div className={styles.scheduleTopContent}>
 				<WeekSelector />
+				<ClassroomSelector />
 			</div>
 			<div className={styles.scheduleBody}>
 				{currentPeriod.period ? (
