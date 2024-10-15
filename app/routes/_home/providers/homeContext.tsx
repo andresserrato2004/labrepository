@@ -69,6 +69,10 @@ function academicPeriods() {
 	}, [list.items]);
 
 	const setSelectedWeek = (selectedWeek: number) => {
+		if (selectedWeek < 1 || selectedWeek > 17) {
+			return;
+		}
+
 		setCurrentPeriod((prev) => ({
 			...prev,
 			selectedWeek,

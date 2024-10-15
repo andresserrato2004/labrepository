@@ -3,13 +3,23 @@ import type { ReservationCellProps } from '@routes/reservations/components/types
 import type { MouseEvent } from 'react';
 
 import { useModalForm } from '@components/modalForm/providers';
+import { dataAttr } from '@components/utility';
 import {
 	DateFormatter,
 	getLocalTimeZone,
 	parseAbsoluteToLocal,
 } from '@internationalized/date';
+import { Button } from '@nextui-org/button';
+import {
+	Dropdown,
+	DropdownItem,
+	DropdownMenu,
+	DropdownTrigger,
+} from '@nextui-org/dropdown';
+import { CalendarDots, CaretLeft, CaretRight } from '@phosphor-icons/react';
 import { useAcademicPeriods } from '@routes/home/providers';
 import { useReservationList } from '@routes/reservations/providers';
+import { getMonday, getSunday } from '@services/client/dates';
 import { getSeededRandom, getShortName } from '@services/shared/utility';
 import { useMemo, useRef } from 'react';
 
@@ -46,6 +56,90 @@ const getTimeFromDayStart = (date: Date) => {
 	return hours - 7 + minutes / 60;
 };
 
+function WeekSelector() {
+	const { currentPeriod, setSelectedWeek } = useAcademicPeriods();
+
+	if (!currentPeriod.period) {
+		return null;
+	}
+
+	const currentWeek = currentPeriod.startDate.add({
+		weeks:
+			currentPeriod.selectedWeek > 8
+				? currentPeriod.selectedWeek
+				: currentPeriod.selectedWeek - 1,
+	});
+	const monday = getMonday(currentWeek);
+	const sunday = getSunday(currentWeek);
+
+	const dateValue = currentWeek.toDate(getLocalTimeZone());
+	const month = dayjs(dateValue).format('MMM');
+
+	const weeks = Array.from({ length: 17 }).map((_, index) => ({
+		label: `Week ${index + 1}`,
+		value: index + 1,
+		key: index + 1,
+	}));
+
+	return (
+		<div className={styles.weekSelector}>
+			<Button
+				className={styles.weekSelectorButton}
+				isIconOnly={true}
+				variant='light'
+				size='sm'
+				onPress={() => setSelectedWeek(currentPeriod.selectedWeek - 1)}
+				isDisabled={currentPeriod.selectedWeek === 1}
+			>
+				<CaretLeft size={17} />
+			</Button>
+			<p className={styles.weekSelectorText}>
+				Week {currentPeriod.selectedWeek}, {month} {monday.day} -{' '}
+				{sunday.day}
+			</p>
+			<Button
+				className={styles.weekSelectorButton}
+				isIconOnly={true}
+				variant='light'
+				size='sm'
+				onPress={() => setSelectedWeek(currentPeriod.selectedWeek + 1)}
+				isDisabled={currentPeriod.selectedWeek === 17}
+			>
+				<CaretRight size={17} />
+			</Button>
+
+			<Dropdown>
+				<DropdownTrigger>
+					<Button
+						className={styles.weekCalendarButton}
+						isIconOnly={true}
+						variant='light'
+						size='sm'
+					>
+						<CalendarDots size={19} weight='duotone' />
+					</Button>
+				</DropdownTrigger>
+				<DropdownMenu items={weeks}>
+					{(item) => (
+						<DropdownItem
+							key={item.key}
+							onPress={() => setSelectedWeek(item.value)}
+							className={
+								'data-[active=true]:text-primary data-[active=true]:bg-primary-50'
+							}
+							data-active={dataAttr(
+								item.value === currentPeriod.selectedWeek,
+							)}
+						>
+							{item.label}
+						</DropdownItem>
+					)}
+				</DropdownMenu>
+			</Dropdown>
+		</div>
+	);
+}
+
 function ScheduleHeaders() {
 	const { currentPeriod } = useAcademicPeriods();
 
@@ -65,9 +159,9 @@ function ScheduleHeaders() {
 				{Array.from({ length: 7 }).map((_, index) => {
 					const day = periodStart.add({ days: index });
 					const dayNumber = day.day;
-					const dayOfWeek = dayjs(
-						day.toDate(getLocalTimeZone()),
-					).format('dddd');
+					const dateValue = day.toDate(getLocalTimeZone());
+					const dayOfWeek = dayjs(dateValue).format('dddd');
+					const month = dayjs(dateValue).format('MMM');
 
 					return (
 						<div
@@ -76,7 +170,7 @@ function ScheduleHeaders() {
 						>
 							<p className={styles.headerDayName}>{dayOfWeek}</p>
 							<span className={styles.headerDayNumber}>
-								{dayNumber}
+								{month} {dayNumber}
 							</span>
 						</div>
 					);
@@ -274,7 +368,9 @@ export function WeekSchedule() {
 
 	return (
 		<div className={styles.scheduleContainer}>
-			<div className={styles.scheduleTopContent} />
+			<div className={styles.scheduleTopContent}>
+				<WeekSelector />
+			</div>
 			<div className={styles.scheduleBody}>
 				{currentPeriod.period ? (
 					<ScheduleContent />
