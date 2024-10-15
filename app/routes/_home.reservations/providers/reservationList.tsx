@@ -14,9 +14,10 @@ export const ReservationListContext = createContext<ReturnType<
 > | null>(null);
 
 function reservationList() {
-	const { reservationsPromise } = useLoaderData<typeof loader>();
+	const { reservationsPromise, classroomsPromise, usersPromise } =
+		useLoaderData<typeof loader>();
 
-	const list = useAsyncList({
+	const reservationList = useAsyncList({
 		async load() {
 			const response = await reservationsPromise;
 
@@ -30,7 +31,35 @@ function reservationList() {
 		},
 	});
 
-	return list;
+	const classroomList = useAsyncList({
+		async load() {
+			const response = await classroomsPromise;
+
+			if (response.type === ResponseType.ServerError) {
+				throw createServerErrorResponse(response);
+			}
+
+			return {
+				items: response.data,
+			};
+		},
+	});
+
+	const userList = useAsyncList({
+		async load() {
+			const response = await usersPromise;
+
+			if (response.type === ResponseType.ServerError) {
+				throw createServerErrorResponse(response);
+			}
+
+			return {
+				items: response.data,
+			};
+		},
+	});
+
+	return { reservationList, classroomList, userList };
 }
 
 export function useReservationList() {

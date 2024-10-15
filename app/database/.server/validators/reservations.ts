@@ -2,6 +2,7 @@ import type { NewReservation } from '@database/types';
 
 import { schema } from '@database';
 import { isoDate } from '@database/validators/shared';
+import { parseTime, parseZonedDateTime } from '@internationalized/date';
 import { createInsertSchema } from 'drizzle-zod';
 import { z } from 'zod';
 import { zfd } from 'zod-form-data';
@@ -26,8 +27,25 @@ const newReservationSchema = createInsertSchema(schema.reservations, {
 const newReservationFormTransformer = (
 	data: z.infer<typeof newFormReservationSchema>,
 ) => {
-	const startTime = `${data.date}T${data.startHour}Z`;
-	const endTime = `${data.date}T${data.endHour}Z`;
+	const reservationDate = parseZonedDateTime(data.date);
+	const reservationStartHour = parseTime(data.startHour);
+	const reservationEndHour = parseTime(data.endHour);
+
+	const startTime = reservationDate
+		.set({
+			hour: reservationStartHour.hour,
+			minute: reservationStartHour.minute,
+			second: 0,
+		})
+		.toAbsoluteString();
+
+	const endTime = reservationDate
+		.set({
+			hour: reservationEndHour.hour,
+			minute: reservationEndHour.minute,
+			second: 0,
+		})
+		.toAbsoluteString();
 
 	const { date, startHour, endHour, ...rest } = data;
 

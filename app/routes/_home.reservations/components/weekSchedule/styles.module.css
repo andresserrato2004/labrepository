@@ -6,7 +6,7 @@
 	}
 
 	.scheduleBody {
-		@apply grid grid-rows-[min-content_repeat(26,minmax(1.5rem,min-content))] grid-cols-[min-content_repeat(7,1fr)] p-4 pr-10 pb-10;
+		@apply grid grid-rows-[min-content_repeat(24,minmax(1.6rem,min-content))] grid-cols-[min-content_repeat(7,1fr)] p-4 pr-10 pb-10;
 		@apply overflow-x-auto overflow-y-hidden;
 
 		.missingPeriod {
@@ -65,7 +65,7 @@
 				bottom: 0;
 				background:
                     linear-gradient(180deg, theme(borderColor.default-100) 1px, transparent 1px) repeat-y;
-				background-size: 100% calc(100% / 13);
+				background-size: 100% calc(100% / 12);
 				background-position: 0 -1px;
 				pointer-events: none;
 			}

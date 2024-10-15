@@ -1,10 +1,16 @@
 import type { ModalType } from '@components/modalForm/types';
-import type { ExtendedReservation } from '@database/types';
+import type { FormNewReservation } from '@database/types';
+import type { DateValue } from '@internationalized/date';
 import type { Key } from '@react-types/shared';
 import type { action } from '@routes/periods/action';
 
 import { HiddenInput, ModalForm, toast } from '@components';
 import { useModalForm } from '@components/modalForm/providers';
+import {
+	fromDate,
+	getLocalTimeZone,
+	parseZonedDateTime,
+} from '@internationalized/date';
 // import { useFetcherErrors } from '@hooks/fetcher';
 import { Autocomplete, AutocompleteItem } from '@nextui-org/autocomplete';
 import { Button } from '@nextui-org/button';
@@ -12,6 +18,7 @@ import { TimeInput } from '@nextui-org/date-input';
 import { DatePicker } from '@nextui-org/date-picker';
 import { Input, Textarea } from '@nextui-org/input';
 import { ModalBody, ModalFooter, ModalHeader } from '@nextui-org/modal';
+import { useReservationList } from '@routes/reservations/providers';
 import { ResponseType } from '@services/shared/utility';
 import { useEffect, useState } from 'react';
 
@@ -40,13 +47,18 @@ const getSuccessMessage = (modalType: ModalType) => {
 };
 
 export function ReservationsModal() {
-	const [userId, setUserId] = useState<Key>('');
-	const [classroomId, setClassroomId] = useState<Key>('');
-
-	const { modalType, fetcher, closeModal } = useModalForm<
-		ExtendedReservation,
+	const { classroomList, userList } = useReservationList();
+	const { modalType, modalData, fetcher, closeModal } = useModalForm<
+		FormNewReservation,
 		typeof action
 	>();
+
+	const [userId, setUserId] = useState<Key>(modalData?.userId ?? '');
+	const [classroomId, setClassroomId] = useState<Key>(
+		modalData?.classroomId ?? '',
+	);
+	const [date, setDate] = useState<DateValue | null>(null);
+
 	// const { clearErrors, createErrorProps } = useFetcherErrors(fetcher);
 
 	const isLoading = fetcher.state !== 'idle';
@@ -66,6 +78,12 @@ export function ReservationsModal() {
 		}
 	});
 
+	useEffect(() => {
+		if (modalData) {
+			setDate(parseZonedDateTime(modalData.date));
+		}
+	}, [modalData]);
+
 	const handleUserIdChange = (value: Key | null) => {
 		setUserId(value ?? '');
 	};
@@ -74,10 +92,30 @@ export function ReservationsModal() {
 		setClassroomId(value ?? '');
 	};
 
+	const handleDateChange = (value: DateValue | null) => {
+		if (!value) {
+			return;
+		}
+
+		const isZonedDateTime = value.toString().includes('/');
+
+		if (isZonedDateTime) {
+			return setDate(value);
+		}
+
+		const nativeDate = new Date(value.toString());
+		const timezone = getLocalTimeZone();
+		const newDate = fromDate(nativeDate, timezone);
+
+		setDate(newDate);
+	};
+
 	return (
 		<ModalForm>
 			<ModalHeader className='text-2xl mt-4'>
-				<h2>{getModalTitle(modalType)}</h2>
+				<h2>
+					{getModalTitle(modalType)} - {}
+				</h2>
 			</ModalHeader>
 			<ModalBody className='grid grid-cols-12 p-6 gap-6'>
 				<Autocomplete
@@ -85,16 +123,17 @@ export function ReservationsModal() {
 					variant='faded'
 					className='col-span-12'
 					isClearable={false}
+					isRequired={true}
 					selectedKey={userId}
 					onSelectionChange={handleUserIdChange}
-					isRequired={true}
+					items={userList.items}
+					isLoading={userList.isLoading}
 				>
-					<AutocompleteItem key='123' value='admin'>
-						Test User 1
-					</AutocompleteItem>
-					<AutocompleteItem key='456' value='user'>
-						Test user 2
-					</AutocompleteItem>
+					{(user) => (
+						<AutocompleteItem key={user.id}>
+							{user.name}
+						</AutocompleteItem>
+					)}
 				</Autocomplete>
 				<HiddenInput name='userId' value={userId} />
 				<Autocomplete
@@ -102,16 +141,17 @@ export function ReservationsModal() {
 					variant='faded'
 					className='col-span-6'
 					isClearable={false}
+					isRequired={true}
 					selectedKey={classroomId}
 					onSelectionChange={handleClassroomIdChange}
-					isRequired={true}
+					items={classroomList.items}
+					isLoading={classroomList.isLoading}
 				>
-					<AutocompleteItem key='redes' value='admin'>
-						Test Classroom 1
-					</AutocompleteItem>
-					<AutocompleteItem key='software' value='user'>
-						Test Classroom 2
-					</AutocompleteItem>
+					{(classroom) => (
+						<AutocompleteItem key={classroom.id}>
+							{classroom.name}
+						</AutocompleteItem>
+					)}
 				</Autocomplete>
 				<HiddenInput name='classroomId' value={classroomId} />
 				<Input
@@ -120,6 +160,7 @@ export function ReservationsModal() {
 					variant='faded'
 					className='col-span-6'
 					isRequired={true}
+					defaultValue={modalData?.course}
 				/>
 				<DatePicker
 					label='Date'
@@ -127,6 +168,8 @@ export function ReservationsModal() {
 					variant='faded'
 					className='col-span-6'
 					granularity='day'
+					value={date}
+					onChange={handleDateChange}
 					isRequired={true}
 				/>
 				<TimeInput
@@ -134,6 +177,12 @@ export function ReservationsModal() {
 					name='startHour'
 					variant='faded'
 					className='col-span-3'
+					defaultValue={
+						modalData
+							? parseZonedDateTime(modalData.date)
+							: undefined
+					}
+					hideTimeZone={true}
 					isRequired={true}
 				/>
 				<TimeInput

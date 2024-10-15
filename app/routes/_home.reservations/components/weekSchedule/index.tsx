@@ -11,7 +11,7 @@ import {
 import { useAcademicPeriods } from '@routes/home/providers';
 import { useReservationList } from '@routes/reservations/providers';
 import { getSeededRandom, getShortName } from '@services/shared/utility';
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 
 import dayjs from 'dayjs';
 
@@ -102,7 +102,6 @@ function ScheduleSidebar() {
 				<div className={styles.sidebarCell}>4:00 pm</div>
 				<div className={styles.sidebarCell}>5:00 pm</div>
 				<div className={styles.sidebarCell}>6:00 pm</div>
-				<div className={styles.sidebarCell}>7:00 pm</div>
 			</div>
 		</>
 	);
@@ -114,19 +113,18 @@ function ReservationCell(props: ReservationCellProps) {
 	const startTime = parseAbsoluteToLocal(reservation.startTime);
 	const endTime = parseAbsoluteToLocal(reservation.endTime);
 
-	const hourHeight = (wrapperRef.current?.clientHeight ?? 0) / 13;
 	const duration = endTime.compare(startTime) / 3600 / 1000;
 	const startOffset = getTimeFromDayStart(startTime.toDate());
 
-	const height = hourHeight * duration;
-	const top = hourHeight * startOffset;
+	const height = `calc(${(100 * duration) / 12}% - 1px)`;
+	const top = `${(100 * startOffset) / 12}%`;
 
 	return (
 		<div
 			className={styles.scheduleBodyCellWrapper}
 			style={{
 				height,
-				transform: `translateY(${top}px)`,
+				top,
 			}}
 			{...divProps}
 		>
@@ -154,58 +152,103 @@ function ReservationCell(props: ReservationCellProps) {
 
 function ScheduleContent() {
 	const { openModal } = useModalForm();
-	const reservationList = useReservationList();
+	const { currentPeriod } = useAcademicPeriods();
+	const { reservationList } = useReservationList();
 	const wrapperRef = useRef<HTMLDivElement>(null);
 
-	const days: ExtendedReservation[][] = reservationList.isLoading
-		? []
-		: reservationList.items.reduce((acc, reservation) => {
-				const startTime = parseAbsoluteToLocal(reservation.startTime);
-				const dayOfWeek = startTime.toDate().getDay();
-				acc[dayOfWeek] = [...acc[dayOfWeek], reservation];
-				return acc;
-			}, new Array(7).fill([]));
+	const weekReservations = useMemo(() => {
+		if (!currentPeriod.period || reservationList.isLoading) {
+			return [];
+		}
+
+		const currentWeek = currentPeriod.startDate.add({
+			weeks:
+				currentPeriod.selectedWeek > 8
+					? currentPeriod.selectedWeek
+					: currentPeriod.selectedWeek - 1,
+		});
+
+		const startDate = currentWeek.toDate(getLocalTimeZone());
+		const endDate = currentWeek.add({ days: 7 }).toDate(getLocalTimeZone());
+
+		return reservationList.items.filter(
+			(reservation) =>
+				dayjs(reservation.startTime).toDate() >= startDate &&
+				dayjs(reservation.endTime).toDate() <= endDate,
+		);
+	}, [reservationList.items, reservationList.isLoading, currentPeriod]);
+
+	const days: ExtendedReservation[][] = useMemo(() => {
+		return weekReservations.reduce((acc, reservation) => {
+			const startTime = parseAbsoluteToLocal(reservation.startTime);
+			const dayOfWeek = startTime.toDate().getDay();
+
+			const index = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+
+			acc[index] = [...acc[index], reservation];
+			return acc;
+		}, new Array(7).fill([]));
+	}, [weekReservations]);
 
 	const handleClick = (event: MouseEvent) => {
-		if (!wrapperRef.current) {
+		if (!wrapperRef.current || !currentPeriod.period) {
 			return;
 		}
 
 		const relativeY =
 			event.clientY - wrapperRef.current.getBoundingClientRect().top;
-		const hourHeight = wrapperRef.current.clientHeight / 13;
+		const relativeX = wrapperRef.current.getBoundingClientRect().left;
+		const hourHeight = wrapperRef.current.clientHeight / 12;
+		const dayWidth = wrapperRef.current.clientWidth / 7;
 		const hour = Math.floor(relativeY / hourHeight) + 7;
+		const day = Math.floor((event.clientX - relativeX) / dayWidth);
 
-		console.log(hour);
+		const date = currentPeriod.startDate
+			.add({
+				weeks:
+					currentPeriod.selectedWeek > 8
+						? currentPeriod.selectedWeek
+						: currentPeriod.selectedWeek - 1,
+				days: day,
+			})
+			.set({ hour, minute: 0 });
 
-		openModal(null, 'create');
+		openModal(
+			{
+				date: date.toString(),
+			},
+			'create',
+		);
 	};
+
 	return (
 		<>
 			<ScheduleHeaders />
 			<ScheduleSidebar />
-			<div className={styles.scheduleContentWrapper} ref={wrapperRef}>
-				{reservationList.isLoading
-					? 'Loading...' //TODO: Add loading state
-					: days.map((reservationList, index) => (
-							<div
-								//TODO: Add key to the parent element
-								// biome-ignore lint/suspicious/noArrayIndexKey: because the index is the day of the week
-								key={index}
-								className={styles.scheduleContentRow}
-								onClick={handleClick}
-								onKeyDown={undefined}
-							>
-								{reservationList.map((reservation) => (
-									<ReservationCell
-										key={reservation.id}
-										reservation={reservation}
-										wrapperRef={wrapperRef}
-									/>
-								))}
-							</div>
-						))}
-			</div>
+			{reservationList.isLoading ? (
+				'Loading...'
+			) : (
+				<div className={styles.scheduleContentWrapper} ref={wrapperRef}>
+					{days.map((reservationList, index) => (
+						<div
+							//TODO: Add key to the parent element
+							// biome-ignore lint/suspicious/noArrayIndexKey: because the index is the day of the week
+							key={index}
+							className={styles.scheduleContentRow}
+							onClick={handleClick}
+							onKeyDown={undefined}
+						>
+							{reservationList.map((reservation) => (
+								<ReservationCell
+									key={reservation.id}
+									reservation={reservation}
+									wrapperRef={wrapperRef}
+								/>
+							))}
+						</div>
+					))}
+				</div>
+			)}
 		</>
 	);
 }
@@ -228,7 +271,11 @@ export function WeekSchedule() {
 		<div className={styles.scheduleContainer}>
 			<div className={styles.scheduleTopContent} />
 			<div className={styles.scheduleBody}>
-				{currentPeriod ? <ScheduleContent /> : <MissingCurrentPeriod />}
+				{currentPeriod.period ? (
+					<ScheduleContent />
+				) : (
+					<MissingCurrentPeriod />
+				)}
 			</div>
 		</div>
 	);

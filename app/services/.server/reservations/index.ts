@@ -7,7 +7,7 @@ import type {
 import type { CreateReservationArgs } from '@services/server/types';
 
 import { newReservationValidator } from '@/database/.server/validators';
-import { and, database, eq, gte, lte, schema } from '@database';
+import { and, database, eq, gt, lt, schema } from '@database';
 import { AppResource } from '@database/schema/enums';
 import {
 	InvalidNewReservationError,
@@ -48,15 +48,15 @@ async function checkForExistingReservation(
 				eq(schema.reservations.classroomId, reservation.classroomId),
 				or(
 					and(
-						gte(
+						gt(
 							schema.reservations.startTime,
 							reservation.startTime,
 						),
-						lte(schema.reservations.startTime, reservation.endTime),
+						lt(schema.reservations.startTime, reservation.endTime),
 					),
 					and(
-						gte(schema.reservations.endTime, reservation.startTime),
-						lte(schema.reservations.endTime, reservation.endTime),
+						gt(schema.reservations.endTime, reservation.startTime),
+						lt(schema.reservations.endTime, reservation.endTime),
 					),
 				),
 			),
@@ -66,6 +66,8 @@ async function checkForExistingReservation(
 
 	if (reservations.length > 0) {
 		conflictError.classroomId = 'Classroom is already reserved';
+		conflictError.startTime = 'Classroom is already reserved';
+		conflictError.endTime = 'Classroom is already reserved';
 
 		return conflictError;
 	}
