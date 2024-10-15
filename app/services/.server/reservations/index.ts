@@ -58,6 +58,13 @@ async function checkForExistingReservation(
 						gt(schema.reservations.endTime, reservation.startTime),
 						lt(schema.reservations.endTime, reservation.endTime),
 					),
+					and(
+						eq(
+							schema.reservations.startTime,
+							reservation.startTime,
+						),
+						eq(schema.reservations.endTime, reservation.endTime),
+					),
 				),
 			),
 		);

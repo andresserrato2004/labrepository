@@ -2,16 +2,16 @@ import type { ModalType } from '@components/modalForm/types';
 import type { FormNewReservation } from '@database/types';
 import type { DateValue } from '@internationalized/date';
 import type { Key } from '@react-types/shared';
-import type { action } from '@routes/periods/action';
+import type { action } from '@routes/reservations/action';
 
 import { HiddenInput, ModalForm, toast } from '@components';
 import { useModalForm } from '@components/modalForm/providers';
+import { useFetcherErrors } from '@hooks/fetcher';
 import {
 	fromDate,
 	getLocalTimeZone,
 	parseZonedDateTime,
 } from '@internationalized/date';
-// import { useFetcherErrors } from '@hooks/fetcher';
 import { Autocomplete, AutocompleteItem } from '@nextui-org/autocomplete';
 import { Button } from '@nextui-org/button';
 import { TimeInput } from '@nextui-org/date-input';
@@ -59,7 +59,7 @@ export function ReservationsModal() {
 	);
 	const [date, setDate] = useState<DateValue | null>(null);
 
-	// const { clearErrors, createErrorProps } = useFetcherErrors(fetcher);
+	const { clearErrors, createErrorProps } = useFetcherErrors(fetcher);
 
 	const isLoading = fetcher.state !== 'idle';
 	const isDetails = modalType === 'details';
@@ -86,13 +86,17 @@ export function ReservationsModal() {
 
 	const handleUserIdChange = (value: Key | null) => {
 		setUserId(value ?? '');
+		clearConflictErrors();
 	};
 
 	const handleClassroomIdChange = (value: Key | null) => {
 		setClassroomId(value ?? '');
+		clearConflictErrors();
 	};
 
 	const handleDateChange = (value: DateValue | null) => {
+		clearConflictErrors();
+
 		if (!value) {
 			return;
 		}
@@ -110,12 +114,16 @@ export function ReservationsModal() {
 		setDate(newDate);
 	};
 
+	const clearConflictErrors = () => {
+		clearErrors('classroomId')();
+		clearErrors('startTime')();
+		clearErrors('endTime')();
+	};
+
 	return (
 		<ModalForm>
 			<ModalHeader className='text-2xl mt-4'>
-				<h2>
-					{getModalTitle(modalType)} - {}
-				</h2>
+				<h2>{getModalTitle(modalType)}</h2>
 			</ModalHeader>
 			<ModalBody className='grid grid-cols-12 p-6 gap-6'>
 				<Autocomplete
@@ -128,6 +136,7 @@ export function ReservationsModal() {
 					onSelectionChange={handleUserIdChange}
 					items={userList.items}
 					isLoading={userList.isLoading}
+					{...createErrorProps('userId')}
 				>
 					{(user) => (
 						<AutocompleteItem key={user.id}>
@@ -146,6 +155,7 @@ export function ReservationsModal() {
 					onSelectionChange={handleClassroomIdChange}
 					items={classroomList.items}
 					isLoading={classroomList.isLoading}
+					{...createErrorProps('classroomId')}
 				>
 					{(classroom) => (
 						<AutocompleteItem key={classroom.id}>
@@ -161,6 +171,8 @@ export function ReservationsModal() {
 					className='col-span-6'
 					isRequired={true}
 					defaultValue={modalData?.course}
+					onChange={clearErrors('course')}
+					{...createErrorProps('course')}
 				/>
 				<DatePicker
 					label='Date'
@@ -171,6 +183,7 @@ export function ReservationsModal() {
 					value={date}
 					onChange={handleDateChange}
 					isRequired={true}
+					{...createErrorProps('startTime')}
 				/>
 				<TimeInput
 					label='Start hour'
@@ -184,6 +197,8 @@ export function ReservationsModal() {
 					}
 					hideTimeZone={true}
 					isRequired={true}
+					onChange={clearConflictErrors}
+					{...createErrorProps('startTime')}
 				/>
 				<TimeInput
 					label='End hour'
@@ -191,12 +206,17 @@ export function ReservationsModal() {
 					variant='faded'
 					className='col-span-3'
 					isRequired={true}
+					hideTimeZone={true}
+					onChange={clearConflictErrors}
+					{...createErrorProps('startTime')}
 				/>
 				<Textarea
 					label='Description'
 					name='description'
 					variant='faded'
 					className='col-span-12'
+					onChange={clearErrors('description')}
+					{...createErrorProps('description')}
 				/>
 			</ModalBody>
 			<ModalFooter>

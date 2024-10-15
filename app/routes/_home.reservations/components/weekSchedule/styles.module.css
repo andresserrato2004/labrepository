@@ -75,7 +75,7 @@
 			@apply relative min-w-24 cursor-pointer;
 
 			.scheduleBodyCellWrapper {
-				@apply @container flex z-10 p-0.5 absolute w-full;
+				@apply @container flex z-10 p-0.5 absolute w-full cursor-default;
 
 				.scheduleBodyCell {
 					@apply flex justify-center content-center flex-wrap text-small relative overflow-hidden px-3 rounded-small;

@@ -119,6 +119,10 @@ function ReservationCell(props: ReservationCellProps) {
 	const height = `calc(${(100 * duration) / 12}% - 1px)`;
 	const top = `${(100 * startOffset) / 12}%`;
 
+	const handleClick = (event: MouseEvent) => {
+		event.stopPropagation();
+	};
+
 	return (
 		<div
 			className={styles.scheduleBodyCellWrapper}
@@ -126,6 +130,7 @@ function ReservationCell(props: ReservationCellProps) {
 				height,
 				top,
 			}}
+			onClick={handleClick}
 			{...divProps}
 		>
 			<div

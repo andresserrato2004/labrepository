@@ -1,7 +1,7 @@
 import type { NewReservation } from '@database/types';
 
 import { schema } from '@database';
-import { isoDate } from '@database/validators/shared';
+import { courseMnemonic, isoDate } from '@database/validators/shared';
 import { parseTime, parseZonedDateTime } from '@internationalized/date';
 import { createInsertSchema } from 'drizzle-zod';
 import { z } from 'zod';
@@ -9,12 +9,12 @@ import { zfd } from 'zod-form-data';
 
 const newFormReservationSchema = z.object({
 	date: isoDate,
-	course: zfd.text(),
+	course: courseMnemonic,
 	userId: zfd.text(),
 	classroomId: zfd.text(),
 	startHour: zfd.text(),
 	endHour: zfd.text(),
-	description: zfd.text().optional(),
+	description: zfd.text(z.string().optional()),
 });
 
 const newReservationSchema = createInsertSchema(schema.reservations, {
@@ -61,6 +61,8 @@ const newReservationFormTransformer = (
 const newReservationTransformer = (
 	data: z.infer<typeof newReservationSchema>,
 ) => {
+	data.course = data.course.trim().toUpperCase();
+
 	return data;
 };
 

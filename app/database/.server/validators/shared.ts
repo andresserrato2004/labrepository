@@ -6,3 +6,8 @@ export const isoDate = z
 	.regex(
 		/^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z|\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}-\d{2}:\d{2}\[.*\])|(\d{4}-\d{2}-\d{2})$/,
 	);
+
+//Course regex: ABC1 or ABCD
+export const courseMnemonic = z
+	.string()
+	.regex(/^[a-zA-Z]{4}|[a-zA-Z]{3}\d{1}$/);
