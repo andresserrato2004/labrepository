@@ -19,7 +19,7 @@ import {
 import { CalendarDots, CaretLeft, CaretRight } from '@phosphor-icons/react';
 import { useAcademicPeriods } from '@routes/home/providers';
 import { useReservationList } from '@routes/reservations/providers';
-import { getMonday, getSunday } from '@services/client/dates';
+import { getMonday, getSunday } from '@services/shared/dates';
 import { getSeededRandom, getShortName } from '@services/shared/utility';
 import { useMemo, useRef } from 'react';
 

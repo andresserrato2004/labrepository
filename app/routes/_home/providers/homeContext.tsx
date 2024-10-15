@@ -7,7 +7,7 @@ import type { PropsWithChildren } from 'react';
 
 import { useServiceAsyncList } from '@hooks/lists';
 import { useLoaderData } from '@remix-run/react';
-import { getMonday, getSunday } from '@services/client/dates';
+import { getMonday, getSunday } from '@services/shared/dates';
 import { createContext, useContext, useEffect, useState } from 'react';
 
 /**

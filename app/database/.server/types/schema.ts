@@ -88,7 +88,9 @@ export type Reservation = typeof schema.reservations.$inferSelect;
 /**
  * Represents the type definition for creating a new reservation.
  */
-export type NewReservation = typeof schema.reservations.$inferInsert;
+export type NewReservation = typeof schema.reservations.$inferInsert & {
+	repeatOnWeeks?: number[];
+};
 
 /**
  * Represents a reservation with a classroom.

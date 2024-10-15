@@ -1,11 +1,16 @@
-import type { NewReservation } from '@database/types';
-
 import { schema } from '@database';
 import { courseMnemonic, isoDate } from '@database/validators/shared';
 import { parseTime, parseZonedDateTime } from '@internationalized/date';
 import { createInsertSchema } from 'drizzle-zod';
 import { z } from 'zod';
 import { zfd } from 'zod-form-data';
+
+const baseReservationSchema = createInsertSchema(schema.reservations, {
+	endTime: (_schema) => isoDate,
+	startTime: (_schema) => isoDate,
+	createdAt: (_schema) => isoDate.optional(),
+	updatedAt: (_schema) => isoDate.optional(),
+});
 
 const newFormReservationSchema = z.object({
 	date: isoDate,
@@ -15,18 +20,19 @@ const newFormReservationSchema = z.object({
 	startHour: zfd.text(),
 	endHour: zfd.text(),
 	description: zfd.text(z.string().optional()),
+	repeatOnWeeks: zfd.text(z.string().optional()),
 });
 
-const newReservationSchema = createInsertSchema(schema.reservations, {
-	endTime: (_schema) => isoDate,
-	startTime: (_schema) => isoDate,
-	createdAt: (_schema) => isoDate.optional(),
-	updatedAt: (_schema) => isoDate.optional(),
+const newReservationSchema = baseReservationSchema.extend({
+	repeatOnWeeks: z.array(z.number()).optional(),
 });
 
 const newReservationFormTransformer = (
 	data: z.infer<typeof newFormReservationSchema>,
 ) => {
+	const repeatOnWeeks = data.repeatOnWeeks
+		? data.repeatOnWeeks.split(',').map((value) => Number.parseInt(value))
+		: [];
 	const reservationDate = parseZonedDateTime(data.date);
 	const reservationStartHour = parseTime(data.startHour);
 	const reservationEndHour = parseTime(data.endHour);
@@ -49,10 +55,11 @@ const newReservationFormTransformer = (
 
 	const { date, startHour, endHour, ...rest } = data;
 
-	const result: NewReservation = {
+	const result = {
 		...rest,
 		startTime,
 		endTime,
+		repeatOnWeeks,
 	};
 
 	return result;

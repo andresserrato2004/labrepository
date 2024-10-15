@@ -1,4 +1,5 @@
 import type { ExtendedReservation, NewReservation } from '@database/types';
+import type { DateValue } from '@internationalized/date';
 import type {
 	Errors,
 	NoContent,
@@ -6,24 +7,28 @@ import type {
 } from '@services/server/types';
 import type { CreateReservationArgs } from '@services/server/types';
 
-import { newReservationValidator } from '@/database/.server/validators';
-import { and, database, eq, gt, lt, schema } from '@database';
+import { and, database, eq, gt, gte, lt, lte, or, schema } from '@database';
 import { AppResource } from '@database/schema/enums';
+import { newReservationValidator } from '@database/validators';
 import {
 	InvalidNewReservationError,
 	ReservationConflictError,
 } from '@errors/services';
+import { parseAbsoluteToLocal } from '@internationalized/date';
 import {
 	buildCreationAuditLog,
 	handleUnknownError,
 } from '@services/server/utility';
+import { getMonday } from '@services/shared/dates';
 import {
 	ResponseType,
 	SuccessCode,
 	getErrorsFromZodError,
 	isAppError,
 } from '@services/shared/utility';
-import { getTableColumns, or } from 'drizzle-orm';
+import { getTableColumns } from 'drizzle-orm';
+
+import dayjs from 'dayjs';
 
 const extendedReservationColumns = {
 	...getTableColumns(schema.reservations),
@@ -37,6 +42,25 @@ const extendedReservationColumns = {
 	},
 };
 
+async function getCurrentPeriod() {
+	const now = new Date();
+	const currentPeriod = await database
+		.select()
+		.from(schema.academicPeriods)
+		.where(
+			and(
+				lt(schema.academicPeriods.startDate, now.toISOString()),
+				gt(schema.academicPeriods.endDate, now.toISOString()),
+			),
+		);
+
+	if (currentPeriod.length === 0) {
+		return null;
+	}
+
+	return currentPeriod[0];
+}
+
 async function checkForExistingReservation(
 	reservation: NewReservation,
 ): Promise<Errors<NewReservation> | null> {
@@ -48,15 +72,15 @@ async function checkForExistingReservation(
 				eq(schema.reservations.classroomId, reservation.classroomId),
 				or(
 					and(
-						gt(
+						gte(
 							schema.reservations.startTime,
 							reservation.startTime,
 						),
-						lt(schema.reservations.startTime, reservation.endTime),
+						lte(schema.reservations.startTime, reservation.endTime),
 					),
 					and(
-						gt(schema.reservations.endTime, reservation.startTime),
-						lt(schema.reservations.endTime, reservation.endTime),
+						gte(schema.reservations.endTime, reservation.startTime),
+						lte(schema.reservations.endTime, reservation.endTime),
 					),
 					and(
 						eq(
@@ -72,9 +96,16 @@ async function checkForExistingReservation(
 	const conflictError: Errors<NewReservation> = {};
 
 	if (reservations.length > 0) {
-		conflictError.classroomId = 'Classroom is already reserved';
-		conflictError.startTime = 'Classroom is already reserved';
-		conflictError.endTime = 'Classroom is already reserved';
+		const startTime = dayjs(reservations[0].startTime).format(
+			'MMMM DD, HH:mm',
+		);
+		const endTime = dayjs(reservations[0].endTime).format('HH:mm');
+		const course = reservations[0].course;
+
+		const message = `Classroom is already reserved on ${startTime} - ${endTime} to ${course}`;
+		conflictError.classroomId = message;
+		conflictError.startTime = message;
+		conflictError.endTime = message;
 
 		return conflictError;
 	}
@@ -170,6 +201,62 @@ export async function getClassroomReservations(): Promise<
 	}
 }
 
+function getWeekFromDate(currentPeriod: DateValue, queryDate: DateValue) {
+	const currentPeriodStartOfWeek = getMonday(currentPeriod);
+	const queryDateStartOfWeek = getMonday(queryDate);
+
+	const week =
+		Math.floor(
+			queryDateStartOfWeek.compare(currentPeriodStartOfWeek) /
+				1000 /
+				60 /
+				60 /
+				24 /
+				7,
+		) + 1;
+
+	return week;
+}
+
+async function buildReservations(reservation: NewReservation) {
+	const reservations: NewReservation[] = [];
+
+	if (!reservation.repeatOnWeeks || reservation.repeatOnWeeks.length === 0) {
+		reservations.push(reservation);
+
+		return reservations;
+	}
+
+	const currentPeriod = await getCurrentPeriod();
+
+	if (!currentPeriod) {
+		throw new Error('No current period found');
+	}
+
+	const currentPeriodStart = parseAbsoluteToLocal(currentPeriod.startDate);
+	const queryStartDateValue = parseAbsoluteToLocal(reservation.startTime);
+	const queryEndDateValue = parseAbsoluteToLocal(reservation.endTime);
+	const week = getWeekFromDate(currentPeriodStart, queryStartDateValue);
+
+	for (const repeatWeek of reservation.repeatOnWeeks) {
+		const offset = (repeatWeek > 8 ? repeatWeek + 1 : repeatWeek) - week;
+
+		const newQueryStartDateValue = queryStartDateValue.add({
+			weeks: offset,
+		});
+		const newQueryEndDateValue = queryEndDateValue.add({ weeks: offset });
+
+		reservations.push({
+			...reservation,
+			repeatOnWeeks: undefined,
+			startTime: newQueryStartDateValue.toAbsoluteString(),
+			endTime: newQueryEndDateValue.toAbsoluteString(),
+		});
+	}
+
+	return reservations;
+}
+
 export async function createReservation({
 	session,
 	request,
@@ -183,23 +270,29 @@ export async function createReservation({
 			);
 		}
 
-		const reservation = schemaValidation.data;
-		const conflictError = await checkForExistingReservation(reservation);
+		const reservations = await buildReservations(schemaValidation.data);
 
-		if (conflictError) {
-			throw new ReservationConflictError(conflictError);
+		for (const reservation of reservations) {
+			const conflictError =
+				await checkForExistingReservation(reservation);
+
+			if (conflictError) {
+				throw new ReservationConflictError(conflictError);
+			}
 		}
 
 		await database.transaction(async (trx) => {
-			await trx.insert(schema.auditLogs).values(
-				buildCreationAuditLog({
-					session,
-					newData: reservation,
-					resource: AppResource.Reservations,
-				}),
-			);
+			for (const reservation of reservations) {
+				await trx.insert(schema.auditLogs).values(
+					buildCreationAuditLog({
+						session,
+						newData: reservation,
+						resource: AppResource.Reservations,
+					}),
+				);
 
-			await trx.insert(schema.reservations).values(reservation);
+				await trx.insert(schema.reservations).values(reservation);
+			}
 		});
 
 		return {

@@ -18,6 +18,7 @@ import { TimeInput } from '@nextui-org/date-input';
 import { DatePicker } from '@nextui-org/date-picker';
 import { Input, Textarea } from '@nextui-org/input';
 import { ModalBody, ModalFooter, ModalHeader } from '@nextui-org/modal';
+import { Select, SelectItem } from '@nextui-org/select';
 import { useReservationList } from '@routes/reservations/providers';
 import { ResponseType } from '@services/shared/utility';
 import { useEffect, useState } from 'react';
@@ -52,14 +53,20 @@ export function ReservationsModal() {
 		FormNewReservation,
 		typeof action
 	>();
+	const { clearErrors, createErrorProps } = useFetcherErrors(fetcher);
 
 	const [userId, setUserId] = useState<Key>(modalData?.userId ?? '');
+	const [date, setDate] = useState<DateValue | null>(null);
 	const [classroomId, setClassroomId] = useState<Key>(
 		modalData?.classroomId ?? '',
 	);
-	const [date, setDate] = useState<DateValue | null>(null);
+	const [selectedWeeks, setSelectedWeeks] = useState(new Set<Key>([]));
 
-	const { clearErrors, createErrorProps } = useFetcherErrors(fetcher);
+	const weeks = Array.from({ length: 17 }).map((_, index) => ({
+		label: `${index + 1}`,
+		value: `${index + 1}`,
+		key: `${index + 1}`,
+	}));
 
 	const isLoading = fetcher.state !== 'idle';
 	const isDetails = modalType === 'details';
@@ -118,6 +125,51 @@ export function ReservationsModal() {
 		clearErrors('classroomId')();
 		clearErrors('startTime')();
 		clearErrors('endTime')();
+	};
+
+	const selectAllWeeks = () => {
+		setSelectedWeeks(new Set(weeks.map((week) => week.key)));
+	};
+
+	const selectEvenWeeks = () => {
+		setSelectedWeeks(
+			new Set(
+				weeks
+					.filter((week) => Number.parseInt(week.key) % 2 === 0)
+					.map((week) => week.key),
+			),
+		);
+	};
+
+	const selectOddWeeks = () => {
+		setSelectedWeeks(
+			new Set(
+				weeks
+					.filter((week) => Number.parseInt(week.key) % 2 !== 0)
+					.map((week) => week.key),
+			),
+		);
+	};
+
+	const clearWeeks = () => {
+		setSelectedWeeks(new Set());
+	};
+
+	const handleKeysChange = (keys: Set<Key> | 'all') => {
+		if (keys === 'all') {
+			selectAllWeeks();
+			return;
+		}
+
+		const sortedKeys = Array.from(keys).sort((a, b) => {
+			if (!Number.isNaN(Number(a)) && !Number.isNaN(Number(b))) {
+				return Number(a) - Number(b);
+			}
+
+			return 0;
+		});
+
+		setSelectedWeeks(new Set(sortedKeys));
 	};
 
 	return (
@@ -210,6 +262,37 @@ export function ReservationsModal() {
 					onChange={clearConflictErrors}
 					{...createErrorProps('startTime')}
 				/>
+				<Select
+					items={weeks}
+					className='col-span-12'
+					selectionMode='multiple'
+					variant='faded'
+					label='Repeat on weeks'
+					selectedKeys={selectedWeeks}
+					onSelectionChange={handleKeysChange}
+				>
+					{(item) => (
+						<SelectItem key={item.key} value={item.key}>
+							{item.label}
+						</SelectItem>
+					)}
+				</Select>
+				<HiddenInput
+					name='repeatOnWeeks'
+					value={Array.from(selectedWeeks).join(',')}
+				/>
+				<Button className='col-span-3' onClick={selectAllWeeks}>
+					All weeks
+				</Button>
+				<Button className='col-span-3' onClick={selectEvenWeeks}>
+					Even weeks
+				</Button>
+				<Button className='col-span-3' onClick={selectOddWeeks}>
+					Odd weeks
+				</Button>
+				<Button className='col-span-3' onClick={clearWeeks}>
+					Clear
+				</Button>
 				<Textarea
 					label='Description'
 					name='description'
