@@ -36,7 +36,7 @@ export function ModalForm({
 				isOpen={isOpen}
 				isDismissable={true}
 				onOpenChange={onOpenChange}
-				size='lg'
+				size='xl'
 				classNames={{
 					backdrop: styles.modalBackdrop,
 				}}

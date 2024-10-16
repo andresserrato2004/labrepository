@@ -4,3 +4,4 @@ export type * from './auth';
 export type * from './users';
 export type * from './classrooms';
 export type * from './academicPeriods';
+export type * from './reservations';

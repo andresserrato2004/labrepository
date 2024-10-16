@@ -98,7 +98,6 @@ export async function parseJson<T extends FormDataValidator>(
 
 	try {
 		data = await request.json();
-		console.log({ data });
 	} catch {
 		return null;
 	}

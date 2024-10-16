@@ -28,11 +28,11 @@ function modalForm<T, F = unknown>() {
 	const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
 	const fetcher = useFetcherWithReset<F>();
 
-	const openModal = (data: T, modalType: ModalType) => {
+	function openModal<K extends T>(data: K | null, modalType: ModalType) {
 		setModalData(data);
 		setModalType(modalType);
 		onOpen();
-	};
+	}
 
 	const closeModal = () => {
 		setModalData(null);

@@ -86,11 +86,39 @@ export type NewErrorLog = typeof schema.errorLogs.$inferInsert;
 export type Reservation = typeof schema.reservations.$inferSelect;
 
 /**
+ * Represents the type definition for creating a new reservation.
+ */
+export type NewReservation = typeof schema.reservations.$inferInsert & {
+	repeatOnWeeks?: number[];
+};
+
+/**
  * Represents a reservation with a classroom.
  */
 export interface ExtendedReservation extends Reservation {
 	classroom: Pick<Classroom, 'id' | 'name'>;
 	user: Pick<User, 'id' | 'name'>;
+}
+
+/**
+ * Interface representing the form data for creating a new reservation.
+ *
+ * This interface extends the `NewReservation` type, omitting the `startTime`
+ * and `endTime` properties, and instead includes `date`, `startHour`, and `endHour`
+ * as strings.
+ *
+ * @interface FormNewReservation
+ * @extends {Omit<NewReservation, 'startTime' | 'endTime'>}
+ *
+ * @property {string} date - The date of the reservation in YYYY-MM-DD format.
+ * @property {string} startHour - The start hour of the reservation in HH:mm format.
+ * @property {string} endHour - The end hour of the reservation in HH:mm format.
+ */
+export interface FormNewReservation
+	extends Omit<NewReservation, 'startTime' | 'endTime'> {
+	date: string;
+	startHour: string;
+	endHour: string;
 }
 
 /**

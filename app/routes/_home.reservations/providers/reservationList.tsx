@@ -1,12 +1,8 @@
 import type { loader } from '@routes/reservations/loader';
 import type { PropsWithChildren } from 'react';
 
-import { useAsyncList } from '@react-stately/data';
+import { useServiceAsyncList } from '@hooks/lists';
 import { useLoaderData } from '@remix-run/react';
-import {
-	ResponseType,
-	createServerErrorResponse,
-} from '@services/shared/utility';
 import { createContext, useContext } from 'react';
 
 export const ReservationListContext = createContext<ReturnType<
@@ -14,23 +10,16 @@ export const ReservationListContext = createContext<ReturnType<
 > | null>(null);
 
 function reservationList() {
-	const { reservationsPromise } = useLoaderData<typeof loader>();
+	const { reservationsPromise, classroomsPromise, usersPromise } =
+		useLoaderData<typeof loader>();
 
-	const list = useAsyncList({
-		async load() {
-			const response = await reservationsPromise;
+	const reservationList = useServiceAsyncList(reservationsPromise, {});
 
-			if (response.type === ResponseType.ServerError) {
-				throw createServerErrorResponse(response);
-			}
+	const classroomList = useServiceAsyncList(classroomsPromise, {});
 
-			return {
-				items: response.data,
-			};
-		},
-	});
+	const userList = useServiceAsyncList(usersPromise, {});
 
-	return list;
+	return { reservationList, classroomList, userList };
 }
 
 export function useReservationList() {

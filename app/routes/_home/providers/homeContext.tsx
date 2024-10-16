@@ -1,9 +1,14 @@
-import type { AcademicPeriod } from '@database/types';
+import type { Classroom } from '@database/types';
 import type { loader } from '@routes/home/loader';
+import type {
+	ExistingCurrentPeriod,
+	MissingCurrentPeriod,
+} from '@routes/home/providers/types';
 import type { PropsWithChildren } from 'react';
 
 import { useServiceAsyncList } from '@hooks/lists';
 import { useLoaderData } from '@remix-run/react';
+import { getMonday, getSunday } from '@services/shared/dates';
 import { createContext, useContext, useEffect, useState } from 'react';
 
 /**
@@ -27,8 +32,14 @@ export const ClassroomsContext = createContext<ReturnType<
  */
 function academicPeriods() {
 	const [currentPeriod, setCurrentPeriod] = useState<
-		AcademicPeriod | undefined
-	>(undefined);
+		ExistingCurrentPeriod | MissingCurrentPeriod
+	>({
+		selectedWeek: 1,
+		period: undefined,
+		startDate: undefined,
+		endDate: undefined,
+	});
+
 	const { academicPeriodsPromise } = useLoaderData<typeof loader>();
 
 	const list = useServiceAsyncList(academicPeriodsPromise, {
@@ -47,11 +58,33 @@ function academicPeriods() {
 					new Date(period.endDate) >= now,
 			);
 
-			setCurrentPeriod(currentPeriod);
+			if (currentPeriod) {
+				setCurrentPeriod((prev) => ({
+					selectedWeek: prev.selectedWeek,
+					period: currentPeriod,
+					startDate: getMonday(currentPeriod.startDate),
+					endDate: getSunday(currentPeriod.endDate),
+				}));
+			}
 		}
 	}, [list.items]);
 
-	return { ...list, currentPeriod };
+	const setSelectedWeek = (selectedWeek: number) => {
+		if (selectedWeek < 1 || selectedWeek > 17) {
+			return;
+		}
+
+		setCurrentPeriod((prev) => ({
+			...prev,
+			selectedWeek,
+		}));
+	};
+
+	return {
+		...list,
+		currentPeriod,
+		setSelectedWeek,
+	};
 }
 
 /**
@@ -69,7 +102,16 @@ function classroomList() {
 		},
 	});
 
-	return list;
+	const [selectedClassroom, setSelectedClassroom] =
+		useState<Classroom | null>(null);
+
+	useEffect(() => {
+		if (list.items && list.items.length > 0 && !selectedClassroom) {
+			setSelectedClassroom(list.items[0]);
+		}
+	}, [list.items, selectedClassroom]);
+
+	return { ...list, selectedClassroom, setSelectedClassroom };
 }
 
 /**

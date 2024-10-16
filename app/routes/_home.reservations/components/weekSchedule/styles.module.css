@@ -1,24 +1,79 @@
+.reservationDetails {
+	@apply p-4 grid grid-cols-12 max-w-md gap-4;
+}
+
 .scheduleContainer {
 	@apply grid grid-rows-[4rem,1fr] w-full h-min min-h-96 rounded-large shadow-small overflow-hidden;
 
-	.scheduleHeader {
-		@apply bg-default-50;
+	.scheduleTopContent {
+		@apply grid grid-cols-3 bg-default-50 items-center px-16 gap-x-4;
+
+		.weekSelector {
+			@apply flex items-center border-small border-default-300 w-max rounded-medium;
+
+			.weekSelectorButton {
+				
+				&:first-child {
+					@apply rounded-r-none;
+				}
+
+				&:nth-child(3) {
+					@apply rounded-none;
+				}
+			}
+
+			.weekCalendarButton {
+				@apply rounded-l-none;
+			}
+
+			.weekCalendarButton,
+			.weekSelectorButton {
+				@apply h-9;
+			}
+
+			.weekSelectorText {
+				@apply text-default-600 text-small px-4 select-none;
+			}
+		}
+
+		.classroomSelector {
+
+			input {
+				@apply text-center w-full;
+			}
+		}
 	}
 
 	.scheduleBody {
-		@apply grid grid-rows-[min-content_repeat(26,minmax(1.5rem,min-content))] grid-cols-[min-content_repeat(7,1fr)] p-4 pr-10 pb-10;
+		@apply grid grid-rows-[min-content_repeat(24,minmax(1.6rem,min-content))] grid-cols-[min-content_repeat(7,1fr)] p-4 pr-10 pb-10;
 		@apply overflow-x-auto overflow-y-hidden;
 
-		.scheduleHeaderCell {
-			@apply flex flex-col items-center justify-center gap-1 pb-2;
-			@apply first:col-start-2;
+		.missingPeriod {
+			@apply grid place-items-center col-span-full row-span-full;
+		}
 
-			.headerDayName {
-				@apply text-default-700 text-small;
+		.scheduleHeader {
+			@apply grid grid-cols-subgrid col-span-full;
+
+			.scheduleHeaderCell {
+				@apply flex flex-col items-center justify-center gap-1 pb-2;
+				@apply first:col-start-2;
+
+				.headerDayName {
+					@apply text-default-700 text-small;
+				}
+
+				.headerDayNumber {
+					@apply text-default-500 text-small;
+				}
 			}
+		}
 
-			.headerDayNumber {
-				@apply text-default-500 text-small;
+		.scheduleSidebar {
+			@apply grid grid-rows-subgrid row-start-2 -row-end-1;
+
+			.sidebarCell {
+				@apply flex items-start justify-end mr-3 text-tiny h-full min-h-12 row-span-2 w-max pl-6 text-default-500;
 			}
 		}
 
@@ -49,18 +104,14 @@
 				bottom: 0;
 				background:
                     linear-gradient(180deg, theme(borderColor.default-100) 1px, transparent 1px) repeat-y;
-				background-size: 100% calc(100% / 13);
+				background-size: 100% calc(100% / 12);
 				background-position: 0 -1px;
 				pointer-events: none;
 			}
 		}
 
-		.sidebarCell {
-			@apply flex items-start justify-end mr-3 text-tiny h-full min-h-12 row-span-2 w-max pl-6 text-default-500;
-		}
-
 		.scheduleContentRow {
-			@apply relative min-w-24;
+			@apply relative min-w-24 cursor-pointer;
 
 			.scheduleBodyCellWrapper {
 				@apply @container flex z-10 p-0.5 absolute w-full;
