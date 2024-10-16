@@ -38,7 +38,17 @@ export type InfoUser = Omit<User, 'password'>;
 /**
  * Represents the type definition for creating a new user.
  */
-export type NewUser = typeof schema.users.$inferInsert;
+export type NewUser = Omit<
+	typeof schema.users.$inferInsert,
+	'createdAt' | 'updatedAt'
+>;
+
+/**
+ * Represents the type definition for updating a user.
+ */
+export type UpdateUser = Omit<NewUser, 'password'> & {
+	id: string;
+};
 
 /**
  * Represents the type definition for the Classroom object in the schema.

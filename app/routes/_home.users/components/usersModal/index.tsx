@@ -48,6 +48,8 @@ export function UserModal() {
 	const isLoading = fetcher.state !== 'idle';
 
 	const isDetails = modalType === 'details';
+	const isCreate = modalType === 'create';
+	const isUpdate = modalType === 'update';
 
 	const handleRoleChange = (value: Key | null) => {
 		setUserRole(value ?? 'user');
@@ -76,6 +78,9 @@ export function UserModal() {
 					</h2>
 				</ModalHeader>
 				<ModalBody className='grid grid-cols-12 p-6 gap-6'>
+					{isUpdate ? (
+						<HiddenInput name='id' value={modalData?.id} />
+					) : null}
 					<Input
 						label='Name'
 						name='name'
@@ -130,17 +135,19 @@ export function UserModal() {
 						isReadOnly={isDetails}
 						{...createErrorProps('email')}
 					/>
-					<Input
-						label='Password'
-						name='password'
-						variant='faded'
-						className='col-span-12'
-						isRequired={true}
-						onValueChange={clearErrors('password')}
-						defaultValue={modalData?.password}
-						isReadOnly={isDetails}
-						{...createErrorProps('password')}
-					/>
+					{isCreate ? (
+						<Input
+							label='Password'
+							name='password'
+							variant='faded'
+							className='col-span-12'
+							isRequired={true}
+							onValueChange={clearErrors('password')}
+							defaultValue={modalData?.password}
+							isReadOnly={isDetails}
+							{...createErrorProps('password')}
+						/>
+					) : null}
 				</ModalBody>
 				<ModalFooter>
 					<Button

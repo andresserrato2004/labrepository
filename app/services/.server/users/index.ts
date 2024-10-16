@@ -1,14 +1,19 @@
-import type { InfoUser, NewUser } from '@database/types';
+import type { InfoUser, NewUser, UpdateUser } from '@database/types';
 import type {
 	CreateUserArgs,
 	Errors,
 	NoContent,
 	ServiceResponse,
+	UpdateUserArgs,
 } from '@services/server/types';
 
 import { database, eq, or, schema } from '@database';
-import { newUserValidator } from '@database/validators';
-import { InvalidNewUserError, UserConflictError } from '@errors/services';
+import { newUserValidator, updateUserValidator } from '@database/validators';
+import {
+	InvalidNewUserError,
+	InvalidUpdateUserError,
+	UserConflictError,
+} from '@errors/services';
 import { hashPassword } from '@services/server/auth/security';
 import { handleUnknownError } from '@services/server/utility';
 import {
@@ -25,9 +30,9 @@ import { getTableColumns } from 'drizzle-orm';
  * @param request - The new user object containing the username.
  * @returns A promise that resolves to an Errors object if the username already exists, or null if it doesn't.
  */
-async function checkForExistingUser(
-	request: NewUser,
-): Promise<Errors<NewUser> | null> {
+async function checkForExistingUser<T extends NewUser | UpdateUser>(
+	request: T,
+): Promise<Errors<T> | null> {
 	const users = await database
 		.select()
 		.from(schema.users)
@@ -38,23 +43,27 @@ async function checkForExistingUser(
 			),
 		);
 
-	const conflictError: Errors<NewUser> = {};
+	const conflictError: Errors<T> = {};
 
-	if (users.length > 0) {
-		for (const user of users) {
-			if (user.username === request.username) {
-				conflictError.username = 'Username already exists';
-			}
-
-			if (user.email === request.email) {
-				conflictError.email = 'Email already exists';
-			}
-		}
-
-		return conflictError;
+	if (users.length === 0) {
+		return null;
 	}
 
-	return null;
+	if (users.length === 1 && request.id === users[0].id) {
+		return null;
+	}
+
+	for (const user of users) {
+		if (user.username === request.username) {
+			conflictError.username = 'Username already exists';
+		}
+
+		if (user.email === request.email) {
+			conflictError.email = 'Email already exists';
+		}
+	}
+
+	return conflictError;
 }
 
 /**
@@ -129,6 +138,56 @@ export async function createUser({
 		return handleUnknownError({
 			error: error,
 			stack: 'users/createUser',
+			additionalInfo: { request },
+		});
+	}
+}
+
+/**
+ * Updates a user.
+ *
+ * @param request - The request object containing the updated user data.
+ * @returns A promise that resolves to a ServiceResponse object.
+ */
+export async function updateUser({
+	request,
+}: UpdateUserArgs): Promise<ServiceResponse<NoContent, UpdateUser>> {
+	try {
+		const schemaValidation = updateUserValidator.safeParse(request);
+
+		if (!schemaValidation.success) {
+			throw new InvalidUpdateUserError(
+				getErrorsFromZodError(schemaValidation.error),
+			);
+		}
+
+		const user = schemaValidation.data;
+		const conflictError = await checkForExistingUser(user);
+
+		if (conflictError) {
+			throw new UserConflictError(conflictError);
+		}
+
+		await database.transaction(async (trx) => {
+			await trx
+				.update(schema.users)
+				.set(user)
+				.where(eq(schema.users.id, user.id));
+		});
+
+		return {
+			type: ResponseType.Success,
+			code: SuccessCode.Ok,
+			data: null,
+		};
+	} catch (error) {
+		if (isAppError<UpdateUser>(error)) {
+			return error.toServiceResponse();
+		}
+
+		return handleUnknownError({
+			error: error,
+			stack: 'users/updateUser',
 			additionalInfo: { request },
 		});
 	}

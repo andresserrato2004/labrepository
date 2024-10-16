@@ -1,4 +1,4 @@
-import type { NewLogin, NewUser } from '@database/types';
+import type { NewLogin, NewUser, UpdateUser } from '@database/types';
 import type {
 	BasicErrorPayload,
 	ClientErrorResponse,
@@ -88,6 +88,16 @@ export class InvalidPasswordError extends AppError<NewLogin> {
  * @extends AppError<NewUser>
  */
 export class InvalidNewUserError extends AppError<NewUser> {
+	constructor(errors: Errors<NewUser>) {
+		super('Invalid user data.', errors, ClientErrorCode.BadRequest);
+	}
+}
+
+/**
+ * Represents an error that when attempting to update a user with invalid data.
+ * @extends AppError<UpdateUser>
+ */
+export class InvalidUpdateUserError extends AppError<UpdateUser> {
 	constructor(errors: Errors<NewUser>) {
 		super('Invalid user data.', errors, ClientErrorCode.BadRequest);
 	}

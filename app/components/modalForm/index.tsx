@@ -7,8 +7,8 @@ import styles from './styles.module.css';
 
 function getFormMethod(modalType: string) {
 	switch (modalType) {
-		case 'edit':
-			return 'PUT';
+		case 'update':
+			return 'PATCH';
 		case 'delete':
 			return 'DELETE';
 		default:
