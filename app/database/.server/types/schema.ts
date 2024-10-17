@@ -118,8 +118,18 @@ export type Reservation = typeof schema.reservations.$inferSelect;
 /**
  * Represents the type definition for creating a new reservation.
  */
-export type NewReservation = typeof schema.reservations.$inferInsert & {
+export type NewReservation = Omit<
+	typeof schema.reservations.$inferInsert,
+	'createdAt' | 'updatedAt'
+> & {
 	repeatOnWeeks?: number[];
+};
+
+/**
+ * Represents the type definition for updating a reservation.
+ */
+export type UpdateReservation = Omit<NewReservation, 'id'> & {
+	id: string;
 };
 
 /**
@@ -146,6 +156,13 @@ export interface ExtendedReservation extends Reservation {
  */
 export interface FormNewReservation
 	extends Omit<NewReservation, 'startTime' | 'endTime'> {
+	date: string;
+	startHour: string;
+	endHour: string;
+}
+
+export interface FormUpdateReservation
+	extends Omit<UpdateReservation, 'id' | 'repeatOnWeeks'> {
 	date: string;
 	startHour: string;
 	endHour: string;

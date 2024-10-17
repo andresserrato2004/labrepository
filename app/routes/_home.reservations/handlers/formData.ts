@@ -1,4 +1,4 @@
-import type { NewReservation } from '@database/types';
+import type { NewReservation, UpdateReservation } from '@database/types';
 import type { TypedResponse } from '@remix-run/node';
 import type {
 	ClientErrorResponse,
@@ -6,8 +6,14 @@ import type {
 	SuccessResponse,
 } from '@services/server/types';
 
-import { newReservationFormValidator } from '@database/validators';
-import { createReservation } from '@services/server/reservations';
+import {
+	newReservationFormValidator,
+	updateReservationFormValidator,
+} from '@database/validators';
+import {
+	createReservation,
+	updateReservation,
+} from '@services/server/reservations';
 import { getSessionFromRequest, parseFormData } from '@services/server/utility';
 import {
 	ClientErrorCode,
@@ -73,14 +79,53 @@ export class FormDataReservationHandler extends RouteActionHandler<NewReservatio
 
 		return createResponse(createReservationResponse);
 	}
-	handlePatchRequest(
-		_request: Request,
+
+	async handlePatchRequest(
+		request: Request,
 	): Promise<
 		TypedResponse<
-			SuccessResponse<NoContent> | ClientErrorResponse<NewReservation>
+			SuccessResponse<NoContent> | ClientErrorResponse<UpdateReservation>
 		>
 	> {
-		throw new Error('Method not implemented.');
+		const session = await getSessionFromRequest(request, true);
+
+		if (!session) {
+			throw createBasicResponse(
+				'Method not allowed',
+				ClientErrorCode.MethodNotAllowed,
+			);
+		}
+
+		const formData = await parseFormData(
+			request,
+			updateReservationFormValidator,
+		);
+
+		if (!formData) {
+			throw createBasicResponse(
+				'Invalid form data.',
+				ClientErrorCode.BadRequest,
+			);
+		}
+
+		if (!formData.success) {
+			return createResponse({
+				code: ClientErrorCode.BadRequest,
+				type: ResponseType.ClientError,
+				errors: getErrorsFromZodError(formData.error),
+			});
+		}
+
+		const updateReservationResponse = await updateReservation({
+			request: formData.data,
+			session: session,
+		});
+
+		if (updateReservationResponse.type === ResponseType.ServerError) {
+			throw createServerErrorResponse(updateReservationResponse);
+		}
+
+		return createResponse(updateReservationResponse);
 	}
 	handleDeleteRequest(
 		_request: Request,
