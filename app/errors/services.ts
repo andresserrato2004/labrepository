@@ -1,4 +1,10 @@
-import type { NewLogin, NewUser, UpdateUser } from '@database/types';
+import type {
+	NewClassroom,
+	NewLogin,
+	NewUser,
+	UpdateClassroom,
+	UpdateUser,
+} from '@database/types';
 import type {
 	BasicErrorPayload,
 	ClientErrorResponse,
@@ -115,14 +121,28 @@ export class UserConflictError extends AppError<NewUser> {
 
 /**
  * Represents an error that occurs when attempting to create a new classroom with invalid data.
- * Extends the `AppError` class with a specific type of `NewUser`.
+ * Extends the `AppError` class with a specific type of `NewClassroom`.
  *
  * @class InvalidNewClassroomError
- * @extends {AppError<NewUser>}
- * @param {Errors<NewUser>} errors - The validation errors associated with the new classroom data.
+ * @extends {AppError<NewClassroom>}
+ * @param {Errors<NewClassroom>} errors - The validation errors associated with the new classroom data.
  */
-export class InvalidNewClassroomError extends AppError<NewUser> {
-	constructor(errors: Errors<NewUser>) {
+export class InvalidNewClassroomError extends AppError<NewClassroom> {
+	constructor(errors: Errors<NewClassroom>) {
+		super('Invalid classroom data.', errors, ClientErrorCode.BadRequest);
+	}
+}
+
+/**
+ * Represents an error that occurs when attempting to update a classroom with invalid data.
+ * Extends the `AppError` class with a specific type of `UpdateClassroom`.
+ *
+ * @class InvalidUpdateClassroomError
+ * @extends {AppError<UpdateClassroom>}
+ * @param {Errors<NewClassroom>} errors - The validation errors associated with the new classroom data.
+ */
+export class InvalidUpdateClassroomError extends AppError<UpdateClassroom> {
+	constructor(errors: Errors<NewClassroom>) {
 		super('Invalid classroom data.', errors, ClientErrorCode.BadRequest);
 	}
 }

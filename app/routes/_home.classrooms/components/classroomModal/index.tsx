@@ -2,7 +2,7 @@ import type { ModalType } from '@components/modalForm/types';
 import type { Classroom } from '@database/types';
 import type { action } from '@routes/classrooms/action';
 
-import { ModalForm, toast } from '@components';
+import { HiddenInput, ModalForm, toast } from '@components';
 import { useModalForm } from '@components/modalForm/providers';
 import { useFetcherErrors } from '@hooks/fetcher';
 import { Button } from '@nextui-org/button';
@@ -45,6 +45,7 @@ export function ClassroomModal() {
 	const isLoading = fetcher.state !== 'idle';
 
 	const isDetails = modalType === 'details';
+	const isUpdate = modalType === 'update';
 
 	useEffect(() => {
 		if (!fetcher.data) {
@@ -66,6 +67,9 @@ export function ClassroomModal() {
 				<h2>{getModalTitle(modalType)}</h2>
 			</ModalHeader>
 			<ModalBody className='grid grid-cols-12 p-6 gap-6'>
+				{isUpdate ? (
+					<HiddenInput name='id' value={modalData?.id} />
+				) : null}
 				<Input
 					label='Name'
 					name='name'

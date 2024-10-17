@@ -58,10 +58,20 @@ export type Classroom = typeof schema.classrooms.$inferSelect;
 /**
  * Represents the type definition for creating a new classroom.
  */
-export type NewClassroom = typeof schema.classrooms.$inferInsert;
+export type NewClassroom = Omit<
+	typeof schema.classrooms.$inferInsert,
+	'createdAt' | 'updatedAt'
+>;
 
 /**
- * Represents the type definition for the AcademicPeriod entity in the schema.
+ * Represents the type definition for updating a classroom.
+ */
+export type UpdateClassroom = Omit<NewClassroom, 'id'> & {
+	id: string;
+};
+
+/**
+ * Represents the type definition for the AcademicPeriod entity in the schema.d
  */
 export type AcademicPeriod = typeof schema.academicPeriods.$inferSelect;
 

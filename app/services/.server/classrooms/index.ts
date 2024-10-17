@@ -1,20 +1,28 @@
-import type { Classroom, NewClassroom } from '@database/types';
+import type { Classroom, NewClassroom, UpdateClassroom } from '@database/types';
 import type {
 	Errors,
 	NoContent,
 	ServiceResponse,
 } from '@services/server/types';
-import type { CreateClassroomArgs } from '@services/server/types';
+import type {
+	CreateClassroomArgs,
+	UpdateClassroomArgs,
+} from '@services/server/types';
 
 import { database, eq, schema } from '@database';
 import { AppResource } from '@database/schema/enums';
-import { newClassroomValidator } from '@database/validators';
+import {
+	newClassroomValidator,
+	updateClassroomValidator,
+} from '@database/validators';
 import {
 	ClassroomConflictError,
 	InvalidNewClassroomError,
+	InvalidUpdateClassroomError,
 } from '@errors/services';
 import {
 	buildCreationAuditLog,
+	buildUpdateAuditLog,
 	handleUnknownError,
 } from '@services/server/utility';
 import {
@@ -30,27 +38,52 @@ import {
  * @param request - The new classroom request containing the name to be checked.
  * @returns A promise that resolves to an object containing errors if a classroom with the same name exists, or null if no conflicts are found.
  */
-async function checkForExistingClassroom(
-	request: NewClassroom,
-): Promise<Errors<NewClassroom> | null> {
+async function checkForExistingClassroom<
+	T extends NewClassroom | UpdateClassroom,
+>(request: T): Promise<Errors<T> | null> {
 	const classrooms = await database
 		.select()
 		.from(schema.classrooms)
 		.where(eq(schema.classrooms.name, request.name));
 
-	const conflictError: Errors<NewClassroom> = {};
+	const conflictError: Errors<T> = {};
 
-	if (classrooms.length > 0) {
-		for (const classroom of classrooms) {
-			if (classroom.name === request.name) {
-				conflictError.name = 'Classroom already exists';
-			}
-		}
-
-		return conflictError;
+	if (classrooms.length === 0) {
+		return null;
 	}
 
-	return null;
+	if (classrooms.length === 1 && classrooms[0].id === request.id) {
+		return null;
+	}
+
+	for (const classroom of classrooms) {
+		if (classroom.name === request.name) {
+			conflictError.name = 'Classroom already exists';
+		}
+	}
+
+	return conflictError;
+}
+
+/**
+ * Retrieves a classroom from the database.
+ *
+ * @param id - The ID of the classroom to retrieve.
+ * @returns A promise that resolves to a ServiceResponse containing the Classroom object.
+ */
+async function getExistingClassroom(
+	request: UpdateClassroom | NewClassroom,
+): Promise<Classroom | null> {
+	const classroom = await database
+		.select()
+		.from(schema.classrooms)
+		.where(eq(schema.classrooms.id, request.id ?? ''));
+
+	if (classroom.length === 0) {
+		return null;
+	}
+
+	return classroom[0];
 }
 
 /**
@@ -131,7 +164,78 @@ export async function createClassroom({
 		return handleUnknownError({
 			error: error,
 			stack: 'classrooms/createClassroom',
-			additionalInfo: { request },
+			additionalInfo: { request, session },
+		});
+	}
+}
+
+/**
+ * Updates an existing classroom.
+ *
+ * This function validates the provided request data against the `updateClassroomValidator` schema.
+ *
+ * @param {UpdateClassroomArgs} args - The arguments for updating a classroom, including the request data and session information.
+ * @returns A promise that resolves to a service response indicating the result of the operation.
+ */
+export async function updateClassroom({
+	request,
+	session,
+}: UpdateClassroomArgs): Promise<ServiceResponse<NoContent, UpdateClassroom>> {
+	try {
+		const schemaValidation = updateClassroomValidator.safeParse(request);
+
+		if (!schemaValidation.success) {
+			throw new InvalidUpdateClassroomError(
+				getErrorsFromZodError(schemaValidation.error),
+			);
+		}
+
+		const classroom = schemaValidation.data;
+
+		const existingClassroom = await getExistingClassroom(classroom);
+
+		if (!existingClassroom) {
+			throw new ClassroomConflictError({
+				id: 'Classroom id not found',
+			});
+		}
+
+		const conflictError = await checkForExistingClassroom(classroom);
+
+		if (conflictError) {
+			throw new ClassroomConflictError(conflictError);
+		}
+
+		await database.transaction(async (trx) => {
+			await trx.insert(schema.auditLogs).values(
+				buildUpdateAuditLog({
+					oldData: existingClassroom,
+					newData: classroom,
+					session: session,
+					resource: AppResource.Classrooms,
+				}),
+			);
+
+			await trx
+				.update(schema.classrooms)
+				.set(classroom)
+				.where(eq(schema.classrooms.id, existingClassroom.id));
+		});
+
+		return {
+			type: ResponseType.Success,
+			code: SuccessCode.Ok,
+			data: null,
+		};
+	} catch (error) {
+		if (isAppError<UpdateClassroom>(error)) {
+			return error.toServiceResponse();
+		}
+
+		return handleUnknownError({
+			error,
+			stack: 'classrooms/updateClassroom',
+			additionalInfo: { request, session },
 		});
 	}
 }
