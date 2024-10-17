@@ -68,7 +68,17 @@ export type AcademicPeriod = typeof schema.academicPeriods.$inferSelect;
 /**
  * Represents the type definition for creating a new academic period.
  */
-export type NewAcademicPeriod = typeof schema.academicPeriods.$inferInsert;
+export type NewAcademicPeriod = Omit<
+	typeof schema.academicPeriods.$inferInsert,
+	'createdAt' | 'updatedAt'
+>;
+
+/**
+ * Represents the type definition for updating an academic period.
+ */
+export type UpdateAcademicPeriod = Omit<NewAcademicPeriod, 'id'> & {
+	id: string;
+};
 
 /**
  * Represents the type definition for the AuditLog entity in the schema.

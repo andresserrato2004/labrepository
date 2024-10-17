@@ -3,7 +3,7 @@ import type { AcademicPeriod } from '@database/types';
 import type { DateValue } from '@internationalized/date';
 import type { action } from '@routes/periods/action';
 
-import { ModalForm, toast } from '@components';
+import { HiddenInput, ModalForm, toast } from '@components';
 import { useModalForm } from '@components/modalForm/providers';
 import { useFetcherErrors } from '@hooks/fetcher';
 import {
@@ -48,23 +48,13 @@ export function AcademicPeriodsModal() {
 		typeof action
 	>();
 	const { clearErrors, createErrorProps } = useFetcherErrors(fetcher);
-
-	const defaultStart =
-		modalType === 'create'
-			? null
-			: parseAbsoluteToLocal(modalData?.startDate || '');
-
-	const defaultEnd =
-		modalType === 'create'
-			? null
-			: parseAbsoluteToLocal(modalData?.endDate || '');
-
-	const [startDate, setStartDate] = useState<DateValue | null>(defaultStart);
-	const [endDate, setEndDate] = useState<DateValue | null>(defaultEnd);
+	const [startDate, setStartDate] = useState<DateValue | null>(null);
+	const [endDate, setEndDate] = useState<DateValue | null>(null);
 	const minEndDate = startDate ? startDate.add({ days: 1 }) : undefined;
 
 	const isLoading = fetcher.state !== 'idle';
 	const isDetails = modalType === 'details';
+	const isUpdate = modalType === 'update';
 
 	useEffect(() => {
 		if (!fetcher.data) {
@@ -79,6 +69,13 @@ export function AcademicPeriodsModal() {
 			}
 		}
 	});
+
+	useEffect(() => {
+		if (modalData) {
+			setStartDate(parseAbsoluteToLocal(modalData.startDate));
+			setEndDate(parseAbsoluteToLocal(modalData.endDate));
+		}
+	}, [modalData]);
 
 	const handleStartDateChange = (date: DateValue) => {
 		setStartDate(toZoned(date, getLocalTimeZone()));
@@ -97,6 +94,9 @@ export function AcademicPeriodsModal() {
 				<h2>{getModalTitle(modalType)}</h2>
 			</ModalHeader>
 			<ModalBody className='grid grid-cols-12 p-6 gap-6'>
+				{isUpdate ? (
+					<HiddenInput name='id' value={modalData?.id} />
+				) : null}
 				<Input
 					label='Name'
 					name='name'

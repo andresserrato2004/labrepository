@@ -160,6 +160,24 @@ export class InvalidNewAcademicPeriodError extends AppError<NewUser> {
 }
 
 /**
+ * Represents an error that occurs when attempting to update an academic period with invalid data.
+ * Extends the `AppError` class with a specific type of `NewUser`.
+ *
+ * @class InvalidUpdateAcademicPeriodError
+ * @extends {AppError<NewUser>}
+ * @param {Errors<NewUser>} errors - The validation errors associated with the new academic period data.
+ */
+export class InvalidUpdateAcademicPeriodError extends AppError<NewUser> {
+	constructor(errors: Errors<NewUser>) {
+		super(
+			'Invalid academic period data.',
+			errors,
+			ClientErrorCode.BadRequest,
+		);
+	}
+}
+
+/**
  * Error class representing a conflict when an academic period already exists.
  * Extends the `AppError` class with a specific error message and client error code.
  *
