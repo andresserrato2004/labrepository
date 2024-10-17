@@ -29,8 +29,26 @@ const newAcademicPeriodSchema = createInsertSchema(schema.academicPeriods, {
 	updatedAt: (_schema) => isoDate.optional(),
 });
 
+const updateAcademicPeriodSchema = newAcademicPeriodSchema
+	.omit({
+		createdAt: true,
+		updatedAt: true,
+	})
+	.extend({
+		id: zfd.text(z.string()),
+	});
+
 const newAcademicPeriodTransformer = (
 	data: z.infer<typeof newAcademicPeriodSchema>,
+) => {
+	data.startDate = parseZonedDateTime(data.startDate).toAbsoluteString();
+	data.endDate = parseZonedDateTime(data.endDate).toAbsoluteString();
+
+	return data;
+};
+
+const updateAcademicPeriodTransformer = (
+	data: z.infer<typeof updateAcademicPeriodSchema>,
 ) => {
 	data.startDate = parseZonedDateTime(data.startDate).toAbsoluteString();
 	data.endDate = parseZonedDateTime(data.endDate).toAbsoluteString();
@@ -41,7 +59,12 @@ const newAcademicPeriodTransformer = (
 export const newAcademicPeriodValidator = newAcademicPeriodSchema.transform(
 	newAcademicPeriodTransformer,
 );
-
 export const newAcademicPeriodFormValidator = zfd.formData(
 	newAcademicPeriodSchema,
+);
+
+export const updateAcademicPeriodValidator =
+	updateAcademicPeriodSchema.transform(updateAcademicPeriodTransformer);
+export const updateAcademicPeriodFormValidator = zfd.formData(
+	updateAcademicPeriodSchema,
 );

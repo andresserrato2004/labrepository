@@ -26,7 +26,25 @@ const newUserSchema = createInsertSchema(schema.users, {
 	updatedAt: (_schema) => zfd.text(isoDate.optional()),
 });
 
+const updateUserFormSchema = newUserSchema
+	.omit({
+		password: true,
+		createdAt: true,
+		updatedAt: true,
+	})
+	.extend({
+		id: zfd.text(z.string()),
+	});
+
 const newUserTransformer = (data: z.infer<typeof newUserSchema>) => {
+	data.name = capitalize(data.name.trim());
+	data.username = data.username.trim().toLowerCase();
+	data.email = data.email.trim().toLowerCase();
+
+	return data;
+};
+
+const updateUserTransformer = (data: z.infer<typeof updateUserFormSchema>) => {
 	data.name = capitalize(data.name.trim());
 	data.username = data.username.trim().toLowerCase();
 	data.email = data.email.trim().toLowerCase();
@@ -36,6 +54,11 @@ const newUserTransformer = (data: z.infer<typeof newUserSchema>) => {
 
 export const newUserValidator = newUserSchema.transform(newUserTransformer);
 export const newUserFormValidator = zfd.formData(newUserSchema);
+
+export const updateUserValidator = updateUserFormSchema.transform(
+	updateUserTransformer,
+);
+export const updateUserFormValidator = zfd.formData(updateUserFormSchema);
 
 export const newLoginValidator = newLoginSchema.transform(newLoginTransformer);
 export const newLoginFormValidator = zfd.formData(newLoginSchema);

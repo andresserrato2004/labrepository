@@ -1,4 +1,15 @@
-import type { NewLogin, NewUser } from '@database/types';
+import type {
+	AcademicPeriod,
+	Classroom,
+	NewClassroom,
+	NewLogin,
+	NewReservation,
+	NewUser,
+	Reservation,
+	UpdateClassroom,
+	UpdateReservation,
+	UpdateUser,
+} from '@database/types';
 import type {
 	BasicErrorPayload,
 	ClientErrorResponse,
@@ -94,6 +105,16 @@ export class InvalidNewUserError extends AppError<NewUser> {
 }
 
 /**
+ * Represents an error that when attempting to update a user with invalid data.
+ * @extends AppError<UpdateUser>
+ */
+export class InvalidUpdateUserError extends AppError<UpdateUser> {
+	constructor(errors: Errors<NewUser>) {
+		super('Invalid user data.', errors, ClientErrorCode.BadRequest);
+	}
+}
+
+/**
  * Represents an error that occurs when a user conflict is detected.
  * @extends AppError<NewUser>
  */
@@ -105,42 +126,74 @@ export class UserConflictError extends AppError<NewUser> {
 
 /**
  * Represents an error that occurs when attempting to create a new classroom with invalid data.
- * Extends the `AppError` class with a specific type of `NewUser`.
+ * Extends the `AppError` class with a specific type of `NewClassroom`.
  *
  * @class InvalidNewClassroomError
- * @extends {AppError<NewUser>}
- * @param {Errors<NewUser>} errors - The validation errors associated with the new classroom data.
+ * @extends {AppError<NewClassroom>}
+ * @param {Errors<NewClassroom>} errors - The validation errors associated with the new classroom data.
  */
-export class InvalidNewClassroomError extends AppError<NewUser> {
-	constructor(errors: Errors<NewUser>) {
+export class InvalidNewClassroomError extends AppError<NewClassroom> {
+	constructor(errors: Errors<NewClassroom>) {
+		super('Invalid classroom data.', errors, ClientErrorCode.BadRequest);
+	}
+}
+
+/**
+ * Represents an error that occurs when attempting to update a classroom with invalid data.
+ * Extends the `AppError` class with a specific type of `UpdateClassroom`.
+ *
+ * @class InvalidUpdateClassroomError
+ * @extends {AppError<UpdateClassroom>}
+ * @param {Errors<UpdateClassroom>} errors - The validation errors associated with the new classroom data.
+ */
+export class InvalidUpdateClassroomError extends AppError<UpdateClassroom> {
+	constructor(errors: Errors<UpdateClassroom>) {
 		super('Invalid classroom data.', errors, ClientErrorCode.BadRequest);
 	}
 }
 
 /**
  * Represents an error that occurs when a classroom conflict is detected.
- * Extends the `AppError` class with a specific type of `NewUser`.
+ * Extends the `AppError` class with a specific type of `Classroom`.
  *
  * @class ClassroomConflictError
- * @extends {AppError<NewUser>}
- * @param {Errors<NewUser>} errors - The validation errors associated with the new classroom data.
+ * @extends {AppError<Classroom>}
+ * @param {Errors<Classroom>} errors - The validation errors associated with the new classroom data.
  */
-export class ClassroomConflictError extends AppError<NewUser> {
-	constructor(errors: Errors<NewUser>) {
+export class ClassroomConflictError extends AppError<Classroom> {
+	constructor(errors: Errors<Classroom>) {
 		super('Classroom already exists.', errors, ClientErrorCode.Conflict);
 	}
 }
 
 /**
  * Represents an error that occurs when attempting to create a new academic period with invalid data.
- * Extends the `AppError` class with a specific type of `NewUser`.
+ * Extends the `AppError` class with a specific type of `AcademicPeriod`.
  *
  * @class InvalidNewAcademicPeriodError
- * @extends {AppError<NewUser>}
- * @param {Errors<NewUser>} errors - The validation errors associated with the new academic period data.
+ * @extends {AppError<AcademicPeriod>}
+ * @param {Errors<AcademicPeriod>} errors - The validation errors associated with the new academic period data.
  */
-export class InvalidNewAcademicPeriodError extends AppError<NewUser> {
-	constructor(errors: Errors<NewUser>) {
+export class InvalidNewAcademicPeriodError extends AppError<AcademicPeriod> {
+	constructor(errors: Errors<AcademicPeriod>) {
+		super(
+			'Invalid academic period data.',
+			errors,
+			ClientErrorCode.BadRequest,
+		);
+	}
+}
+
+/**
+ * Represents an error that occurs when attempting to update an academic period with invalid data.
+ * Extends the `AppError` class with a specific type of `AcademicPeriod`.
+ *
+ * @class InvalidUpdateAcademicPeriodError
+ * @extends {AppError<AcademicPeriod>}
+ * @param {Errors<AcademicPeriod>} errors - The validation errors associated with the new academic period data.
+ */
+export class InvalidUpdateAcademicPeriodError extends AppError<AcademicPeriod> {
+	constructor(errors: Errors<AcademicPeriod>) {
 		super(
 			'Invalid academic period data.',
 			errors,
@@ -153,11 +206,11 @@ export class InvalidNewAcademicPeriodError extends AppError<NewUser> {
  * Error class representing a conflict when an academic period already exists.
  * Extends the `AppError` class with a specific error message and client error code.
  *
- * @template NewUser - The type of the user associated with the error.
- * @extends {AppError<NewUser>}
+ * @template AcademicPeriod - The type of the user associated with the error.
+ * @extends {AppError<AcademicPeriod>}
  */
-export class AcademicPeriodConflictError extends AppError<NewUser> {
-	constructor(errors: Errors<NewUser>) {
+export class AcademicPeriodConflictError extends AppError<AcademicPeriod> {
+	constructor(errors: Errors<AcademicPeriod>) {
 		super(
 			'Academic period already exists.',
 			errors,
@@ -168,26 +221,39 @@ export class AcademicPeriodConflictError extends AppError<NewUser> {
 
 /**
  * Represents an error that occurs when attempting to create a new reservation with invalid data.
- * Extends the `AppError` class with a specific type of `NewUser`.
+ * Extends the `AppError` class with a specific type of `NewReservation`.
  *
  * @class InvalidNewReservationError
- * @extends {AppError<NewUser>}
- * @param {Errors<NewUser>} errors - The validation errors associated with the new reservation data.
+ * @extends {AppError<NewReservation>}
+ * @param {Errors<NewReservation>} errors - The validation errors associated with the new reservation data.
  */
-export class InvalidNewReservationError extends AppError<NewUser> {
-	constructor(errors: Errors<NewUser>) {
+export class InvalidNewReservationError extends AppError<NewReservation> {
+	constructor(errors: Errors<NewReservation>) {
 		super('Invalid reservation data.', errors, ClientErrorCode.BadRequest);
 	}
 }
 
 /**
+ * Represents an error that occurs when attempting to update a reservation with invalid data.
+ * Extends the `AppError` class with a specific type of `UpdateReservation`.
+ *
+ * @class InvalidUpdateReservationError
+ * @extends {AppError<UpdateReservation>}
+ * @param {Errors<UpdateReservation>} errors - The validation errors associated with the updated reservation data.
+ */
+export class InvalidUpdateReservationError extends AppError<UpdateReservation> {
+	constructor(errors: Errors<UpdateReservation>) {
+		super('Invalid reservation data.', errors, ClientErrorCode.BadRequest);
+	}
+}
+/**
  * Represents an error that occurs when a reservation conflict is detected.
  * This error is thrown when an attempt is made to create a reservation that already exists.
  *
- * @extends {AppError<NewUser>}
+ * @extends {AppError<Reservation>}
  */
-export class ReservationConflictError extends AppError<NewUser> {
-	constructor(errors: Errors<NewUser>) {
+export class ReservationConflictError extends AppError<Reservation> {
+	constructor(errors: Errors<Reservation>) {
 		super('Reservation already exists.', errors, ClientErrorCode.Conflict);
 	}
 }

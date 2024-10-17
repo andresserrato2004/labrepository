@@ -1,4 +1,4 @@
-import type { NewReservation } from '@database/types';
+import type { NewReservation, UpdateReservation } from '@database/types';
 import type { Session } from '@services/server/types';
 
 /**
@@ -14,13 +14,13 @@ export interface CreateReservationArgs {
 }
 
 /**
- * Arguments required to create new reservations.
+ * Arguments required to update a reservation.
  *
- * @interface CreateReservationsArgs
- * @property {NewReservation[]} requests - An array of new reservation requests.
- * @property {Session} session - The session information for the user making the reservation.
+ * @interface UpdateReservationArgs
+ * @property {UpdateReservation} request - The updated reservation details.
+ * @property {Session} session - The session information.
  */
-export interface CreateReservationsArgs {
-	request: NewReservation[];
+export interface UpdateReservationArgs {
+	request: UpdateReservation;
 	session: Session;
 }

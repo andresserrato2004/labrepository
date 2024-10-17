@@ -12,6 +12,19 @@ const baseReservationSchema = createInsertSchema(schema.reservations, {
 	updatedAt: (_schema) => isoDate.optional(),
 });
 
+const newReservationSchema = baseReservationSchema
+	.extend({
+		repeatOnWeeks: z.array(z.number()).optional(),
+	})
+	.omit({
+		createdAt: true,
+		updatedAt: true,
+	});
+
+const updateReservationSchema = newReservationSchema.extend({
+	id: zfd.text(z.string()),
+});
+
 const newFormReservationSchema = z.object({
 	date: isoDate,
 	course: courseMnemonic,
@@ -23,9 +36,13 @@ const newFormReservationSchema = z.object({
 	repeatOnWeeks: zfd.text(z.string().optional()),
 });
 
-const newReservationSchema = baseReservationSchema.extend({
-	repeatOnWeeks: z.array(z.number()).optional(),
-});
+const updateFormReservationSchema = newFormReservationSchema
+	.omit({
+		repeatOnWeeks: true,
+	})
+	.extend({
+		id: zfd.text(z.string()),
+	});
 
 const newReservationFormTransformer = (
 	data: z.infer<typeof newFormReservationSchema>,
@@ -65,8 +82,50 @@ const newReservationFormTransformer = (
 	return result;
 };
 
+const updateFormReservationTransformer = (
+	data: z.infer<typeof updateFormReservationSchema>,
+) => {
+	const reservationDate = parseZonedDateTime(data.date);
+	const reservationStartHour = parseTime(data.startHour);
+	const reservationEndHour = parseTime(data.endHour);
+
+	const startTime = reservationDate
+		.set({
+			hour: reservationStartHour.hour,
+			minute: reservationStartHour.minute,
+			second: 0,
+		})
+		.toAbsoluteString();
+
+	const endTime = reservationDate
+		.set({
+			hour: reservationEndHour.hour,
+			minute: reservationEndHour.minute,
+			second: 0,
+		})
+		.toAbsoluteString();
+
+	const { date, startHour, endHour, ...rest } = data;
+
+	const result = {
+		...rest,
+		startTime,
+		endTime,
+	};
+
+	return result;
+};
+
 const newReservationTransformer = (
 	data: z.infer<typeof newReservationSchema>,
+) => {
+	data.course = data.course.trim().toUpperCase();
+
+	return data;
+};
+
+const updateReservationTransformer = (
+	data: z.infer<typeof updateReservationSchema>,
 ) => {
 	data.course = data.course.trim().toUpperCase();
 
@@ -76,7 +135,13 @@ const newReservationTransformer = (
 export const newReservationValidator = newReservationSchema.transform(
 	newReservationTransformer,
 );
-
 export const newReservationFormValidator = zfd.formData(
 	newFormReservationSchema.transform(newReservationFormTransformer),
+);
+
+export const updateReservationValidator = updateReservationSchema.transform(
+	updateReservationTransformer,
+);
+export const updateReservationFormValidator = zfd.formData(
+	updateFormReservationSchema.transform(updateFormReservationTransformer),
 );

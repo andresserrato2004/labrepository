@@ -1,22 +1,33 @@
-import type { ExtendedReservation, NewReservation } from '@database/types';
+import type {
+	ExtendedReservation,
+	NewReservation,
+	Reservation,
+	UpdateReservation,
+} from '@database/types';
 import type { DateValue } from '@internationalized/date';
 import type {
 	Errors,
 	NoContent,
 	ServiceResponse,
+	UpdateReservationArgs,
 } from '@services/server/types';
 import type { CreateReservationArgs } from '@services/server/types';
 
 import { and, database, eq, gt, gte, lt, lte, or, schema } from '@database';
 import { AppResource } from '@database/schema/enums';
-import { newReservationValidator } from '@database/validators';
+import {
+	newReservationValidator,
+	updateReservationValidator,
+} from '@database/validators';
 import {
 	InvalidNewReservationError,
+	InvalidUpdateReservationError,
 	ReservationConflictError,
 } from '@errors/services';
 import { parseAbsoluteToLocal } from '@internationalized/date';
 import {
 	buildCreationAuditLog,
+	buildUpdateAuditLog,
 	handleUnknownError,
 } from '@services/server/utility';
 import { getMonday } from '@services/shared/dates';
@@ -61,7 +72,7 @@ async function getCurrentPeriod() {
 	return currentPeriod[0];
 }
 
-async function checkForExistingReservation(
+async function checkForConflictingReservation(
 	reservation: NewReservation,
 ): Promise<Errors<NewReservation> | null> {
 	const reservations = await database
@@ -95,24 +106,40 @@ async function checkForExistingReservation(
 
 	const conflictError: Errors<NewReservation> = {};
 
-	if (reservations.length > 0) {
-		const startTime = dayjs(reservations[0].startTime).format(
-			'MMMM DD, HH:mm',
-		);
-		const endTime = dayjs(reservations[0].endTime).format('HH:mm');
-		const course = reservations[0].course;
-
-		const message = `Classroom is already reserved on ${startTime} - ${endTime} to ${course}`;
-		conflictError.classroomId = message;
-		conflictError.startTime = message;
-		conflictError.endTime = message;
-
-		return conflictError;
+	if (reservations.length === 0) {
+		return null;
 	}
 
-	return null;
+	if (reservations.length === 1 && reservations[0].id === reservation.id) {
+		return null;
+	}
+
+	const startTime = dayjs(reservations[0].startTime).format('MMMM DD, HH:mm');
+	const endTime = dayjs(reservations[0].endTime).format('HH:mm');
+	const course = reservations[0].course;
+
+	const message = `Classroom is already reserved on ${startTime} - ${endTime} to ${course}`;
+	conflictError.classroomId = message;
+	conflictError.startTime = message;
+	conflictError.endTime = message;
+
+	return conflictError;
 }
 
+async function getExistingReservation(
+	reservation: NewReservation | UpdateReservation,
+): Promise<Reservation | null> {
+	const existingReservation = await database
+		.select()
+		.from(schema.reservations)
+		.where(eq(schema.reservations.id, reservation.id ?? ''));
+
+	if (existingReservation.length === 0) {
+		return null;
+	}
+
+	return existingReservation[0];
+}
 /**
  * Retrieves all reservations with their corresponding classrooms.
  *
@@ -257,6 +284,22 @@ async function buildReservations(reservation: NewReservation) {
 	return reservations;
 }
 
+/**
+ * Creates a new reservation.
+ *
+ * This function validates the incoming request data against the `newReservationValidator` schema.
+ * If the validation fails, it throws an `InvalidNewReservationError` with the validation errors.
+ * It then builds the reservations and checks for any conflicting reservations.
+ * If a conflict is found, it throws a `ReservationConflictError`.
+ *
+ * If no conflicts are found, it inserts the reservation data and audit logs into the database
+ * within a transaction.
+ *
+ * @returns A promise that resolves to a service response.
+ *
+ * @throws {InvalidNewReservationError} - If the request data is invalid.
+ * @throws {ReservationConflictError} - If there is a conflicting reservation.
+ */
 export async function createReservation({
 	session,
 	request,
@@ -274,7 +317,7 @@ export async function createReservation({
 
 		for (const reservation of reservations) {
 			const conflictError =
-				await checkForExistingReservation(reservation);
+				await checkForConflictingReservation(reservation);
 
 			if (conflictError) {
 				throw new ReservationConflictError(conflictError);
@@ -306,8 +349,88 @@ export async function createReservation({
 		}
 		return handleUnknownError({
 			error: error,
-			additionalInfo: { request: request, session: session },
+			additionalInfo: { request, session },
 			stack: 'reservations/createReservation',
+		});
+	}
+}
+
+/**
+ * Updates an existing reservation.
+ *
+ * This function validates the incoming request data against the `updateReservationValidator` schema.
+ * If the validation fails, it throws an `InvalidUpdateReservationError` with the validation errors.
+ * It then retrieves the existing reservation from the database and checks for any conflicting reservations.
+ * If a conflict is found, it throws a `ReservationConflictError`.
+ *
+ * If no conflicts are found, it updates the reservation data and audit logs in the database
+ * within a transaction.
+ *
+ * @returns A promise that resolves to a service response.
+ *
+ * @throws {InvalidUpdateReservationError} - If the request data is invalid.
+ * @throws {ReservationConflictError} - If there is a conflicting reservation.
+ */
+export async function updateReservation({
+	session,
+	request,
+}: UpdateReservationArgs): Promise<
+	ServiceResponse<NoContent, UpdateReservation>
+> {
+	try {
+		const schemaValidation = updateReservationValidator.safeParse(request);
+
+		if (!schemaValidation.success) {
+			throw new InvalidUpdateReservationError(
+				getErrorsFromZodError(schemaValidation.error),
+			);
+		}
+
+		const reservation = schemaValidation.data;
+
+		const existingReservation = await getExistingReservation(reservation);
+
+		if (!existingReservation) {
+			throw new InvalidUpdateReservationError({
+				id: 'Reservation not found',
+			});
+		}
+
+		const conflictError = await checkForConflictingReservation(reservation);
+
+		if (conflictError) {
+			throw new ReservationConflictError(conflictError);
+		}
+
+		await database.transaction(async (trx) => {
+			await trx.insert(schema.auditLogs).values(
+				buildUpdateAuditLog({
+					oldData: existingReservation,
+					newData: reservation,
+					session: session,
+					resource: AppResource.Reservations,
+				}),
+			);
+
+			await trx
+				.update(schema.reservations)
+				.set(reservation)
+				.where(eq(schema.reservations.id, reservation.id));
+		});
+
+		return {
+			type: ResponseType.Success,
+			code: SuccessCode.Ok,
+			data: null,
+		};
+	} catch (error) {
+		if (isAppError<UpdateReservation>(error)) {
+			return error.toServiceResponse();
+		}
+		return handleUnknownError({
+			error: error,
+			additionalInfo: { request, session },
+			stack: 'reservations/updateReservation',
 		});
 	}
 }

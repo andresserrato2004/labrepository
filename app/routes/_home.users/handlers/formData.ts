@@ -1,4 +1,4 @@
-import type { NewUser } from '@database/types';
+import type { NewUser, UpdateUser } from '@database/types';
 import type { TypedResponse } from '@remix-run/node';
 import type {
 	ClientErrorResponse,
@@ -6,8 +6,11 @@ import type {
 	SuccessResponse,
 } from '@services/server/types';
 
-import { newUserFormValidator } from '@database/validators';
-import { createUser } from '@services/server/users';
+import {
+	newUserFormValidator,
+	updateUserFormValidator,
+} from '@database/validators';
+import { createUser, updateUser } from '@services/server/users';
 import { parseFormData } from '@services/server/utility';
 import {
 	ClientErrorCode,
@@ -57,15 +60,37 @@ export class FormDataHandler extends RouteActionHandler<NewUser> {
 		return createResponse(createUserResponse);
 	}
 
-	handlePatchRequest(
-		_request: Request,
+	async handlePatchRequest(
+		request: Request,
 	): Promise<
-		TypedResponse<SuccessResponse<NoContent> | ClientErrorResponse<NewUser>>
+		TypedResponse<
+			SuccessResponse<NoContent> | ClientErrorResponse<UpdateUser>
+		>
 	> {
-		throw createBasicResponse(
-			'Method not allowed',
-			ClientErrorCode.MethodNotAllowed,
-		);
+		const formData = await parseFormData(request, updateUserFormValidator);
+
+		if (!formData) {
+			throw createBasicResponse(
+				'Invalid form data.',
+				ClientErrorCode.BadRequest,
+			);
+		}
+
+		if (!formData.success) {
+			return createResponse({
+				code: ClientErrorCode.BadRequest,
+				type: ResponseType.ClientError,
+				errors: getErrorsFromZodError(formData.error),
+			});
+		}
+
+		const updateUserResponse = await updateUser({ request: formData.data });
+
+		if (updateUserResponse.type === ResponseType.ServerError) {
+			throw createServerErrorResponse(updateUserResponse);
+		}
+
+		return createResponse(updateUserResponse);
 	}
 
 	handleDeleteRequest(

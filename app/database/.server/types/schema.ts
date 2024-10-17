@@ -38,7 +38,17 @@ export type InfoUser = Omit<User, 'password'>;
 /**
  * Represents the type definition for creating a new user.
  */
-export type NewUser = typeof schema.users.$inferInsert;
+export type NewUser = Omit<
+	typeof schema.users.$inferInsert,
+	'createdAt' | 'updatedAt'
+>;
+
+/**
+ * Represents the type definition for updating a user.
+ */
+export type UpdateUser = Omit<NewUser, 'password'> & {
+	id: string;
+};
 
 /**
  * Represents the type definition for the Classroom object in the schema.
@@ -48,17 +58,37 @@ export type Classroom = typeof schema.classrooms.$inferSelect;
 /**
  * Represents the type definition for creating a new classroom.
  */
-export type NewClassroom = typeof schema.classrooms.$inferInsert;
+export type NewClassroom = Omit<
+	typeof schema.classrooms.$inferInsert,
+	'createdAt' | 'updatedAt'
+>;
 
 /**
- * Represents the type definition for the AcademicPeriod entity in the schema.
+ * Represents the type definition for updating a classroom.
+ */
+export type UpdateClassroom = Omit<NewClassroom, 'id'> & {
+	id: string;
+};
+
+/**
+ * Represents the type definition for the AcademicPeriod entity in the schema.d
  */
 export type AcademicPeriod = typeof schema.academicPeriods.$inferSelect;
 
 /**
  * Represents the type definition for creating a new academic period.
  */
-export type NewAcademicPeriod = typeof schema.academicPeriods.$inferInsert;
+export type NewAcademicPeriod = Omit<
+	typeof schema.academicPeriods.$inferInsert,
+	'createdAt' | 'updatedAt'
+>;
+
+/**
+ * Represents the type definition for updating an academic period.
+ */
+export type UpdateAcademicPeriod = Omit<NewAcademicPeriod, 'id'> & {
+	id: string;
+};
 
 /**
  * Represents the type definition for the AuditLog entity in the schema.
@@ -88,8 +118,18 @@ export type Reservation = typeof schema.reservations.$inferSelect;
 /**
  * Represents the type definition for creating a new reservation.
  */
-export type NewReservation = typeof schema.reservations.$inferInsert & {
+export type NewReservation = Omit<
+	typeof schema.reservations.$inferInsert,
+	'createdAt' | 'updatedAt'
+> & {
 	repeatOnWeeks?: number[];
+};
+
+/**
+ * Represents the type definition for updating a reservation.
+ */
+export type UpdateReservation = Omit<NewReservation, 'id'> & {
+	id: string;
 };
 
 /**
@@ -116,6 +156,13 @@ export interface ExtendedReservation extends Reservation {
  */
 export interface FormNewReservation
 	extends Omit<NewReservation, 'startTime' | 'endTime'> {
+	date: string;
+	startHour: string;
+	endHour: string;
+}
+
+export interface FormUpdateReservation
+	extends Omit<UpdateReservation, 'id' | 'repeatOnWeeks'> {
 	date: string;
 	startHour: string;
 	endHour: string;

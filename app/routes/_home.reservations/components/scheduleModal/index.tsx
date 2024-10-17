@@ -71,6 +71,7 @@ export function ReservationsModal() {
 	const isLoading = fetcher.state !== 'idle';
 	const isDetails = modalType === 'details';
 	const isCreate = modalType === 'create';
+	const isUpdate = modalType === 'update';
 
 	useEffect(() => {
 		if (!fetcher.data) {
@@ -181,6 +182,9 @@ export function ReservationsModal() {
 				<h2>{getModalTitle(modalType)}</h2>
 			</ModalHeader>
 			<ModalBody className='grid grid-cols-12 p-6 gap-6'>
+				{isUpdate ? (
+					<HiddenInput name='id' value={modalData?.id} />
+				) : null}
 				<Autocomplete
 					label='User to reserve'
 					variant='faded'
