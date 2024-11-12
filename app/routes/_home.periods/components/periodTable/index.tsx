@@ -73,6 +73,7 @@ export function AcademicPeriodsTable() {
 					description: 'This action cannot be undone',
 					label: 'Delete academic period',
 					icon: <Trash />,
+					isDisabled: (_item) => true,
 					action: (item) =>
 						console.log('Deleting academic period', item),
 				},

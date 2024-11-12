@@ -13,7 +13,7 @@ import type {
 } from '@services/server/types';
 import type { CreateReservationArgs } from '@services/server/types';
 
-import { and, database, eq, gt, gte, lt, lte, or, schema } from '@database';
+import { and, database, eq, gt, lt, or, schema } from '@database';
 import { AppResource } from '@database/schema/enums';
 import {
 	newReservationValidator,
@@ -83,15 +83,15 @@ async function checkForConflictingReservation(
 				eq(schema.reservations.classroomId, reservation.classroomId),
 				or(
 					and(
-						gte(
+						gt(
 							schema.reservations.startTime,
 							reservation.startTime,
 						),
-						lte(schema.reservations.startTime, reservation.endTime),
+						lt(schema.reservations.startTime, reservation.endTime),
 					),
 					and(
-						gte(schema.reservations.endTime, reservation.startTime),
-						lte(schema.reservations.endTime, reservation.endTime),
+						gt(schema.reservations.endTime, reservation.startTime),
+						lt(schema.reservations.endTime, reservation.endTime),
 					),
 					and(
 						eq(
@@ -103,6 +103,8 @@ async function checkForConflictingReservation(
 				),
 			),
 		);
+
+	console.log({ reservations });
 
 	const conflictError: Errors<NewReservation> = {};
 

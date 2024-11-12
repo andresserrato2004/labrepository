@@ -165,7 +165,7 @@ export function UsersTable() {
 						description: description,
 						label: 'Delete user',
 						icon: <Trash />,
-						isDisabled: (item) => item.role === 'admin',
+						isDisabled: (_item) => true,
 						action: (item) => console.log('Deleting user', item),
 					};
 				},
