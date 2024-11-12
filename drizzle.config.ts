@@ -1,14 +1,15 @@
 import dotenv from 'dotenv';
-dotenv.config({ path: '.env.development' });
+dotenv.config({ path: '.env.production', override: false });
+dotenv.config({ path: '.env', override: false });
+dotenv.config({ path: '.env.development', override: false });
 
 import { DatabaseMissingConnectionArgumentError } from '@errors/database';
 import { defineConfig } from 'drizzle-kit';
 
 if (process.env.NODE_ENV !== 'development') {
 	console.error(
-		`Cannot run drizzle commands in non-development environments. Current environment: ${process.env.NODE_ENV}`,
+		`Warning: running drizzle commands in non-development environments. Current environment: ${process.env.NODE_ENV}`,
 	);
-	process.exit(1);
 }
 
 const user = process.env.DB_USER;
