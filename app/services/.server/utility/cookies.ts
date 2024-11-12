@@ -12,7 +12,7 @@ if (!secret) {
 }
 
 const sessionToken = createCookie('__session', {
-	secure: process.env.NODE_ENV === 'production',
+	secure: false, // Change when deploy over HTTPS
 	sameSite: 'strict',
 	httpOnly: true,
 	secrets: [secret],
