@@ -80,6 +80,7 @@ export function ClassroomTable() {
 					description: 'This action cannot be undone',
 					label: 'Delete classroom',
 					icon: <Trash />,
+					isDisabled: (_item) => true,
 					action: (item) => console.log('Deleting classroom', item),
 				},
 			],

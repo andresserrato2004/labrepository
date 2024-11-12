@@ -18,6 +18,17 @@ const sessionToken = createCookie('__session', {
 	secrets: [secret],
 });
 
+function buildAdminHeaderSession(): Session {
+	return {
+		name: 'x-admin-key',
+		role: 'admin',
+		userId: 'x-admin-key',
+		username: 'x-admin-key',
+		iat: 0,
+		exp: 0,
+	};
+}
+
 /**
  * Retrieves the token from the request's cookie.
  *
@@ -47,6 +58,13 @@ export async function getSessionFromRequest(
 	request: Request,
 	redirectOnError = true,
 ): Promise<Session | null> {
+	const adminKey = process.env.ADMIN_KEY;
+	const adminHeader = request.headers.get('x-admin-key');
+
+	if (adminKey && adminHeader && adminHeader === adminKey) {
+		return buildAdminHeaderSession();
+	}
+
 	const token = await getTokenFromRequest(request);
 	const sessionResponse = await getSessionFromToken(token ?? '');
 

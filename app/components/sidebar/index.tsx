@@ -14,11 +14,9 @@ import { Link } from '@nextui-org/link';
 import {
 	BookBookmark,
 	Calendar,
-	Clipboard,
 	Gear,
 	House,
 	SignOut,
-	SquaresFour,
 	Users,
 } from '@phosphor-icons/react';
 import { useLocation } from '@remix-run/react';
@@ -144,6 +142,23 @@ function SidebarMenu(props: SidebarMenuProps): ReactElement {
 }
 
 /**
+ * A component that renders its children only if the current user has an admin role.
+ *
+ * @param {Object} props - The props object.
+ * @param {ReactElement} props.children - The child elements to be rendered if the user is an admin.
+ * @returns The children elements if the user is an admin, otherwise null.
+ */
+function OnlyAdmin({ children }: { children: ReactElement }) {
+	const session = useUserSession();
+
+	if (session.role !== 'admin') {
+		return null;
+	}
+
+	return children;
+}
+
+/**
  * Renders the sidebar component.
  *
  * @returns The rendered sidebar component.
@@ -176,29 +191,38 @@ export function Sidebar() {
 
 			<div className={styles.menusContainer}>
 				<SidebarMenu hasDivider={true} title='Main menu'>
-					<SidebarLink to='/dashboard' icon={<SquaresFour />}>
+					{/* <SidebarLink to='/dashboard' icon={<SquaresFour />}>
 						Dashboard
-					</SidebarLink>
+					</SidebarLink> */}
+
 					<SidebarLink to='/reservations' icon={<BookBookmark />}>
 						Reservations
 					</SidebarLink>
-					<SidebarLink to='/requests' icon={<Clipboard />}>
+					{/* <SidebarLink to='/requests' icon={<Clipboard />}>
 						Requests
-					</SidebarLink>
-					<SidebarLink to='/users' icon={<Users />}>
-						Users
-					</SidebarLink>
-					<SidebarLink to='/classrooms' icon={<House />}>
-						Classrooms
-					</SidebarLink>
-					<SidebarLink to='/periods' icon={<Calendar />}>
-						Academic periods
-					</SidebarLink>
+					</SidebarLink> */}
+					<OnlyAdmin>
+						<SidebarLink to='/users' icon={<Users />}>
+							Users
+						</SidebarLink>
+					</OnlyAdmin>
+					<OnlyAdmin>
+						<SidebarLink to='/classrooms' icon={<House />}>
+							Classrooms
+						</SidebarLink>
+					</OnlyAdmin>
+					<OnlyAdmin>
+						<SidebarLink to='/periods' icon={<Calendar />}>
+							Academic periods
+						</SidebarLink>
+					</OnlyAdmin>
 				</SidebarMenu>
 				<SidebarMenu hasDivider={false} title='Options'>
-					<SidebarLink to='/settings' icon={<Gear />}>
-						Settings
-					</SidebarLink>
+					<OnlyAdmin>
+						<SidebarLink to='/settings' icon={<Gear />}>
+							Settings
+						</SidebarLink>
+					</OnlyAdmin>
 					<SidebarLink
 						to='/logout'
 						icon={<SignOut />}

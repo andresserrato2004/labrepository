@@ -50,8 +50,6 @@ async function checkForExistingAcademicPeriod<
 
 	const conflictError: Errors<T> = {};
 
-	console.log({ request, academicPeriods });
-
 	if (academicPeriods.length === 0) {
 		return null;
 	}

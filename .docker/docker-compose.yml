@@ -18,6 +18,9 @@ services:
       COOKIE_SECRET: labs-reservas
       ARGON2_SECRET: labs-reservas
       ADMIN_KEY: l4b1nf0
+      ADMIN_USERNAME: admin
+      ADMIN_EMAIL: labinfo@escuelaing.edu.co
+      ADMIN_PASSWORD: admin
     networks:
       - lab-reservas-net
   db:
