@@ -1,0 +1,1 @@
+pnpm migration:generate && pnpm migration:push --force && pnpm start

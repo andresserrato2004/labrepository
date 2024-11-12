@@ -1,0 +1,38 @@
+services:
+  web:
+    build:
+      context: ../
+      dockerfile: .docker/dockerfile
+    container_name: lab-reservas
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: db
+      DB_USER: postgres
+      DB_PASSWORD: root
+      DB_NAME: postgres
+      DB_PORT: 5432
+      NODE_ENV: production
+      CUID_FINGERPRINT: lab-reservas
+      JWT_SECRET: labs-reservas
+      COOKIE_SECRET: labs-reservas
+      ARGON2_SECRET: labs-reservas
+      ADMIN_KEY: l4b1nf0
+    networks:
+      - lab-reservas-net
+  db:
+    image: postgres:latest
+    container_name: lab-reservas-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: postgres
+    volumes:
+      - lab-reservas-db:/var/lib/postgresql/data
+    networks:
+      - lab-reservas-net
+networks:
+  lab-reservas-net:
+
+volumes:
+  lab-reservas-db:
