@@ -1,4 +1,5 @@
 import type {
+	DeleteReservation,
 	ExtendedReservation,
 	NewReservation,
 	Reservation,
@@ -6,6 +7,7 @@ import type {
 } from '@database/types';
 import type { DateValue } from '@internationalized/date';
 import type {
+	DeleteReservationArgs,
 	Errors,
 	NoContent,
 	ServiceResponse,
@@ -16,6 +18,7 @@ import type { CreateReservationArgs } from '@services/server/types';
 import { and, database, eq, gt, lt, or, schema } from '@database';
 import { AppResource } from '@database/schema/enums';
 import {
+	deleteReservationValidator,
 	newReservationValidator,
 	updateReservationValidator,
 } from '@database/validators';
@@ -27,6 +30,7 @@ import {
 import { parseAbsoluteToLocal } from '@internationalized/date';
 import {
 	buildCreationAuditLog,
+	buildDeletionAuditLog,
 	buildUpdateAuditLog,
 	handleUnknownError,
 } from '@services/server/utility';
@@ -103,8 +107,6 @@ async function checkForConflictingReservation(
 				),
 			),
 		);
-
-	console.log({ reservations });
 
 	const conflictError: Errors<NewReservation> = {};
 
@@ -433,6 +435,81 @@ export async function updateReservation({
 			error: error,
 			additionalInfo: { request, session },
 			stack: 'reservations/updateReservation',
+		});
+	}
+}
+
+/**
+ * Deletes an existing reservation.
+ *
+ * This function validates the incoming request data against the `deleteReservationValidator` schema.
+ * If the validation fails, it throws an `InvalidUpdateReservationError` with the validation errors.
+ * It then retrieves the existing reservation from the database.
+ *
+ * If the reservation is not found, it throws an `InvalidUpdateReservationError`.
+ *
+ * If the reservation is found, it deletes the reservation data and audit logs from the database
+ * within a transaction.
+ *
+ * @returns A promise that resolves to a service response.
+ *
+ * @throws {InvalidUpdateReservationError} - If the request data is invalid.
+ */
+export async function deleteReservation({
+	session,
+	request,
+}: DeleteReservationArgs): Promise<
+	ServiceResponse<NoContent, DeleteReservation>
+> {
+	try {
+		const schemaValidation = deleteReservationValidator.safeParse(request);
+
+		if (!schemaValidation.success) {
+			throw new InvalidUpdateReservationError(
+				getErrorsFromZodError(schemaValidation.error),
+			);
+		}
+
+		const reservation = schemaValidation.data;
+
+		const [oldReservation] = await database
+			.select()
+			.from(schema.reservations)
+			.where(eq(schema.reservations.id, reservation.id));
+
+		if (!oldReservation) {
+			throw new InvalidUpdateReservationError({
+				id: 'Reservation not found',
+			});
+		}
+
+		await database.transaction(async (trx) => {
+			await trx.insert(schema.auditLogs).values(
+				buildDeletionAuditLog({
+					oldData: oldReservation,
+					session: session,
+					resource: AppResource.Reservations,
+				}),
+			);
+
+			await trx
+				.delete(schema.reservations)
+				.where(eq(schema.reservations.id, reservation.id));
+		});
+
+		return {
+			type: ResponseType.Success,
+			code: SuccessCode.Ok,
+			data: null,
+		};
+	} catch (error) {
+		if (isAppError<DeleteReservation>(error)) {
+			return error.toServiceResponse();
+		}
+		return handleUnknownError({
+			error: error,
+			additionalInfo: { request, session },
+			stack: 'reservations/deleteReservation',
 		});
 	}
 }

@@ -133,6 +133,11 @@ export type UpdateReservation = Omit<NewReservation, 'id'> & {
 };
 
 /**
+ * Represents the type definition for deleting a reservation.
+ */
+export type DeleteReservation = Pick<Reservation, 'id'>;
+
+/**
  * Represents a reservation with a classroom.
  */
 export interface ExtendedReservation extends Reservation {

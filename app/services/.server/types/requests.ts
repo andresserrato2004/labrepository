@@ -32,3 +32,12 @@ export interface BuildUpdateAuditLogArgs {
 	oldData: Data;
 	newData: Data;
 }
+
+/**
+ * Represents the arguments for building a deletion audit log.
+ */
+export interface BuildDeletionAuditLogArgs {
+	session: Session;
+	resource: AppResource;
+	oldData: Data;
+}

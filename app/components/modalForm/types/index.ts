@@ -5,4 +5,4 @@
  * - 'update': Modal for updating an existing entry.
  * - 'details': Modal for viewing the details of an entry.
  */
-export type ModalType = 'create' | 'update' | 'details';
+export type ModalType = 'create' | 'update' | 'delete' | 'details';
