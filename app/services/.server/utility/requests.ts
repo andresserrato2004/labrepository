@@ -1,6 +1,7 @@
 import type { FormDataValidator, NewAuditLog } from '@database/types';
 import type {
 	BuildCreationAuditLogArgs,
+	BuildDeletionAuditLogArgs,
 	BuildUpdateAuditLogArgs,
 	HandleUnknownErrorArgs,
 	ServerErrorResponse,
@@ -165,6 +166,28 @@ export function buildUpdateAuditLog({
 		table: resource,
 		userId: session.userId,
 		newData: newData,
+		oldData: oldData,
+	};
+}
+
+/**
+ * Builds a deletion audit log object.
+ *
+ * @param session - The session object.
+ * @param resource - The resource being deleted.
+ * @param oldData - The old data before the deletion.
+ * @returns The new audit log object.
+ */
+export function buildDeletionAuditLog({
+	session,
+	resource,
+	oldData,
+}: BuildDeletionAuditLogArgs): NewAuditLog {
+	return {
+		action: 'delete',
+		table: resource,
+		userId: session.userId,
+		newData: {},
 		oldData: oldData,
 	};
 }

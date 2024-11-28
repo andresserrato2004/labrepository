@@ -32,6 +32,8 @@ const getModalTitle = (modalType: ModalType) => {
 			return 'Editing reservation';
 		case 'details':
 			return 'Reservation details';
+		case 'delete':
+			return 'Delete reservation';
 		default:
 			return 'Modal form';
 	}
@@ -43,6 +45,8 @@ const getSuccessMessage = (modalType: ModalType) => {
 			return 'Reservation created successfully';
 		case 'update':
 			return 'Reservation updated successfully';
+		case 'delete':
+			return 'Reservation deleted successfully';
 		default:
 			return 'Success';
 	}
@@ -72,6 +76,7 @@ export function ReservationsModal() {
 	const isDetails = modalType === 'details';
 	const isCreate = modalType === 'create';
 	const isUpdate = modalType === 'update';
+	const isDelete = modalType === 'delete';
 
 	useEffect(() => {
 		if (!fetcher.data) {
@@ -182,7 +187,7 @@ export function ReservationsModal() {
 				<h2>{getModalTitle(modalType)}</h2>
 			</ModalHeader>
 			<ModalBody className='grid grid-cols-12 p-6 gap-6'>
-				{isUpdate ? (
+				{isUpdate || isDelete ? (
 					<HiddenInput name='id' value={modalData?.id} />
 				) : null}
 				<Autocomplete
@@ -333,7 +338,7 @@ export function ReservationsModal() {
 					isLoading={isLoading}
 					isDisabled={isDetails}
 				>
-					Confirm
+					{isDelete ? 'Delete' : 'Save'}
 				</Button>
 			</ModalFooter>
 		</ModalForm>

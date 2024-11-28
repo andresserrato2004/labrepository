@@ -4,8 +4,10 @@ import type { Key } from '@react-types/shared';
 import type { ReservationCellProps } from '@routes/reservations/components/types';
 import type { MouseEvent } from 'react';
 
+import { HiddenInput } from '@components';
 import { useModalForm } from '@components/modalForm/providers';
 import { dataAttr } from '@components/utility';
+import { useFetcherWithReset } from '@hooks/fetcher';
 import {
 	DateFormatter,
 	getLocalTimeZone,
@@ -22,7 +24,13 @@ import {
 } from '@nextui-org/dropdown';
 import { Input, Textarea } from '@nextui-org/input';
 import { Tooltip } from '@nextui-org/tooltip';
-import { CalendarDots, CaretLeft, CaretRight } from '@phosphor-icons/react';
+import {
+	CalendarDots,
+	CaretLeft,
+	CaretRight,
+	PencilLine,
+	Trash,
+} from '@phosphor-icons/react';
 import { useAcademicPeriods, useClassrooms } from '@routes/home/providers';
 import { useReservationList } from '@routes/reservations/providers';
 import { getMonday, getSunday } from '@services/shared/dates';
@@ -64,13 +72,33 @@ const getTimeFromDayStart = (date: Date) => {
 
 function ReservationDetails({
 	reservation,
-}: { reservation: ExtendedReservation }) {
+	onUpdate,
+	onDelete,
+}: {
+	reservation: ExtendedReservation;
+	onUpdate?: (reservation: ExtendedReservation) => void;
+	onDelete?: (reservation: ExtendedReservation) => void;
+}) {
+	const fetcher = useFetcherWithReset();
 	const startTime = dayjs(reservation.startTime).format('HH:mm A');
 	const endTime = dayjs(reservation.endTime).format('HH:mm A');
 	const date = dayjs(reservation.startTime).format('MMM DD, YYYY');
 
+	const handleUpdate = () => {
+		if (onUpdate) {
+			onUpdate(reservation);
+		}
+	};
+
+	const handleDelete = () => {
+		if (onDelete) {
+			onDelete(reservation);
+		}
+	};
+
 	return (
-		<div className={styles.reservationDetails}>
+		<fetcher.Form className={styles.reservationDetails}>
+			<HiddenInput name='reservationId' value={reservation.id} />
 			<Input
 				className='col-span-12'
 				label='User'
@@ -120,7 +148,23 @@ function ReservationDetails({
 				isReadOnly={true}
 				defaultValue={reservation.description ?? undefined}
 			/>
-		</div>
+			<Button
+				className='col-span-5'
+				color='primary'
+				startContent={<PencilLine weight='duotone' size={20} />}
+				onPress={handleUpdate}
+			>
+				Edit
+			</Button>
+			<Button
+				className='col-span-5 col-end-13'
+				color='danger'
+				startContent={<Trash weight='duotone' size={20} />}
+				onPress={handleDelete}
+			>
+				Delete
+			</Button>
+		</fetcher.Form>
 	);
 }
 
@@ -315,13 +359,7 @@ function ReservationCell(props: ReservationCellProps) {
 	const height = `calc(${(100 * duration) / 12}% - 1px)`;
 	const top = `${(100 * startOffset) / 12}%`;
 
-	const handleTooltipClick = (event: MouseEvent) => {
-		event.stopPropagation();
-	};
-
-	const handleReservationClick = (event: MouseEvent) => {
-		event.stopPropagation();
-
+	const openUpdateModal = () => {
 		const startTime = parseAbsoluteToLocal(reservation.startTime);
 		const endTime = parseAbsoluteToLocal(reservation.endTime);
 
@@ -340,9 +378,44 @@ function ReservationCell(props: ReservationCellProps) {
 		);
 	};
 
+	const deleteReservation = () => {
+		const startTime = parseAbsoluteToLocal(reservation.startTime);
+		const endTime = parseAbsoluteToLocal(reservation.endTime);
+
+		const date = startTime.toString();
+		const startHour = dayjs(startTime.toDate()).format('HH:mm');
+		const endHour = dayjs(endTime.toDate()).format('HH:mm');
+
+		openModal<FormNewReservation>(
+			{
+				...reservation,
+				date,
+				startHour,
+				endHour,
+			},
+			'delete',
+		);
+	};
+
+	const handleTooltipClick = (event: MouseEvent) => {
+		event.stopPropagation();
+	};
+
+	const handleReservationClick = (event: MouseEvent) => {
+		event.stopPropagation();
+
+		openUpdateModal();
+	};
+
 	return (
 		<Tooltip
-			content={<ReservationDetails reservation={reservation} />}
+			content={
+				<ReservationDetails
+					reservation={reservation}
+					onUpdate={openUpdateModal}
+					onDelete={deleteReservation}
+				/>
+			}
 			placement='right'
 			showArrow={true}
 			onClick={handleTooltipClick}

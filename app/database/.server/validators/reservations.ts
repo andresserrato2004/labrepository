@@ -25,6 +25,10 @@ const updateReservationSchema = newReservationSchema.extend({
 	id: zfd.text(z.string()),
 });
 
+const deleteReservationSchema = z.object({
+	id: zfd.text(z.string()),
+});
+
 const newFormReservationSchema = z.object({
 	date: isoDate,
 	course: courseMnemonic,
@@ -144,4 +148,10 @@ export const updateReservationValidator = updateReservationSchema.transform(
 );
 export const updateReservationFormValidator = zfd.formData(
 	updateFormReservationSchema.transform(updateFormReservationTransformer),
+);
+
+export const deleteReservationValidator = deleteReservationSchema;
+
+export const deleteReservationFormValidator = zfd.formData(
+	deleteReservationSchema,
 );

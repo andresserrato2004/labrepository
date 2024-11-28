@@ -1,4 +1,8 @@
-import type { NewReservation, UpdateReservation } from '@database/types';
+import type {
+	DeleteReservation,
+	NewReservation,
+	UpdateReservation,
+} from '@database/types';
 import type { TypedResponse } from '@remix-run/node';
 import type {
 	ClientErrorResponse,
@@ -7,11 +11,13 @@ import type {
 } from '@services/server/types';
 
 import {
+	deleteReservationFormValidator,
 	newReservationFormValidator,
 	updateReservationFormValidator,
 } from '@database/validators';
 import {
 	createReservation,
+	deleteReservation,
 	updateReservation,
 } from '@services/server/reservations';
 import { getSessionFromRequest, parseFormData } from '@services/server/utility';
@@ -127,13 +133,52 @@ export class FormDataReservationHandler extends RouteActionHandler<NewReservatio
 
 		return createResponse(updateReservationResponse);
 	}
-	handleDeleteRequest(
-		_request: Request,
+
+	async handleDeleteRequest(
+		request: Request,
 	): Promise<
 		TypedResponse<
-			SuccessResponse<NoContent> | ClientErrorResponse<NewReservation>
+			SuccessResponse<NoContent> | ClientErrorResponse<DeleteReservation>
 		>
 	> {
-		throw new Error('Method not implemented.');
+		const session = await getSessionFromRequest(request, true);
+
+		if (!session) {
+			throw createBasicResponse(
+				'Method not allowed',
+				ClientErrorCode.MethodNotAllowed,
+			);
+		}
+
+		const formData = await parseFormData(
+			request,
+			deleteReservationFormValidator,
+		);
+
+		if (!formData) {
+			throw createBasicResponse(
+				'Invalid form data.',
+				ClientErrorCode.BadRequest,
+			);
+		}
+
+		if (!formData.success) {
+			return createResponse({
+				code: ClientErrorCode.BadRequest,
+				type: ResponseType.ClientError,
+				errors: getErrorsFromZodError(formData.error),
+			});
+		}
+
+		const deleteReservationResponse = await deleteReservation({
+			request: formData.data,
+			session: session,
+		});
+
+		if (deleteReservationResponse.type === ResponseType.ServerError) {
+			throw createServerErrorResponse(deleteReservationResponse);
+		}
+
+		return createResponse(deleteReservationResponse);
 	}
 }
