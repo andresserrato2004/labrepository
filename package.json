@@ -63,7 +63,7 @@
 		"read-excel-file": "5.8.6",
 		"sonner": "1.5.0",
 		"write-excel-file": "2.0.10",
-		"zod": "3.23.8",
+		"zod": "3.25.76",
 		"zod-form-data": "2.0.2"
 	},
 	"devDependencies": {
