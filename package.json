@@ -51,7 +51,7 @@
 		"dayjs": "1.11.13",
 		"dotenv": "16.4.5",
 		"drizzle-kit": "0.24.2",
-		"drizzle-orm": "0.33.0",
+		"drizzle-orm": "0.44.5",
 		"drizzle-zod": "0.5.1",
 		"fast-jwt": "4.0.5",
 		"framer-motion": "11.9.0",
